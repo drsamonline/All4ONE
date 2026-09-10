@@ -1,0 +1,86 @@
+"""Auto-generated expansion plugin pack. All handlers are lazy and delegate to core operations."""
+
+
+def register_tools():
+    return [
+        {
+            "name": "Audio Duration",
+            "category": "Audio Tools",
+            "description": "Audio Duration. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_duration",
+            "cli_command": "audio-duration",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+        {
+            "name": "Audio Stream Inspector",
+            "category": "Audio Tools",
+            "description": "Audio Stream Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_stream_inspector",
+            "cli_command": "audio-stream-inspector",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+        {
+            "name": "Audio Normalizer",
+            "category": "Audio Tools",
+            "description": "Audio Normalizer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_normalizer",
+            "cli_command": "audio-normalizer",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+        {
+            "name": "Audio Trim",
+            "category": "Audio Tools",
+            "description": "Audio Trim. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_trim",
+            "cli_command": "audio-trim",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+        {
+            "name": "Audio Concatenator",
+            "category": "Audio Tools",
+            "description": "Audio Concatenator. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_concatenator",
+            "cli_command": "audio-concatenator",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+        {
+            "name": "Audio Silence Detector",
+            "category": "Audio Tools",
+            "description": "Audio Silence Detector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_silence_detector",
+            "cli_command": "audio-silence-detector",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+        {
+            "name": "Audio Waveform Exporter",
+            "category": "Audio Tools",
+            "description": "Audio Waveform Exporter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_waveform_exporter",
+            "cli_command": "audio-waveform-exporter",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+        {
+            "name": "Audio Metadata Reader",
+            "category": "Audio Tools",
+            "description": "Audio Metadata Reader. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_metadata_reader",
+            "cli_command": "audio-metadata-reader",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+        {
+            "name": "Audio Metadata Cleaner",
+            "category": "Audio Tools",
+            "description": "Audio Metadata Cleaner. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_metadata_cleaner",
+            "cli_command": "audio-metadata-cleaner",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+        {
+            "name": "Audio Format Converter",
+            "category": "Audio Tools",
+            "description": "Audio Format Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "handler": "operations.audio_format_converter",
+            "cli_command": "audio-format-converter",
+            "dependencies": ["ffprobe", "ffmpeg"],
+        },
+    ]

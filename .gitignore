@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+build/
+dist/
+logs/*
+!logs/.gitkeep
+*.tmp
+*.bak
+*.db
+SWEEP_RESULTS.json

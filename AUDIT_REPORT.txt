@@ -1,0 +1,40 @@
+Utility Suite 2.1.3 — Merged Audit Report
+(supersedes the 2.1.2 report; see MERGE_NOTES.md for what changed and why)
+
+Python files: 143
+Python source lines (post-formatting pass, PEP 8 line spacing via black): 10511
+Plugin packs: 45
+Tools: 500/500
+Unique commands: 500/500
+Runtime handler resolution: 500/500
+AST parse: PASS
+Safety-pattern scan (shell=True / os.system): PASS
+Plugin ZIP integrity: PASS
+Behavioral smoke suite (tests/test_suite.py): PASS
+Archive traversal regressions (zip-slip / tar-slip): PASS
+Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 500/500 tools
+  individually invoked with a hard timeout): 500 OK, 0 unexpected timeouts,
+  0 uncaught tracebacks, 0 crashes
+Source cache residue: NONE
+Stray runtime artifacts (backup/, logs/*.db): REMOVED
+
+Fixes applied in this pass (see MERGE_NOTES.md for full detail):
+  - count / download / filetype / hexview / integrity-baseline: now give a
+    friendly message instead of a raw errno/traceback when pointed at a
+    directory or an invalid URL.
+  - Console logging no longer prints full Python tracebacks for routine,
+    already-handled tool errors; full detail is still kept in the rotating
+    file log for developers.
+  - GUI launch ('utility_suite gui' and the no-argument default) now fails
+    gracefully with an actionable message if tkinter is unavailable or no
+    display is present, instead of an unhandled exception.
+  - security_tools/secure_delete.py renamed to integrity_baseline.py to
+    match what the module actually does.
+  - GUI: added a confirmation prompt before running tools that can delete
+    or overwrite data, plus File/Folder browse buttons that insert a
+    correctly-quoted path into the argument field.
+
+See FINAL_MAX_AUDIT.md for the original 2.1.2 qualification notes and the
+Windows-host testing limitation (unchanged: this audit environment is
+Linux, so native Windows integrations remain dependency-gated and
+statically verified rather than executed against a live Windows kernel).

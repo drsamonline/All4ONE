@@ -1,0 +1,51 @@
+{
+  "performance": {
+    "multithreading": {
+      "enabled": true,
+      "worker_threads": "auto",
+      "max_threads": 16,
+      "io_bound": true
+    },
+    "indexing": {
+      "enabled": false,
+      "database_path": "~/.utility_suite/index.db",
+      "update_interval": 3600
+    },
+    "hash_duplicate_detection": {
+      "enabled": false,
+      "algorithm": "sha256",
+      "min_file_size": 1024,
+      "max_file_size": 1073741824
+    },
+    "copy_optimisations": {
+      "use_sendfile": true,
+      "same_volume_fast_move": true,
+      "buffer_size": 1048576
+    },
+    "scan_optimisations": {
+      "use_scandir": true,
+      "skip_hidden": true,
+      "exclude_patterns": [
+        ".git",
+        "System Volume Information",
+        "$RECYCLE.BIN"
+      ],
+      "directory_mtime_check": false
+    }
+  },
+  "plugins_directory": "plugins",
+  "log_level": "INFO",
+  "log_file": "logs/utility_suite.log",
+  "max_log_size_mb": 5,
+  "backup_count": 3,
+  "ui": {
+    "theme": "dark",
+    "geometry": "1200x760",
+    "remember_geometry": true
+  },
+  "application": {
+    "name": "Utility Suite",
+    "version": "2.1.2",
+    "author": "Dr. Sohil Momin"
+  }
+}
