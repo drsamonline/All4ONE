@@ -49,10 +49,25 @@ jobs:
       - name: Build with PyInstaller
         run: python -m PyInstaller build.spec --clean --noconfirm
 
+      - name: Copy plugins/ next to the built executable
+        # plugins/ must sit BESIDE utility_suite.exe as a plain, editable
+        # folder - see build.spec for why it is intentionally not bundled
+        # via PyInstaller `datas` (which would bury it inside _internal/,
+        # where the app never looks - this previously caused a packaged
+        # build to silently report "Total tools: 0").
+        run: |
+          Copy-Item -Path plugins -Destination dist\utility_suite\plugins -Recurse -Force
+          New-Item -ItemType Directory -Force -Path dist\utility_suite\logs | Out-Null
+
       - name: Smoke-test the built executable
         run: |
-          dist\utility_suite\utility_suite.exe list | Select-Object -First 5
-          dist\utility_suite\utility_suite.exe --version
+          $toolCount = & dist\utility_suite\utility_suite.exe list | Select-String -Pattern 'Total tools:'
+          Write-Host $toolCount
+          if ($toolCount -match 'Total tools: 0') {
+            Write-Error 'Packaged executable found 0 tools - plugins were not placed correctly.'
+            exit 1
+          }
+          & dist\utility_suite\utility_suite.exe --version
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
