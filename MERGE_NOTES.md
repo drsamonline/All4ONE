@@ -110,3 +110,59 @@ lines for style alone, with no functional bug to justify the risk of
 introducing one, was not a good use of this pass; flagging it here so you
 can decide if a future pass should prioritize readability over the
 current compactness.
+
+## Build pipeline fixes (this update — you reported the build failing)
+
+The previous package's `.exe` build actually failed on any machine,
+Windows included — this was never a Windows-specific issue. I actually
+ran `pyinstaller build.spec` myself (Linux can run PyInstaller, it just
+can't produce a *Windows* binary from it) to reproduce and confirm each
+bug before fixing it:
+
+**1. `build.spec` crashed immediately with `NameError: name '__file__' is
+not defined`.** PyInstaller runs `.spec` files with `exec()`, which does
+not define `__file__` the way a normal module import does. PyInstaller
+instead injects `SPECPATH` into the exec namespace for exactly this
+purpose. Fixed `ROOT = Path(__file__).resolve().parent` → 
+`ROOT = Path(SPECPATH).resolve()`.
+
+**2. Even after that fix, a built executable reported "Total tools: 0".**
+This one was a genuine packaging design bug, not a typo: PyInstaller's
+`datas=` mechanism always places bundled files inside the app's internal
+resource folder (`dist/utility_suite/_internal/` in a onedir build) —
+never directly beside the executable. The app, correctly, looks for
+`plugins/` as a sibling of `utility_suite.exe` (matching the onedir
+layout documented in `COMPILATION.md`, and the original blueprint's
+Section 11.3), so the shipped plugins were silently unreachable. Fixed by
+removing `plugins/` and `config.json` from `build.spec`'s `datas=`
+entirely and instead copying `plugins/` next to the built executable as
+a post-build step in both `BUILD_WINDOWS.ps1` and the GitHub Actions
+workflow. `config.json` is intentionally not bundled at all — the app
+already creates a fresh one beside the executable on first run. This also
+restores the "just drop a new pack ZIP into `plugins/`, no rebuild
+needed" extensibility the blueprint calls for, which packaging it inside
+`_internal/` would have quietly broken.
+
+**3. `--version` printed the stale `2.1.2`.** `core/__init__.py` had a
+hardcoded version string left over from the previous release. Bumped to
+`2.1.3` alongside the rest of the version-string updates already made
+elsewhere in this document.
+
+**4. Added a build-time verification gate.** `BUILD_WINDOWS.ps1` and the
+CI workflow now run the freshly built `utility_suite.exe list` and
+`--version` immediately after packaging and fail the build outright if
+the tool count is 0 or the version string is missing — so a regression
+like this one can never again silently ship as a "successful" build.
+
+### Re-verified
+
+- Built with `pyinstaller build.spec --clean --noconfirm` directly in
+  this (Linux) sandbox to confirm the packaging logic itself is correct
+  — PyInstaller can build and run its own executable format on any host
+  OS, it just can't cross-compile to a *different* OS's binary format.
+  The resulting Linux executable, with `plugins/` copied next to it as
+  the real Windows build will be, reports **"Total tools: 500"** and
+  `--version` → `2.1.3`.
+- `python audit.py`, `python -B tests/test_suite.py`, and
+  `python tests/test_all_tools.py` all re-run clean after these fixes:
+  500/500 tools, 0 tracebacks, 0 crashes.

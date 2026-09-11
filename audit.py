@@ -122,6 +122,48 @@ def main():
     # source-tree cache clutter
     if list(ROOT.rglob("__pycache__")):
         problems.append("Build tree contains __pycache__")
+
+    # Version-string consistency: VERSION.txt is the single source of
+    # truth. This check exists because a stale hardcoded version in
+    # core/__init__.py once shipped silently (the built exe reported
+    # "2.1.2" when the release was actually "2.1.3") - catch that class
+    # of bug here instead of relying on a human to notice.
+    version_file = (ROOT / "VERSION.txt")
+    if version_file.exists():
+        expected_version = version_file.read_text(encoding="utf-8").strip()
+        try:
+            from . import __version__ as actual_version
+        except Exception:
+            try:
+                from core import __version__ as actual_version
+            except Exception:
+                actual_version = None
+        if actual_version != expected_version:
+            problems.append(
+                f"VERSION MISMATCH: VERSION.txt says '{expected_version}' but "
+                f"core/__init__.py's __version__ is '{actual_version}'"
+            )
+    else:
+        problems.append("VERSION.txt is missing")
+
+    # build.spec packaging-layout guard: plugins/ and config.json must
+    # never be re-added to Analysis(datas=...) - PyInstaller places
+    # `datas` inside _internal/, not beside the executable, which
+    # previously caused a built exe to silently report "Total tools: 0"
+    # because the app looks for plugins/ as a sibling of the exe. See
+    # MERGE_NOTES.md for the full story.
+    spec_file = ROOT / "build.spec"
+    if spec_file.exists():
+        spec_text = spec_file.read_text(encoding="utf-8")
+        if re.search(r"datas\s*=\s*\[[^\]]*['\"]plugins['\"]", spec_text):
+            problems.append(
+                "build.spec bundles 'plugins' via Analysis(datas=...) again - this buries it "
+                "inside _internal/ where the app can't find it. Copy plugins/ next to the built "
+                "exe as a post-build step instead (see BUILD_WINDOWS.ps1)."
+            )
+    else:
+        problems.append("build.spec is missing")
+
     print(f"Packs: {len(packs)}")
     print(f"Tools: {len(all_tools)}/500")
     print(f"Unique commands: {len(set(cmds))}/{len(cmds)}")
