@@ -18,7 +18,11 @@ def run(args=None):
     if a.system and sys.platform == "win32":
         import subprocess
 
-        subprocess.run(["setx", "/M", a.name, a.value], check=False)
+        try:
+            subprocess.run(["setx", "/M", a.name, a.value], check=False, timeout=15)
+        except subprocess.TimeoutExpired:
+            print("setx timed out.")
+            return 1
     else:
         os.environ[a.name] = a.value
         print(f"{a.name}={a.value}")

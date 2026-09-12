@@ -111,7 +111,52 @@ introducing one, was not a good use of this pass; flagging it here so you
 can decide if a future pass should prioritize readability over the
 current compactness.
 
-## Build pipeline fixes (this update — you reported the build failing)
+## Build pipeline fix, round 2 (this update — CI was still failing after round 1)
+
+The fixes in "Build pipeline fixes" below made a *local* PyInstaller
+build succeed, but the GitHub Actions workflow kept failing. Root cause
+this time was different, and more serious: I had added an "Exhaustive
+per-tool sweep" step to the CI workflow that runs all 500 tools for
+real. On my Linux dev sandbox this is completely safe, because
+Windows-only tools (`service`, `startup`, `net-reset`, `restore-point`,
+`driver-backup`, `eventlog`, `schedule`) are correctly reported as
+"unavailable" and never execute. **On the real Windows CI runner, those
+same tools are available and the sweep actually runs them** - creating
+scheduled tasks, querying services, attempting a real System Restore
+checkpoint (frequently disabled on ephemeral cloud VMs, and slow or
+unresponsive when it is), and `net-reset` specifically requests an
+interactive UAC elevation prompt that can never be answered on a
+headless CI runner. None of those eight tools' `subprocess.run()` calls
+had a timeout, so any one of them hanging would stall the entire
+workflow with no clear error.
+
+Fixed by:
+1. Adding explicit `subprocess.run(..., timeout=...)` (with matching
+   `except subprocess.TimeoutExpired` handling) to all eight affected
+   tools: `system_utils/env_vars.py`, `startup.py`, `services.py`,
+   `net_reset.py`, `event_log.py`; `windows_power/driver_backup.py`,
+   `restore_point.py`; `automation/scheduler.py`. This is a real
+   robustness fix independent of CI - none of these should ever be able
+   to hang indefinitely regardless of how they're invoked (CLI, GUI, or
+   automated testing).
+2. Removing the "Exhaustive per-tool sweep" step from the GitHub Actions
+   workflow entirely. It remains a legitimate local/manual diagnostic
+   tool (see the new "Testing tiers" section in `DEVELOPER_GUIDE.md`),
+   but should only ever be pointed at a disposable Windows VM, never a
+   shared CI runner.
+3. Adding `timeout-minutes: 25` at the job level as a defense-in-depth
+   safety net, and switching the CI's `test_suite.py` invocation to the
+   same module form (`python -B -m tests.test_suite`) already used by
+   `BUILD_WINDOWS.ps1`, removing a small inconsistency between the two
+   build paths.
+
+`core/extended_ops.py` (the ~350 expansion-pack operations) was already
+safe - its one shared subprocess helper already had a 30-second default
+timeout and a shell-string guard, and the whole dispatcher is wrapped in
+a catch-all. The gap was specifically in the eight original-blueprint
+Windows tools listed above.
+
+## Build pipeline fixes, round 1 (previous update — you reported the build failing)
 
 The previous package's `.exe` build actually failed on any machine,
 Windows included — this was never a Windows-specific issue. I actually

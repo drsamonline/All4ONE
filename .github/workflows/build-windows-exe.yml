@@ -19,6 +19,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    timeout-minutes: 25  # safety net: fail fast instead of hanging until the runner's own limit
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
@@ -41,10 +42,22 @@ jobs:
         run: python audit.py
 
       - name: Behavioral smoke tests
-        run: python -B tests\test_suite.py
+        run: python -B -m tests.test_suite
 
-      - name: Exhaustive per-tool sweep
-        run: python tests\test_all_tools.py
+      # NOTE: tests/test_all_tools.py (the exhaustive per-tool sweep) is
+      # intentionally NOT run here. On a real Windows runner, tools that
+      # are dependency-gated as "unavailable" on the audit/dev machine
+      # (services, registry, event log, network adapter reset, System
+      # Restore, driver export, scheduled tasks) become genuinely
+      # available and would actually execute against the shared CI VM.
+      # Some require an interactive UAC elevation prompt that will never
+      # be answered in CI (net-reset), and others can legitimately take
+      # a long time or fail unpredictably in a locked-down runner
+      # (System Restore is commonly disabled on ephemeral cloud VMs).
+      # That combination previously stalled/broke this exact workflow.
+      # Run tests/test_all_tools.py locally on a disposable Windows VM
+      # instead, where side effects and hangs are acceptable - see
+      # DEVELOPER_GUIDE.md.
 
       - name: Build with PyInstaller
         run: python -m PyInstaller build.spec --clean --noconfirm

@@ -14,4 +14,8 @@ def run(args=None):
     if not exe:
         print("sc not found.")
         return 3
-    return subprocess.run([exe, a.action, a.service_name], check=False).returncode
+    try:
+        return subprocess.run([exe, a.action, a.service_name], check=False, timeout=20).returncode
+    except subprocess.TimeoutExpired:
+        print("sc command timed out.")
+        return 1

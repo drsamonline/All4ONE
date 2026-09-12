@@ -16,4 +16,8 @@ def run(args=None):
         print("wevtutil not found.")
         return 3
     cmd = [exe, "qe", a.log, "/c:" + str(a.max_events), "/f:text", "/rd:true"]
-    return subprocess.run(cmd, check=False).returncode
+    try:
+        return subprocess.run(cmd, check=False, timeout=20).returncode
+    except subprocess.TimeoutExpired:
+        print("wevtutil timed out.")
+        return 1

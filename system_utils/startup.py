@@ -23,5 +23,9 @@ def run(args=None):
     )
     rc = 0
     for root in roots:
-        rc = max(rc, subprocess.run([exe, "query", root], check=False).returncode)
+        try:
+            rc = max(rc, subprocess.run([exe, "query", root], check=False, timeout=15).returncode)
+        except subprocess.TimeoutExpired:
+            print(f"reg query timed out for {root}")
+            rc = 1
     return rc

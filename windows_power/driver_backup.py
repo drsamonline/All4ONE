@@ -15,4 +15,8 @@ def run(args=None):
         print("pnputil not found.")
         return 3
     Path(a.dest).mkdir(parents=True, exist_ok=True)
-    return subprocess.run([exe, "/export-driver", "*", a.dest], check=False).returncode
+    try:
+        return subprocess.run([exe, "/export-driver", "*", a.dest], check=False, timeout=120).returncode
+    except subprocess.TimeoutExpired:
+        print("Driver export timed out.")
+        return 1

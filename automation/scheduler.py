@@ -24,4 +24,8 @@ def run(args=None):
         cmd += ["/ST", a.time or "00:00"]
     if a.run_as_system:
         cmd += ["/RU", "SYSTEM"]
-    return subprocess.run(cmd, check=False).returncode
+    try:
+        return subprocess.run(cmd, check=False, timeout=20).returncode
+    except subprocess.TimeoutExpired:
+        print("schtasks timed out.")
+        return 1

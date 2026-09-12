@@ -15,4 +15,8 @@ def run(args=None):
         return 3
     desc = a.description.replace(chr(39), chr(39) * 2)
     cmd = f"Checkpoint-Computer -Description '{desc}' -RestorePointType MODIFY_SETTINGS"
-    return subprocess.run([ps, "-NoProfile", "-Command", cmd], check=False).returncode
+    try:
+        return subprocess.run([ps, "-NoProfile", "-Command", cmd], check=False, timeout=60).returncode
+    except subprocess.TimeoutExpired:
+        print("System Restore did not respond in time (it may be disabled on this machine).")
+        return 1

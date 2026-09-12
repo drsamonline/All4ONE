@@ -45,3 +45,46 @@ Expansion packs use a shared lazy adapter factory so the project does not copy 1
 6. Run the audit again.
 
 Keep the catalogue at or below 500 tools unless the product specification is deliberately revised.
+
+## Testing tiers - which one runs where
+
+There are three layers of testing in this repository, and they are
+**not interchangeable** - running the wrong one in the wrong place is
+exactly what previously broke the Windows CI build:
+
+1. **`audit.py`** - static, safe, fast. Checks catalogue integrity,
+   syntax, handler wiring, plugin ZIP consistency, and a couple of
+   packaging-regression guards (version-string drift, `build.spec`
+   accidentally re-bundling `plugins/`). Runs everywhere: locally, in
+   CI, on every platform. No side effects.
+
+2. **`tests/test_suite.py`** (`python -B -m tests.test_suite`) -
+   behavioral smoke tests against a disposable temp sandbox: config
+   merging, split/join round-trips, CSV tools, zip-slip/tar-slip
+   rejection, renamer. Deliberately scoped to tools with no real system
+   side effects. Runs everywhere, including CI, before every build.
+
+3. **`tests/test_all_tools.py`** - an exhaustive sweep that invokes
+   *every one* of the 500 registered tools in its own subprocess. This
+   is a **local/manual developer diagnostic only** - it is intentionally
+   **not** part of the CI build pipeline. The reason: on a Linux dev
+   machine, Windows-only tools (services, registry, event log, network
+   adapter reset, System Restore, driver export, scheduled tasks) are
+   correctly reported as "unavailable" and never actually execute. On a
+   real Windows machine - including a GitHub Actions `windows-latest`
+   runner - those same tools *are* available and the sweep will really
+   run them: creating scheduled tasks, querying/starting/stopping real
+   services, attempting a real System Restore checkpoint (often disabled
+   on ephemeral cloud VMs and slow or unresponsive when it is), and
+   `net-reset` in particular requests interactive UAC elevation, which
+   never resolves on a headless CI runner. Every affected tool now has
+   an explicit subprocess timeout so it can never hang the process
+   indefinitely, but you still should not point this sweep at a shared
+   or production Windows machine - run it only on a disposable VM/sandbox
+   where side effects are acceptable.
+
+If you want broader automated coverage in CI beyond `test_suite.py`
+without this risk, the safe path is to extend `test_all_tools.py` with
+an explicit allowlist/denylist by pack (skip `system_utils`,
+`windows_power`, `automation`'s `schedule`, and `network_tools`'
+`net-reset`) rather than running it unmodified in CI.
