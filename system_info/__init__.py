@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "System Summary",
             "category": "System Information",
-            "description": "System Summary. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "System Summary: system-summary operation.",
             "handler": "operations.system_summary",
             "cli_command": "system-summary",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "OS Version",
             "category": "System Information",
-            "description": "OS Version. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "OS Version: os-version operation.",
             "handler": "operations.os_version",
             "cli_command": "os-version",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Computer Name",
             "category": "System Information",
-            "description": "Computer Name. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Computer Name: computer-name operation.",
             "handler": "operations.computer_name",
             "cli_command": "computer-name",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "CPU Information",
             "category": "System Information",
-            "description": "CPU Information. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "CPU Information: cpu-information operation.",
             "handler": "operations.cpu_information",
             "cli_command": "cpu-information",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Memory Information",
             "category": "System Information",
-            "description": "Memory Information. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Memory Information: memory-information operation.",
             "handler": "operations.memory_information",
             "cli_command": "memory-information",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Boot Time",
             "category": "System Information",
-            "description": "Boot Time. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Boot Time: boot-time operation.",
             "handler": "operations.boot_time",
             "cli_command": "boot-time",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Current User",
             "category": "System Information",
-            "description": "Current User. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Current User: current-user operation.",
             "handler": "operations.current_user",
             "cli_command": "current-user",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Python Environment",
             "category": "System Information",
-            "description": "Python Environment. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Python Environment: python-environment operation.",
             "handler": "operations.python_environment",
             "cli_command": "python-environment",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Environment Report",
             "category": "System Information",
-            "description": "Environment Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Environment Report: environment-report operation.",
             "handler": "operations.environment_report",
             "cli_command": "environment-report",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Locale Information",
             "category": "System Information",
-            "description": "Locale Information. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Locale Information: locale-information operation.",
             "handler": "operations.locale_information",
             "cli_command": "locale-information",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Time Zone Information",
             "category": "System Information",
-            "description": "Time Zone Information. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Time Zone Information: time-zone-information operation.",
             "handler": "operations.time_zone_information",
             "cli_command": "time-zone-information",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "System Uptime",
             "category": "System Information",
-            "description": "System Uptime. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "System Uptime: system-uptime operation.",
             "handler": "operations.system_uptime",
             "cli_command": "system-uptime",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Machine Architecture",
             "category": "System Information",
-            "description": "Machine Architecture. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Machine Architecture: machine-architecture operation.",
             "handler": "operations.machine_architecture",
             "cli_command": "machine-architecture",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "System Directory Report",
             "category": "System Information",
-            "description": "System Directory Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "System Directory Report: system-directory-report operation.",
             "handler": "operations.system_directory_report",
             "cli_command": "system-directory-report",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Temporary Directory Report",
             "category": "System Information",
-            "description": "Temporary Directory Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Temporary Directory Report: temporary-directory-report operation.",
             "handler": "operations.temporary_directory_report",
             "cli_command": "temporary-directory-report",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "User Profile Report",
             "category": "System Information",
-            "description": "User Profile Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "User Profile Report: user-profile-report operation.",
             "handler": "operations.user_profile_report",
             "cli_command": "user-profile-report",
             "dependencies": [],
@@ -134,7 +134,7 @@ def register_tools():
         {
             "name": "PowerShell Version",
             "category": "System Information",
-            "description": "PowerShell Version. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PowerShell Version: powershell-version operation.",
             "handler": "operations.powershell_version",
             "cli_command": "powershell-version",
             "dependencies": ["powershell"],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Windows Version Report",
             "category": "System Information",
-            "description": "Windows Version Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Windows Version Report: windows-version-report operation.",
             "handler": "operations.windows_version_report",
             "cli_command": "windows-version-report",
             "dependencies": [],
@@ -150,7 +150,7 @@ def register_tools():
         {
             "name": "Installed RAM Summary",
             "category": "System Information",
-            "description": "Installed RAM Summary. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Installed RAM Summary: installed-ram-summary operation.",
             "handler": "operations.installed_ram_summary",
             "cli_command": "installed-ram-summary",
             "dependencies": [],
@@ -158,7 +158,7 @@ def register_tools():
         {
             "name": "System Environment Export",
             "category": "System Information",
-            "description": "System Environment Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "System Environment Export: system-environment-export operation.",
             "handler": "operations.system_environment_export",
             "cli_command": "system-environment-export",
             "dependencies": [],

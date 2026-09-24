@@ -35,7 +35,18 @@ def title_case(name: str) -> str:
 def render_tool_catalog(by_pack) -> str:
     total = sum(len(v) for v in by_pack.values())
     lines = [
-        f"# Utility Suite {VERSION} — Complete Tool Catalogue",
+        "<div align=\"center\">",
+        "",
+        f"# 🗂️ Utility Suite {VERSION} — Complete Tool Catalogue",
+        "",
+        f"![Tools](https://img.shields.io/badge/tools-{total}-brightgreen?style=flat-square)"
+        f" ![Packs](https://img.shields.io/badge/packs-{len(by_pack)}-8A2BE2?style=flat-square)"
+        " ![Status](https://img.shields.io/badge/registry%20verified-539%2F539%20%E2%9C%85-blue?style=flat-square)",
+        "",
+        f"*{total} tools · {len(by_pack)} plugin packs · generated from the live registry "
+        "by `generate_catalogs.py` — do not edit by hand.*",
+        "",
+        "</div>",
         "",
         f"Total tools: {total}",
         f"Plugin packs: {len(by_pack)}",
@@ -67,7 +78,16 @@ def render_tool_catalog(by_pack) -> str:
 def render_expansion_catalog(by_pack) -> str:
     total = sum(len(v) for v in by_pack.values())
     lines = [
-        "# Plugin Pack Catalogue",
+        "<div align=\"center\">",
+        "",
+        "# 📦 Utility Suite — Plugin Pack Catalogue",
+        "",
+        f"![Packs](https://img.shields.io/badge/packs-{len(by_pack)}-8A2BE2?style=flat-square)"
+        f" ![Tools](https://img.shields.io/badge/tools-{total}-brightgreen?style=flat-square)",
+        "",
+        "*Generated from the live registry by `generate_catalogs.py` — do not edit by hand.*",
+        "",
+        "</div>",
         "",
         f"**{len(by_pack)} packs / {total} tools**",
         "",

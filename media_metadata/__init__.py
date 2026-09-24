@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "EXIF Date Reader",
             "category": "Media Metadata",
-            "description": "EXIF Date Reader. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "EXIF Date Reader: exif-date-reader operation.",
             "handler": "operations.exif_date_reader",
             "cli_command": "exif-date-reader",
             "dependencies": ["ffprobe"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "EXIF Camera Reader",
             "category": "Media Metadata",
-            "description": "EXIF Camera Reader. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "EXIF Camera Reader: exif-camera-reader operation.",
             "handler": "operations.exif_camera_reader",
             "cli_command": "exif-camera-reader",
             "dependencies": ["ffprobe"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Image MIME Detector",
             "category": "Media Metadata",
-            "description": "Image MIME Detector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image MIME Detector: image-mime-detector operation.",
             "handler": "operations.image_mime_detector",
             "cli_command": "image-mime-detector",
             "dependencies": ["ffprobe"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Audio MIME Detector",
             "category": "Media Metadata",
-            "description": "Audio MIME Detector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Audio MIME Detector: audio-mime-detector operation.",
             "handler": "operations.audio_mime_detector",
             "cli_command": "audio-mime-detector",
             "dependencies": ["ffprobe"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Video MIME Detector",
             "category": "Media Metadata",
-            "description": "Video MIME Detector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Video MIME Detector: video-mime-detector operation.",
             "handler": "operations.video_mime_detector",
             "cli_command": "video-mime-detector",
             "dependencies": ["ffprobe"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Media File Scanner",
             "category": "Media Metadata",
-            "description": "Media File Scanner. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Media File Scanner: media-file-scanner operation.",
             "handler": "operations.media_file_scanner",
             "cli_command": "media-file-scanner",
             "dependencies": ["ffprobe"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Media Size Report",
             "category": "Media Metadata",
-            "description": "Media Size Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Media Size Report: media-size-report operation.",
             "handler": "operations.media_size_report",
             "cli_command": "media-size-report",
             "dependencies": ["ffprobe"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Media Duration Inventory",
             "category": "Media Metadata",
-            "description": "Media Duration Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Media Duration Inventory: media-duration-inventory operation.",
             "handler": "operations.media_duration_inventory",
             "cli_command": "media-duration-inventory",
             "dependencies": ["ffprobe"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Media Extension Summary",
             "category": "Media Metadata",
-            "description": "Media Extension Summary. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Media Extension Summary: media-extension-summary operation.",
             "handler": "operations.media_extension_summary",
             "cli_command": "media-extension-summary",
             "dependencies": ["ffprobe"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Media Duplicate Finder",
             "category": "Media Metadata",
-            "description": "Media Duplicate Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Media Duplicate Finder: media-duplicate-finder operation.",
             "handler": "operations.media_duplicate_finder",
             "cli_command": "media-duplicate-finder",
             "dependencies": ["ffprobe"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Media Hash Inventory",
             "category": "Media Metadata",
-            "description": "Media Hash Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Media Hash Inventory: media-hash-inventory operation.",
             "handler": "operations.media_hash_inventory",
             "cli_command": "media-hash-inventory",
             "dependencies": ["ffprobe"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Media Folder Report",
             "category": "Media Metadata",
-            "description": "Media Folder Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Media Folder Report: media-folder-report operation.",
             "handler": "operations.media_folder_report",
             "cli_command": "media-folder-report",
             "dependencies": ["ffprobe"],

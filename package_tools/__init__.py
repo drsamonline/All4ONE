@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Python Package List",
         "category": "Package & Environment Tools",
-        "description": "Python Package List. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Python Package List: python-package-list operation.",
         "handler": "operations.python_package_list",
         "cli_command": "python-package-list",
         "dependencies": [
@@ -16,7 +16,7 @@ def register_tools():
     {
         "name": "Python Package Versions",
         "category": "Package & Environment Tools",
-        "description": "Python Package Versions. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Python Package Versions: python-package-versions operation.",
         "handler": "operations.python_package_versions",
         "cli_command": "python-package-versions",
         "dependencies": [
@@ -26,7 +26,7 @@ def register_tools():
     {
         "name": "Pip Command Guide",
         "category": "Package & Environment Tools",
-        "description": "Pip Command Guide. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Pip Command Guide: pip-command-guide operation.",
         "handler": "operations.pip_command_guide",
         "cli_command": "pip-command-guide",
         "dependencies": [
@@ -36,7 +36,7 @@ def register_tools():
     {
         "name": "Executable Package Locator",
         "category": "Package & Environment Tools",
-        "description": "Executable Package Locator. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Executable Package Locator: executable-package-locator operation.",
         "handler": "operations.executable_package_locator",
         "cli_command": "executable-package-locator",
         "dependencies": [
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Import Package Test",
         "category": "Package & Environment Tools",
-        "description": "Import Package Test. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Import Package Test: import-package-test operation.",
         "handler": "operations.import_package_test",
         "cli_command": "import-package-test",
         "dependencies": [
@@ -56,7 +56,7 @@ def register_tools():
     {
         "name": "Requirements Generator",
         "category": "Package & Environment Tools",
-        "description": "Requirements Generator. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Requirements Generator: requirements-generator operation.",
         "handler": "operations.requirements_generator",
         "cli_command": "requirements-generator",
         "dependencies": [
@@ -66,7 +66,7 @@ def register_tools():
     {
         "name": "Requirements Auditor",
         "category": "Package & Environment Tools",
-        "description": "Requirements Auditor. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Requirements Auditor: requirements-auditor operation.",
         "handler": "operations.requirements_auditor",
         "cli_command": "requirements-auditor",
         "dependencies": [
@@ -76,7 +76,7 @@ def register_tools():
     {
         "name": "Virtual Environment Finder",
         "category": "Package & Environment Tools",
-        "description": "Virtual Environment Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Virtual Environment Finder: virtual-environment-finder operation.",
         "handler": "operations.virtual_environment_finder",
         "cli_command": "virtual-environment-finder",
         "dependencies": [
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Virtual Environment Report",
         "category": "Package & Environment Tools",
-        "description": "Virtual Environment Report. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Virtual Environment Report: virtual-environment-report operation.",
         "handler": "operations.virtual_environment_report",
         "cli_command": "virtual-environment-report",
         "dependencies": [
@@ -96,7 +96,7 @@ def register_tools():
     {
         "name": "Package Cache Guide",
         "category": "Package & Environment Tools",
-        "description": "Package Cache Guide. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Package Cache Guide: package-cache-guide operation.",
         "handler": "operations.package_cache_guide",
         "cli_command": "package-cache-guide",
         "dependencies": [
@@ -106,7 +106,7 @@ def register_tools():
     {
         "name": "Venv Size Reporter",
         "category": "Package Tools",
-        "description": "Venv Size Reporter. Venv Size Reporter with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Venv Size Reporter: venv-size operation.",
         "handler": "operations.venv_size_reporter",
         "cli_command": "venv-size",
         "dependencies": []
@@ -114,7 +114,7 @@ def register_tools():
     {
         "name": "Wheel Inspector",
         "category": "Package Tools",
-        "description": "Wheel Inspector. Wheel Inspector with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Wheel Inspector: wheel-inspector operation.",
         "handler": "operations.wheel_inspector",
         "cli_command": "wheel-inspector",
         "dependencies": []

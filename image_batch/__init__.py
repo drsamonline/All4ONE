@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Image Batch Inventory",
             "category": "Batch Imaging",
-            "description": "Image Batch Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Inventory: image-batch-inventory operation.",
             "handler": "operations.image_batch_inventory",
             "cli_command": "image-batch-inventory",
             "dependencies": ["Pillow"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Image Batch Dimensions",
             "category": "Batch Imaging",
-            "description": "Image Batch Dimensions. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Dimensions: image-batch-dimensions operation.",
             "handler": "operations.image_batch_dimensions",
             "cli_command": "image-batch-dimensions",
             "dependencies": ["Pillow"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Image Batch Extension Convert",
             "category": "Batch Imaging",
-            "description": "Image Batch Extension Convert. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Extension Convert: image-batch-extension-convert operation.",
             "handler": "operations.image_batch_extension_convert",
             "cli_command": "image-batch-extension-convert",
             "dependencies": ["Pillow"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Image Batch Resize Plan",
             "category": "Batch Imaging",
-            "description": "Image Batch Resize Plan. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Resize Plan: image-batch-resize-plan operation.",
             "handler": "operations.image_batch_resize_plan",
             "cli_command": "image-batch-resize-plan",
             "dependencies": ["Pillow"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Image Batch Rename Plan",
             "category": "Batch Imaging",
-            "description": "Image Batch Rename Plan. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Rename Plan: image-batch-rename-plan operation.",
             "handler": "operations.image_batch_rename_plan",
             "cli_command": "image-batch-rename-plan",
             "dependencies": ["Pillow"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Image Batch Hash",
             "category": "Batch Imaging",
-            "description": "Image Batch Hash. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Hash: image-batch-hash operation.",
             "handler": "operations.image_batch_hash",
             "cli_command": "image-batch-hash",
             "dependencies": ["Pillow"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Image Batch Duplicate Report",
             "category": "Batch Imaging",
-            "description": "Image Batch Duplicate Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Duplicate Report: image-batch-duplicate-report operation.",
             "handler": "operations.image_batch_duplicate_report",
             "cli_command": "image-batch-duplicate-report",
             "dependencies": ["Pillow"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Image Batch Contact Sheet",
             "category": "Batch Imaging",
-            "description": "Image Batch Contact Sheet. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Contact Sheet: image-batch-contact-sheet operation.",
             "handler": "operations.image_batch_contact_sheet",
             "cli_command": "image-batch-contact-sheet",
             "dependencies": ["Pillow"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Image Batch Metadata Report",
             "category": "Batch Imaging",
-            "description": "Image Batch Metadata Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Metadata Report: image-batch-metadata-report operation.",
             "handler": "operations.image_batch_metadata_report",
             "cli_command": "image-batch-metadata-report",
             "dependencies": ["Pillow"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Image Batch Orientation Report",
             "category": "Batch Imaging",
-            "description": "Image Batch Orientation Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Orientation Report: image-batch-orientation-report operation.",
             "handler": "operations.image_batch_orientation_report",
             "cli_command": "image-batch-orientation-report",
             "dependencies": ["Pillow"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Image Batch Folder Summary",
             "category": "Batch Imaging",
-            "description": "Image Batch Folder Summary. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Folder Summary: image-batch-folder-summary operation.",
             "handler": "operations.image_batch_folder_summary",
             "cli_command": "image-batch-folder-summary",
             "dependencies": ["Pillow"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Image Batch CSV Export",
             "category": "Batch Imaging",
-            "description": "Image Batch CSV Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch CSV Export: image-batch-csv-export operation.",
             "handler": "operations.image_batch_csv_export",
             "cli_command": "image-batch-csv-export",
             "dependencies": ["Pillow"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Image Batch JSON Export",
             "category": "Batch Imaging",
-            "description": "Image Batch JSON Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch JSON Export: image-batch-json-export operation.",
             "handler": "operations.image_batch_json_export",
             "cli_command": "image-batch-json-export",
             "dependencies": ["Pillow"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Image Batch Cleanup Plan",
             "category": "Batch Imaging",
-            "description": "Image Batch Cleanup Plan. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Cleanup Plan: image-batch-cleanup-plan operation.",
             "handler": "operations.image_batch_cleanup_plan",
             "cli_command": "image-batch-cleanup-plan",
             "dependencies": ["Pillow"],

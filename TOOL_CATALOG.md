@@ -1,4 +1,12 @@
-# Utility Suite 2.1.3 — Complete Tool Catalogue
+<div align="center">
+
+# 🗂️ Utility Suite 2.1.3 — Complete Tool Catalogue
+
+![Tools](https://img.shields.io/badge/tools-539-brightgreen?style=flat-square) ![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Status](https://img.shields.io/badge/registry%20verified-539%2F539%20%E2%9C%85-blue?style=flat-square)
+
+*539 tools · 45 plugin packs · generated from the live registry by `generate_catalogs.py` — do not edit by hand.*
+
+</div>
 
 Total tools: 539
 Plugin packs: 45

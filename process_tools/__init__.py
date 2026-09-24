@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Process List",
             "category": "Process Tools",
-            "description": "Process List. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process List: process-list operation.",
             "handler": "operations.process_list",
             "cli_command": "process-list",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Process Details",
             "category": "Process Tools",
-            "description": "Process Details. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Details: process-details operation.",
             "handler": "operations.process_details",
             "cli_command": "process-details",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Process Search",
             "category": "Process Tools",
-            "description": "Process Search. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Search: process-search operation.",
             "handler": "operations.process_search",
             "cli_command": "process-search",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Process Tree",
             "category": "Process Tools",
-            "description": "Process Tree. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Tree: process-tree operation.",
             "handler": "operations.process_tree",
             "cli_command": "process-tree",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Process CPU Snapshot",
             "category": "Process Tools",
-            "description": "Process CPU Snapshot. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process CPU Snapshot: process-cpu-snapshot operation.",
             "handler": "operations.process_cpu_snapshot",
             "cli_command": "process-cpu-snapshot",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Process Memory Snapshot",
             "category": "Process Tools",
-            "description": "Process Memory Snapshot. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Memory Snapshot: process-memory-snapshot operation.",
             "handler": "operations.process_memory_snapshot",
             "cli_command": "process-memory-snapshot",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Process Handle Summary",
             "category": "Process Tools",
-            "description": "Process Handle Summary. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Handle Summary: process-handle-summary operation.",
             "handler": "operations.process_handle_summary",
             "cli_command": "process-handle-summary",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Process Start Time",
             "category": "Process Tools",
-            "description": "Process Start Time. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Start Time: process-start-time operation.",
             "handler": "operations.process_start_time",
             "cli_command": "process-start-time",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Process Environment Summary",
             "category": "Process Tools",
-            "description": "Process Environment Summary. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Environment Summary: process-environment-summary operation.",
             "handler": "operations.process_environment_summary",
             "cli_command": "process-environment-summary",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Process Path Resolver",
             "category": "Process Tools",
-            "description": "Process Path Resolver. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Path Resolver: process-path-resolver operation.",
             "handler": "operations.process_path_resolver",
             "cli_command": "process-path-resolver",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Process Priority Reader",
             "category": "Process Tools",
-            "description": "Process Priority Reader. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Priority Reader: process-priority-reader operation.",
             "handler": "operations.process_priority_reader",
             "cli_command": "process-priority-reader",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Process Priority Setter",
             "category": "Process Tools",
-            "description": "Process Priority Setter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Priority Setter: process-priority-setter operation.",
             "handler": "operations.process_priority_setter",
             "cli_command": "process-priority-setter",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Process Affinity Reader",
             "category": "Process Tools",
-            "description": "Process Affinity Reader. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Affinity Reader: process-affinity-reader operation.",
             "handler": "operations.process_affinity_reader",
             "cli_command": "process-affinity-reader",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Process Affinity Setter",
             "category": "Process Tools",
-            "description": "Process Affinity Setter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Affinity Setter: process-affinity-setter operation.",
             "handler": "operations.process_affinity_setter",
             "cli_command": "process-affinity-setter",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Process Terminate",
             "category": "Process Tools",
-            "description": "Process Terminate. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Terminate: process-terminate operation.",
             "handler": "operations.process_terminate",
             "cli_command": "process-terminate",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Process Wait",
             "category": "Process Tools",
-            "description": "Process Wait. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Wait: process-wait operation.",
             "handler": "operations.process_wait",
             "cli_command": "process-wait",
             "dependencies": [],

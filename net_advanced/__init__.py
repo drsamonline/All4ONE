@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Ping Host",
         "category": "Advanced Networking",
-        "description": "Ping Host. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Ping Host: ping-host operation.",
         "handler": "operations.ping_host",
         "cli_command": "ping-host",
         "dependencies": [
@@ -17,7 +17,7 @@ def register_tools():
     {
         "name": "DNS Lookup",
         "category": "Advanced Networking",
-        "description": "DNS Lookup. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "DNS Lookup: dns-lookup operation.",
         "handler": "operations.dns_lookup",
         "cli_command": "dns-lookup",
         "dependencies": [
@@ -28,7 +28,7 @@ def register_tools():
     {
         "name": "Reverse DNS",
         "category": "Advanced Networking",
-        "description": "Reverse DNS. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Reverse DNS: reverse-dns operation.",
         "handler": "operations.reverse_dns",
         "cli_command": "reverse-dns",
         "dependencies": [
@@ -39,7 +39,7 @@ def register_tools():
     {
         "name": "IP Address Info",
         "category": "Advanced Networking",
-        "description": "IP Address Info. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "IP Address Info: ip-address-info operation.",
         "handler": "operations.ip_address_info",
         "cli_command": "ip-address-info",
         "dependencies": [
@@ -50,7 +50,7 @@ def register_tools():
     {
         "name": "WHOIS Lookup",
         "category": "Advanced Networking",
-        "description": "WHOIS Lookup. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "WHOIS Lookup: whois-lookup operation.",
         "handler": "operations.whois_lookup",
         "cli_command": "whois-lookup",
         "dependencies": [
@@ -61,7 +61,7 @@ def register_tools():
     {
         "name": "Route Trace",
         "category": "Advanced Networking",
-        "description": "Route Trace. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Route Trace: route-trace operation.",
         "handler": "operations.route_trace",
         "cli_command": "route-trace",
         "dependencies": [
@@ -72,7 +72,7 @@ def register_tools():
     {
         "name": "ARP Table Viewer",
         "category": "Advanced Networking",
-        "description": "ARP Table Viewer. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "ARP Table Viewer: arp-table-viewer operation.",
         "handler": "operations.arp_table_viewer",
         "cli_command": "arp-table-viewer",
         "dependencies": [
@@ -83,7 +83,7 @@ def register_tools():
     {
         "name": "Hosts File Viewer",
         "category": "Advanced Networking",
-        "description": "Hosts File Viewer. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Hosts File Viewer: hosts-file-viewer operation.",
         "handler": "operations.hosts_file_viewer",
         "cli_command": "hosts-file-viewer",
         "dependencies": [
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Hosts File Entry Checker",
         "category": "Advanced Networking",
-        "description": "Hosts File Entry Checker. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Hosts File Entry Checker: hosts-file-entry-checker operation.",
         "handler": "operations.hosts_file_entry_checker",
         "cli_command": "hosts-file-entry-checker",
         "dependencies": [
@@ -105,7 +105,7 @@ def register_tools():
     {
         "name": "TCP Port Checker",
         "category": "Advanced Networking",
-        "description": "TCP Port Checker. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "TCP Port Checker: tcp-port-checker operation.",
         "handler": "operations.tcp_port_checker",
         "cli_command": "tcp-port-checker",
         "dependencies": [
@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "UDP Port Probe",
         "category": "Advanced Networking",
-        "description": "UDP Port Probe. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "UDP Port Probe: udp-port-probe operation.",
         "handler": "operations.udp_port_probe",
         "cli_command": "udp-port-probe",
         "dependencies": [
@@ -127,7 +127,7 @@ def register_tools():
     {
         "name": "HTTP Header Inspector",
         "category": "Advanced Networking",
-        "description": "HTTP Header Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "HTTP Header Inspector: http-header-inspector operation.",
         "handler": "operations.http_header_inspector",
         "cli_command": "http-header-inspector",
         "dependencies": [
@@ -138,7 +138,7 @@ def register_tools():
     {
         "name": "TLS Certificate Inspector",
         "category": "Advanced Networking",
-        "description": "TLS Certificate Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "TLS Certificate Inspector: tls-certificate-inspector operation.",
         "handler": "operations.tls_certificate_inspector",
         "cli_command": "tls-certificate-inspector",
         "dependencies": [
@@ -149,7 +149,7 @@ def register_tools():
     {
         "name": "URL Redirect Checker",
         "category": "Advanced Networking",
-        "description": "URL Redirect Checker. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "URL Redirect Checker: url-redirect-checker operation.",
         "handler": "operations.url_redirect_checker",
         "cli_command": "url-redirect-checker",
         "dependencies": [
@@ -160,7 +160,7 @@ def register_tools():
     {
         "name": "Local Listening Ports",
         "category": "Advanced Networking",
-        "description": "Local Listening Ports. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Local Listening Ports: local-listening-ports operation.",
         "handler": "operations.local_listening_ports",
         "cli_command": "local-listening-ports",
         "dependencies": [
@@ -171,7 +171,7 @@ def register_tools():
     {
         "name": "Network Route Viewer",
         "category": "Advanced Networking",
-        "description": "Network Route Viewer. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Network Route Viewer: network-route-viewer operation.",
         "handler": "operations.network_route_viewer",
         "cli_command": "network-route-viewer",
         "dependencies": [
@@ -182,7 +182,7 @@ def register_tools():
     {
         "name": "Subnet Calculator",
         "category": "Networking",
-        "description": "Subnet Calculator. Subnet Calculator with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Subnet Calculator: subnet-calculator operation.",
         "handler": "operations.subnet_calculator",
         "cli_command": "subnet-calculator",
         "dependencies": []
@@ -190,7 +190,7 @@ def register_tools():
     {
         "name": "MAC Vendor Lookup",
         "category": "Networking",
-        "description": "MAC Vendor Lookup. Mac Vendor Lookup with safe, dependency-aware execution and clear diagnostics.",
+        "description": "MAC Vendor Lookup: mac-vendor operation.",
         "handler": "operations.mac_vendor_lookup",
         "cli_command": "mac-vendor",
         "dependencies": []
@@ -198,7 +198,7 @@ def register_tools():
     {
         "name": "SSL Expiry Monitor",
         "category": "Networking",
-        "description": "SSL Expiry Monitor. Ssl Expiry Monitor with safe, dependency-aware execution and clear diagnostics.",
+        "description": "SSL Expiry Monitor: ssl-expiry operation.",
         "handler": "operations.ssl_expiry_monitor",
         "cli_command": "ssl-expiry",
         "dependencies": []
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "Speed Test Probe",
         "category": "Networking",
-        "description": "Speed Test Probe. Speed Test Probe with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Speed Test Probe: speed-probe operation.",
         "handler": "operations.speed_test_probe",
         "cli_command": "speed-probe",
         "dependencies": []

@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Python Syntax Checker",
         "category": "Advanced Developer Tools",
-        "description": "Python Syntax Checker. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Python Syntax Checker: python-syntax-checker operation.",
         "handler": "operations.python_syntax_checker",
         "cli_command": "python-syntax-checker",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "Python Import Checker",
         "category": "Advanced Developer Tools",
-        "description": "Python Import Checker. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Python Import Checker: python-import-checker operation.",
         "handler": "operations.python_import_checker",
         "cli_command": "python-import-checker",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "JSON Schema-Lite Validator",
         "category": "Advanced Developer Tools",
-        "description": "JSON Schema-Lite Validator. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "JSON Schema-Lite Validator: json-schema-lite-validator operation.",
         "handler": "operations.json_schema_lite_validator",
         "cli_command": "json-schema-lite-validator",
         "dependencies": []
@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "YAML Structure Checker",
         "category": "Advanced Developer Tools",
-        "description": "YAML Structure Checker. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "YAML Structure Checker: yaml-structure-checker operation.",
         "handler": "operations.yaml_structure_checker",
         "cli_command": "yaml-structure-checker",
         "dependencies": []
@@ -38,7 +38,7 @@ def register_tools():
     {
         "name": "TOML Structure Checker",
         "category": "Advanced Developer Tools",
-        "description": "TOML Structure Checker. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "TOML Structure Checker: toml-structure-checker operation.",
         "handler": "operations.toml_structure_checker",
         "cli_command": "toml-structure-checker",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Regex Tester",
         "category": "Advanced Developer Tools",
-        "description": "Regex Tester. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Regex Tester: regex-tester operation.",
         "handler": "operations.regex_tester",
         "cli_command": "regex-tester",
         "dependencies": []
@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "Diff Text Files",
         "category": "Advanced Developer Tools",
-        "description": "Diff Text Files. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Diff Text Files: diff-text-files operation.",
         "handler": "operations.diff_text_files",
         "cli_command": "diff-text-files",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Patch Preview",
         "category": "Advanced Developer Tools",
-        "description": "Patch Preview. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Patch Preview: patch-preview operation.",
         "handler": "operations.patch_preview",
         "cli_command": "patch-preview",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "Line Ending Detector",
         "category": "Advanced Developer Tools",
-        "description": "Line Ending Detector. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Line Ending Detector: line-ending-detector operation.",
         "handler": "operations.line_ending_detector",
         "cli_command": "line-ending-detector",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "Indentation Analyzer",
         "category": "Advanced Developer Tools",
-        "description": "Indentation Analyzer. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Indentation Analyzer: indentation-analyzer operation.",
         "handler": "operations.indentation_analyzer",
         "cli_command": "indentation-analyzer",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Encoding Detector",
         "category": "Advanced Developer Tools",
-        "description": "Encoding Detector. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Encoding Detector: encoding-detector operation.",
         "handler": "operations.encoding_detector",
         "cli_command": "encoding-detector",
         "dependencies": []
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Base64 Encoder",
         "category": "Advanced Developer Tools",
-        "description": "Base64 Encoder. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Base64 Encoder: base64-encoder operation.",
         "handler": "operations.base64_encoder",
         "cli_command": "base64-encoder",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "Base64 Decoder",
         "category": "Advanced Developer Tools",
-        "description": "Base64 Decoder. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Base64 Decoder: base64-decoder operation.",
         "handler": "operations.base64_decoder",
         "cli_command": "base64-decoder",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "URL Encoder",
         "category": "Advanced Developer Tools",
-        "description": "URL Encoder. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "URL Encoder: url-encoder operation.",
         "handler": "operations.url_encoder",
         "cli_command": "url-encoder",
         "dependencies": []
@@ -118,7 +118,7 @@ def register_tools():
     {
         "name": "URL Decoder",
         "category": "Advanced Developer Tools",
-        "description": "URL Decoder. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "URL Decoder: url-decoder operation.",
         "handler": "operations.url_decoder",
         "cli_command": "url-decoder",
         "dependencies": []
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "UUID Generator",
         "category": "Advanced Developer Tools",
-        "description": "UUID Generator. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "UUID Generator: uuid-generator operation.",
         "handler": "operations.uuid_generator",
         "cli_command": "uuid-generator",
         "dependencies": []
@@ -134,7 +134,7 @@ def register_tools():
     {
         "name": "Hash Calculator",
         "category": "Advanced Developer Tools",
-        "description": "Hash Calculator. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Hash Calculator: hash-calculator operation.",
         "handler": "operations.hash_calculator",
         "cli_command": "hash-calculator",
         "dependencies": []
@@ -142,7 +142,7 @@ def register_tools():
     {
         "name": "HMAC Calculator",
         "category": "Advanced Developer Tools",
-        "description": "HMAC Calculator. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "HMAC Calculator: hmac-calculator operation.",
         "handler": "operations.hmac_calculator",
         "cli_command": "hmac-calculator",
         "dependencies": []
@@ -150,7 +150,7 @@ def register_tools():
     {
         "name": "Semantic Version Comparator",
         "category": "Advanced Developer Tools",
-        "description": "Semantic Version Comparator. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Semantic Version Comparator: semantic-version-comparator operation.",
         "handler": "operations.semantic_version_comparator",
         "cli_command": "semantic-version-comparator",
         "dependencies": []
@@ -158,7 +158,7 @@ def register_tools():
     {
         "name": "Version Bump Helper",
         "category": "Advanced Developer Tools",
-        "description": "Version Bump Helper. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Version Bump Helper: version-bump-helper operation.",
         "handler": "operations.version_bump_helper",
         "cli_command": "version-bump-helper",
         "dependencies": []
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "Multi Algorithm Hasher",
         "category": "Advanced Developer Tools",
-        "description": "Multi Algorithm Hasher. Multi Algorithm Hasher with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Multi Algorithm Hasher: multi-hash operation.",
         "handler": "operations.multi_algorithm_hasher",
         "cli_command": "multi-hash",
         "dependencies": []
@@ -174,7 +174,7 @@ def register_tools():
     {
         "name": "Checksum Verifier",
         "category": "Advanced Developer Tools",
-        "description": "Checksum Verifier. Checksum Verifier with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Checksum Verifier: checksum-verify operation.",
         "handler": "operations.checksum_verifier",
         "cli_command": "checksum-verify",
         "dependencies": []
@@ -182,7 +182,7 @@ def register_tools():
     {
         "name": "Base64 File Codec",
         "category": "Advanced Developer Tools",
-        "description": "Base64 File Codec. Base64 File Codec with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Base64 File Codec: b64-file operation.",
         "handler": "operations.base64_file_codec",
         "cli_command": "b64-file",
         "dependencies": []
@@ -190,7 +190,7 @@ def register_tools():
     {
         "name": "Hex Codec",
         "category": "Advanced Developer Tools",
-        "description": "Hex Codec. Hex Codec with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Hex Codec: hex-codec operation.",
         "handler": "operations.hex_codec",
         "cli_command": "hex-codec",
         "dependencies": []
@@ -198,7 +198,7 @@ def register_tools():
     {
         "name": "Charset Detector",
         "category": "Advanced Developer Tools",
-        "description": "Charset Detector. Charset Detector with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Charset Detector: charset-detect operation.",
         "handler": "operations.charset_detector",
         "cli_command": "charset-detect",
         "dependencies": []
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "BOM Handler",
         "category": "Advanced Developer Tools",
-        "description": "BOM Handler. Bom Handler with safe, dependency-aware execution and clear diagnostics.",
+        "description": "BOM Handler: bom-handler operation.",
         "handler": "operations.bom_handler",
         "cli_command": "bom-handler",
         "dependencies": []

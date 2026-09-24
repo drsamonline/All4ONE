@@ -58,7 +58,7 @@ audit if these drift apart.
 ### Fixed
 - `.gitignore` regression (post-expansion): the 539-tool expansion commit had
   silently reduced `.gitignore` to a single rule (`plugins/*.zip`), so every
-  runtime artifact produced by the new tools (`__pycache__/`, `logs/utility_suite.log`,
+  runtime artifact produced by new tools (`__pycache__/`, `logs/utility_suite.log`,
   `logs/sweep_results.json`) showed up as untracked clutter in PR diffs. The full
   ignore set is restored: bytecode caches, `logs/*` (except `.gitkeep`), build/dist,
   ruff/pytest caches, venvs, OS and editor junk.
@@ -71,6 +71,13 @@ audit if these drift apart.
   file under `logs/`, `ci.yml` fails fast with a dedicated "No committed
   build/cache artifacts" step, and `build-windows-exe.yml` runs the audit
   before the ZIP rebuild so clutter errors surface first.
+- Tool descriptions in pack metadata: 486 of 539 registered descriptions had
+  been mangled into boilerplate ("<Name>. Uses safe, dependency-aware
+  execution...") at some point in the source packs themselves — the earlier
+  "regenerated catalogue" fix only re-copied the bad source text. Every
+  affected description was rewritten from the tool name/command into a real
+  one-line summary; `generate_catalogs.py` now renders accurate descriptions,
+  and TOOL_CATALOG.md was regenerated from the corrected registry.
 - `audit.py`: the source-tree cache-clutter gate scanned every
   `__pycache__` directory on disk, including untracked, gitignored ones
   that the interpreter itself writes while the audit imports the plugin

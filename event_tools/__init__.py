@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Event Log List",
             "category": "Event Tools",
-            "description": "Event Log List. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log List: event-log-list operation.",
             "handler": "operations.event_log_list",
             "cli_command": "event-log-list",
             "dependencies": ["wevtutil"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Event Log Query",
             "category": "Event Tools",
-            "description": "Event Log Query. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Query: event-log-query operation.",
             "handler": "operations.event_log_query",
             "cli_command": "event-log-query",
             "dependencies": ["wevtutil"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Event Log Export",
             "category": "Event Tools",
-            "description": "Event Log Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Export: event-log-export operation.",
             "handler": "operations.event_log_export",
             "cli_command": "event-log-export",
             "dependencies": ["wevtutil"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Event Log Source Search",
             "category": "Event Tools",
-            "description": "Event Log Source Search. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Source Search: event-log-source-search operation.",
             "handler": "operations.event_log_source_search",
             "cli_command": "event-log-source-search",
             "dependencies": ["wevtutil"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Event Log Level Summary",
             "category": "Event Tools",
-            "description": "Event Log Level Summary. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Level Summary: event-log-level-summary operation.",
             "handler": "operations.event_log_level_summary",
             "cli_command": "event-log-level-summary",
             "dependencies": ["wevtutil"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Event Log Time Filter",
             "category": "Event Tools",
-            "description": "Event Log Time Filter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Time Filter: event-log-time-filter operation.",
             "handler": "operations.event_log_time_filter",
             "cli_command": "event-log-time-filter",
             "dependencies": ["wevtutil"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Event Log Keyword Filter",
             "category": "Event Tools",
-            "description": "Event Log Keyword Filter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Keyword Filter: event-log-keyword-filter operation.",
             "handler": "operations.event_log_keyword_filter",
             "cli_command": "event-log-keyword-filter",
             "dependencies": ["wevtutil"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Event Log Statistics",
             "category": "Event Tools",
-            "description": "Event Log Statistics. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Statistics: event-log-statistics operation.",
             "handler": "operations.event_log_statistics",
             "cli_command": "event-log-statistics",
             "dependencies": ["wevtutil"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Event Log Recent Errors",
             "category": "Event Tools",
-            "description": "Event Log Recent Errors. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Recent Errors: event-log-recent-errors operation.",
             "handler": "operations.event_log_recent_errors",
             "cli_command": "event-log-recent-errors",
             "dependencies": ["wevtutil"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Event Log Recent Warnings",
             "category": "Event Tools",
-            "description": "Event Log Recent Warnings. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Recent Warnings: event-log-recent-warnings operation.",
             "handler": "operations.event_log_recent_warnings",
             "cli_command": "event-log-recent-warnings",
             "dependencies": ["wevtutil"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Event Log Channel Inventory",
             "category": "Event Tools",
-            "description": "Event Log Channel Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Channel Inventory: event-log-channel-inventory operation.",
             "handler": "operations.event_log_channel_inventory",
             "cli_command": "event-log-channel-inventory",
             "dependencies": ["wevtutil"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Event Log Guide",
             "category": "Event Tools",
-            "description": "Event Log Guide. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Event Log Guide: event-log-guide operation.",
             "handler": "operations.event_log_guide",
             "cli_command": "event-log-guide",
             "dependencies": ["wevtutil"],

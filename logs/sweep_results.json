@@ -1,0 +1,2158 @@
+{
+  "ok": [
+    [
+      "administrator-group-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "ageactions",
+      "exit=2"
+    ],
+    [
+      "always-on-top-toggle",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "angle-converter",
+      "exit=0"
+    ],
+    [
+      "area-converter",
+      "exit=0"
+    ],
+    [
+      "argument-escaper",
+      "exit=0"
+    ],
+    [
+      "arp-table-viewer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "audio-concatenator",
+      "exit=0"
+    ],
+    [
+      "audio-device-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "audio-duration",
+      "exit=0"
+    ],
+    [
+      "audio-format-converter",
+      "exit=0"
+    ],
+    [
+      "audio-metadata-cleaner",
+      "exit=0"
+    ],
+    [
+      "audio-metadata-reader",
+      "exit=0"
+    ],
+    [
+      "audio-mime-detector",
+      "exit=0"
+    ],
+    [
+      "audio-normalizer",
+      "exit=0"
+    ],
+    [
+      "audio-silence-detector",
+      "exit=0"
+    ],
+    [
+      "audio-stream-inspector",
+      "exit=0"
+    ],
+    [
+      "audio-trim",
+      "exit=0"
+    ],
+    [
+      "audio-waveform-exporter",
+      "exit=0"
+    ],
+    [
+      "automation-manifest",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "autostart-diff",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "b64-file",
+      "exit=1"
+    ],
+    [
+      "backup-cleanup",
+      "exit=0"
+    ],
+    [
+      "backup-compression",
+      "exit=0"
+    ],
+    [
+      "backup-difference",
+      "exit=0"
+    ],
+    [
+      "backup-integrity-hash",
+      "exit=0"
+    ],
+    [
+      "backup-log-analyzer",
+      "exit=0"
+    ],
+    [
+      "backup-manifest",
+      "exit=0"
+    ],
+    [
+      "backup-restore",
+      "exit=0"
+    ],
+    [
+      "backup-rotation",
+      "exit=0"
+    ],
+    [
+      "backup-schedule-generator",
+      "exit=0"
+    ],
+    [
+      "backup-size-calculator",
+      "exit=0"
+    ],
+    [
+      "backup-verify",
+      "exit=0"
+    ],
+    [
+      "base64-decoder",
+      "exit=1"
+    ],
+    [
+      "base64-encoder",
+      "exit=0"
+    ],
+    [
+      "batch-file-generator",
+      "exit=0"
+    ],
+    [
+      "battery-status",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "blank-line-cleaner",
+      "exit=0"
+    ],
+    [
+      "bluetooth-device-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "bom-handler",
+      "exit=1"
+    ],
+    [
+      "boot-time",
+      "exit=0"
+    ],
+    [
+      "broken-link-finder",
+      "exit=0"
+    ],
+    [
+      "business-day-difference",
+      "exit=1"
+    ],
+    [
+      "bytes-converter",
+      "exit=1"
+    ],
+    [
+      "calendar-month",
+      "exit=1"
+    ],
+    [
+      "calendar-year",
+      "exit=1"
+    ],
+    [
+      "camel-case-converter",
+      "exit=0"
+    ],
+    [
+      "case-converter",
+      "exit=0"
+    ],
+    [
+      "character-frequency",
+      "exit=0"
+    ],
+    [
+      "charset-detect",
+      "exit=1"
+    ],
+    [
+      "checksum",
+      "exit=0"
+    ],
+    [
+      "checksum-verify",
+      "exit=1"
+    ],
+    [
+      "cleanmgr",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "clipboard-append",
+      "exit=1"
+    ],
+    [
+      "clipboard-clear",
+      "exit=1"
+    ],
+    [
+      "clipboard-hash",
+      "exit=1"
+    ],
+    [
+      "clipboard-history-ring",
+      "exit=1"
+    ],
+    [
+      "clipboard-line-count",
+      "exit=1"
+    ],
+    [
+      "clipboard-load",
+      "exit=1"
+    ],
+    [
+      "clipboard-normalize",
+      "exit=1"
+    ],
+    [
+      "clipboard-paste-plain",
+      "exit=1"
+    ],
+    [
+      "clipboard-read",
+      "exit=1"
+    ],
+    [
+      "clipboard-save",
+      "exit=1"
+    ],
+    [
+      "clipboard-text-length",
+      "exit=1"
+    ],
+    [
+      "clipboard-word-count",
+      "exit=1"
+    ],
+    [
+      "clipboard-write",
+      "exit=1"
+    ],
+    [
+      "command-availability-scan",
+      "exit=0"
+    ],
+    [
+      "command-history-guide",
+      "exit=0"
+    ],
+    [
+      "command-resolver",
+      "exit=0"
+    ],
+    [
+      "command-timeout-runner",
+      "exit=1"
+    ],
+    [
+      "computer-name",
+      "exit=0"
+    ],
+    [
+      "connection-test",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "count",
+      "exit=1"
+    ],
+    [
+      "countdown",
+      "exit=0"
+    ],
+    [
+      "cpu-information",
+      "exit=0"
+    ],
+    [
+      "cpu-monitor-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "cpu-threshold-check",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "crash-dump-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "credential-filename-finder",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "cron-explainer",
+      "exit=0"
+    ],
+    [
+      "csv-column-extractor",
+      "exit=1"
+    ],
+    [
+      "csv-column-selector",
+      "exit=1"
+    ],
+    [
+      "csv-deduplicator",
+      "exit=1"
+    ],
+    [
+      "csv-inspector",
+      "exit=1"
+    ],
+    [
+      "csv-normalizer",
+      "exit=1"
+    ],
+    [
+      "csv-row-filter",
+      "exit=1"
+    ],
+    [
+      "csv-sorter",
+      "exit=1"
+    ],
+    [
+      "csv-statistics",
+      "exit=1"
+    ],
+    [
+      "csv-transposer",
+      "exit=1"
+    ],
+    [
+      "current-user",
+      "exit=0"
+    ],
+    [
+      "data-rate-converter",
+      "exit=0"
+    ],
+    [
+      "date-difference",
+      "exit=1"
+    ],
+    [
+      "date-range-expander",
+      "exit=0"
+    ],
+    [
+      "day-of-year",
+      "exit=1"
+    ],
+    [
+      "decrypt",
+      "exit=2"
+    ],
+    [
+      "default-gateway",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "defender-status",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "desktop-count-reader",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "desktop-hotkey-guide",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "desktop-launch-helper",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "desktop-process-summary",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "device-class-summary",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "dhcp-status",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "diff-text-files",
+      "exit=0"
+    ],
+    [
+      "dir-sync",
+      "exit=2"
+    ],
+    [
+      "directory-change-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "directory-csv-export",
+      "exit=0"
+    ],
+    [
+      "directory-json-export",
+      "exit=0"
+    ],
+    [
+      "directory-size-monitor",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "directory-size-tree",
+      "exit=0"
+    ],
+    [
+      "directory-tree-export",
+      "exit=0"
+    ],
+    [
+      "disk-benchmark-reader",
+      "exit=0"
+    ],
+    [
+      "disk-cleanup-preview",
+      "exit=0"
+    ],
+    [
+      "disk-free-space",
+      "exit=0"
+    ],
+    [
+      "disk-monitor-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "disk-space-threshold-check",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "disk-usage",
+      "exit=0"
+    ],
+    [
+      "disk-usage-top-files",
+      "exit=0"
+    ],
+    [
+      "display-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "dns-cache-viewer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "dns-connectivity-test",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "dns-lookup",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "dns-server-list",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "docx-heading-extractor",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "docx-image-inspector",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "docx-metadata",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "docx-paragraph-counter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "docx-structure-inspector",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "docx-text-extractor",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "download",
+      "exit=1"
+    ],
+    [
+      "drive-information",
+      "exit=0"
+    ],
+    [
+      "driver-backup",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-class-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-details",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-device-status",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-list",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-package-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-provider-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-signature-check",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-store-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-update-reminder",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "driver-version-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "dupefinder",
+      "exit=0"
+    ],
+    [
+      "duplicate-name-finder",
+      "exit=0"
+    ],
+    [
+      "empty-clean",
+      "exit=0"
+    ],
+    [
+      "encoding",
+      "exit=2"
+    ],
+    [
+      "encoding-detector",
+      "exit=1"
+    ],
+    [
+      "encrypt",
+      "exit=2"
+    ],
+    [
+      "energy-converter",
+      "exit=0"
+    ],
+    [
+      "env",
+      "exit=0"
+    ],
+    [
+      "environment-report",
+      "exit=0"
+    ],
+    [
+      "environment-variable-diff",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "epoch-converter",
+      "exit=0"
+    ],
+    [
+      "event-log-channel-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-export",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-guide",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-keyword-filter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-level-summary",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-list",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-query",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-recent-errors",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-recent-warnings",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-source-search",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-statistics",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "event-log-time-filter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "eventlog",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "executable-finder",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "executable-locator",
+      "exit=0"
+    ],
+    [
+      "executable-package-locator",
+      "exit=0"
+    ],
+    [
+      "exif-camera-reader",
+      "exit=0"
+    ],
+    [
+      "exif-date-reader",
+      "exit=0"
+    ],
+    [
+      "exit-code-decoder",
+      "exit=0"
+    ],
+    [
+      "extension-statistics",
+      "exit=0"
+    ],
+    [
+      "file-age",
+      "exit=0"
+    ],
+    [
+      "file-age-histogram",
+      "exit=0"
+    ],
+    [
+      "file-allocation-inspector",
+      "exit=0"
+    ],
+    [
+      "file-count-monitor",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "file-permission-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "file-size-histogram",
+      "exit=0"
+    ],
+    [
+      "filetype",
+      "exit=1"
+    ],
+    [
+      "firewall-status",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "folder-backup",
+      "exit=0"
+    ],
+    [
+      "folder-watch-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "frequency-converter",
+      "exit=0"
+    ],
+    [
+      "ftp",
+      "exit=2"
+    ],
+    [
+      "grep",
+      "exit=2"
+    ],
+    [
+      "habit-streak",
+      "exit=1"
+    ],
+    [
+      "hardlink",
+      "exit=2"
+    ],
+    [
+      "hash-calculator",
+      "exit=1"
+    ],
+    [
+      "hex-codec",
+      "exit=0"
+    ],
+    [
+      "hexview",
+      "exit=1"
+    ],
+    [
+      "hidden-file-finder",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "hidden-file-report",
+      "exit=0"
+    ],
+    [
+      "hmac-calculator",
+      "exit=0"
+    ],
+    [
+      "hosts-file-audit",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "hosts-file-entry-checker",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "hosts-file-viewer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "http-connectivity-test",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "http-header-inspector",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "http-serve",
+      "timed out as expected (long-running tool)"
+    ],
+    [
+      "https-connectivity-test",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-cleanup-plan",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-contact-sheet",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-csv-export",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-dimensions",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-duplicate-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-extension-convert",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-folder-summary",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-hash",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-json-export",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-metadata-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-orientation-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-rename-plan",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-renamer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-batch-resize-plan",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-border-adder",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-contact-sheet",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-converter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-cropper",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-flipper",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-metadata-cleaner",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-mime-detector",
+      "exit=0"
+    ],
+    [
+      "image-montage-builder",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-optimizer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-resizer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-rotator",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "image-watermark-tool",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "import-package-test",
+      "exit=0"
+    ],
+    [
+      "incremental-backup",
+      "exit=0"
+    ],
+    [
+      "indentation-analyzer",
+      "exit=1"
+    ],
+    [
+      "indentation-normalizer",
+      "exit=0"
+    ],
+    [
+      "index",
+      "exit=0"
+    ],
+    [
+      "installed-ram-summary",
+      "exit=0"
+    ],
+    [
+      "installed-software-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "integrity-baseline",
+      "exit=1"
+    ],
+    [
+      "integrity-baseline-plus",
+      "exit=1"
+    ],
+    [
+      "internet-reachability",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "ip-address-info",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "ipv4-configuration",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "ipv6-configuration",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "iso-time-formatter",
+      "exit=1"
+    ],
+    [
+      "joiner",
+      "exit=2"
+    ],
+    [
+      "json-diff",
+      "exit=1"
+    ],
+    [
+      "json-format",
+      "exit=1"
+    ],
+    [
+      "json-inspector",
+      "exit=1"
+    ],
+    [
+      "json-key-flattener",
+      "exit=1"
+    ],
+    [
+      "json-minifier",
+      "exit=1"
+    ],
+    [
+      "json-path-extractor",
+      "exit=1"
+    ],
+    [
+      "json-pretty-printer",
+      "exit=1"
+    ],
+    [
+      "json-schema-lite-validator",
+      "exit=1"
+    ],
+    [
+      "json-schema-validate",
+      "exit=1"
+    ],
+    [
+      "json-unflattener",
+      "exit=1"
+    ],
+    [
+      "json-yaml",
+      "exit=1"
+    ],
+    [
+      "junction-finder",
+      "exit=0"
+    ],
+    [
+      "junk-find",
+      "exit=0"
+    ],
+    [
+      "kebab-case-converter",
+      "exit=0"
+    ],
+    [
+      "large-file-finder",
+      "exit=0"
+    ],
+    [
+      "latency-test",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "length-converter",
+      "exit=0"
+    ],
+    [
+      "line-ending-detector",
+      "exit=1"
+    ],
+    [
+      "line-number-prefixer",
+      "exit=1"
+    ],
+    [
+      "local-account-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "local-listening-ports",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "locale-information",
+      "exit=0"
+    ],
+    [
+      "log-directory-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "log-rotate",
+      "exit=0"
+    ],
+    [
+      "logon-task-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "long-path-finder",
+      "exit=0"
+    ],
+    [
+      "long-running-procs",
+      "exit=0"
+    ],
+    [
+      "mac-address-viewer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "mac-vendor",
+      "exit=0"
+    ],
+    [
+      "machine-architecture",
+      "exit=0"
+    ],
+    [
+      "markdown-table-formatter",
+      "exit=0"
+    ],
+    [
+      "mass-converter",
+      "exit=0"
+    ],
+    [
+      "media-duplicate-finder",
+      "exit=0"
+    ],
+    [
+      "media-duration-inventory",
+      "exit=0"
+    ],
+    [
+      "media-extension-summary",
+      "exit=0"
+    ],
+    [
+      "media-file-scanner",
+      "exit=0"
+    ],
+    [
+      "media-folder-report",
+      "exit=0"
+    ],
+    [
+      "media-hash-inventory",
+      "exit=0"
+    ],
+    [
+      "media-info",
+      "exit=1"
+    ],
+    [
+      "media-size-report",
+      "exit=0"
+    ],
+    [
+      "meeting-time-table",
+      "exit=0"
+    ],
+    [
+      "memory-information",
+      "exit=0"
+    ],
+    [
+      "memory-monitor-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "memory-threshold-check",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "mirror-backup",
+      "exit=0"
+    ],
+    [
+      "monitor-threshold-calculator",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "mount-point-viewer",
+      "exit=0"
+    ],
+    [
+      "multi-hash",
+      "exit=1"
+    ],
+    [
+      "ndjson-filter",
+      "exit=1"
+    ],
+    [
+      "ndjson-inspector",
+      "exit=1"
+    ],
+    [
+      "net-reset",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "network-adapter-details",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "network-adapter-list",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "network-adapter-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "network-connection-table",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "network-diagnostics-bundle",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "network-monitor-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "network-route-viewer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "ngram-counter",
+      "exit=1"
+    ],
+    [
+      "ntfs-alternate-stream-finder",
+      "exit=0"
+    ],
+    [
+      "office-file-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "old-file-finder",
+      "exit=0"
+    ],
+    [
+      "open-file-guide",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "open-handles",
+      "exit=0"
+    ],
+    [
+      "open-share-guide",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "os-version",
+      "exit=0"
+    ],
+    [
+      "package-cache-guide",
+      "exit=0"
+    ],
+    [
+      "packet-loss-test",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "partition-information",
+      "exit=0"
+    ],
+    [
+      "patch-preview",
+      "exit=1"
+    ],
+    [
+      "path-deduplication-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "path-inspector",
+      "exit=0"
+    ],
+    [
+      "path-length",
+      "exit=0"
+    ],
+    [
+      "pdf-attachment-inspector",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-compress",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-image-extractor",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-merge",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-metadata-cleaner",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-metadata-reader",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-page-counter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-page-extractor",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-rotate",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-split",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-text",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-text-search",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pdf-watermark",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "permissions",
+      "exit=0"
+    ],
+    [
+      "ping-host",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pip-command-guide",
+      "exit=0"
+    ],
+    [
+      "pomodoro-timer",
+      "exit=0"
+    ],
+    [
+      "portable-scan",
+      "exit=0"
+    ],
+    [
+      "power-converter",
+      "exit=0"
+    ],
+    [
+      "power-source-status",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "powershell-command-runner",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "powershell-script-generator",
+      "exit=0"
+    ],
+    [
+      "powershell-version",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pptx-slide-counter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "pressure-converter",
+      "exit=0"
+    ],
+    [
+      "printer-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "private-key-filename-finder",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "process-affinity-reader",
+      "exit=0"
+    ],
+    [
+      "process-affinity-setter",
+      "exit=0"
+    ],
+    [
+      "process-cpu-snapshot",
+      "exit=0"
+    ],
+    [
+      "process-details",
+      "exit=0"
+    ],
+    [
+      "process-environment-summary",
+      "exit=0"
+    ],
+    [
+      "process-handle-summary",
+      "exit=0"
+    ],
+    [
+      "process-list",
+      "exit=0"
+    ],
+    [
+      "process-memory-snapshot",
+      "exit=0"
+    ],
+    [
+      "process-monitor-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "process-path-resolver",
+      "exit=0"
+    ],
+    [
+      "process-pipe-helper",
+      "exit=0"
+    ],
+    [
+      "process-priority-reader",
+      "exit=0"
+    ],
+    [
+      "process-priority-setter",
+      "exit=0"
+    ],
+    [
+      "process-search",
+      "exit=0"
+    ],
+    [
+      "process-start-time",
+      "exit=0"
+    ],
+    [
+      "process-terminate",
+      "exit=0"
+    ],
+    [
+      "process-tree",
+      "exit=0"
+    ],
+    [
+      "process-wait",
+      "exit=0"
+    ],
+    [
+      "proxy-configuration",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "python-environment",
+      "exit=0"
+    ],
+    [
+      "python-import-checker",
+      "exit=0"
+    ],
+    [
+      "python-package-list",
+      "exit=0"
+    ],
+    [
+      "python-package-versions",
+      "exit=0"
+    ],
+    [
+      "python-syntax-checker",
+      "exit=0"
+    ],
+    [
+      "random-file",
+      "exit=0"
+    ],
+    [
+      "read-only-finder",
+      "exit=0"
+    ],
+    [
+      "recent-docs-report",
+      "exit=0"
+    ],
+    [
+      "recent-file-finder",
+      "exit=0"
+    ],
+    [
+      "regedit",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "regex-tester",
+      "exit=0"
+    ],
+    [
+      "registry-backup",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "registry-export",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "registry-import",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "registry-key-creator",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "registry-key-deleter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "registry-path-validator",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "registry-query",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "registry-value-deleter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "registry-value-enumerator",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "registry-value-setter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "relative-time",
+      "exit=0"
+    ],
+    [
+      "renamer",
+      "exit=2"
+    ],
+    [
+      "requirements-auditor",
+      "exit=0"
+    ],
+    [
+      "requirements-generator",
+      "exit=0"
+    ],
+    [
+      "resource-log-viewer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "resource-snapshot",
+      "exit=0"
+    ],
+    [
+      "resource-trend-csv",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "restore-point",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "reverse-dns",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "route-trace",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "schedule",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "scheduled-task-details",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "scheduled-task-disable",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "scheduled-task-enable",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "scheduled-task-list",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "scheduled-task-run",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "sdelete",
+      "exit=2"
+    ],
+    [
+      "search",
+      "exit=0"
+    ],
+    [
+      "seconds-converter",
+      "exit=0"
+    ],
+    [
+      "security-event-summary",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "semantic-version-comparator",
+      "exit=0"
+    ],
+    [
+      "sensitive-filename-finder",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "sentence-counter",
+      "exit=0"
+    ],
+    [
+      "service",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "service-security-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "shell-command-runner",
+      "exit=1"
+    ],
+    [
+      "shell-environment-dump",
+      "exit=0"
+    ],
+    [
+      "shell-quoting-helper",
+      "exit=0"
+    ],
+    [
+      "size-formatter",
+      "exit=1"
+    ],
+    [
+      "slugify-converter",
+      "exit=0"
+    ],
+    [
+      "smart-status",
+      "exit=0"
+    ],
+    [
+      "snake-case-converter",
+      "exit=0"
+    ],
+    [
+      "snapshot-inventory",
+      "exit=0"
+    ],
+    [
+      "sorter",
+      "exit=0"
+    ],
+    [
+      "sparse-file-inspector",
+      "exit=0"
+    ],
+    [
+      "speed-converter",
+      "exit=0"
+    ],
+    [
+      "speed-probe",
+      "exit=0"
+    ],
+    [
+      "splitter",
+      "exit=1"
+    ],
+    [
+      "sqlite-query-runner",
+      "exit=1"
+    ],
+    [
+      "sqlite-schema-viewer",
+      "exit=1"
+    ],
+    [
+      "sqlite-table-counter",
+      "exit=1"
+    ],
+    [
+      "sqlite-vacuum-helper",
+      "exit=1"
+    ],
+    [
+      "ssh-key-audit",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "ssl-expiry",
+      "exit=0"
+    ],
+    [
+      "startup",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "startup-entry-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "startup-folder-cleaner",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "startup-folder-viewer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "startup-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "startup-security-audit",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "stderr-capture",
+      "exit=0"
+    ],
+    [
+      "stdout-capture",
+      "exit=0"
+    ],
+    [
+      "stopwatch",
+      "exit=0"
+    ],
+    [
+      "storage-health-report",
+      "exit=0"
+    ],
+    [
+      "subnet-calculator",
+      "exit=0"
+    ],
+    [
+      "symlink-finder",
+      "exit=0"
+    ],
+    [
+      "system-directory-report",
+      "exit=0"
+    ],
+    [
+      "system-environment-export",
+      "exit=0"
+    ],
+    [
+      "system-information-json-export",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "system-information-text-export",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "system-load-report",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "system-summary",
+      "exit=0"
+    ],
+    [
+      "system-uptime",
+      "exit=0"
+    ],
+    [
+      "tar-create",
+      "exit=2"
+    ],
+    [
+      "tar-extract",
+      "exit=2"
+    ],
+    [
+      "task-trigger-guide",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "task-xml-export",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "tcp-port-checker",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "temp-aging-cleaner",
+      "exit=0"
+    ],
+    [
+      "temp-clean",
+      "exit=2"
+    ],
+    [
+      "temperature-converter",
+      "exit=0"
+    ],
+    [
+      "temporary-directory-report",
+      "exit=0"
+    ],
+    [
+      "text-deduplicator",
+      "exit=0"
+    ],
+    [
+      "text-reverse",
+      "exit=0"
+    ],
+    [
+      "text-sorter",
+      "exit=0"
+    ],
+    [
+      "text-unwrap",
+      "exit=0"
+    ],
+    [
+      "text-wrap",
+      "exit=0"
+    ],
+    [
+      "thumbnail",
+      "exit=0"
+    ],
+    [
+      "time-zone-information",
+      "exit=0"
+    ],
+    [
+      "time-zone-offset",
+      "exit=0"
+    ],
+    [
+      "timestamp-converter",
+      "exit=0"
+    ],
+    [
+      "title-case-converter",
+      "exit=0"
+    ],
+    [
+      "tls-certificate-inspector",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "toml-structure-checker",
+      "exit=1"
+    ],
+    [
+      "trailing-space-cleaner",
+      "exit=0"
+    ],
+    [
+      "transcode",
+      "exit=2"
+    ],
+    [
+      "udp-port-probe",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "url-decoder",
+      "exit=0"
+    ],
+    [
+      "url-encoder",
+      "exit=0"
+    ],
+    [
+      "url-redirect-checker",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "usb-device-inventory",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "user-profile-report",
+      "exit=0"
+    ],
+    [
+      "utility-suite-diagnostics",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "uuid-generator",
+      "exit=0"
+    ],
+    [
+      "venv-size",
+      "exit=0"
+    ],
+    [
+      "version-bump-helper",
+      "exit=0"
+    ],
+    [
+      "video-audio-extractor",
+      "exit=0"
+    ],
+    [
+      "video-bitrate-inspector",
+      "exit=0"
+    ],
+    [
+      "video-clip-cutter",
+      "exit=0"
+    ],
+    [
+      "video-concatenator",
+      "exit=0"
+    ],
+    [
+      "video-duration",
+      "exit=0"
+    ],
+    [
+      "video-frame-rate-inspector",
+      "exit=0"
+    ],
+    [
+      "video-gif-maker",
+      "exit=0"
+    ],
+    [
+      "video-metadata-cleaner",
+      "exit=0"
+    ],
+    [
+      "video-mime-detector",
+      "exit=0"
+    ],
+    [
+      "video-resolution-inspector",
+      "exit=0"
+    ],
+    [
+      "video-screenshot",
+      "exit=0"
+    ],
+    [
+      "video-stream-inspector",
+      "exit=0"
+    ],
+    [
+      "video-thumbnail-sheet",
+      "exit=0"
+    ],
+    [
+      "virtual-desktop-list",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "virtual-desktop-settings",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "virtual-desktop-shortcut",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "virtual-environment-finder",
+      "exit=0"
+    ],
+    [
+      "virtual-environment-report",
+      "exit=0"
+    ],
+    [
+      "volume-converter",
+      "exit=0"
+    ],
+    [
+      "volume-list",
+      "exit=0"
+    ],
+    [
+      "volume-serial-reader",
+      "exit=0"
+    ],
+    [
+      "watch",
+      "timed out as expected (long-running tool)"
+    ],
+    [
+      "week-number",
+      "exit=1"
+    ],
+    [
+      "wheel-inspector",
+      "exit=0"
+    ],
+    [
+      "whitespace-cleaner",
+      "exit=0"
+    ],
+    [
+      "whois-lookup",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-cascade-helper",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-desktop-mapper",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-details",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-focus-helper",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-geometry-reader",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-geometry-setter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-hotkey-guide",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-list",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-minimize-all",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-process-mapping",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-restore-all",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-tile-helper",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-title-search",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "window-transparency-guide",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "windows-features-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "windows-firewall-rule-count",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "windows-hotfix-snapshot",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "windows-update-status",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "windows-version-report",
+      "exit=0"
+    ],
+    [
+      "winhttp-proxy-viewer",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "word-frequency",
+      "exit=0"
+    ],
+    [
+      "working-directory-reporter",
+      "exit=0"
+    ],
+    [
+      "working-hours-calculator",
+      "exit=0"
+    ],
+    [
+      "world-writable-finder",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "xlsx-cell-counter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "xlsx-formula-counter",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "xlsx-metadata",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "xlsx-sheet-lister",
+      "unavailable (dependency gated)"
+    ],
+    [
+      "yaml-structure-checker",
+      "exit=1"
+    ],
+    [
+      "zero-byte-finder",
+      "exit=0"
+    ],
+    [
+      "zip-create",
+      "exit=2"
+    ],
+    [
+      "zip-extract",
+      "exit=2"
+    ]
+  ],
+  "timeout": [
+    "regex-replacer",
+    "unicode-normalizer"
+  ],
+  "traceback": [],
+  "crash": []
+}

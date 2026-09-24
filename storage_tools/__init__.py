@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "File Age Histogram",
             "category": "Storage Analytics",
-            "description": "File Age Histogram. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "File Age Histogram: file-age-histogram operation.",
             "handler": "operations.file_age_histogram",
             "cli_command": "file-age-histogram",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Extension Statistics",
             "category": "Storage Analytics",
-            "description": "Extension Statistics. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Extension Statistics: extension-statistics operation.",
             "handler": "operations.extension_statistics",
             "cli_command": "extension-statistics",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Directory Tree Export",
             "category": "Storage Analytics",
-            "description": "Directory Tree Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Directory Tree Export: directory-tree-export operation.",
             "handler": "operations.directory_tree_export",
             "cli_command": "directory-tree-export",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Directory CSV Export",
             "category": "Storage Analytics",
-            "description": "Directory CSV Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Directory CSV Export: directory-csv-export operation.",
             "handler": "operations.directory_csv_export",
             "cli_command": "directory-csv-export",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Directory JSON Export",
             "category": "Storage Analytics",
-            "description": "Directory JSON Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Directory JSON Export: directory-json-export operation.",
             "handler": "operations.directory_json_export",
             "cli_command": "directory-json-export",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Duplicate Name Finder",
             "category": "Storage Analytics",
-            "description": "Duplicate Name Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Duplicate Name Finder: duplicate-name-finder operation.",
             "handler": "operations.duplicate_name_finder",
             "cli_command": "duplicate-name-finder",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Zero Byte Finder",
             "category": "Storage Analytics",
-            "description": "Zero Byte Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Zero Byte Finder: zero-byte-finder operation.",
             "handler": "operations.zero_byte_finder",
             "cli_command": "zero-byte-finder",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Read Only Finder",
             "category": "Storage Analytics",
-            "description": "Read Only Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Read Only Finder: read-only-finder operation.",
             "handler": "operations.read_only_finder",
             "cli_command": "read-only-finder",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Hidden File Report",
             "category": "Storage Analytics",
-            "description": "Hidden File Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Hidden File Report: hidden-file-report operation.",
             "handler": "operations.hidden_file_report",
             "cli_command": "hidden-file-report",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Symlink Finder",
             "category": "Storage Analytics",
-            "description": "Symlink Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Symlink Finder: symlink-finder operation.",
             "handler": "operations.symlink_finder",
             "cli_command": "symlink-finder",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Junction Finder",
             "category": "Storage Analytics",
-            "description": "Junction Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Junction Finder: junction-finder operation.",
             "handler": "operations.junction_finder",
             "cli_command": "junction-finder",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Long Path Finder",
             "category": "Storage Analytics",
-            "description": "Long Path Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Long Path Finder: long-path-finder operation.",
             "handler": "operations.long_path_finder",
             "cli_command": "long-path-finder",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Old File Finder",
             "category": "Storage Analytics",
-            "description": "Old File Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Old File Finder: old-file-finder operation.",
             "handler": "operations.old_file_finder",
             "cli_command": "old-file-finder",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Recent File Finder",
             "category": "Storage Analytics",
-            "description": "Recent File Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Recent File Finder: recent-file-finder operation.",
             "handler": "operations.recent_file_finder",
             "cli_command": "recent-file-finder",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "File Size Histogram",
             "category": "Storage Analytics",
-            "description": "File Size Histogram. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "File Size Histogram: file-size-histogram operation.",
             "handler": "operations.file_size_histogram",
             "cli_command": "file-size-histogram",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Storage Health Report",
             "category": "Storage Analytics",
-            "description": "Storage Health Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Storage Health Report: storage-health-report operation.",
             "handler": "operations.storage_health_report",
             "cli_command": "storage-health-report",
             "dependencies": [],

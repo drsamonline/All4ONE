@@ -1,8 +1,16 @@
-**Author:** Dr. Sohil Momin, BHMS
+<div align="center">
 
-# Utility Suite Developer Guide
+# 🧑‍💻 Utility Suite — Developer Guide
 
-## Plugin contract
+![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square&logo=python&logoColor=black)
+![Lint](https://img.shields.io/badge/lint-ruff-blueviolet?style=flat-square)
+![CI](https://img.shields.io/badge/CI-Linux%20%2B%20Windows-brightgreen?style=flat-square)
+
+*Author: Dr. Sohil Momin, BHMS*
+
+</div>
+
+## Plugin contract 🧩
 
 Each pack contains `__init__.py` with a `register_tools()` function returning metadata dictionaries.
 

@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Drive Information",
             "category": "Advanced Disk Tools",
-            "description": "Drive Information. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Drive Information: drive-information operation.",
             "handler": "operations.drive_information",
             "cli_command": "drive-information",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Volume List",
             "category": "Advanced Disk Tools",
-            "description": "Volume List. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Volume List: volume-list operation.",
             "handler": "operations.volume_list",
             "cli_command": "volume-list",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Partition Information",
             "category": "Advanced Disk Tools",
-            "description": "Partition Information. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Partition Information: partition-information operation.",
             "handler": "operations.partition_information",
             "cli_command": "partition-information",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Disk Free Space",
             "category": "Advanced Disk Tools",
-            "description": "Disk Free Space. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Disk Free Space: disk-free-space operation.",
             "handler": "operations.disk_free_space",
             "cli_command": "disk-free-space",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Disk Usage Top Files",
             "category": "Advanced Disk Tools",
-            "description": "Disk Usage Top Files. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Disk Usage Top Files: disk-usage-top-files operation.",
             "handler": "operations.disk_usage_top_files",
             "cli_command": "disk-usage-top-files",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Directory Size Tree",
             "category": "Advanced Disk Tools",
-            "description": "Directory Size Tree. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Directory Size Tree: directory-size-tree operation.",
             "handler": "operations.directory_size_tree",
             "cli_command": "directory-size-tree",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Sparse File Inspector",
             "category": "Advanced Disk Tools",
-            "description": "Sparse File Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Sparse File Inspector: sparse-file-inspector operation.",
             "handler": "operations.sparse_file_inspector",
             "cli_command": "sparse-file-inspector",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "File Allocation Inspector",
             "category": "Advanced Disk Tools",
-            "description": "File Allocation Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "File Allocation Inspector: file-allocation-inspector operation.",
             "handler": "operations.file_allocation_inspector",
             "cli_command": "file-allocation-inspector",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Disk Benchmark Reader",
             "category": "Advanced Disk Tools",
-            "description": "Disk Benchmark Reader. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Disk Benchmark Reader: disk-benchmark-reader operation.",
             "handler": "operations.disk_benchmark_reader",
             "cli_command": "disk-benchmark-reader",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "SMART Status",
             "category": "Advanced Disk Tools",
-            "description": "SMART Status. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "SMART Status: smart-status operation.",
             "handler": "operations.smart_status",
             "cli_command": "smart-status",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Mount Point Viewer",
             "category": "Advanced Disk Tools",
-            "description": "Mount Point Viewer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Mount Point Viewer: mount-point-viewer operation.",
             "handler": "operations.mount_point_viewer",
             "cli_command": "mount-point-viewer",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Volume Serial Reader",
             "category": "Advanced Disk Tools",
-            "description": "Volume Serial Reader. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Volume Serial Reader: volume-serial-reader operation.",
             "handler": "operations.volume_serial_reader",
             "cli_command": "volume-serial-reader",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "NTFS Alternate Stream Finder",
             "category": "Advanced Disk Tools",
-            "description": "NTFS Alternate Stream Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "NTFS Alternate Stream Finder: ntfs-alternate-stream-finder operation.",
             "handler": "operations.ntfs_alternate_stream_finder",
             "cli_command": "ntfs-alternate-stream-finder",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Large File Finder",
             "category": "Advanced Disk Tools",
-            "description": "Large File Finder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Large File Finder: large-file-finder operation.",
             "handler": "operations.large_file_finder",
             "cli_command": "large-file-finder",
             "dependencies": [],

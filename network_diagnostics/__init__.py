@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Network Adapter List",
             "category": "Network Diagnostics",
-            "description": "Network Adapter List. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Network Adapter List: network-adapter-list operation.",
             "handler": "operations.network_adapter_list",
             "cli_command": "network-adapter-list",
             "dependencies": ["powershell", "ipconfig"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Network Adapter Details",
             "category": "Network Diagnostics",
-            "description": "Network Adapter Details. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Network Adapter Details: network-adapter-details operation.",
             "handler": "operations.network_adapter_details",
             "cli_command": "network-adapter-details",
             "dependencies": ["powershell", "ipconfig"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "IPv4 Configuration",
             "category": "Network Diagnostics",
-            "description": "IPv4 Configuration. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "IPv4 Configuration: ipv4-configuration operation.",
             "handler": "operations.ipv4_configuration",
             "cli_command": "ipv4-configuration",
             "dependencies": ["powershell", "ipconfig"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "IPv6 Configuration",
             "category": "Network Diagnostics",
-            "description": "IPv6 Configuration. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "IPv6 Configuration: ipv6-configuration operation.",
             "handler": "operations.ipv6_configuration",
             "cli_command": "ipv6-configuration",
             "dependencies": ["powershell", "ipconfig"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "DNS Server List",
             "category": "Network Diagnostics",
-            "description": "DNS Server List. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DNS Server List: dns-server-list operation.",
             "handler": "operations.dns_server_list",
             "cli_command": "dns-server-list",
             "dependencies": ["powershell", "ipconfig"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Default Gateway",
             "category": "Network Diagnostics",
-            "description": "Default Gateway. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Default Gateway: default-gateway operation.",
             "handler": "operations.default_gateway",
             "cli_command": "default-gateway",
             "dependencies": ["powershell", "ipconfig"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "DHCP Status",
             "category": "Network Diagnostics",
-            "description": "DHCP Status. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DHCP Status: dhcp-status operation.",
             "handler": "operations.dhcp_status",
             "cli_command": "dhcp-status",
             "dependencies": ["powershell", "ipconfig"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "MAC Address Viewer",
             "category": "Network Diagnostics",
-            "description": "MAC Address Viewer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "MAC Address Viewer: mac-address-viewer operation.",
             "handler": "operations.mac_address_viewer",
             "cli_command": "mac-address-viewer",
             "dependencies": ["powershell", "ipconfig"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Connection Test",
             "category": "Network Diagnostics",
-            "description": "Connection Test. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Connection Test: connection-test operation.",
             "handler": "operations.connection_test",
             "cli_command": "connection-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "HTTP Connectivity Test",
             "category": "Network Diagnostics",
-            "description": "HTTP Connectivity Test. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "HTTP Connectivity Test: http-connectivity-test operation.",
             "handler": "operations.http_connectivity_test",
             "cli_command": "http-connectivity-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "HTTPS Connectivity Test",
             "category": "Network Diagnostics",
-            "description": "HTTPS Connectivity Test. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "HTTPS Connectivity Test: https-connectivity-test operation.",
             "handler": "operations.https_connectivity_test",
             "cli_command": "https-connectivity-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "DNS Connectivity Test",
             "category": "Network Diagnostics",
-            "description": "DNS Connectivity Test. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DNS Connectivity Test: dns-connectivity-test operation.",
             "handler": "operations.dns_connectivity_test",
             "cli_command": "dns-connectivity-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Internet Reachability",
             "category": "Network Diagnostics",
-            "description": "Internet Reachability. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Internet Reachability: internet-reachability operation.",
             "handler": "operations.internet_reachability",
             "cli_command": "internet-reachability",
             "dependencies": ["powershell", "ipconfig"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Latency Test",
             "category": "Network Diagnostics",
-            "description": "Latency Test. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Latency Test: latency-test operation.",
             "handler": "operations.latency_test",
             "cli_command": "latency-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Packet Loss Test",
             "category": "Network Diagnostics",
-            "description": "Packet Loss Test. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Packet Loss Test: packet-loss-test operation.",
             "handler": "operations.packet_loss_test",
             "cli_command": "packet-loss-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Proxy Configuration",
             "category": "Network Diagnostics",
-            "description": "Proxy Configuration. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Proxy Configuration: proxy-configuration operation.",
             "handler": "operations.proxy_configuration",
             "cli_command": "proxy-configuration",
             "dependencies": ["powershell", "ipconfig"],
@@ -134,7 +134,7 @@ def register_tools():
         {
             "name": "WinHTTP Proxy Viewer",
             "category": "Network Diagnostics",
-            "description": "WinHTTP Proxy Viewer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "WinHTTP Proxy Viewer: winhttp-proxy-viewer operation.",
             "handler": "operations.winhttp_proxy_viewer",
             "cli_command": "winhttp-proxy-viewer",
             "dependencies": ["powershell", "ipconfig"],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Network Diagnostics Bundle",
             "category": "Network Diagnostics",
-            "description": "Network Diagnostics Bundle. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Network Diagnostics Bundle: network-diagnostics-bundle operation.",
             "handler": "operations.network_diagnostics_bundle",
             "cli_command": "network-diagnostics-bundle",
             "dependencies": ["powershell", "ipconfig"],
