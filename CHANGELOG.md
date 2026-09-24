@@ -24,8 +24,7 @@ audit if these drift apart.
 
 ### Added
 - This `CHANGELOG.md`, giving releases a single per-version fix history
-  alongside `MERGE_NOTES.md` (deep-dive merge rationale) and
-  `AUDIT_REPORT.txt` (latest machine-generated audit output).
+  alongside `AUDIT_REPORT.txt` (latest machine-generated audit output).
 
 ### Documentation
 - `README.md`: Validation section now states the `audit.py` exit-code
@@ -37,5 +36,4 @@ audit if these drift apart.
 ## [2.1.2]
 
 - Baseline 500-tool / 45-pack tree: GUI with file preview, deterministic
-  plugin ZIP builder, static release audit. See `MERGE_NOTES.md` for the
-  full blueprint of this line.
+  plugin ZIP builder, static release audit.

@@ -30,7 +30,7 @@ python run.py run checksum C:\path\file.txt --algorithm sha256
 python run.py gui
 ```
 
-For a portable Windows release, read `INSTALLATION.md` and `COMPILATION.md`. A GitHub Actions workflow (`.github/workflows/build-windows-exe.yml`) can also build and test a real `utility_suite.exe` on a Windows runner automatically — no Windows machine required on your end. See `MERGE_NOTES.md` for the latest audit pass and what changed in this release.
+For a portable Windows release, read `INSTALLATION.md` and `COMPILATION.md`. A GitHub Actions workflow (`.github/workflows/build-windows-exe.yml`) can also build and test a real `utility_suite.exe` on a Windows runner automatically — no Windows machine required on your end. See `CHANGELOG.md` for what changed in each release.
 
 ## Architecture
 

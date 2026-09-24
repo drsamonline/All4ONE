@@ -178,8 +178,8 @@ def main():
     # never be re-added to Analysis(datas=...) - PyInstaller places
     # `datas` inside _internal/, not beside the executable, which
     # previously caused a built exe to silently report "Total tools: 0"
-    # because the app looks for plugins/ as a sibling of the exe. See
-    # MERGE_NOTES.md for the full story.
+    # because the app looks for plugins/ as a sibling of the exe
+    # (see CHANGELOG.md [2.1.3] for the full story).
     spec_file = ROOT / "build.spec"
     if spec_file.exists():
         spec_text = spec_file.read_text(encoding="utf-8")
