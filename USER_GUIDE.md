@@ -96,7 +96,8 @@ Install only the components needed for the tools you use.
 
 ## 9. Logs and troubleshooting
 
-Application logs are written under `logs/` in the portable release directory. Start with:
+Application logs are written under `logs/` in the portable release directory
+(the directory ships empty and is populated at runtime). Start with:
 
 ```powershell
 utility_suite.exe list

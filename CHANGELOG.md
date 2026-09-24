@@ -6,6 +6,27 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field)
 and `core/__init__.py`. A regression guard in `audit.py` fails the release
 audit if these drift apart.
 
+## [Unreleased]
+
+### Documentation
+- `README.md`: architecture tree now lists every top-level asset that ships
+  with the repository (CI workflow, `VERSION.txt`, `DEVELOPER_GUIDE.md`,
+  `TOOL_CATALOG.md`, `EXPANSION_CATALOG.md`); the Validation section no
+  longer claims committed "Release SHA-256 generation" — hashes are
+  produced at distribution time via `Get-FileHash` (`COMPILATION.md`).
+- `AUDIT_REPORT.txt`: refreshed after the repository-cleanup pass —
+  file/line counts updated for the post-cleanup tree and the cleanup is
+  recorded alongside the other 2.1.3 fixes.
+
+### Repository cleanup
+- Removed superseded/historical artifacts (`FINAL_MAX_AUDIT.md`,
+  `MERGE_NOTES.md`), duplicate committed release-hash files
+  (`RELEASE_MANIFEST.txt`, `RELEASE_SHA256.txt`), a broken
+  `launch_gui.bat`, a committed empty runtime log, and dead code
+  (`core/file_scanner.py` — its functions were never imported; verified by
+  static reference scan plus a full audit + smoke-suite run). All
+  documentation references were repointed to `CHANGELOG.md`.
+
 ## [2.1.3] — 2026-09-24
 
 ### Fixed

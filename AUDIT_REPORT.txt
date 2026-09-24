@@ -2,7 +2,7 @@ Utility Suite 2.1.3 — Merged Audit Report
 (supersedes the 2.1.2 report; see CHANGELOG.md for what changed and why)
 
 Python files: 142
-Python source lines (post-formatting pass, PEP 8 line spacing via black): 10511
+Python source lines (post-formatting pass, PEP 8 line spacing via black): 10745
 Plugin packs: 45
 Tools: 500/500
 Unique commands: 500/500
@@ -17,6 +17,12 @@ Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 500/500 tools
   0 uncaught tracebacks, 0 crashes
 Source cache residue: NONE
 Stray runtime artifacts (backup/, logs/*.db): REMOVED
+Repository cleanup (docs/audit re-run after the cleanup commit): removed
+superseded audit artifacts (FINAL_MAX_AUDIT.md, MERGE_NOTES.md), duplicate
+committed release-hash files (RELEASE_MANIFEST.txt, RELEASE_SHA256.txt —
+hashes are now generated at distribution time per COMPILATION.md), a broken
+launch_gui.bat, a committed empty runtime log, and dead code
+(core/file_scanner.py; all references repointed to CHANGELOG.md)
 
 Fixes applied in this pass (see CHANGELOG.md for full detail):
   - count / download / filetype / hexview / integrity-baseline: now give a

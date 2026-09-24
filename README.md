@@ -18,7 +18,8 @@ Utility Suite is a modular Windows utility workstation built around a small core
 - Safe archive extraction checks
 - Audit and smoke-test tooling
 - Windows build script and PyInstaller specification
-- Complete user, installation and compilation documentation
+- GitHub Actions workflow that builds and smoke-tests `utility_suite.exe` on a Windows runner
+- Complete user, installation, development and release-build documentation (`USER_GUIDE.md`, `INSTALLATION.md`, `DEVELOPER_GUIDE.md`, `COMPILATION.md`, `TOOL_CATALOG.md`, `EXPANSION_CATALOG.md`)
 
 ## Quick start (source)
 
@@ -43,10 +44,15 @@ utility_suite/
 ├── audit.py              # static release audit
 ├── create_plugin_zips.py # deterministic pack builder
 ├── build.spec            # PyInstaller build specification
-├── BUILD_WINDOWS.ps1    # Windows release build script
+├── BUILD_WINDOWS.ps1     # Windows release build script
+├── .github/workflows/    # CI: Windows executable build + test pipeline
+├── VERSION.txt           # authoritative version string (mirrored by config.json and core/__init__.py)
 ├── USER_GUIDE.md         # end-user manual
+├── DEVELOPER_GUIDE.md    # plugin contract, testing tiers, release checklist
 ├── INSTALLATION.md       # installation guide
-└── COMPILATION.md        # developer/release build guide
+├── COMPILATION.md        # developer/release build guide
+├── TOOL_CATALOG.md       # full 500-tool catalogue
+└── EXPANSION_CATALOG.md  # per-pack tool counts
 ```
 
 ## Design principles
@@ -72,7 +78,9 @@ The release process performs:
 - Duplicate-name/description checks
 - Runtime handler-resolution tests
 - Functional smoke tests
-- Release SHA-256 generation
+
+Release hashes are generated at distribution time with PowerShell
+(`Get-FileHash`, see `COMPILATION.md`) rather than committed to the tree.
 
 `audit.py` enforces a strict exit-code contract: it exits **0** only on
 `AUDIT PASSED` and **1** on `AUDIT FAILED`, so CI gates (and local release

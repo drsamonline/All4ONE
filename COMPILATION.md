@@ -84,7 +84,12 @@ python -m tests.test_suite
 python -m compileall -q .
 ```
 
-Remove generated `__pycache__` folders before packaging source archives.
+Remove generated `__pycache__` folders before packaging source archives
+(`python -m compileall` writes them; `audit.py` flags any residue):
+
+```powershell
+Get-ChildItem -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Force
+```
 
 Generate release hashes with PowerShell:
 
