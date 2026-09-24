@@ -38,6 +38,12 @@ audit if these drift apart.
   `logs/utility_suite.log` while console output stays clean.
 
 ### Fixed
+- `.gitignore` regression (post-expansion): the 539-tool expansion commit had
+  silently reduced `.gitignore` to a single rule (`plugins/*.zip`), so every
+  runtime artifact produced by the new tools (`__pycache__/`, `logs/utility_suite.log`,
+  `logs/sweep_results.json`) showed up as untracked clutter in PR diffs. The full
+  ignore set is restored: bytecode caches, `logs/*` (except `.gitkeep`), build/dist,
+  ruff/pytest caches, venvs, OS and editor junk.
 - CI (Linux + Windows GitHub Actions builds failing): a subsequent commit
   had force-added tracked clutter (`__pycache__`/*.pyc files and an empty
   `logs/utility_suite.log`) and emptied `.gitignore`, so the audit's
