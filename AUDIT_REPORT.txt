@@ -1,19 +1,20 @@
 Utility Suite 2.1.3 — Merged Audit Report
 (supersedes the 2.1.2 report; see CHANGELOG.md for what changed and why)
+(refreshed after the 2026-09 expansion to 539 tools across 45 packs)
 
-Python files: 142
-Python source lines (post-formatting pass, PEP 8 line spacing via black): 10745
+Python files: 144
+Python source lines (post-formatting pass, PEP 8 line spacing via black): 12159
 Plugin packs: 45
-Tools: 500/500
-Unique commands: 500/500
-Runtime handler resolution: 500/500
+Tools: 539/539
+Unique commands: 539/539
+Runtime handler resolution: 539/539
 AST parse: PASS
 Safety-pattern scan (shell=True / os.system): PASS
 Plugin ZIP integrity: PASS
 Behavioral smoke suite (tests/test_suite.py): PASS
 Archive traversal regressions (zip-slip / tar-slip): PASS
-Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 500/500 tools
-  individually invoked with a hard timeout): 500 OK, 0 unexpected timeouts,
+Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 539/539 tools
+  individually invoked with a hard timeout): 539 OK, 0 unexpected timeouts,
   0 uncaught tracebacks, 0 crashes
 Source cache residue: NONE
 Stray runtime artifacts (backup/, logs/*.db): REMOVED
@@ -69,6 +70,20 @@ Fixes applied in this pass (see CHANGELOG.md for full detail):
   - GUI: added a confirmation prompt before running tools that can delete
     or overwrite data, plus File/Folder browse buttons that insert a
     correctly-quoted path into the argument field.
+
+2026-09 tool expansion (see CHANGELOG.md [Unreleased]):
+  - Catalogue grown from 500 to 539 tools across the same 45 packs: 39 new
+    pure-Python tools spanning text, clipboard, time/productivity, security
+    audit, networking, packaging, maintenance, monitoring, hashing, JSON/
+    YAML and encoding work (e.g. slugify-converter, subnet-calculator,
+    multi-hash, json-diff, cron-explainer).
+  - audit.py EXPECTED_TOOLS raised to 539; .gitignore restored to its full
+    rule set after the expansion commit had silently reduced it to one line
+    (runtime artifacts were showing up as untracked clutter).
+  - TOOL_CATALOG.md and EXPANSION_CATALOG.md regenerated from the live
+    registry (they had drifted back to the stale 500-tool baseline, and
+    TOOL_CATALOG.md contained an unresolved template artifact in its pack
+    count line).
 
 Qualification note (unchanged since 2.1.2): this audit environment is
 Linux, so native Windows integrations remain dependency-gated and

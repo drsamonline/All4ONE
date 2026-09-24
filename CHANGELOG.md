@@ -11,7 +11,13 @@ audit if these drift apart.
 ### Added
 - `LICENSE` (MIT): the repository previously shipped no license at all,
   which legally defaults to "all rights reserved" and blocked any
-  publication or downstream use.
+  publication or downstream use. Copyright (c) 2026 Dr. Sohil Momin —
+  matching the author credit in README.md and AUTHORS.md.
+- Catalogue expanded from 500 to 539 tools across the existing 45 packs:
+  39 new pure-Python tools (slugify-converter, subnet-calculator,
+  multi-hash, json-diff, cron-explainer, clipboard history ring, SSL
+  expiry monitor, venv size reporter, temp-file aging cleaner, resource
+  snapshot diff, base64/hex/url codecs, and more).
 - `SECURITY.md`: private vulnerability-reporting policy appropriate for a
   system-utility project, plus a summary of the existing execution-safety
   guards (argument-list-only `_run`, audit-enforced `shell=True` ban).
@@ -38,6 +44,12 @@ audit if these drift apart.
   `logs/utility_suite.log` while console output stays clean.
 
 ### Fixed
+- `.gitignore` regression (post-expansion): the 539-tool expansion commit had
+  silently reduced `.gitignore` to a single rule (`plugins/*.zip`), so every
+  runtime artifact produced by the new tools (`__pycache__/`, `logs/utility_suite.log`,
+  `logs/sweep_results.json`) showed up as untracked clutter in PR diffs. The full
+  ignore set is restored: bytecode caches, `logs/*` (except `.gitkeep`), build/dist,
+  ruff/pytest caches, venvs, OS and editor junk.
 - CI (Linux + Windows GitHub Actions builds failing): a subsequent commit
   had force-added tracked clutter (`__pycache__`/*.pyc files and an empty
   `logs/utility_suite.log`) and emptied `.gitignore`, so the audit's
@@ -56,6 +68,17 @@ audit if these drift apart.
   files; ZIP cache scanning and all other gates are unchanged.
 
 ### Documentation
+- Full documentation sync after the 539-tool expansion: every guide that
+  still quoted the stale 500-tool baseline was updated (README title and
+  feature list, USER_GUIDE intro, DEVELOPER_GUIDE sweep description and
+  catalogue-size rule, AUDIT_REPORT stats and expansion post-mortem).
+- `TOOL_CATALOG.md` and `EXPANSION_CATALOG.md` regenerated from the live
+  tool registry so all 539 tools and per-pack counts are listed; fixed an
+  unresolved template artifact (`Plugin packs: {len({p for p,_ in entries})}`)
+  that had been committed as literal text in TOOL_CATALOG.md's header.
+- `DEVELOPER_GUIDE.md`: replaced the obsolete "keep the catalogue at or
+  below 500 tools" rule with the current policy (bump `EXPECTED_TOOLS` in
+  `audit.py` deliberately and regenerate both catalogues afterwards).
 - `README.md`: architecture tree now lists every top-level asset that ships
   with the repository (CI workflow, `VERSION.txt`, `DEVELOPER_GUIDE.md`,
   `TOOL_CATALOG.md`, `EXPANSION_CATALOG.md`); the Validation section no

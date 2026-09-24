@@ -53,7 +53,7 @@ safe — it sets `sys.dont_write_bytecode` internally).
 5. Rebuild plugin ZIPs.
 6. Run the audit again.
 
-Keep the catalogue at or below 500 tools unless the product specification is deliberately revised.
+audit.py enforces the current catalogue size (EXPECTED_TOOLS = 539 as of the 2026-09 expansion). Bump that constant deliberately when adding or removing tools, and regenerate TOOL_CATALOG.md / EXPANSION_CATALOG.md from the live registry afterwards.
 
 ## Testing tiers - which one runs where
 
@@ -74,7 +74,7 @@ exactly what previously broke the Windows CI build:
    side effects. Runs everywhere, including CI, before every build.
 
 3. **`tests/test_all_tools.py`** - an exhaustive sweep that invokes
-   *every one* of the 500 registered tools in its own subprocess. This
+   *every one* of the 539 registered tools in its own subprocess. This
    is a **local/manual developer diagnostic only** - it is intentionally
    **not** part of the CI build pipeline. The reason: on a Linux dev
    machine, Windows-only tools (services, registry, event log, network
