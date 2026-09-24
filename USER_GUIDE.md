@@ -4,7 +4,7 @@
 
 ## 1. Overview
 
-Utility Suite is a single workstation for common file, Windows, networking, media, data, developer, security, storage, backup, productivity, and diagnostic tasks. The catalogue contains 500 tools organized into 45 plugin packs.
+Utility Suite is a single workstation for common file, Windows, networking, media, data, developer, security, storage, backup, productivity, and diagnostic tasks. The catalogue contains 539 tools organized into 45 plugin packs.
 
 The application deliberately does not bundle every external engine. Tools that need an external program are marked **Unavailable** until that capability is installed. This keeps the application smaller and follows the project's dependency-isolation design.
 

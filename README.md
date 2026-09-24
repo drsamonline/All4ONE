@@ -1,12 +1,12 @@
 **Author:** Dr. Sohil Momin, BHMS
 
-# Utility Suite 2.1.3 — 500-Tool Windows Utility Workstation
+# Utility Suite 2.1.3 — 539-Tool Windows Utility Workstation
 
-Utility Suite is a modular Windows utility workstation built around a small core and dynamically discovered plugin packs. The repository contains **500 tools across 45 plugin packs**. Tools are registered through metadata, loaded lazily, and can declare optional or platform-specific dependencies. A missing dependency disables only the affected tool.
+Utility Suite is a modular Windows utility workstation built around a small core and dynamically discovered plugin packs. The repository contains **539 tools across 45 plugin packs**. Tools are registered through metadata, loaded lazily, and can declare optional or platform-specific dependencies. A missing dependency disables only the affected tool.
 
 ## What is included
 
-- 500 registered tools / 500 unique CLI commands
+- 539 registered tools / 539 unique CLI commands
 - 45 plugin packs delivered as compressed ZIP archives
 - CLI and desktop GUI
 - Lazy plugin discovery and lazy handler loading
@@ -55,7 +55,7 @@ utility_suite/
 ├── DEVELOPER_GUIDE.md    # plugin contract, testing tiers, release checklist
 ├── INSTALLATION.md       # installation guide
 ├── COMPILATION.md        # developer/release build guide
-├── TOOL_CATALOG.md       # full 500-tool catalogue
+├── TOOL_CATALOG.md       # full 539-tool catalogue
 └── EXPANSION_CATALOG.md  # per-pack tool counts
 ```
 
