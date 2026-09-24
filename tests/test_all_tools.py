@@ -16,10 +16,10 @@ with a non-zero code) is recorded as OK.
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
-import shutil
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)

@@ -1,5 +1,7 @@
 from __future__ import annotations
-import argparse, hashlib
+
+import argparse
+import hashlib
 from pathlib import Path
 
 

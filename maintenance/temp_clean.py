@@ -1,5 +1,7 @@
 from __future__ import annotations
-import argparse, tempfile
+
+import argparse
+import tempfile
 from pathlib import Path
 
 

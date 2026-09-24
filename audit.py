@@ -16,13 +16,17 @@ working tree (e.g. it will not delete stray ``__pycache__`` directories), so
 operators must clean caches themselves before expecting a PASS.
 """
 from __future__ import annotations
+
 import sys
 
 # Set before importing anything else so that merely *running* the audit can
 # never litter the source tree with bytecode caches (which its own
 # "__pycache__ clutter" check would then flag as a failure).
 sys.dont_write_bytecode = True
-import ast, subprocess, zipfile, re
+import ast
+import re
+import subprocess
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent

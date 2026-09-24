@@ -1,5 +1,8 @@
 from __future__ import annotations
-import argparse, urllib.request, urllib.error
+
+import argparse
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 

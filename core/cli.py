@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
-from . import __version__
 
+from . import __version__
 from .config import get_config_path, load_config
 from .plugin_loader import PluginLoader
 from .preview import open_with_default, preview_file

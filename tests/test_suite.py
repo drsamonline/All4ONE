@@ -1,4 +1,5 @@
-import sys, tempfile
+import sys
+import tempfile
 
 sys.dont_write_bytecode = True
 from pathlib import Path
@@ -57,7 +58,9 @@ def main():
         assert reg.run_tool("patch-preview", [str(root2 / "a.txt")]) == 0
     with tempfile.TemporaryDirectory() as td3:
         root3 = Path(td3)
-        import zipfile, tarfile, io
+        import io
+        import tarfile
+        import zipfile
 
         bad_zip = root3 / "bad.zip"
         with zipfile.ZipFile(bad_zip, "w") as z:

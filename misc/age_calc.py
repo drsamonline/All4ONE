@@ -1,5 +1,8 @@
 from __future__ import annotations
-import argparse, datetime as dt, time
+
+import argparse
+import datetime as dt
+import time
 from pathlib import Path
 
 

@@ -1,5 +1,7 @@
 from __future__ import annotations
-import argparse, re
+
+import argparse
+import re
 from pathlib import Path
 
 TEXT_EXTS = {

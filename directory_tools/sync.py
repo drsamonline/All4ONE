@@ -1,5 +1,8 @@
 from __future__ import annotations
-import argparse, filecmp, shutil
+
+import argparse
+import filecmp
+import shutil
 from pathlib import Path
 
 

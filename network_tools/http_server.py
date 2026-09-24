@@ -1,5 +1,9 @@
 from __future__ import annotations
-import argparse, functools, http.server, socketserver
+
+import argparse
+import functools
+import http.server
+import socketserver
 from pathlib import Path
 
 

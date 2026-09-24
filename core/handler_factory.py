@@ -1,6 +1,7 @@
 """Shared lazy adapter factory for expansion-plugin handlers."""
 
 from __future__ import annotations
+
 from collections.abc import Callable
 
 

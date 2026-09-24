@@ -1,5 +1,9 @@
 from __future__ import annotations
-import argparse, json, shutil, subprocess
+
+import argparse
+import json
+import shutil
+import subprocess
 
 
 def run(args=None):
