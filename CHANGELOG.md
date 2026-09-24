@@ -8,6 +8,15 @@ audit if these drift apart.
 
 ## [Unreleased]
 
+### Fixed
+- `audit.py`: the source-tree cache-clutter gate scanned every
+  `__pycache__` directory on disk, including untracked, gitignored ones
+  that the interpreter itself writes while the audit imports the plugin
+  loader. Plain `python audit.py` therefore always failed with
+  "Build tree contains __pycache__" (it could only pass under
+  `python -B`). The check now flags only *tracked* `__pycache__`/`.pyc`
+  files; ZIP cache scanning and all other gates are unchanged.
+
 ### Documentation
 - `README.md`: architecture tree now lists every top-level asset that ships
   with the repository (CI workflow, `VERSION.txt`, `DEVELOPER_GUIDE.md`,

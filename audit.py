@@ -22,7 +22,7 @@ import sys
 # never litter the source tree with bytecode caches (which its own
 # "__pycache__ clutter" check would then flag as a failure).
 sys.dont_write_bytecode = True
-import ast, zipfile, re
+import ast, subprocess, zipfile, re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -147,9 +147,17 @@ def main():
                 problems.append(f"Missing handler function: {pack}/{handler}")
         except Exception as e:
             problems.append(f"AST handler error: {pack}/{handler}: {e}")
-    # source-tree cache clutter
-    if list(ROOT.rglob("__pycache__")):
-        problems.append("Build tree contains __pycache__")
+    # source-tree cache clutter. Only TRACKED files count: audit.py itself
+    # imports the plugin loader at runtime, which drops __pycache__ dirs next
+    # to the sources it imports. Including those untracked, gitignored build
+    # artifacts made this gate fail spuriously on every plain `python audit.py`
+    # run (it could only ever pass under `python -B`). Tracked .pyc files are
+    # still caught, and ZIP CACHE / release checks below remain unchanged.
+    tracked = subprocess.run(
+        ["git", "-C", str(ROOT), "ls-files"], capture_output=True, text=True
+    ).stdout.splitlines()
+    if any("__pycache__" in line or line.endswith(".pyc") for line in tracked):
+        problems.append("Build tree contains tracked __pycache__/.pyc files")
 
     # Version-string consistency: VERSION.txt is the single source of
     # truth. This check exists because a stale hardcoded version in

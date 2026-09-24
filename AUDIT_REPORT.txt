@@ -23,6 +23,12 @@ committed release-hash files (RELEASE_MANIFEST.txt, RELEASE_SHA256.txt —
 hashes are now generated at distribution time per COMPILATION.md), a broken
 launch_gui.bat, a committed empty runtime log, and dead code
 (core/file_scanner.py; all references repointed to CHANGELOG.md)
+Audit bug fixed after this report's first run: the source-tree cache check
+scanned every __pycache__ on disk, including untracked, gitignored ones that
+the interpreter itself writes during a normal `python audit.py` run — so the
+gate failed spuriously ("Build tree contains __pycache__") unless invoked as
+`python -B`. The check now flags only tracked __pycache__/.pyc files; ZIP
+cache scanning is unchanged.
 
 Fixes applied in this pass (see CHANGELOG.md for full detail):
   - count / download / filetype / hexview / integrity-baseline: now give a

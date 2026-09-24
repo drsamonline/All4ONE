@@ -86,7 +86,10 @@ Release hashes are generated at distribution time with PowerShell
 `AUDIT PASSED` and **1** on `AUDIT FAILED`, so CI gates (and local release
 checklists) can rely on `python audit.py && <next step>` failing loudly.
 Note the audit is findings-only — clean stray `__pycache__/` directories
-yourself before expecting a PASS.
+yourself before expecting a PASS. The source-tree cache check only flags
+*tracked* `__pycache__`/`.pyc` files (gitignored build artifacts written by
+normal interpreter runs do not fail the gate; plugin ZIPs are still checked
+for embedded cache files).
 
 See `AUDIT_REPORT.txt` for the latest release audit result and
 `CHANGELOG.md` for per-release fix history.
