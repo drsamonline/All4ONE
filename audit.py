@@ -1,6 +1,26 @@
+"""Static release audit for Utility Suite (exit-code contract below).
+
+Run as ``python audit.py`` from the repository root.
+
+Exit-code contract (CI gate - see .github/workflows/build-windows-exe.yml):
+    0  -> "AUDIT PASSED" : tree is release-clean and all 500 tools validate.
+    1  -> "AUDIT FAILED" : at least one problem listed on stdout; the build
+                          /release pipeline MUST treat this as fatal.
+
+The exit code is propagated via ``raise SystemExit(main())`` at the bottom of
+this file; ``main()`` returns 1 whenever ``problems`` is non-empty. Do not
+wrap or swallow that return value, or CI will silently pass broken releases.
+
+NOTE: this module intentionally reports findings only - it never mutates the
+working tree (e.g. it will not delete stray ``__pycache__`` directories), so
+operators must clean caches themselves before expecting a PASS.
+"""
 from __future__ import annotations
 import sys
 
+# Set before importing anything else so that merely *running* the audit can
+# never litter the source tree with bytecode caches (which its own
+# "__pycache__ clutter" check would then flag as a failure).
 sys.dont_write_bytecode = True
 import ast, zipfile, re
 from pathlib import Path
@@ -29,6 +49,14 @@ def source_tools(pack):
 
 
 def main():
+    """Run every release gate check and report findings on stdout.
+
+    Returns:
+        int: 0 if the tree is release-clean ("AUDIT PASSED"), or 1 with each
+            problem listed ("AUDIT FAILED"). The caller contract is that this
+            return value becomes the process exit code (see module docstring);
+            CI relies on non-zero here to block broken builds.
+    """
     problems = []
     packs = pack_names()
     all_tools = []
@@ -190,4 +218,6 @@ def main():
 
 
 if __name__ == "__main__":
+    # Propagate main()'s 0/1 verdict as the process exit code so CI
+    # (`python audit.py`) fails the build on any AUDIT FAILED finding.
     raise SystemExit(main())
