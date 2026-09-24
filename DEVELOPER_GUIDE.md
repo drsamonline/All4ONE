@@ -35,6 +35,15 @@ Expansion packs use a shared lazy adapter factory so the project does not copy 1
 
 `audit.py` is static and release-oriented. Runtime resolution is covered by the test suite so normal audits do not create `__pycache__` noise in the source tree.
 
+**Exit-code contract (CI gate):** `python audit.py` exits **0** on
+`AUDIT PASSED` and **1** on `AUDIT FAILED` (propagated via
+`raise SystemExit(main())`). Chain it with `&&` in release scripts — e.g.
+`python audit.py && python create_plugin_zips.py` — so a failed audit stops
+the pipeline loudly instead of silently shipping broken releases. The audit
+is findings-only: it never mutates the tree, so delete stray `__pycache__/`
+directories yourself before expecting a PASS (running the audit itself is
+safe — it sets `sys.dont_write_bytecode` internally).
+
 ## Adding a tool
 
 1. Add metadata to the appropriate pack.
