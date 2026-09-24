@@ -1,5 +1,7 @@
 from __future__ import annotations
-import argparse, sqlite3
+
+import argparse
+import sqlite3
 from pathlib import Path
 
 SCHEMA = "CREATE TABLE IF NOT EXISTS files(path TEXT PRIMARY KEY,size INTEGER,mtime REAL,extension TEXT,name TEXT); CREATE INDEX IF NOT EXISTS idx_files_name ON files(name); CREATE INDEX IF NOT EXISTS idx_files_ext ON files(extension); CREATE INDEX IF NOT EXISTS idx_files_size ON files(size);"

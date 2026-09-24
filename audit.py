@@ -16,13 +16,17 @@ working tree (e.g. it will not delete stray ``__pycache__`` directories), so
 operators must clean caches themselves before expecting a PASS.
 """
 from __future__ import annotations
+
 import sys
 
 # Set before importing anything else so that merely *running* the audit can
 # never litter the source tree with bytecode caches (which its own
 # "__pycache__ clutter" check would then flag as a failure).
 sys.dont_write_bytecode = True
-import ast, zipfile, re
+import ast
+import re
+import subprocess
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -147,9 +151,17 @@ def main():
                 problems.append(f"Missing handler function: {pack}/{handler}")
         except Exception as e:
             problems.append(f"AST handler error: {pack}/{handler}: {e}")
-    # source-tree cache clutter
-    if list(ROOT.rglob("__pycache__")):
-        problems.append("Build tree contains __pycache__")
+    # source-tree cache clutter. Only TRACKED files count: audit.py itself
+    # imports the plugin loader at runtime, which drops __pycache__ dirs next
+    # to the sources it imports. Including those untracked, gitignored build
+    # artifacts made this gate fail spuriously on every plain `python audit.py`
+    # run (it could only ever pass under `python -B`). Tracked .pyc files are
+    # still caught, and ZIP CACHE / release checks below remain unchanged.
+    tracked = subprocess.run(
+        ["git", "-C", str(ROOT), "ls-files"], capture_output=True, text=True
+    ).stdout.splitlines()
+    if any("__pycache__" in line or line.endswith(".pyc") for line in tracked):
+        problems.append("Build tree contains tracked __pycache__/.pyc files")
 
     # Version-string consistency: VERSION.txt is the single source of
     # truth. This check exists because a stale hardcoded version in
@@ -159,18 +171,37 @@ def main():
     version_file = (ROOT / "VERSION.txt")
     if version_file.exists():
         expected_version = version_file.read_text(encoding="utf-8").strip()
-        try:
-            from . import __version__ as actual_version
-        except Exception:
-            try:
-                from core import __version__ as actual_version
-            except Exception:
-                actual_version = None
-        if actual_version != expected_version:
-            problems.append(
-                f"VERSION MISMATCH: VERSION.txt says '{expected_version}' but "
-                f"core/__init__.py's __version__ is '{actual_version}'"
-            )
+
+        def read_literal(path, pattern):
+            """Return the first regex match inside a source file, or None."""
+            if not path.exists():
+                return None
+            m = re.search(pattern, path.read_text(encoding="utf-8"))
+            return m.group(1) if m else None
+
+        # Every version literal in the tree must match VERSION.txt. This is
+        # deliberately *not* an import-based check: importing core would drop
+        # __pycache__ dirs into the source tree mid-run (and audit.py sets
+        # sys.dont_write_bytecode for exactly that reason). The one import
+        # based check below (handler resolution) was the class of bug that
+        # once made this audit self-sabotage.
+        checked = {
+            "core/__init__.py's __version__": read_literal(
+                ROOT / "core" / "__init__.py", r'__version__\s*=\s*"([^"]+)"'
+            ),
+            'config.json "application.version"': read_literal(
+                ROOT / "config.json", r'"version"\s*:\s*"([^"]+)"'
+            ),
+            "build.spec header": read_literal(
+                ROOT / "build.spec", r"# Utility Suite (\d+\.\d+\.\d+)"
+            ),
+        }
+        for label, actual in checked.items():
+            if actual != expected_version:
+                problems.append(
+                    f"VERSION MISMATCH: VERSION.txt says '{expected_version}' but "
+                    f"{label} is '{actual}'"
+                )
     else:
         problems.append("VERSION.txt is missing")
 
@@ -178,8 +209,8 @@ def main():
     # never be re-added to Analysis(datas=...) - PyInstaller places
     # `datas` inside _internal/, not beside the executable, which
     # previously caused a built exe to silently report "Total tools: 0"
-    # because the app looks for plugins/ as a sibling of the exe. See
-    # MERGE_NOTES.md for the full story.
+    # because the app looks for plugins/ as a sibling of the exe
+    # (see CHANGELOG.md [2.1.3] for the full story).
     spec_file = ROOT / "build.spec"
     if spec_file.exists():
         spec_text = spec_file.read_text(encoding="utf-8")

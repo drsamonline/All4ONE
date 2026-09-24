@@ -1,5 +1,7 @@
 from __future__ import annotations
-import argparse, sqlite3
+
+import argparse
+import sqlite3
 from pathlib import Path
 
 
@@ -29,7 +31,7 @@ def run(args=None):
         params + [a.limit],
     ).fetchall()
     con.close()
-    for path, size, mtime in rows:
+    for path, size, _mtime in rows:
         print(f"{size:>12,}  {path}")
     print(f"Found {len(rows)} matches.")
     return 0

@@ -1,5 +1,7 @@
 from __future__ import annotations
-import argparse, random
+
+import argparse
+import random
 from pathlib import Path
 
 

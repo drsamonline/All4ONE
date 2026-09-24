@@ -6,6 +6,65 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field)
 and `core/__init__.py`. A regression guard in `audit.py` fails the release
 audit if these drift apart.
 
+## [Unreleased]
+
+### Added
+- `LICENSE` (MIT): the repository previously shipped no license at all,
+  which legally defaults to "all rights reserved" and blocked any
+  publication or downstream use.
+- `SECURITY.md`: private vulnerability-reporting policy appropriate for a
+  system-utility project, plus a summary of the existing execution-safety
+  guards (argument-list-only `_run`, audit-enforced `shell=True` ban).
+- `.github/workflows/ci.yml`: Linux validation job (ruff lint advisory +
+  hard gates on `audit.py` and the smoke-test suite) so every push/PR is
+  checked without needing a Windows runner.
+- `.editorconfig`: consistent encoding/indent/whitespace rules across
+  editors (LF + trim whitespace by default; Markdown exempt for hard line
+  breaks; `.bat`/`.ps1` stay CRLF).
+- `pyproject.toml`: ruff configuration only — this project is not a pip
+  package and is still run via `python run.py`.
+
+### Changed
+- Version single-source-of-truth: `VERSION.txt` remains canonical, but
+  `audit.py` now enforces it against **every** version literal in the tree
+  (`core/__init__.py`, `config.json`, `build.spec` header) using static
+  text matching instead of importing `core` — the old import-based check
+  risked re-introducing the exact `__pycache__` self-sabotage class of bug
+  that was fixed below. Verified: desyncing any literal fails the audit.
+- Error handling: silent `except Exception:` fallbacks in
+  `core/extended_ops.py` (JSON-input parse, psutil-availability probes,
+  clipboard window teardown) now log a debug-level message with the caught
+  exception before falling back, so failures are diagnosable in
+  `logs/utility_suite.log` while console output stays clean.
+
+### Fixed
+- `audit.py`: the source-tree cache-clutter gate scanned every
+  `__pycache__` directory on disk, including untracked, gitignored ones
+  that the interpreter itself writes while the audit imports the plugin
+  loader. Plain `python audit.py` therefore always failed with
+  "Build tree contains __pycache__" (it could only pass under
+  `python -B`). The check now flags only *tracked* `__pycache__`/`.pyc`
+  files; ZIP cache scanning and all other gates are unchanged.
+
+### Documentation
+- `README.md`: architecture tree now lists every top-level asset that ships
+  with the repository (CI workflow, `VERSION.txt`, `DEVELOPER_GUIDE.md`,
+  `TOOL_CATALOG.md`, `EXPANSION_CATALOG.md`); the Validation section no
+  longer claims committed "Release SHA-256 generation" — hashes are
+  produced at distribution time via `Get-FileHash` (`COMPILATION.md`).
+- `AUDIT_REPORT.txt`: refreshed after the repository-cleanup pass —
+  file/line counts updated for the post-cleanup tree and the cleanup is
+  recorded alongside the other 2.1.3 fixes.
+
+### Repository cleanup
+- Removed superseded/historical artifacts (`FINAL_MAX_AUDIT.md`,
+  `MERGE_NOTES.md`), duplicate committed release-hash files
+  (`RELEASE_MANIFEST.txt`, `RELEASE_SHA256.txt`), a broken
+  `launch_gui.bat`, a committed empty runtime log, and dead code
+  (`core/file_scanner.py` — its functions were never imported; verified by
+  static reference scan plus a full audit + smoke-suite run). All
+  documentation references were repointed to `CHANGELOG.md`.
+
 ## [2.1.3] — 2026-09-24
 
 ### Fixed
@@ -24,8 +83,7 @@ audit if these drift apart.
 
 ### Added
 - This `CHANGELOG.md`, giving releases a single per-version fix history
-  alongside `MERGE_NOTES.md` (deep-dive merge rationale) and
-  `AUDIT_REPORT.txt` (latest machine-generated audit output).
+  alongside `AUDIT_REPORT.txt` (latest machine-generated audit output).
 
 ### Documentation
 - `README.md`: Validation section now states the `audit.py` exit-code
@@ -37,5 +95,4 @@ audit if these drift apart.
 ## [2.1.2]
 
 - Baseline 500-tool / 45-pack tree: GUI with file preview, deterministic
-  plugin ZIP builder, static release audit. See `MERGE_NOTES.md` for the
-  full blueprint of this line.
+  plugin ZIP builder, static release audit.

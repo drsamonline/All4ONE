@@ -1,5 +1,8 @@
 from __future__ import annotations
-import argparse, os, tarfile
+
+import argparse
+import os
+import tarfile
 from pathlib import Path
 
 

@@ -1,5 +1,7 @@
 from __future__ import annotations
-import argparse, ftplib
+
+import argparse
+import ftplib
 from pathlib import Path
 
 

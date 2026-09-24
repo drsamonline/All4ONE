@@ -18,7 +18,8 @@ Utility Suite is a modular Windows utility workstation built around a small core
 - Safe archive extraction checks
 - Audit and smoke-test tooling
 - Windows build script and PyInstaller specification
-- Complete user, installation and compilation documentation
+- GitHub Actions workflow that builds and smoke-tests `utility_suite.exe` on a Windows runner
+- Complete user, installation, development and release-build documentation (`USER_GUIDE.md`, `INSTALLATION.md`, `DEVELOPER_GUIDE.md`, `COMPILATION.md`, `TOOL_CATALOG.md`, `EXPANSION_CATALOG.md`)
 
 ## Quick start (source)
 
@@ -30,7 +31,7 @@ python run.py run checksum C:\path\file.txt --algorithm sha256
 python run.py gui
 ```
 
-For a portable Windows release, read `INSTALLATION.md` and `COMPILATION.md`. A GitHub Actions workflow (`.github/workflows/build-windows-exe.yml`) can also build and test a real `utility_suite.exe` on a Windows runner automatically — no Windows machine required on your end. See `MERGE_NOTES.md` for the latest audit pass and what changed in this release.
+For a portable Windows release, read `INSTALLATION.md` and `COMPILATION.md`. A GitHub Actions workflow (`.github/workflows/build-windows-exe.yml`) can also build and test a real `utility_suite.exe` on a Windows runner automatically — no Windows machine required on your end. See `CHANGELOG.md` for what changed in each release.
 
 ## Architecture
 
@@ -43,10 +44,19 @@ utility_suite/
 ├── audit.py              # static release audit
 ├── create_plugin_zips.py # deterministic pack builder
 ├── build.spec            # PyInstaller build specification
-├── BUILD_WINDOWS.ps1    # Windows release build script
+├── BUILD_WINDOWS.ps1     # Windows release build script
+├── .github/workflows/    # CI: Linux validation (ci.yml) + Windows exe build pipeline
+├── VERSION.txt           # authoritative version string; audit.py enforces every other copy matches it
+├── pyproject.toml        # ruff lint configuration (project is not a pip package)
+├── .editorconfig         # cross-editor formatting rules
+├── LICENSE               # MIT license
+├── SECURITY.md           # vulnerability reporting policy
 ├── USER_GUIDE.md         # end-user manual
+├── DEVELOPER_GUIDE.md    # plugin contract, testing tiers, release checklist
 ├── INSTALLATION.md       # installation guide
-└── COMPILATION.md        # developer/release build guide
+├── COMPILATION.md        # developer/release build guide
+├── TOOL_CATALOG.md       # full 500-tool catalogue
+└── EXPANSION_CATALOG.md  # per-pack tool counts
 ```
 
 ## Design principles
@@ -72,13 +82,18 @@ The release process performs:
 - Duplicate-name/description checks
 - Runtime handler-resolution tests
 - Functional smoke tests
-- Release SHA-256 generation
+
+Release hashes are generated at distribution time with PowerShell
+(`Get-FileHash`, see `COMPILATION.md`) rather than committed to the tree.
 
 `audit.py` enforces a strict exit-code contract: it exits **0** only on
 `AUDIT PASSED` and **1** on `AUDIT FAILED`, so CI gates (and local release
 checklists) can rely on `python audit.py && <next step>` failing loudly.
 Note the audit is findings-only — clean stray `__pycache__/` directories
-yourself before expecting a PASS.
+yourself before expecting a PASS. The source-tree cache check only flags
+*tracked* `__pycache__`/`.pyc` files (gitignored build artifacts written by
+normal interpreter runs do not fail the gate; plugin ZIPs are still checked
+for embedded cache files).
 
 See `AUDIT_REPORT.txt` for the latest release audit result and
 `CHANGELOG.md` for per-release fix history.

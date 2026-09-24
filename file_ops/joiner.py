@@ -1,5 +1,7 @@
 from __future__ import annotations
-import argparse, glob
+
+import argparse
+import glob
 from pathlib import Path
 
 

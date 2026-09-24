@@ -5,7 +5,7 @@ from __future__ import annotations
 import importlib.util
 import shutil
 import sys
-from typing import Iterable
+from collections.abc import Iterable
 
 WINDOWS_COMMANDS = {
     "powershell",

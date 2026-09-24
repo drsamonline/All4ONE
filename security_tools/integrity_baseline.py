@@ -1,7 +1,9 @@
 """File Integrity Baseline - record a SHA-256 hash to detect later tampering."""
 
 from __future__ import annotations
-import argparse, hashlib
+
+import argparse
+import hashlib
 from pathlib import Path
 
 

@@ -5,9 +5,31 @@ standard-library-first operations and dependency-aware command integrations.
 """
 
 from __future__ import annotations
-import base64, csv, datetime as dt, hashlib, json, math, os, platform, re, shutil, socket, sqlite3, subprocess, tempfile, time, urllib.parse, urllib.request, uuid, zipfile
-from pathlib import Path
+
+import base64
+import csv
+import datetime as dt
+import hashlib
+import json
+import logging
+import math
+import os
+import platform
+import re
+import shutil
+import socket
+import sqlite3
+import subprocess
+import tempfile
+import time
+import urllib.parse
+import urllib.request
+import uuid
+import zipfile
 from collections import Counter
+from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 
 def _emit(value) -> int:
@@ -58,7 +80,8 @@ def _json_input(args):
     s = " ".join(args)
     try:
         return json.loads(s)
-    except Exception:
+    except Exception:  # not inline JSON - fall through to treating it as a file path
+        logger.debug("json input parse failed; interpreting as path: %s", s)
         p = Path(s)
         if p.exists():
             return json.loads(p.read_text(encoding="utf-8"))
@@ -145,14 +168,16 @@ def run_extended(args: list[str], operation: str) -> int:
                         "total": psutil.virtual_memory().total,
                         "available": psutil.virtual_memory().available,
                     }
-                except Exception:
+                except Exception as exc:
+                    logger.debug("psutil unavailable for memory information: %s", exc)
                     data = {"note": "Install psutil for live memory totals."}
             elif op == "boot time":
                 try:
                     import psutil
 
                     data = {"boot_time": dt.datetime.fromtimestamp(psutil.boot_time()).isoformat()}
-                except Exception:
+                except Exception as exc:
+                    logger.debug("psutil unavailable for boot time: %s", exc)
                     data = {"note": "Install psutil for boot time."}
             elif op == "current user":
                 data = {"user": os.environ.get("USERNAME") or os.environ.get("USER")}
@@ -1026,7 +1051,7 @@ def run_extended(args: list[str], operation: str) -> int:
         # ---------- advanced imaging ----------
         if op.startswith("image "):
             try:
-                from PIL import Image, ImageOps, ImageDraw
+                from PIL import Image, ImageDraw, ImageOps
             except ImportError:
                 return _emit({"error": "Pillow is required for imaging tools."})
             if not p.exists():
@@ -1092,7 +1117,6 @@ def run_extended(args: list[str], operation: str) -> int:
                 ]
                 if not files:
                     return _emit({"files": 0})
-                thumb = Image.new("RGB", (220, 180), "white")
                 cols = 4
                 rows = math.ceil(len(files) / cols)
                 canvas = Image.new("RGB", (cols * 220, rows * 180), "white")
@@ -1751,8 +1775,8 @@ def run_extended(args: list[str], operation: str) -> int:
             finally:
                 try:
                     root.destroy()
-                except Exception:
-                    pass
+                except Exception as exc:
+                    logger.debug("clipboard window destroy failed (non-fatal): %s", exc)
 
         if op.startswith("json "):
             obj = _json_input(a)
@@ -2255,13 +2279,13 @@ def run_extended(args: list[str], operation: str) -> int:
 
         if op == "patch preview":
             text = _text(p)
-            additions = sum(1 for l in text.splitlines() if l.startswith("+") and not l.startswith("+++"))
-            deletions = sum(1 for l in text.splitlines() if l.startswith("-") and not l.startswith("---"))
+            additions = sum(1 for ln in text.splitlines() if ln.startswith("+") and not ln.startswith("+++"))
+            deletions = sum(1 for ln in text.splitlines() if ln.startswith("-") and not ln.startswith("---"))
             return _emit(
                 {
                     "additions": additions,
                     "deletions": deletions,
-                    "hunks": sum(1 for l in text.splitlines() if l.startswith("@@")),
+                    "hunks": sum(1 for ln in text.splitlines() if ln.startswith("@@")),
                 }
             )
 
@@ -2344,7 +2368,7 @@ def run_extended(args: list[str], operation: str) -> int:
                 line = line.strip()
                 if not line or line.startswith("#") or line.startswith("-r"):
                     continue
-                name = re.split(r"[<>=!~;\s]", line, 1)[0]
+                name = re.split(r"[<>=!~;\s]", line, maxsplit=1)[0]
                 try:
                     version = md.version(name)
                     state = "installed"
