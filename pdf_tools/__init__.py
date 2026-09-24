@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "PDF Metadata Reader",
             "category": "PDF Tools",
-            "description": "PDF Metadata Reader. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Metadata Reader: pdf-metadata-reader operation.",
             "handler": "operations.pdf_metadata_reader",
             "cli_command": "pdf-metadata-reader",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "PDF Metadata Cleaner",
             "category": "PDF Tools",
-            "description": "PDF Metadata Cleaner. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Metadata Cleaner: pdf-metadata-cleaner operation.",
             "handler": "operations.pdf_metadata_cleaner",
             "cli_command": "pdf-metadata-cleaner",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "PDF Page Counter",
             "category": "PDF Tools",
-            "description": "PDF Page Counter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Page Counter: pdf-page-counter operation.",
             "handler": "operations.pdf_page_counter",
             "cli_command": "pdf-page-counter",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "PDF Text Search",
             "category": "PDF Tools",
-            "description": "PDF Text Search. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Text Search: pdf-text-search operation.",
             "handler": "operations.pdf_text_search",
             "cli_command": "pdf-text-search",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "PDF Page Extractor",
             "category": "PDF Tools",
-            "description": "PDF Page Extractor. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Page Extractor: pdf-page-extractor operation.",
             "handler": "operations.pdf_page_extractor",
             "cli_command": "pdf-page-extractor",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "PDF Merge",
             "category": "PDF Tools",
-            "description": "PDF Merge. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Merge: pdf-merge operation.",
             "handler": "operations.pdf_merge",
             "cli_command": "pdf-merge",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "PDF Split",
             "category": "PDF Tools",
-            "description": "PDF Split. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Split: pdf-split operation.",
             "handler": "operations.pdf_split",
             "cli_command": "pdf-split",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "PDF Rotate",
             "category": "PDF Tools",
-            "description": "PDF Rotate. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Rotate: pdf-rotate operation.",
             "handler": "operations.pdf_rotate",
             "cli_command": "pdf-rotate",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "PDF Compress",
             "category": "PDF Tools",
-            "description": "PDF Compress. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Compress: pdf-compress operation.",
             "handler": "operations.pdf_compress",
             "cli_command": "pdf-compress",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "PDF Watermark",
             "category": "PDF Tools",
-            "description": "PDF Watermark. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Watermark: pdf-watermark operation.",
             "handler": "operations.pdf_watermark",
             "cli_command": "pdf-watermark",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "PDF Image Extractor",
             "category": "PDF Tools",
-            "description": "PDF Image Extractor. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Image Extractor: pdf-image-extractor operation.",
             "handler": "operations.pdf_image_extractor",
             "cli_command": "pdf-image-extractor",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "PDF Attachment Inspector",
             "category": "PDF Tools",
-            "description": "PDF Attachment Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PDF Attachment Inspector: pdf-attachment-inspector operation.",
             "handler": "operations.pdf_attachment_inspector",
             "cli_command": "pdf-attachment-inspector",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],

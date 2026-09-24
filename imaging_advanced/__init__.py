@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Image Resizer",
             "category": "Advanced Imaging",
-            "description": "Image Resizer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Resizer: image-resizer operation.",
             "handler": "operations.image_resizer",
             "cli_command": "image-resizer",
             "dependencies": ["Pillow"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Image Cropper",
             "category": "Advanced Imaging",
-            "description": "Image Cropper. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Cropper: image-cropper operation.",
             "handler": "operations.image_cropper",
             "cli_command": "image-cropper",
             "dependencies": ["Pillow"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Image Rotator",
             "category": "Advanced Imaging",
-            "description": "Image Rotator. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Rotator: image-rotator operation.",
             "handler": "operations.image_rotator",
             "cli_command": "image-rotator",
             "dependencies": ["Pillow"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Image Flipper",
             "category": "Advanced Imaging",
-            "description": "Image Flipper. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Flipper: image-flipper operation.",
             "handler": "operations.image_flipper",
             "cli_command": "image-flipper",
             "dependencies": ["Pillow"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Image Converter",
             "category": "Advanced Imaging",
-            "description": "Image Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Converter: image-converter operation.",
             "handler": "operations.image_converter",
             "cli_command": "image-converter",
             "dependencies": ["Pillow"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Image Optimizer",
             "category": "Advanced Imaging",
-            "description": "Image Optimizer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Optimizer: image-optimizer operation.",
             "handler": "operations.image_optimizer",
             "cli_command": "image-optimizer",
             "dependencies": ["Pillow"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Image Metadata Cleaner",
             "category": "Advanced Imaging",
-            "description": "Image Metadata Cleaner. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Metadata Cleaner: image-metadata-cleaner operation.",
             "handler": "operations.image_metadata_cleaner",
             "cli_command": "image-metadata-cleaner",
             "dependencies": ["Pillow"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Image Contact Sheet",
             "category": "Advanced Imaging",
-            "description": "Image Contact Sheet. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Contact Sheet: image-contact-sheet operation.",
             "handler": "operations.image_contact_sheet",
             "cli_command": "image-contact-sheet",
             "dependencies": ["Pillow"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Image Montage Builder",
             "category": "Advanced Imaging",
-            "description": "Image Montage Builder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Montage Builder: image-montage-builder operation.",
             "handler": "operations.image_montage_builder",
             "cli_command": "image-montage-builder",
             "dependencies": ["Pillow"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Image Border Adder",
             "category": "Advanced Imaging",
-            "description": "Image Border Adder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Border Adder: image-border-adder operation.",
             "handler": "operations.image_border_adder",
             "cli_command": "image-border-adder",
             "dependencies": ["Pillow"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Image Watermark Tool",
             "category": "Advanced Imaging",
-            "description": "Image Watermark Tool. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Watermark Tool: image-watermark-tool operation.",
             "handler": "operations.image_watermark_tool",
             "cli_command": "image-watermark-tool",
             "dependencies": ["Pillow"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Image Batch Renamer",
             "category": "Advanced Imaging",
-            "description": "Image Batch Renamer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Image Batch Renamer: image-batch-renamer operation.",
             "handler": "operations.image_batch_renamer",
             "cli_command": "image-batch-renamer",
             "dependencies": ["Pillow"],

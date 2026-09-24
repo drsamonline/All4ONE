@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Shell Command Runner",
             "category": "Shell & Command Tools",
-            "description": "Shell Command Runner. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Shell Command Runner: shell-command-runner operation.",
             "handler": "operations.shell_command_runner",
             "cli_command": "shell-command-runner",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "PowerShell Command Runner",
             "category": "Shell & Command Tools",
-            "description": "PowerShell Command Runner. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PowerShell Command Runner: powershell-command-runner operation.",
             "handler": "operations.powershell_command_runner",
             "cli_command": "powershell-command-runner",
             "dependencies": ["powershell"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Command Resolver",
             "category": "Shell & Command Tools",
-            "description": "Command Resolver. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Command Resolver: command-resolver operation.",
             "handler": "operations.command_resolver",
             "cli_command": "command-resolver",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "PATH Inspector",
             "category": "Shell & Command Tools",
-            "description": "PATH Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PATH Inspector: path-inspector operation.",
             "handler": "operations.path_inspector",
             "cli_command": "path-inspector",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Executable Locator",
             "category": "Shell & Command Tools",
-            "description": "Executable Locator. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Executable Locator: executable-locator operation.",
             "handler": "operations.executable_locator",
             "cli_command": "executable-locator",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Command History Guide",
             "category": "Shell & Command Tools",
-            "description": "Command History Guide. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Command History Guide: command-history-guide operation.",
             "handler": "operations.command_history_guide",
             "cli_command": "command-history-guide",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Shell Environment Dump",
             "category": "Shell & Command Tools",
-            "description": "Shell Environment Dump. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Shell Environment Dump: shell-environment-dump operation.",
             "handler": "operations.shell_environment_dump",
             "cli_command": "shell-environment-dump",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Working Directory Reporter",
             "category": "Shell & Command Tools",
-            "description": "Working Directory Reporter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Working Directory Reporter: working-directory-reporter operation.",
             "handler": "operations.working_directory_reporter",
             "cli_command": "working-directory-reporter",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Command Timeout Runner",
             "category": "Shell & Command Tools",
-            "description": "Command Timeout Runner. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Command Timeout Runner: command-timeout-runner operation.",
             "handler": "operations.command_timeout_runner",
             "cli_command": "command-timeout-runner",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Batch File Generator",
             "category": "Shell & Command Tools",
-            "description": "Batch File Generator. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Batch File Generator: batch-file-generator operation.",
             "handler": "operations.batch_file_generator",
             "cli_command": "batch-file-generator",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "PowerShell Script Generator",
             "category": "Shell & Command Tools",
-            "description": "PowerShell Script Generator. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PowerShell Script Generator: powershell-script-generator operation.",
             "handler": "operations.powershell_script_generator",
             "cli_command": "powershell-script-generator",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Shell Quoting Helper",
             "category": "Shell & Command Tools",
-            "description": "Shell Quoting Helper. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Shell Quoting Helper: shell-quoting-helper operation.",
             "handler": "operations.shell_quoting_helper",
             "cli_command": "shell-quoting-helper",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Argument Escaper",
             "category": "Shell & Command Tools",
-            "description": "Argument Escaper. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Argument Escaper: argument-escaper operation.",
             "handler": "operations.argument_escaper",
             "cli_command": "argument-escaper",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Exit Code Decoder",
             "category": "Shell & Command Tools",
-            "description": "Exit Code Decoder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Exit Code Decoder: exit-code-decoder operation.",
             "handler": "operations.exit_code_decoder",
             "cli_command": "exit-code-decoder",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "STDOUT Capture",
             "category": "Shell & Command Tools",
-            "description": "STDOUT Capture. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "STDOUT Capture: stdout-capture operation.",
             "handler": "operations.stdout_capture",
             "cli_command": "stdout-capture",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "STDERR Capture",
             "category": "Shell & Command Tools",
-            "description": "STDERR Capture. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "STDERR Capture: stderr-capture operation.",
             "handler": "operations.stderr_capture",
             "cli_command": "stderr-capture",
             "dependencies": [],
@@ -134,7 +134,7 @@ def register_tools():
         {
             "name": "Process Pipe Helper",
             "category": "Shell & Command Tools",
-            "description": "Process Pipe Helper. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Process Pipe Helper: process-pipe-helper operation.",
             "handler": "operations.process_pipe_helper",
             "cli_command": "process-pipe-helper",
             "dependencies": [],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Command Availability Scan",
             "category": "Shell & Command Tools",
-            "description": "Command Availability Scan. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Command Availability Scan: command-availability-scan operation.",
             "handler": "operations.command_availability_scan",
             "cli_command": "command-availability-scan",
             "dependencies": [],

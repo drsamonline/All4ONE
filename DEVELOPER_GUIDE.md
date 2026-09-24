@@ -1,8 +1,16 @@
-**Author:** Dr. Sohil Momin, BHMS
+<div align="center">
 
-# Utility Suite Developer Guide
+# 🧑‍💻 Utility Suite — Developer Guide
 
-## Plugin contract
+![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square&logo=python&logoColor=black)
+![Lint](https://img.shields.io/badge/lint-ruff-blueviolet?style=flat-square)
+![CI](https://img.shields.io/badge/CI-Linux%20%2B%20Windows-brightgreen?style=flat-square)
+
+*Author: Dr. Sohil Momin, BHMS*
+
+</div>
+
+## Plugin contract 🧩
 
 Each pack contains `__init__.py` with a `register_tools()` function returning metadata dictionaries.
 
@@ -50,10 +58,12 @@ safe — it sets `sys.dont_write_bytecode` internally).
 2. Add the lazy operation mapping.
 3. Implement the actual operation.
 4. Add or update a smoke test.
-5. Rebuild plugin ZIPs.
-6. Run the audit again.
+5. Rebuild plugin ZIPs (`python create_plugin_zips.py`).
+6. Regenerate the catalogues (`python generate_catalogs.py`) so
+   TOOL_CATALOG.md / EXPANSION_CATALOG.md match the registry.
+7. Run the audit again (`python audit.py`).
 
-audit.py enforces the current catalogue size (EXPECTED_TOOLS = 539 as of the 2026-09 expansion). Bump that constant deliberately when adding or removing tools, and regenerate TOOL_CATALOG.md / EXPANSION_CATALOG.md from the live registry afterwards.
+audit.py enforces the current catalogue size (EXPECTED_TOOLS = 539 as of the 2026-09 expansion). Bump that constant deliberately when adding or removing tools. The docs-freshness gate in audit.py fails the release if TOOL_CATALOG.md, EXPANSION_CATALOG.md, or the README overview no longer matches the live registry — fix by running `python generate_catalogs.py` and updating the README line, then re-running the audit.
 
 ## Testing tiers - which one runs where
 

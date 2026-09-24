@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "System Information JSON Export",
             "category": "Extended Diagnostics",
-            "description": "System Information JSON Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "System Information JSON Export: system-information-json-export operation.",
             "handler": "operations.system_information_json_export",
             "cli_command": "system-information-json-export",
             "dependencies": ["powershell"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "System Information Text Export",
             "category": "Extended Diagnostics",
-            "description": "System Information Text Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "System Information Text Export: system-information-text-export operation.",
             "handler": "operations.system_information_text_export",
             "cli_command": "system-information-text-export",
             "dependencies": ["powershell"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Installed Software Snapshot",
             "category": "Extended Diagnostics",
-            "description": "Installed Software Snapshot. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Installed Software Snapshot: installed-software-snapshot operation.",
             "handler": "operations.installed_software_snapshot",
             "cli_command": "installed-software-snapshot",
             "dependencies": ["powershell"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Windows Features Snapshot",
             "category": "Extended Diagnostics",
-            "description": "Windows Features Snapshot. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Windows Features Snapshot: windows-features-snapshot operation.",
             "handler": "operations.windows_features_snapshot",
             "cli_command": "windows-features-snapshot",
             "dependencies": ["powershell"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Windows Hotfix Snapshot",
             "category": "Extended Diagnostics",
-            "description": "Windows Hotfix Snapshot. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Windows Hotfix Snapshot: windows-hotfix-snapshot operation.",
             "handler": "operations.windows_hotfix_snapshot",
             "cli_command": "windows-hotfix-snapshot",
             "dependencies": ["powershell"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Device Class Summary",
             "category": "Extended Diagnostics",
-            "description": "Device Class Summary. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Device Class Summary: device-class-summary operation.",
             "handler": "operations.device_class_summary",
             "cli_command": "device-class-summary",
             "dependencies": ["powershell"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "USB Device Inventory",
             "category": "Extended Diagnostics",
-            "description": "USB Device Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "USB Device Inventory: usb-device-inventory operation.",
             "handler": "operations.usb_device_inventory",
             "cli_command": "usb-device-inventory",
             "dependencies": ["powershell"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Bluetooth Device Inventory",
             "category": "Extended Diagnostics",
-            "description": "Bluetooth Device Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Bluetooth Device Inventory: bluetooth-device-inventory operation.",
             "handler": "operations.bluetooth_device_inventory",
             "cli_command": "bluetooth-device-inventory",
             "dependencies": ["powershell"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Printer Inventory",
             "category": "Extended Diagnostics",
-            "description": "Printer Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Printer Inventory: printer-inventory operation.",
             "handler": "operations.printer_inventory",
             "cli_command": "printer-inventory",
             "dependencies": ["powershell"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Display Inventory",
             "category": "Extended Diagnostics",
-            "description": "Display Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Display Inventory: display-inventory operation.",
             "handler": "operations.display_inventory",
             "cli_command": "display-inventory",
             "dependencies": ["powershell"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Audio Device Inventory",
             "category": "Extended Diagnostics",
-            "description": "Audio Device Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Audio Device Inventory: audio-device-inventory operation.",
             "handler": "operations.audio_device_inventory",
             "cli_command": "audio-device-inventory",
             "dependencies": ["powershell"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Environment Variable Diff",
             "category": "Extended Diagnostics",
-            "description": "Environment Variable Diff. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Environment Variable Diff: environment-variable-diff operation.",
             "handler": "operations.environment_variable_diff",
             "cli_command": "environment-variable-diff",
             "dependencies": ["powershell"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "PATH Deduplication Report",
             "category": "Extended Diagnostics",
-            "description": "PATH Deduplication Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PATH Deduplication Report: path-deduplication-report operation.",
             "handler": "operations.path_deduplication_report",
             "cli_command": "path-deduplication-report",
             "dependencies": ["powershell"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "DNS Cache Viewer",
             "category": "Extended Diagnostics",
-            "description": "DNS Cache Viewer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DNS Cache Viewer: dns-cache-viewer operation.",
             "handler": "operations.dns_cache_viewer",
             "cli_command": "dns-cache-viewer",
             "dependencies": ["powershell"],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Windows Firewall Rule Count",
             "category": "Extended Diagnostics",
-            "description": "Windows Firewall Rule Count. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Windows Firewall Rule Count: windows-firewall-rule-count operation.",
             "handler": "operations.windows_firewall_rule_count",
             "cli_command": "windows-firewall-rule-count",
             "dependencies": ["powershell"],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Network Connection Table",
             "category": "Extended Diagnostics",
-            "description": "Network Connection Table. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Network Connection Table: network-connection-table operation.",
             "handler": "operations.network_connection_table",
             "cli_command": "network-connection-table",
             "dependencies": ["powershell"],
@@ -134,7 +134,7 @@ def register_tools():
         {
             "name": "Open File Guide",
             "category": "Extended Diagnostics",
-            "description": "Open File Guide. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Open File Guide: open-file-guide operation.",
             "handler": "operations.open_file_guide",
             "cli_command": "open-file-guide",
             "dependencies": ["powershell"],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Crash Dump Inventory",
             "category": "Extended Diagnostics",
-            "description": "Crash Dump Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Crash Dump Inventory: crash-dump-inventory operation.",
             "handler": "operations.crash_dump_inventory",
             "cli_command": "crash-dump-inventory",
             "dependencies": ["powershell"],
@@ -150,7 +150,7 @@ def register_tools():
         {
             "name": "Log Directory Inventory",
             "category": "Extended Diagnostics",
-            "description": "Log Directory Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Log Directory Inventory: log-directory-inventory operation.",
             "handler": "operations.log_directory_inventory",
             "cli_command": "log-directory-inventory",
             "dependencies": ["powershell"],
@@ -158,7 +158,7 @@ def register_tools():
         {
             "name": "Utility Suite Diagnostics",
             "category": "Extended Diagnostics",
-            "description": "Utility Suite Diagnostics. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Utility Suite Diagnostics: utility-suite-diagnostics operation.",
             "handler": "operations.utility_suite_diagnostics",
             "cli_command": "utility-suite-diagnostics",
             "dependencies": ["powershell"],

@@ -1,4 +1,11 @@
-# Security Policy
+<div align="center">
+
+# 🛡️ Utility Suite — Security Policy
+
+![Scope](https://img.shields.io/badge/scope-system%20utilities-red?style=flat-square)
+![Response](https://img.shields.io/badge/triage%20SLA-7%20days-blue?style=flat-square)
+
+</div>
 
 ## Supported Versions
 

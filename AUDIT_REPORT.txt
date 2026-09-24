@@ -80,10 +80,21 @@ Fixes applied in this pass (see CHANGELOG.md for full detail):
   - audit.py EXPECTED_TOOLS raised to 539; .gitignore restored to its full
     rule set after the expansion commit had silently reduced it to one line
     (runtime artifacts were showing up as untracked clutter).
-  - TOOL_CATALOG.md and EXPANSION_CATALOG.md regenerated from the live
-    registry (they had drifted back to the stale 500-tool baseline, and
-    TOOL_CATALOG.md contained an unresolved template artifact in its pack
-    count line).
+
+Docs-freshness pass (this report refresh):
+  - TOOL_CATALOG.md / EXPANSION_CATALOG.md are now GENERATED from the live
+    registry by the new generate_catalogs.py (same AST-literal source this
+    audit uses). The previously committed TOOL_CATALOG.md contained mangled
+    boilerplate descriptions ("<Name>. Uses safe, dependency-aware
+    execution...") instead of the real per-tool descriptions; all 539 rows
+    were regenerated with correct metadata text.
+  - New audit.py gate: fails the release when the TOOL_CATALOG.md /
+    EXPANSION_CATALOG.md headers or the README "N tools across M plugin
+    packs" overview disagree with the live registry counts.
+  - ci.yml gained a "Catalogues are up to date" step that re-runs
+    generate_catalogs.py and diffs the result against the commit.
+  - DEVELOPER_GUIDE.md "Adding a tool" checklist, COMPILATION.md manual
+    build + release checklist updated to include the regeneration step.
 
 Qualification note (unchanged since 2.1.2): this audit environment is
 Linux, so native Windows integrations remain dependency-gated and

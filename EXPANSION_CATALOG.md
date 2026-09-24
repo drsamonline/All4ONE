@@ -1,4 +1,12 @@
-# Plugin Pack Catalogue
+<div align="center">
+
+# 📦 Utility Suite — Plugin Pack Catalogue
+
+![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Tools](https://img.shields.io/badge/tools-539-brightgreen?style=flat-square)
+
+*Generated from the live registry by `generate_catalogs.py` — do not edit by hand.*
+
+</div>
 
 **45 packs / 539 tools**
 
@@ -47,5 +55,3 @@
 - `virtual_desktop` — 8 tools
 - `window_manager` — 14 tools
 - `windows_power` — 3 tools
-
-_Regenerate both catalogues with the snippet documented in DEVELOPER_GUIDE.md._

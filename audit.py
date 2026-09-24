@@ -229,6 +229,51 @@ def main():
     else:
         problems.append("build.spec is missing")
 
+    # Documentation freshness gate: TOOL_CATALOG.md and EXPANSION_CATALOG.md
+    # are generated from the live registry by generate_catalogs.py; this check
+    # fails loudly whenever they drift (stale tool counts / pack counts) so a
+    # release can never ship outdated docs again. README must also quote the
+    # same tool count.
+    def read_head_counts(path):
+        text = path.read_text(encoding="utf-8")
+        m1 = re.search(r"Total tools:\s*(\d+)", text)
+        m2 = re.search(r"Plugin packs:\s*(\d+)", text)
+        return (int(m1.group(1)) if m1 else None, int(m2.group(1)) if m2 else None)
+
+    tc = ROOT / "TOOL_CATALOG.md"
+    ec = ROOT / "EXPANSION_CATALOG.md"
+    if tc.exists():
+        t_tools, t_packs = read_head_counts(tc)
+        if t_tools != len(all_tools):
+            problems.append(
+                f"STALE DOCS: TOOL_CATALOG.md says {t_tools} tools but the registry has "
+                f"{len(all_tools)} - run `python generate_catalogs.py` and commit"
+            )
+        if t_packs != len(packs):
+            problems.append(
+                f"STALE DOCS: TOOL_CATALOG.md says {t_packs} packs but the tree has "
+                f"{len(packs)} - run `python generate_catalogs.py` and commit"
+            )
+    else:
+        problems.append("TOOL_CATALOG.md is missing")
+    if ec.exists():
+        m = re.search(r"\*\*(\d+) packs / (\d+) tools\*\*", ec.read_text(encoding="utf-8"))
+        if not m or int(m.group(1)) != len(packs) or int(m.group(2)) != len(all_tools):
+            problems.append(
+                f"STALE DOCS: EXPANSION_CATALOG.md header does not match {len(packs)} packs / "
+                f"{len(all_tools)} tools - run `python generate_catalogs.py` and commit"
+            )
+    else:
+        problems.append("EXPANSION_CATALOG.md is missing")
+    readme = ROOT / "README.md"
+    if readme.exists():
+        rm = re.search(r"\*\*(\d+) tools across (\d+) plugin packs\*\*", readme.read_text(encoding="utf-8"))
+        if not rm or int(rm.group(1)) != len(all_tools) or int(rm.group(2)) != len(packs):
+            problems.append(
+                f"STALE DOCS: README.md overview does not state {len(all_tools)} tools across "
+                f"{len(packs)} plugin packs - update it to match the registry"
+            )
+
     print(f"Packs: {len(packs)}")
     print(f"Tools: {len(all_tools)}/{EXPECTED_TOOLS}")
     print(f"Unique commands: {len(set(cmds))}/{len(cmds)}")

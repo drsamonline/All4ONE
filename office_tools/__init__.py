@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "DOCX Metadata",
             "category": "Office Tools",
-            "description": "DOCX Metadata. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DOCX Metadata: docx-metadata operation.",
             "handler": "operations.docx_metadata",
             "cli_command": "docx-metadata",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "DOCX Text Extractor",
             "category": "Office Tools",
-            "description": "DOCX Text Extractor. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DOCX Text Extractor: docx-text-extractor operation.",
             "handler": "operations.docx_text_extractor",
             "cli_command": "docx-text-extractor",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "DOCX Paragraph Counter",
             "category": "Office Tools",
-            "description": "DOCX Paragraph Counter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DOCX Paragraph Counter: docx-paragraph-counter operation.",
             "handler": "operations.docx_paragraph_counter",
             "cli_command": "docx-paragraph-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "DOCX Heading Extractor",
             "category": "Office Tools",
-            "description": "DOCX Heading Extractor. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DOCX Heading Extractor: docx-heading-extractor operation.",
             "handler": "operations.docx_heading_extractor",
             "cli_command": "docx-heading-extractor",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "DOCX Image Inspector",
             "category": "Office Tools",
-            "description": "DOCX Image Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DOCX Image Inspector: docx-image-inspector operation.",
             "handler": "operations.docx_image_inspector",
             "cli_command": "docx-image-inspector",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "DOCX Structure Inspector",
             "category": "Office Tools",
-            "description": "DOCX Structure Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DOCX Structure Inspector: docx-structure-inspector operation.",
             "handler": "operations.docx_structure_inspector",
             "cli_command": "docx-structure-inspector",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "XLSX Metadata",
             "category": "Office Tools",
-            "description": "XLSX Metadata. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "XLSX Metadata: xlsx-metadata operation.",
             "handler": "operations.xlsx_metadata",
             "cli_command": "xlsx-metadata",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "XLSX Sheet Lister",
             "category": "Office Tools",
-            "description": "XLSX Sheet Lister. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "XLSX Sheet Lister: xlsx-sheet-lister operation.",
             "handler": "operations.xlsx_sheet_lister",
             "cli_command": "xlsx-sheet-lister",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "XLSX Cell Counter",
             "category": "Office Tools",
-            "description": "XLSX Cell Counter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "XLSX Cell Counter: xlsx-cell-counter operation.",
             "handler": "operations.xlsx_cell_counter",
             "cli_command": "xlsx-cell-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "XLSX Formula Counter",
             "category": "Office Tools",
-            "description": "XLSX Formula Counter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "XLSX Formula Counter: xlsx-formula-counter operation.",
             "handler": "operations.xlsx_formula_counter",
             "cli_command": "xlsx-formula-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "PPTX Slide Counter",
             "category": "Office Tools",
-            "description": "PPTX Slide Counter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PPTX Slide Counter: pptx-slide-counter operation.",
             "handler": "operations.pptx_slide_counter",
             "cli_command": "pptx-slide-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Office File Inventory",
             "category": "Office Tools",
-            "description": "Office File Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Office File Inventory: office-file-inventory operation.",
             "handler": "operations.office_file_inventory",
             "cli_command": "office-file-inventory",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],

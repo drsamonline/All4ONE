@@ -1,8 +1,16 @@
-**Author:** Dr. Sohil Momin, BHMS
+<div align="center">
 
-# Utility Suite Compilation and Release Guide
+# 🏗️ Utility Suite — Compilation & Release Guide
 
-## 0. Fastest path: automated CI build (no Windows machine needed)
+![PyInstaller](https://img.shields.io/badge/PyInstaller-6.x-orange?style=flat-square)
+![Target](https://img.shields.io/badge/target-utility__suite.exe-0078D4?style=flat-square&logo=windows&logoColor=white)
+![CI build](https://img.shields.io/badge/GitHub%20Actions-Windows%20runner-brightgreen?style=flat-square&logo=githubactions&logoColor=white)
+
+*Author: Dr. Sohil Momin, BHMS*
+
+</div>
+
+## 0. Fastest path: automated CI build (no Windows machine needed) 🤖
 
 This repository includes `.github/workflows/build-windows-exe.yml`. Push
 the repository to GitHub and either:
@@ -57,7 +65,8 @@ The script:
 
 ```powershell
 python create_plugin_zips.py
-python audit.py
+python generate_catalogs.py   # refresh TOOL_CATALOG.md / EXPANSION_CATALOG.md
+python audit.py               # fails if docs drifted from the registry
 python -m PyInstaller build.spec --clean --noconfirm
 ```
 
@@ -79,6 +88,7 @@ dist\utility_suite\
 Before distribution:
 
 ```powershell
+python generate_catalogs.py   # docs must match the registry (audit enforces it)
 python audit.py
 python -m tests.test_suite
 python -m compileall -q .
