@@ -35,11 +35,13 @@ jobs:
           python -m pip install pyinstaller
           if (Test-Path requirements.txt) { python -m pip install -r requirements.txt }
 
+      - name: Static release audit
+        # Fail fast on tracked cache/log clutter BEFORE the heavyweight ZIP
+        # rebuild, so the error message points at the real cause.
+        run: python audit.py
+
       - name: Rebuild plugin ZIPs (deterministic, matches source tree)
         run: python create_plugin_zips.py
-
-      - name: Static release audit
-        run: python audit.py
 
       - name: Behavioral smoke tests
         run: python -B -m tests.test_suite

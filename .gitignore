@@ -1,1 +1,24 @@
-(empty)
+# Python build/cache artifacts - never commit these (audit.py fails the
+# release gate if any __pycache__/*.pyc file is *tracked*).
+__pycache__/
+*.py[cod]
+
+# Runtime output
+logs/*
+!logs/.gitkeep
+
+# PyInstaller output (rebuilt by CI / COMPILATION.md, not source)
+build/
+dist/
+*.spec.bak
+
+# Test/lint tooling caches
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store

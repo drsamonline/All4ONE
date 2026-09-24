@@ -162,6 +162,11 @@ def main():
     ).stdout.splitlines()
     if any("__pycache__" in line or line.endswith(".pyc") for line in tracked):
         problems.append("Build tree contains tracked __pycache__/.pyc files")
+    # Committed runtime logs are clutter too (an empty logs/utility_suite.log
+    # once got force-added and shipped in the release tree). logs/ must track
+    # only its .gitkeep placeholder.
+    if any(line.startswith("logs/") and not line.endswith(".gitkeep") for line in tracked):
+        problems.append("Tracked runtime log files under logs/ (only .gitkeep may be committed)")
 
     # Version-string consistency: VERSION.txt is the single source of
     # truth. This check exists because a stale hardcoded version in
