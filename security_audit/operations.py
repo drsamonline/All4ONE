@@ -1,5 +1,6 @@
 """Lazy operation adapters; implementations live in core.extended_ops."""
 
+
 from core.handler_factory import make_handler
 
 _HANDLERS = {
@@ -21,6 +22,10 @@ _HANDLERS = {
     "administrator_group_inventory": "Administrator Group Inventory",
     "service_security_report": "Service Security Report",
     "security_event_summary": "Security Event Summary",
+    "portable_app_suspicion_scanner": "portable app suspicion scanner",
+    "autostart_registry_diff": "autostart registry diff",
+    "file_integrity_baseline": "file integrity baseline",
+    "recent_docs_privacy_report": "recent docs privacy report",
 }
 
 

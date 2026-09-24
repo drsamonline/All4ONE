@@ -21,6 +21,9 @@ _HANDLERS = {
     "network_adapter_snapshot": "Network Adapter Snapshot",
     "battery_status": "Battery Status",
     "power_source_status": "Power Source Status",
+    "resource_snapshot_diff": "resource snapshot diff",
+    "long_running_process_finder": "long running process finder",
+    "open_file_handle_report": "open file handle report",
 }
 
 

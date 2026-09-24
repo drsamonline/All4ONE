@@ -1,5 +1,6 @@
 """Lazy operation adapters; implementations live in core.extended_ops."""
 
+
 from core.handler_factory import make_handler
 
 _HANDLERS = {
@@ -21,6 +22,11 @@ _HANDLERS = {
     "word_frequency": "Word Frequency",
     "ngram_counter": "Ngram Counter",
     "sentence_counter": "Sentence Counter",
+    "slugify_converter": "slugify converter",
+    "regex_replacer": "regex replacer",
+    "markdown_table_formatter": "markdown table formatter",
+    "line_number_prefixer": "line number prefixer",
+    "unicode_normalizer": "unicode normalizer",
 }
 
 

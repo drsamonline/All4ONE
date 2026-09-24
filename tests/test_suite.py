@@ -14,8 +14,8 @@ from core.config import DEFAULT_CONFIG, _deep_merge
 
 def main():
     reg = build_registry()
-    assert len(reg.tools) == 500, len(reg.tools)
-    assert len({t["cli_command"] for t in reg.tools.values()}) == 500
+    assert len(reg.tools) == 539, len(reg.tools)
+    assert len({t["cli_command"] for t in reg.tools.values()}) == 539
     assert all(t.get("handler") and t.get("category") for t in reg.tools.values())
     assert (
         _deep_merge(DEFAULT_CONFIG, {"performance": {"multithreading": {"max_threads": 4}}})["performance"][
@@ -84,7 +84,7 @@ def main():
     loader = PluginLoader(ROOT / "plugins")
     first = loader.get_tools()
     second = loader.get_tools()
-    assert len(first) == len(second) == 500
+    assert len(first) == len(second) == 539
     print("SMOKE TESTS PASSED")
     print(f"{len(reg.tools)} tools validated")
 
