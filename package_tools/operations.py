@@ -1,5 +1,6 @@
 """Lazy operation adapters; implementations live in core.extended_ops."""
 
+
 from core.handler_factory import make_handler
 
 _HANDLERS = {
@@ -13,6 +14,8 @@ _HANDLERS = {
     "virtual_environment_finder": "Virtual Environment Finder",
     "virtual_environment_report": "Virtual Environment Report",
     "package_cache_guide": "Package Cache Guide",
+    "venv_size_reporter": "venv size reporter",
+    "wheel_inspector": "wheel inspector",
 }
 
 

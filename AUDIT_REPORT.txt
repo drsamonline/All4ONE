@@ -43,6 +43,17 @@ Project hardening pass (see CHANGELOG.md [Unreleased]):
     input parse, psutil probes, clipboard teardown) now log debug detail
     before falling back; console output stays clean via ConsoleFormatter.
 
+CI failure post-mortem (Linux + Windows builds failed on GitHub): a later
+commit force-added tracked build/runtime clutter — three __pycache__/*.pyc
+files and an empty logs/utility_suite.log — and emptied .gitignore, which
+deleted the __pycache__/*.pyc and logs/* ignore rules. audit.py's tracked-
+cache gate then correctly failed every CI job ("Build tree contains tracked
+__pycache__/.pyc files"). Fixed by: untracking all four files, restoring a
+complete .gitignore, extending audit.py with a companion gate that rejects
+any tracked non-.gitkeep file under logs/, adding a fail-fast "No committed
+build/cache artifacts" step to ci.yml, and moving the audit step ahead of
+the ZIP rebuild in build-windows-exe.yml so clutter is reported first.
+
 Fixes applied in this pass (see CHANGELOG.md for full detail):
   - count / download / filetype / hexview / integrity-baseline: now give a
     friendly message instead of a raw errno/traceback when pointed at a

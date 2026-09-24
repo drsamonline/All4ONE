@@ -23,6 +23,12 @@ _HANDLERS = {
     "hmac_calculator": "HMAC Calculator",
     "semantic_version_comparator": "Semantic Version Comparator",
     "version_bump_helper": "Version Bump Helper",
+    "multi_algorithm_hasher": "multi algorithm hasher",
+    "checksum_verifier": "checksum verifier",
+    "base64_file_codec": "base64 file codec",
+    "hex_codec": "hex codec",
+    "charset_detector": "charset detector",
+    "bom_handler": "bom handler",
 }
 
 

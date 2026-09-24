@@ -1,5 +1,6 @@
 """Lazy operation adapters; implementations live in core.extended_ops."""
 
+
 from core.handler_factory import make_handler
 
 _HANDLERS = {
@@ -23,6 +24,7 @@ _HANDLERS = {
     "sqlite_table_counter": "SQLite Table Counter",
     "sqlite_query_runner": "SQLite Query Runner",
     "sqlite_vacuum_helper": "SQLite Vacuum Helper",
+    "csv_column_extractor": "csv column extractor",
 }
 
 

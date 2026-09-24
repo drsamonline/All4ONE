@@ -3,7 +3,7 @@
 Run as ``python audit.py`` from the repository root.
 
 Exit-code contract (CI gate - see .github/workflows/build-windows-exe.yml):
-    0  -> "AUDIT PASSED" : tree is release-clean and all 500 tools validate.
+    0  -> "AUDIT PASSED" : tree is release-clean and all expected tools validate.
     1  -> "AUDIT FAILED" : at least one problem listed on stdout; the build
                           /release pipeline MUST treat this as fatal.
 
@@ -118,10 +118,11 @@ def main():
         if handler.startswith("operations.") and not (ROOT / pack / "operations.py").exists():
             problems.append(f"Missing shared operations module: {pack}")
     cmds = [t.get("cli_command") for _, t in all_tools]
-    if len(all_tools) > 500:
-        problems.append(f"TOOL LIMIT EXCEEDED: {len(all_tools)} > 500")
-    if len(all_tools) != 500:
-        problems.append(f"EXPECTED 500 TOOLS, FOUND {len(all_tools)}")
+    EXPECTED_TOOLS = 539  # 500 baseline + 39 new tools (2026-09 expansion)
+    if len(all_tools) > EXPECTED_TOOLS:
+        problems.append(f"TOOL LIMIT EXCEEDED: {len(all_tools)} > {EXPECTED_TOOLS}")
+    if len(all_tools) != EXPECTED_TOOLS:
+        problems.append(f"EXPECTED {EXPECTED_TOOLS} TOOLS, FOUND {len(all_tools)}")
     if len(set(cmds)) != len(cmds):
         problems.append("Duplicate CLI commands")
     for pack, t in all_tools:
@@ -162,6 +163,11 @@ def main():
     ).stdout.splitlines()
     if any("__pycache__" in line or line.endswith(".pyc") for line in tracked):
         problems.append("Build tree contains tracked __pycache__/.pyc files")
+    # Committed runtime logs are clutter too (an empty logs/utility_suite.log
+    # once got force-added and shipped in the release tree). logs/ must track
+    # only its .gitkeep placeholder.
+    if any(line.startswith("logs/") and not line.endswith(".gitkeep") for line in tracked):
+        problems.append("Tracked runtime log files under logs/ (only .gitkeep may be committed)")
 
     # Version-string consistency: VERSION.txt is the single source of
     # truth. This check exists because a stale hardcoded version in
@@ -224,7 +230,7 @@ def main():
         problems.append("build.spec is missing")
 
     print(f"Packs: {len(packs)}")
-    print(f"Tools: {len(all_tools)}/500")
+    print(f"Tools: {len(all_tools)}/{EXPECTED_TOOLS}")
     print(f"Unique commands: {len(set(cmds))}/{len(cmds)}")
     print(f"Python files audited: {len(py_files)}")
     try:

@@ -1,5 +1,6 @@
 """Lazy operation adapters; implementations live in core.extended_ops."""
 
+
 from core.handler_factory import make_handler
 
 _HANDLERS = {
@@ -19,6 +20,10 @@ _HANDLERS = {
     "url_redirect_checker": "URL Redirect Checker",
     "local_listening_ports": "Local Listening Ports",
     "network_route_viewer": "Network Route Viewer",
+    "subnet_calculator": "subnet calculator",
+    "mac_vendor_lookup": "mac vendor lookup",
+    "ssl_expiry_monitor": "ssl expiry monitor",
+    "speed_test_probe": "speed test probe",
 }
 
 

@@ -38,6 +38,16 @@ jobs:
         continue-on-error: true
         run: ruff check .
 
+      - name: No committed build/cache artifacts
+        # Regression guard: __pycache__/*.pyc and logs/*.log must never be
+        # tracked (a stray commit of these once failed every CI job via the
+        # audit gate below). Fails with the offending paths listed.
+        run: |
+          bad=$(git ls-files | grep -E '__pycache__|\.py[cod]$|^logs/.*\.log$' || true)
+          if [ -n "$bad" ]; then
+            echo "Tracked build/runtime artifacts found:"; echo "$bad"; exit 1
+          fi
+
       - name: Static release audit
         run: python audit.py
 

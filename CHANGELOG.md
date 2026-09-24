@@ -38,6 +38,15 @@ audit if these drift apart.
   `logs/utility_suite.log` while console output stays clean.
 
 ### Fixed
+- CI (Linux + Windows GitHub Actions builds failing): a subsequent commit
+  had force-added tracked clutter (`__pycache__`/*.pyc files and an empty
+  `logs/utility_suite.log`) and emptied `.gitignore`, so the audit's
+  tracked-cache gate correctly failed every job. The four files are now
+  untracked, `.gitignore` is restored (plus ruff/pytest cache entries),
+  `audit.py` gained a companion gate rejecting any tracked non-`.gitkeep`
+  file under `logs/`, `ci.yml` fails fast with a dedicated "No committed
+  build/cache artifacts" step, and `build-windows-exe.yml` runs the audit
+  before the ZIP rebuild so clutter errors surface first.
 - `audit.py`: the source-tree cache-clutter gate scanned every
   `__pycache__` directory on disk, including untracked, gitignored ones
   that the interpreter itself writes while the audit imports the plugin

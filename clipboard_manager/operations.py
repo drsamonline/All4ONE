@@ -1,5 +1,6 @@
 """Lazy operation adapters; implementations live in core.extended_ops."""
 
+
 from core.handler_factory import make_handler
 
 _HANDLERS = {
@@ -13,6 +14,9 @@ _HANDLERS = {
     "clipboard_save": "Clipboard Save",
     "clipboard_load": "Clipboard Load",
     "clipboard_normalize": "Clipboard Normalize",
+    "clipboard_history_ring": "clipboard history ring",
+    "clipboard_paste_as_plain": "clipboard paste as plain",
+    "clipboard_hash": "clipboard hash",
 }
 
 

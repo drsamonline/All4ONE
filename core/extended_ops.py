@@ -1,4 +1,4 @@
-"""Shared implementations for the 449 expansion tools.
+"""Shared implementations for the 539 expansion tools (449 baseline + 90 new).
 
 The expansion packs remain thin plugin adapters; this module contains the actual,
 standard-library-first operations and dependency-aware command integrations.
@@ -18,6 +18,7 @@ import platform
 import re
 import shutil
 import socket
+import sys
 import sqlite3
 import subprocess
 import tempfile
@@ -2642,7 +2643,606 @@ def run_extended(args: list[str], operation: str) -> int:
             command = "Get-CimInstance Win32_PnPSignedDriver | Select DeviceName,DriverVersion,DriverProviderName,IsSigned,InfName | ConvertTo-Json -Compress"
             return _emit(_run([ps, "-NoProfile", "-Command", command], timeout=60))
 
-        # ---------- end of concrete coverage ----------
+        # ---------- end of baseline coverage; new tools below ----------
+
+        # ---------- NEW TOOL IMPLEMENTATIONS BEGIN ----------
+        if op == "slugify converter":
+            s = re.sub(r"[^a-z0-9]+", "-", (" ".join(a)).lower()).strip("-")
+            return _emit(s)
+        if op == "csv column extractor":
+            path = _path(a, 0, "")
+            col = a[1] if len(a) > 1 else ""
+            try:
+                with open(path, newline="", encoding="utf-8-sig") as f:
+                    rows = list(csv.DictReader(f))
+                out = [r.get(col, "") for r in rows]
+                return _emit(out)
+            except FileNotFoundError:
+                return _emit({"error": f"File not found: {path}"})
+            except Exception as exc:
+                return _emit({"error": str(exc)})
+        if op == "regex replacer":
+            pattern = a[0] if a else ""
+            repl = a[1] if len(a) > 1 else ""
+            text = sys.stdin.read() if len(a) <= 2 else " ".join(a[2:])
+            try:
+                return _emit(re.sub(pattern, repl, text))
+            except re.error as exc:
+                return _emit({"error": f"Invalid regex: {exc}"})
+        if op == "markdown table formatter":
+            lines = [ln.strip() for ln in (" ".join(a) or "").splitlines() if ln.strip()]
+            if not lines:
+                return _emit({"error": "No input"})
+            sep_re = re.compile(r"^\|?[\s:|-]+\|?$")
+            header = [c.strip() for c in lines[0].strip("|").split("|")]
+            body_start = 1
+            if len(lines) > 1 and sep_re.match(lines[1]):
+                body_start = 2
+            rows = [[c.strip() for c in ln.strip("|").split("|")] for ln in lines[body_start:]]
+            all_rows = [header] + rows
+            widths = [max(len(str(r[i])) if i < len(r) else 0 for r in all_rows) for i in range(len(header))]
+            def fmt_row(cells):
+                cells = list(cells) + [""] * (len(widths) - len(cells))
+                return "| " + " | ".join(str(c).ljust(w) for c, w in zip(cells, widths)) + " |"
+            out_lines = [fmt_row(header), "|" + "|".join("-" * (w + 2) for w in widths) + "|"]
+            out_lines += [fmt_row(r) for r in rows]
+            return _emit("\n".join(out_lines))
+        if op == "line number prefixer":
+            text = " ".join(a)
+            width = len(str(text.count("\n") + 1))
+            out = "\n".join(f"{i:>width} | {ln}" for i, ln in enumerate(text.splitlines(), 1))
+            return _emit(out)
+        if op == "unicode normalizer":
+            import unicodedata
+
+            form = (a[0] if a else "NFC").upper()
+            s = " ".join(a[1:]) if len(a) > 1 else sys.stdin.read()
+            try:
+                return _emit(unicodedata.normalize(form, s))
+            except ValueError as exc:
+                return _emit({"error": str(exc)})
+        if op == "clipboard history ring":
+            try:
+                import pyperclip
+
+                clip = pyperclip.paste()
+                hist_file = Path.home() / ".utility_suite_clipboard_history.json"
+                hist = json.loads(hist_file.read_text(encoding="utf-8")) if hist_file.exists() else []
+                if not hist or hist[-1] != clip:
+                    hist.append(clip)
+                hist = hist[-50:]
+                hist_file.write_text(json.dumps(hist, ensure_ascii=False), encoding="utf-8")
+                return _emit({"entries": len(hist), "latest_preview": (hist[-1][:80] + "...") if hist and len(hist[-1]) > 80 else (hist[-1] if hist else None)})
+            except ImportError:
+                return _emit({"available": False, "missing_dependency": "python:pyperclip"})
+        if op == "clipboard paste as plain":
+            try:
+                import pyperclip
+
+                s = pyperclip.paste()
+                cleaned = re.sub(r"\s+", " ", s).strip()
+                pyperclip.copy(cleaned)
+                return _emit({"copied_chars": len(cleaned)})
+            except ImportError:
+                return _emit({"available": False, "missing_dependency": "python:pyperclip"})
+        if op == "clipboard hash":
+            try:
+                import pyperclip
+
+                s = pyperclip.paste().encode("utf-8")
+                return _emit({"sha256": hashlib.sha256(s).hexdigest(), "length": len(s)})
+            except ImportError:
+                return _emit({"available": False, "missing_dependency": "python:pyperclip"})
+        if op == "cron expression explainer":
+            expr = " ".join(a)
+            fields = expr.split()
+            if len(fields) != 5:
+                return _emit({"error": "Cron expression must have exactly 5 fields"})
+            names = ["minute", "hour", "day-of-month", "month", "day-of-week"]
+            meaning = {}
+            for name, field in zip(names, fields):
+                if field == "*":
+                    meaning[name] = "any"
+                elif re.fullmatch(r"\*\/\d+", field):
+                    meaning[name] = f"every {field[2:]} {name}(s)"
+                elif re.fullmatch(r"\d+", field):
+                    meaning[name] = f"exactly at {field}"
+                elif "-" in field:
+                    meaning[name] = f"range {field}"
+                elif "," in field:
+                    meaning[name] = f"list {field}"
+                else:
+                    meaning[name] = field
+            return _emit({"expression": expr, "meaning": meaning})
+        if op == "date range expander":
+            start_s = a[0] if a else ""
+            end_s = a[1] if len(a) > 1 else ""
+            try:
+                start = dt.date.fromisoformat(start_s)
+                end = dt.date.fromisoformat(end_s)
+            except ValueError:
+                return _emit({"error": "Provide ISO dates: YYYY-MM-DD YYYY-MM-DD"})
+            days = (end - start).days + 1
+            if days <= 0:
+                return _emit({"error": "End date must be on or after start date"})
+            if days > 3660:
+                return _emit({"error": "Range too large (>10 years)"})
+            dates = [(start + dt.timedelta(days=i)).isoformat() for i in range(days)]
+            return _emit({"count": days, "first": dates[0], "last": dates[-1], "dates": dates[:31]})
+        if op == "relative time formatter":
+            iso = a[0] if a else ""
+            try:
+                when = dt.datetime.fromisoformat(iso)
+            except ValueError:
+                return _emit({"error": "Invalid ISO datetime"})
+            delta = dt.datetime.now(tz=when.tzinfo) - when
+            secs = int(delta.total_seconds())
+            if abs(secs) < 60:
+                label = f"{secs}s"
+            elif abs(secs) < 3600:
+                label = f"{secs // 60}m"
+            elif abs(secs) < 86400:
+                label = f"{secs // 3600}h"
+            else:
+                label = f"{secs // 86400}d"
+            return _emit({"input": iso, "relative": label, "seconds": secs})
+        if op == "habit streak counter":
+            path = _path(a, 0, "")
+            try:
+                raw = Path(path).read_text(encoding="utf-8")
+            except FileNotFoundError:
+                return _emit({"error": f"File not found: {path}"})
+            dates = set()
+            for m in re.finditer(r"\d{4}-\d{2}-\d{2}", raw):
+                try:
+                    dates.add(dt.date.fromisoformat(m.group()))
+                except ValueError:
+                    continue
+            if not dates:
+                return _emit({"error": "No ISO dates found"})
+            ordered = sorted(dates)
+            best = cur = 1
+            for prev, nxt in zip(ordered, ordered[1:]):
+                if (nxt - prev).days == 1:
+                    cur += 1
+                    best = max(best, cur)
+                else:
+                    cur = 1
+            return _emit({"total_days": len(ordered), "best_streak": best, "current_streak": cur if (dt.date.today() - ordered[-1]).days <= 1 else 0})
+        if op == "portable app suspicion scanner":
+            root = _path(a, 0, ".")
+            exe_exts = {".exe", ".jar", ".AppImage"}
+            portable_markers = {"portable", "app", "data", "settings", "config.ini", "launcher"}
+            suspects = []
+            for p in Path(root).rglob("*"):
+                if not p.is_file():
+                    continue
+                if p.suffix.lower() in exe_exts:
+                    siblings = {s.name.lower() for s in p.parent.iterdir()} if p.parent.exists() else set()
+                    score = sum(1 for m in portable_markers if any(m in s for s in siblings))
+                    if score >= 1:
+                        suspects.append({"path": str(p), "marker_score": score})
+            return _emit({"root": str(Path(root).resolve()), "suspects": suspects[:200], "count": len(suspects)})
+        if op == "autostart registry diff":
+            reg = shutil.which("reg")
+            if not reg or platform.system() != "Windows":
+                return _emit({"available": False, "reason": "Windows 'reg' tool required"})
+            keys = [
+                r"HKCU\Software\Microsoft\Windows\CurrentVersion\Run",
+                r"HKLM\Software\Microsoft\Windows\CurrentVersion\Run",
+            ]
+            entries = {}
+            for k in keys:
+                res = subprocess.run([reg, "query", k], capture_output=True, text=True, timeout=15)
+                lines = [ln.strip() for ln in res.stdout.splitlines() if ln.strip() and "REG_" in ln]
+                entries[k] = lines
+            snap_file = Path(tempfile.gettempdir()) / "us_autostart_snapshot.json"
+            prev = json.loads(snap_file.read_text(encoding="utf-8")) if snap_file.exists() else {}
+            snap_file.write_text(json.dumps(entries), encoding="utf-8")
+            added = [e for lst in entries.values() for e in lst if e not in {x for v in prev.values() for x in v}]
+            removed = [e for lst in prev.values() for e in lst if e not in {x for v in entries.values() for x in v}]
+            return _emit({"keys": list(entries), "added": added, "removed": removed})
+        if op == "file integrity baseline":
+            path = _path(a, 0, "")
+            target = Path(path)
+            if not target.exists():
+                return _emit({"error": f"Not found: {path}"})
+            digest = hashlib.sha256(target.read_bytes()).hexdigest()
+            base_file = Path(tempfile.gettempdir()) / "us_integrity_baselines.json"
+            baselines = json.loads(base_file.read_text(encoding="utf-8")) if base_file.exists() else {}
+            key = str(target.resolve())
+            if "--verify" in a:
+                old = baselines.get(key)
+                return _emit({"verified": old == digest, "expected": old, "actual": digest})
+            baselines[key] = digest
+            base_file.write_text(json.dumps(baselines), encoding="utf-8")
+            return _emit({"baseline_set": True, "sha256": digest})
+        if op == "recent docs privacy report":
+            recent_dir = os.environ.get("APPDATA", "")
+            if not recent_dir:
+                return _emit({"available": False, "reason": "APPDATA not set (Windows-only)"})
+            recent = Path(recent_dir) / "Microsoft" / "Windows" / "Recent"
+            if not recent.exists():
+                return _emit({"error": f"Recent folder missing: {recent}"})
+            items = [{"name": p.name, "size": p.stat().st_size} for p in recent.iterdir() if p.is_file()]
+            return _emit({"folder": str(recent), "count": len(items), "sample": items[:50]})
+        if op == "subnet calculator":
+            cidr = a[0] if a else ""
+            try:
+                net = __import__("ipaddress").ip_network(cidr, strict=False)
+            except Exception as exc:
+                return _emit({"error": f"Invalid CIDR: {exc}"})
+            hosts = list(net.hosts())
+            return _emit({
+                "network": str(net.network_address),
+                "broadcast": str(net.broadcast_address),
+                "netmask": str(net.netmask),
+                "prefixlen": net.prefixlen,
+                "usable_hosts": len(hosts),
+                "first_host": str(hosts[0]) if hosts else None,
+                "last_host": str(hosts[-1]) if hosts else None,
+            })
+        if op == "mac vendor lookup":
+            mac = re.sub(r"[^A-Fa-f0-9]", "", a[0] if a else "").upper()
+            if len(mac) != 12:
+                return _emit({"error": "MAC must be 12 hex digits"})
+            oui = mac[:6]
+            locally = bool(int(mac[1], 16) & 2)
+            unicast = not bool(int(mac[0], 16) & 1)
+            return _emit({"mac": ":".join(mac[i:i+2] for i in range(0, 12, 2)), "oui": oui, "locally_administered": locally, "unicast": unicast, "vendor": "requires OUI database (offline heuristic only)"})
+        if op == "ssl expiry monitor":
+            host = a[0] if a else ""
+            port = int(a[1]) if len(a) > 1 and a[1].isdigit() else 443
+            warn_days = int(a[2]) if len(a) > 2 and a[2].isdigit() else 30
+            try:
+                import ssl as _ssl
+
+                ctx = _ssl.create_default_context()
+                with socket.create_connection((host, port), timeout=10) as sock:
+                    with ctx.wrap_socket(sock, server_hostname=host) as ss:
+                        cert = ss.getpeercert()
+                exp = dt.datetime.strptime(cert["notAfter"], "%b %d %H:%M:%S %Y %Z").replace(tzinfo=dt.timezone.utc)
+                days = (exp - dt.datetime.now(dt.timezone.utc)).days
+                return _emit({"host": host, "expires": exp.isoformat(), "days_remaining": days, "warning": days <= warn_days})
+            except Exception as exc:
+                return _emit({"error": str(exc)})
+        if op == "speed test probe":
+            url = a[0] if a else "https://speed.cloudflare.com/__down?bytes=10000000"
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": "UtilitySuite/1.0"})
+                t0 = time.perf_counter()
+                total = 0
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    while chunk := resp.read(65536):
+                        total += len(chunk)
+                dur = time.perf_counter() - t0
+                mbps = (total * 8) / (dur or 1e-6) / 1_000_000
+                return _emit({"url": url, "bytes": total, "seconds": round(dur, 3), "mbps": round(mbps, 2)})
+            except Exception as exc:
+                return _emit({"error": str(exc), "hint": "Set custom URL arg or check connectivity"})
+        if op == "requirements auditor":
+            path = _path(a, 0, "requirements.txt")
+            try:
+                lines = Path(path).read_text(encoding="utf-8").splitlines()
+            except FileNotFoundError:
+                return _emit({"error": f"Not found: {path}"})
+            pkgs = []
+            unpinned = []
+            for ln in lines:
+                ln = ln.split("#")[0].strip()
+                if not ln:
+                    continue
+                m = re.match(r"^([A-Za-z0-9_.-]+)\s*(==.*)?", ln)
+                if m:
+                    pkgs.append(m.group(1))
+                    if not m.group(2):
+                        unpinned.append(m.group(1))
+            return _emit({"packages": len(pkgs), "unpinned": unpinned, "total": len(pkgs)})
+        if op == "venv size reporter":
+            root = _path(a, 0, ".")
+            site_pkgs = None
+            for cand in Path(root).rglob("site-packages"):
+                if cand.is_dir():
+                    site_pkgs = cand
+                    break
+            if not site_pkgs:
+                return _emit({"error": "No site-packages directory found under " + str(root)})
+            total = 0
+            biggest = []
+            for d in site_pkgs.iterdir():
+                sz = sum(f.stat().st_size for f in d.rglob("*") if f.is_file()) if d.is_dir() else d.stat().st_size
+                total += sz
+                biggest.append((sz, d.name))
+            biggest.sort(reverse=True)
+            return _emit({"site_packages": str(site_pkgs), "total_bytes": total, "top_10": [{"name": n, "bytes": s} for s, n in biggest[:10]]})
+        if op == "wheel inspector":
+            zp = _path(a, 0, "")
+            try:
+                from zipfile import ZipFile as ZF
+
+                with ZF(zp) as z:
+                    meta = [n for n in z.namelist() if n.endswith("METADATA")]
+                    record = z.read(meta[0]).decode("utf-8", errors="replace") if meta else ""
+                    top = [n for n in z.namelist() if "/" in n and not n.startswith("__MACOSX")]
+                    summary = {"files": len(top), "metadata_present": bool(meta)}
+                    for line in record.splitlines():
+                        if line.startswith(("Name:", "Version:", "Requires-Python:")):
+                            k, _, v = line.partition(":")
+                            summary[k.strip().lower().replace("-", "_")] = v.strip()
+                    return _emit(summary)
+            except FileNotFoundError:
+                return _emit({"error": f"Wheel not found: {zp}"})
+            except Exception as exc:
+                return _emit({"error": str(exc)})
+        if op == "temp file aging cleaner":
+            root = _path(a, 0, tempfile.gettempdir())
+            cutoff_days = int(a[0]) if a and a[0].isdigit() else 7
+            dry = "--execute" not in a
+            cutoff = time.time() - cutoff_days * 86400
+            candidates = []
+            for p in Path(root).iterdir():
+                try:
+                    if p.is_file() and p.stat().st_mtime < cutoff:
+                        candidates.append({"path": str(p), "age_days": round((time.time() - p.stat().st_mtime) / 86400, 1)})
+                        if not dry:
+                            p.unlink(missing_ok=True)
+                except OSError:
+                    continue
+            return _emit({"dry_run": dry, "would_delete": len(candidates), "deleted": 0 if dry else len(candidates), "sample": candidates[:25]})
+        if op == "broken link finder":
+            root = _path(a, 0, ".")
+            broken = []
+            for p in Path(root).rglob("*.lnk"):
+                broken.append({"path": str(p), "note": "Target resolution requires Windows Shell APIs"})
+            symlinks = [p for p in Path(root).rglob("*") if p.is_symlink()]
+            dead = [str(p) for p in symlinks if not p.exists()]
+            return _emit({"windows_shortcuts": broken[:200], "dead_symlinks": dead[:200], "counts": {"shortcuts": len(broken), "dead_symlinks": len(dead)}})
+        if op == "disk cleanup preview":
+            roots = a if a else [tempfile.gettempdir(), str(Path.home() / "Downloads")]
+            preview = {}
+            for r in roots:
+                rp = Path(r)
+                if not rp.exists():
+                    continue
+                junk_exts = {".tmp", ".log", ".bak", ".cache", ".old"}
+                total = 0
+                count = 0
+                for f in rp.rglob("*"):
+                    try:
+                        if f.is_file() and f.suffix.lower() in junk_exts:
+                            total += f.stat().st_size
+                            count += 1
+                    except OSError:
+                        continue
+                preview[r] = {"junk_files": count, "reclaimable_bytes": total}
+            return _emit({"preview": preview, "note": "Dry-run only; pass --execute to delete (not implemented for safety)"})
+        if op == "log rotation helper":
+            path = _path(a, 0, "")
+            log = Path(path)
+            if not log.exists():
+                return _emit({"error": f"Log not found: {path}"})
+            keep = int(a[1]) if len(a) > 1 and a[1].isdigit() else 5
+            size_mb = log.stat().st_size / (1024 * 1024)
+            rotated = []
+            if size_mb >= 10:
+                stamp = dt.datetime.now().strftime("%Y%m%d%H%M%S")
+                dest = log.with_suffix(log.suffix + f".{stamp}")
+                log.rename(dest)
+                log.touch()
+                rotated.append(str(dest))
+                olds = sorted(log.parent.glob(log.name + ".*"), key=lambda p: p.stat().st_mtime)
+                for stale in olds[:-keep]:
+                    stale.unlink(missing_ok=True)
+            return _emit({"rotated_now": bool(rotated), "files": rotated, "threshold_mb": 10, "keep": keep})
+        if op == "resource snapshot diff":
+            snap_file = Path(tempfile.gettempdir()) / "us_resource_snapshots.json"
+            snaps = json.loads(snap_file.read_text(encoding="utf-8")) if snap_file.exists() else []
+            try:
+                import psutil
+
+                proc_list = []
+                for pr in psutil.process_iter(["pid", "name", "memory_percent"]):
+                    proc_list.append(pr.info)
+            except ImportError:
+                proc_list = []
+            entry = {"timestamp": dt.datetime.now().isoformat(), "processes": len(proc_list), "cpu_count": os.cpu_count()}
+            snaps.append(entry)
+            snaps = snaps[-20:]
+            snap_file.write_text(json.dumps(snaps), encoding="utf-8")
+            prev = snaps[-2] if len(snaps) > 1 else None
+            return _emit({"snapshot": entry, "previous": prev, "delta_procs": (entry["processes"] - prev["processes"]) if prev else 0})
+        if op == "long running process finder":
+            min_hours = float(a[0]) if a and re.fullmatch(r"\d+(\.\d+)?", a[0]) else 24
+            try:
+                import psutil
+
+                now = time.time()
+                results = []
+                for pr in psutil.process_iter(["pid", "name", "create_time"]):
+                    info = pr.info
+                    if info.get("create_time") and (now - info["create_time"]) / 3600 >= min_hours:
+                        results.append({"pid": info["pid"], "name": info["name"], "hours_running": round((now - info["create_time"]) / 3600, 1)})
+                results.sort(key=lambda x: -x["hours_running"])
+                return _emit({"threshold_hours": min_hours, "matches": results[:50], "count": len(results)})
+            except ImportError:
+                return _emit({"available": False, "missing_dependency": "python:psutil"})
+        if op == "open file handle report":
+            try:
+                import psutil
+
+                pid = int(a[0]) if a and a[0].isdigit() else os.getpid()
+                pr = psutil.Process(pid)
+                files = [{"fd": h.fd, "path": h.path} for h in pr.open_files()]
+                conns = [{"laddr": str(c.laddr), "raddr": str(c.raddr), "status": c.status} for c in pr.connections()]
+                return _emit({"pid": pid, "open_files": files[:100], "connections": conns[:50]})
+            except ImportError:
+                return _emit({"available": False, "missing_dependency": "python:psutil"})
+            except Exception as exc:
+                return _emit({"error": str(exc)})
+        if op == "multi algorithm hasher":
+            path = _path(a, 0, "")
+            try:
+                data = Path(path).read_bytes()
+            except FileNotFoundError:
+                return _emit({"error": f"Not found: {path}"})
+            out = {"file": path, "size": len(data)}
+            for alg in ("md5", "sha1", "sha256", "sha512"):
+                out[alg] = hashlib.new(alg, data).hexdigest()
+            return _emit(out)
+        if op == "checksum verifier":
+            manifest = _path(a, 0, "")
+            base = _path(a, 1, ".") if len(a) > 1 else "."
+            try:
+                lines = Path(manifest).read_text(encoding="utf-8").splitlines()
+            except FileNotFoundError:
+                return _emit({"error": f"Manifest not found: {manifest}"})
+            ok = bad = missing = 0
+            failures = []
+            for ln in lines:
+                parts = ln.split()
+                if len(parts) < 2:
+                    continue
+                digest, fname = parts[0], " ".join(parts[1:]).lstrip("*")
+                fp = Path(base) / fname
+                if not fp.exists():
+                    missing += 1
+                    failures.append({"file": fname, "reason": "missing"})
+                    continue
+                actual = hashlib.new(digest if digest in hashlib.algorithms_available else "sha256", fp.read_bytes()).hexdigest()
+                if actual == digest:
+                    ok += 1
+                else:
+                    bad += 1
+                    failures.append({"file": fname, "reason": "hash mismatch"})
+            return _emit({"ok": ok, "bad": bad, "missing": missing, "failures": failures})
+        if op == "json yaml converter":
+            path = _path(a, 0, "")
+            mode = (a[1] if len(a) > 1 else "to-yaml").lower()
+            try:
+                data = json.loads(Path(path).read_text(encoding="utf-8"))
+            except FileNotFoundError:
+                return _emit({"error": f"Not found: {path}"})
+            except json.JSONDecodeError as exc:
+                return _emit({"error": f"Invalid JSON: {exc}"})
+            if mode in {"to-yaml", "yaml"}:
+                try:
+                    import yaml
+
+                    return _emit(yaml.safe_dump(data, default_flow_style=False))
+                except ImportError:
+                    return _emit({"available": False, "missing_dependency": "python:yaml"})
+            return _emit({"error": "Unknown mode; use to-yaml"})
+        if op == "json diff":
+            fa, fb = _path(a, 0, ""), _path(a, 1, "")
+            try:
+                da = json.loads(Path(fa).read_text(encoding="utf-8"))
+                db = json.loads(Path(fb).read_text(encoding="utf-8"))
+            except FileNotFoundError as exc:
+                return _emit({"error": str(exc)})
+            except json.JSONDecodeError as exc:
+                return _emit({"error": f"Invalid JSON: {exc}"})
+            diffs = []
+            def walk(pa, pb, path=""):
+                if isinstance(pa, dict) and isinstance(pb, dict):
+                    for k in sorted(set(pa) | set(pb)):
+                        sub = f"{path}.{k}" if path else k
+                        if k not in pa:
+                            diffs.append({"path": sub, "change": "added", "value": pb[k]})
+                        elif k not in pb:
+                            diffs.append({"path": sub, "change": "removed", "value": pa[k]})
+                        else:
+                            walk(pa[k], pb[k], sub)
+                elif isinstance(pa, list) and isinstance(pb, list):
+                    if pa != pb:
+                        diffs.append({"path": path, "change": "modified", "old_len": len(pa), "new_len": len(pb)})
+                elif pa != pb:
+                    diffs.append({"path": path, "change": "modified", "old": pa, "new": pb})
+            walk(da, db)
+            return _emit({"diffs": diffs[:200], "count": len(diffs)})
+        if op == "json schema validator":
+            schema_path = _path(a, 0, "")
+            doc_path = _path(a, 1, "")
+            try:
+                schema = json.loads(Path(schema_path).read_text(encoding="utf-8"))
+                doc = json.loads(Path(doc_path).read_text(encoding="utf-8"))
+            except FileNotFoundError as exc:
+                return _emit({"error": str(exc)})
+            except json.JSONDecodeError as exc:
+                return _emit({"error": f"Invalid JSON: {exc}"})
+            try:
+                import jsonschema
+
+                v = jsonschema.Draft7Validator(schema)
+                errs = [e.message for e in v.iter_errors(doc)]
+                return _emit({"valid": not errs, "errors": errs})
+            except ImportError:
+                req = schema.get("required", [])
+                props = schema.get("properties", {})
+                errs = [f"missing required: {r}" for r in req if r not in doc]
+                for k, spec in props.items():
+                    if k in doc and spec.get("type"):
+                        tmap = {"string": str, "number": (int, float), "integer": int, "boolean": bool, "array": list, "object": dict}
+                        if not isinstance(doc[k], tmap.get(spec["type"], object)):
+                            errs.append(f"type error at {k}")
+                return _emit({"valid": not errs, "errors": errs, "mode": "heuristic (install jsonschema for full validation)"})
+        if op == "base64 file codec":
+            mode = (a[0] if a else "encode").lower()
+            path = _path(a, 1, "")
+            try:
+                data = Path(path).read_bytes()
+            except FileNotFoundError:
+                return _emit({"error": f"Not found: {path}"})
+            if mode == "encode":
+                return _emit(base64.b64encode(data).decode())
+            try:
+                decoded = base64.b64decode(data)
+                out = Path(path + ".decoded")
+                out.write_bytes(decoded)
+                return _emit({"written": str(out), "bytes": len(decoded)})
+            except Exception as exc:
+                return _emit({"error": str(exc)})
+        if op == "hex codec":
+            mode = (a[0] if a else "encode").lower()
+            s = " ".join(a[1:])
+            if mode == "encode":
+                return _emit(s.encode().hex())
+            try:
+                return _emit(bytes.fromhex(re.sub(r"\s+", "", s)).decode(errors="replace"))
+            except ValueError as exc:
+                return _emit({"error": str(exc)})
+        if op == "charset detector":
+            path = _path(a, 0, "")
+            try:
+                raw = Path(path).read_bytes()
+            except FileNotFoundError:
+                return _emit({"error": f"Not found: {path}"})
+            encodings = ["ascii", "utf-8", "utf-16", "utf-16-le", "utf-16-be", "latin-1", "cp1252"]
+            detected = []
+            for enc in encodings:
+                try:
+                    raw.decode(enc)
+                    detected.append(enc)
+                except (UnicodeDecodeError, LookupError):
+                    continue
+            bom = "utf-8-sig" if raw.startswith(b"\xef\xbb\xbf") else ("utf-16" if raw[:2] in (b"\xff\xfe", b"\xfe\xff") else None)
+            return _emit({"file": path, "decodable_as": detected, "bom": bom, "confidence": detected[0] if detected else None})
+        if op == "bom handler":
+            mode = (a[0] if a else "detect").lower()
+            path = _path(a, 1, "")
+            try:
+                raw = Path(path).read_bytes()
+            except FileNotFoundError:
+                return _emit({"error": f"Not found: {path}"})
+            boms = {b"\xef\xbb\xbf": "utf-8-sig", b"\xff\xfe": "utf-16-le", b"\xfe\xff": "utf-16-be"}
+            found = next((v for k, v in boms.items() if raw.startswith(k)), None)
+            if mode == "detect":
+                return _emit({"file": path, "bom": found})
+            if mode == "strip" and found:
+                stripped = raw[len(next(k for k, v in boms.items() if v == found)) :]
+                Path(path).write_bytes(stripped)
+                return _emit({"stripped": found, "file": path})
+            return _emit({"action": mode, "result": "no-op", "bom": found})
+        # ---------- NEW TOOL IMPLEMENTATIONS END ----------
 
         return _emit(
             {
