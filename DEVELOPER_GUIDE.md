@@ -50,10 +50,12 @@ safe — it sets `sys.dont_write_bytecode` internally).
 2. Add the lazy operation mapping.
 3. Implement the actual operation.
 4. Add or update a smoke test.
-5. Rebuild plugin ZIPs.
-6. Run the audit again.
+5. Rebuild plugin ZIPs (`python create_plugin_zips.py`).
+6. Regenerate the catalogues (`python generate_catalogs.py`) so
+   TOOL_CATALOG.md / EXPANSION_CATALOG.md match the registry.
+7. Run the audit again (`python audit.py`).
 
-audit.py enforces the current catalogue size (EXPECTED_TOOLS = 539 as of the 2026-09 expansion). Bump that constant deliberately when adding or removing tools, and regenerate TOOL_CATALOG.md / EXPANSION_CATALOG.md from the live registry afterwards.
+audit.py enforces the current catalogue size (EXPECTED_TOOLS = 539 as of the 2026-09 expansion). Bump that constant deliberately when adding or removing tools. The docs-freshness gate in audit.py fails the release if TOOL_CATALOG.md, EXPANSION_CATALOG.md, or the README overview no longer matches the live registry — fix by running `python generate_catalogs.py` and updating the README line, then re-running the audit.
 
 ## Testing tiers - which one runs where
 

@@ -48,6 +48,16 @@ jobs:
             echo "Tracked build/runtime artifacts found:"; echo "$bad"; exit 1
           fi
 
+      - name: Catalogues are up to date
+        # TOOL_CATALOG.md / EXPANSION_CATALOG.md are generated from the live
+        # registry by generate_catalogs.py; fail if a tool change was merged
+        # without regenerating them (audit.py enforces header counts too, but
+        # this shows the exact diff that is missing).
+        run: |
+          python generate_catalogs.py
+          git diff --exit-code TOOL_CATALOG.md EXPANSION_CATALOG.md || {
+            echo "Catalogues are stale. Run 'python generate_catalogs.py' locally and commit."; exit 1; }
+
       - name: Static release audit
         run: python audit.py
 

@@ -41,7 +41,8 @@ utility_suite/
 ├── <pack>/               # plugin-pack source
 ├── plugins/              # generated compressed plugin ZIPs
 ├── tests/                # smoke/integration tests
-├── audit.py              # static release audit
+├── audit.py              # static release audit (incl. docs-freshness gate)
+├── generate_catalogs.py  # regenerates TOOL_CATALOG.md / EXPANSION_CATALOG.md from the registry
 ├── create_plugin_zips.py # deterministic pack builder
 ├── build.spec            # PyInstaller build specification
 ├── BUILD_WINDOWS.ps1     # Windows release build script
@@ -76,6 +77,8 @@ The release process performs:
 
 - Python syntax compilation
 - Tool-count and command uniqueness checks
+- Documentation freshness gate (TOOL_CATALOG.md / EXPANSION_CATALOG.md / README
+  must match the live registry; regenerate with `python generate_catalogs.py`)
 - Plugin ZIP integrity checks
 - Handler metadata checks
 - Dependency metadata checks

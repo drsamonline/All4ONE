@@ -9,6 +9,18 @@ audit if these drift apart.
 ## [Unreleased]
 
 ### Added
+- `generate_catalogs.py`: TOOL_CATALOG.md and EXPANSION_CATALOG.md are now
+  *generated* from the live registry (same AST-literal source `audit.py`
+  uses), replacing hand-maintained copies that repeatedly drifted stale.
+  Also fixes a long-standing content bug: every tool description in the
+  committed catalogue had been mangled into boilerplate ("<Name>. Uses safe,
+  dependency-aware execution...") instead of the real one-line description
+  from the pack metadata; both files were regenerated with correct text.
+- New documentation-freshness gates so outdated docs can never ship again:
+  `audit.py` fails the release when the TOOL_CATALOG.md / EXPANSION_CATALOG.md
+  headers or the README overview disagree with the registry counts, and
+  `ci.yml` gained a "Catalogues are up to date" step that regenerates them
+  and diffs against the commit.
 - `LICENSE` (MIT): the repository previously shipped no license at all,
   which legally defaults to "all rights reserved" and blocked any
   publication or downstream use. Copyright (c) 2026 Dr. Sohil Momin —

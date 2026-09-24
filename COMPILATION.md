@@ -57,7 +57,8 @@ The script:
 
 ```powershell
 python create_plugin_zips.py
-python audit.py
+python generate_catalogs.py   # refresh TOOL_CATALOG.md / EXPANSION_CATALOG.md
+python audit.py               # fails if docs drifted from the registry
 python -m PyInstaller build.spec --clean --noconfirm
 ```
 
@@ -79,6 +80,7 @@ dist\utility_suite\
 Before distribution:
 
 ```powershell
+python generate_catalogs.py   # docs must match the registry (audit enforces it)
 python audit.py
 python -m tests.test_suite
 python -m compileall -q .

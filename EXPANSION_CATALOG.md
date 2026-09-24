@@ -47,5 +47,3 @@
 - `virtual_desktop` — 8 tools
 - `window_manager` — 14 tools
 - `windows_power` — 3 tools
-
-_Regenerate both catalogues with the snippet documented in DEVELOPER_GUIDE.md._
