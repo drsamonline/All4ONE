@@ -74,4 +74,11 @@ The release process performs:
 - Functional smoke tests
 - Release SHA-256 generation
 
-See `AUDIT_REPORT.txt` for the latest release audit result.
+`audit.py` enforces a strict exit-code contract: it exits **0** only on
+`AUDIT PASSED` and **1** on `AUDIT FAILED`, so CI gates (and local release
+checklists) can rely on `python audit.py && <next step>` failing loudly.
+Note the audit is findings-only — clean stray `__pycache__/` directories
+yourself before expecting a PASS.
+
+See `AUDIT_REPORT.txt` for the latest release audit result and
+`CHANGELOG.md` for per-release fix history.
