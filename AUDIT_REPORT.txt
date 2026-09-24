@@ -30,6 +30,19 @@ gate failed spuriously ("Build tree contains __pycache__") unless invoked as
 `python -B`. The check now flags only tracked __pycache__/.pyc files; ZIP
 cache scanning is unchanged.
 
+Project hardening pass (see CHANGELOG.md [Unreleased]):
+  - Added LICENSE (MIT), SECURITY.md, .editorconfig, pyproject.toml (ruff
+    config only — the project is not a pip package).
+  - Added .github/workflows/ci.yml: Linux validation job running ruff
+    (advisory) plus hard gates on audit.py and the smoke-test suite.
+  - audit.py version gate rewritten to static text matching against
+    VERSION.txt for core/__init__.py, config.json AND build.spec (the old
+    import-based check risked re-introducing the __pycache__ self-sabotage
+    bug class); verified it fails loudly when any literal is desynced.
+  - Silent `except Exception:` fallbacks in core/extended_ops.py (JSON
+    input parse, psutil probes, clipboard teardown) now log debug detail
+    before falling back; console output stays clean via ConsoleFormatter.
+
 Fixes applied in this pass (see CHANGELOG.md for full detail):
   - count / download / filetype / hexview / integrity-baseline: now give a
     friendly message instead of a raw errno/traceback when pointed at a

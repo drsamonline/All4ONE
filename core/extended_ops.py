@@ -5,9 +5,11 @@ standard-library-first operations and dependency-aware command integrations.
 """
 
 from __future__ import annotations
-import base64, csv, datetime as dt, hashlib, json, math, os, platform, re, shutil, socket, sqlite3, subprocess, tempfile, time, urllib.parse, urllib.request, uuid, zipfile
+import base64, csv, datetime as dt, hashlib, json, logging, math, os, platform, re, shutil, socket, sqlite3, subprocess, tempfile, time, urllib.parse, urllib.request, uuid, zipfile
 from pathlib import Path
 from collections import Counter
+
+logger = logging.getLogger(__name__)
 
 
 def _emit(value) -> int:
@@ -58,7 +60,8 @@ def _json_input(args):
     s = " ".join(args)
     try:
         return json.loads(s)
-    except Exception:
+    except Exception:  # not inline JSON - fall through to treating it as a file path
+        logger.debug("json input parse failed; interpreting as path: %s", s)
         p = Path(s)
         if p.exists():
             return json.loads(p.read_text(encoding="utf-8"))
@@ -145,14 +148,16 @@ def run_extended(args: list[str], operation: str) -> int:
                         "total": psutil.virtual_memory().total,
                         "available": psutil.virtual_memory().available,
                     }
-                except Exception:
+                except Exception as exc:
+                    logger.debug("psutil unavailable for memory information: %s", exc)
                     data = {"note": "Install psutil for live memory totals."}
             elif op == "boot time":
                 try:
                     import psutil
 
                     data = {"boot_time": dt.datetime.fromtimestamp(psutil.boot_time()).isoformat()}
-                except Exception:
+                except Exception as exc:
+                    logger.debug("psutil unavailable for boot time: %s", exc)
                     data = {"note": "Install psutil for boot time."}
             elif op == "current user":
                 data = {"user": os.environ.get("USERNAME") or os.environ.get("USER")}
@@ -1751,8 +1756,8 @@ def run_extended(args: list[str], operation: str) -> int:
             finally:
                 try:
                     root.destroy()
-                except Exception:
-                    pass
+                except Exception as exc:
+                    logger.debug("clipboard window destroy failed (non-fatal): %s", exc)
 
         if op.startswith("json "):
             obj = _json_input(a)

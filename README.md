@@ -45,8 +45,12 @@ utility_suite/
 ├── create_plugin_zips.py # deterministic pack builder
 ├── build.spec            # PyInstaller build specification
 ├── BUILD_WINDOWS.ps1     # Windows release build script
-├── .github/workflows/    # CI: Windows executable build + test pipeline
-├── VERSION.txt           # authoritative version string (mirrored by config.json and core/__init__.py)
+├── .github/workflows/    # CI: Linux validation (ci.yml) + Windows exe build pipeline
+├── VERSION.txt           # authoritative version string; audit.py enforces every other copy matches it
+├── pyproject.toml        # ruff lint configuration (project is not a pip package)
+├── .editorconfig         # cross-editor formatting rules
+├── LICENSE               # MIT license
+├── SECURITY.md           # vulnerability reporting policy
 ├── USER_GUIDE.md         # end-user manual
 ├── DEVELOPER_GUIDE.md    # plugin contract, testing tiers, release checklist
 ├── INSTALLATION.md       # installation guide

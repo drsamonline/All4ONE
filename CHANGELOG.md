@@ -8,6 +8,35 @@ audit if these drift apart.
 
 ## [Unreleased]
 
+### Added
+- `LICENSE` (MIT): the repository previously shipped no license at all,
+  which legally defaults to "all rights reserved" and blocked any
+  publication or downstream use.
+- `SECURITY.md`: private vulnerability-reporting policy appropriate for a
+  system-utility project, plus a summary of the existing execution-safety
+  guards (argument-list-only `_run`, audit-enforced `shell=True` ban).
+- `.github/workflows/ci.yml`: Linux validation job (ruff lint advisory +
+  hard gates on `audit.py` and the smoke-test suite) so every push/PR is
+  checked without needing a Windows runner.
+- `.editorconfig`: consistent encoding/indent/whitespace rules across
+  editors (LF + trim whitespace by default; Markdown exempt for hard line
+  breaks; `.bat`/`.ps1` stay CRLF).
+- `pyproject.toml`: ruff configuration only — this project is not a pip
+  package and is still run via `python run.py`.
+
+### Changed
+- Version single-source-of-truth: `VERSION.txt` remains canonical, but
+  `audit.py` now enforces it against **every** version literal in the tree
+  (`core/__init__.py`, `config.json`, `build.spec` header) using static
+  text matching instead of importing `core` — the old import-based check
+  risked re-introducing the exact `__pycache__` self-sabotage class of bug
+  that was fixed below. Verified: desyncing any literal fails the audit.
+- Error handling: silent `except Exception:` fallbacks in
+  `core/extended_ops.py` (JSON-input parse, psutil-availability probes,
+  clipboard window teardown) now log a debug-level message with the caught
+  exception before falling back, so failures are diagnosable in
+  `logs/utility_suite.log` while console output stays clean.
+
 ### Fixed
 - `audit.py`: the source-tree cache-clutter gate scanned every
   `__pycache__` directory on disk, including untracked, gitignored ones

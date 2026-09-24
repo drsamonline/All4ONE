@@ -1,0 +1,27 @@
+# Tooling configuration only - this project is NOT a pip package.
+# Run it directly: python run.py <command>  (see README.md).
+# Version single-source-of-truth is VERSION.txt; audit.py enforces sync.
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "logs",
+    "plugins",
+]
+
+[tool.ruff.lint]
+# E/W: pycodestyle, F: pyflakes, I: import order, UP: pyupgrade, B: bugbear
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = [
+    "E501",  # line length handled by formatter, not enforced by lint
+    "UP038", # isinstance tuple syntax is a perf call, not correctness
+]
+
+[tool.ruff.lint.per-file-ignores]
+# .spec files are exec()'d by PyInstaller and reference injected SPECPATH.
+"build.spec" = ["F821"]

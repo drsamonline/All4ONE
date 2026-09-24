@@ -167,18 +167,37 @@ def main():
     version_file = (ROOT / "VERSION.txt")
     if version_file.exists():
         expected_version = version_file.read_text(encoding="utf-8").strip()
-        try:
-            from . import __version__ as actual_version
-        except Exception:
-            try:
-                from core import __version__ as actual_version
-            except Exception:
-                actual_version = None
-        if actual_version != expected_version:
-            problems.append(
-                f"VERSION MISMATCH: VERSION.txt says '{expected_version}' but "
-                f"core/__init__.py's __version__ is '{actual_version}'"
-            )
+
+        def read_literal(path, pattern):
+            """Return the first regex match inside a source file, or None."""
+            if not path.exists():
+                return None
+            m = re.search(pattern, path.read_text(encoding="utf-8"))
+            return m.group(1) if m else None
+
+        # Every version literal in the tree must match VERSION.txt. This is
+        # deliberately *not* an import-based check: importing core would drop
+        # __pycache__ dirs into the source tree mid-run (and audit.py sets
+        # sys.dont_write_bytecode for exactly that reason). The one import
+        # based check below (handler resolution) was the class of bug that
+        # once made this audit self-sabotage.
+        checked = {
+            "core/__init__.py's __version__": read_literal(
+                ROOT / "core" / "__init__.py", r'__version__\s*=\s*"([^"]+)"'
+            ),
+            'config.json "application.version"': read_literal(
+                ROOT / "config.json", r'"version"\s*:\s*"([^"]+)"'
+            ),
+            "build.spec header": read_literal(
+                ROOT / "build.spec", r"# Utility Suite (\d+\.\d+\.\d+)"
+            ),
+        }
+        for label, actual in checked.items():
+            if actual != expected_version:
+                problems.append(
+                    f"VERSION MISMATCH: VERSION.txt says '{expected_version}' but "
+                    f"{label} is '{actual}'"
+                )
     else:
         problems.append("VERSION.txt is missing")
 

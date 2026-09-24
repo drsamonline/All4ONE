@@ -1,0 +1,45 @@
+name: CI (Linux validation)
+
+# Fast, dependency-free validation on every push / pull request:
+#   - ruff lint gate (advisory for now - warnings only, see step comment)
+#   - static release audit (audit.py) - HARD gate, blocks the build
+#   - behavioral smoke tests        - HARD gate, blocks the build
+# The Windows exe build lives in build-windows-exe.yml; this workflow
+# guarantees the tree stays valid on Linux too (where it is developed).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install ruff
+
+      - name: Ruff lint (advisory - non-blocking)
+        # Advisory until the codebase is fully ruff-clean; once
+        # `ruff check .` exits 0, remove continue-on-error to make this
+        # a hard gate.
+        continue-on-error: true
+        run: ruff check .
+
+      - name: Static release audit
+        run: python audit.py
+
+      - name: Behavioral smoke tests
+        run: python -B -m tests.test_suite
