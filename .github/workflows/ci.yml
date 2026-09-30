@@ -13,6 +13,18 @@ on:
   pull_request:
   workflow_dispatch: {}
 
+# Least privilege: this workflow only reads the repo. Explicitly dropping
+# write scopes prevents a compromised dependency in a step from pushing
+# commits or creating releases.
+permissions:
+  contents: read
+
+# Cancel superseded runs on the same ref (e.g. rapid pushes to a PR).
+# Saves runner minutes and avoids stale results blocking a newer commit.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
