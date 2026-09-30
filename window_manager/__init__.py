@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Window List",
             "category": "Window Manager",
-            "description": "Window List: performs the window list action with structured, human-readable output.",
+            "description": "List window entries.",
             "handler": "operations.window_list",
             "cli_command": "window-list",
             "dependencies": ["powershell"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Window Details",
             "category": "Window Manager",
-            "description": "Window Details: performs the window details action with structured, human-readable output.",
+            "description": "Window Details: query and display window details details as structured JSON.",
             "handler": "operations.window_details",
             "cli_command": "window-details",
             "dependencies": ["powershell"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Window Focus Helper",
             "category": "Window Manager",
-            "description": "Window Focus Helper: performs the window focus helper action with structured, human-readable output.",
+            "description": "Assist with window focus tasks.",
             "handler": "operations.window_focus_helper",
             "cli_command": "window-focus-helper",
             "dependencies": ["powershell"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Always On Top Toggle",
             "category": "Window Manager",
-            "description": "Always On Top Toggle: performs the always on top toggle action with structured, human-readable output.",
+            "description": "Always On Top Toggle: query and display always on top toggle details as structured JSON.",
             "handler": "operations.always_on_top_toggle",
             "cli_command": "always-on-top-toggle",
             "dependencies": ["powershell"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Window Minimize All",
             "category": "Window Manager",
-            "description": "Window Minimize All: performs the window minimize all action with structured, human-readable output.",
+            "description": "Window Minimize All: query and display window minimize all details as structured JSON.",
             "handler": "operations.window_minimize_all",
             "cli_command": "window-minimize-all",
             "dependencies": ["powershell"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Window Restore All",
             "category": "Window Manager",
-            "description": "Window Restore All: performs the window restore all action with structured, human-readable output.",
+            "description": "Window Restore All: query and display window restore all details as structured JSON.",
             "handler": "operations.window_restore_all",
             "cli_command": "window-restore-all",
             "dependencies": ["powershell"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Window Title Search",
             "category": "Window Manager",
-            "description": "Window Title Search: performs the window title search action with structured, human-readable output.",
+            "description": "Window Title Search: query and display window title search details as structured JSON.",
             "handler": "operations.window_title_search",
             "cli_command": "window-title-search",
             "dependencies": ["powershell"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Window Process Mapping",
             "category": "Window Manager",
-            "description": "Window Process Mapping: performs the window process mapping action with structured, human-readable output.",
+            "description": "Window Process Mapping: query and display window process mapping details as structured JSON.",
             "handler": "operations.window_process_mapping",
             "cli_command": "window-process-mapping",
             "dependencies": ["powershell"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Window Geometry Reader",
             "category": "Window Manager",
-            "description": "Window Geometry Reader: performs the window geometry reader action with structured, human-readable output.",
+            "description": "Read and print window geometry.",
             "handler": "operations.window_geometry_reader",
             "cli_command": "window-geometry-reader",
             "dependencies": ["powershell"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Window Geometry Setter",
             "category": "Window Manager",
-            "description": "Window Geometry Setter: performs the window geometry setter action with structured, human-readable output.",
+            "description": "Window Geometry Setter: query and display window geometry setter details as structured JSON.",
             "handler": "operations.window_geometry_setter",
             "cli_command": "window-geometry-setter",
             "dependencies": ["powershell"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Window Cascade Helper",
             "category": "Window Manager",
-            "description": "Window Cascade Helper: performs the window cascade helper action with structured, human-readable output.",
+            "description": "Assist with window cascade tasks.",
             "handler": "operations.window_cascade_helper",
             "cli_command": "window-cascade-helper",
             "dependencies": ["powershell"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Window Tile Helper",
             "category": "Window Manager",
-            "description": "Window Tile Helper: performs the window tile helper action with structured, human-readable output.",
+            "description": "Assist with window tile tasks.",
             "handler": "operations.window_tile_helper",
             "cli_command": "window-tile-helper",
             "dependencies": ["powershell"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Window Transparency Guide",
             "category": "Window Manager",
-            "description": "Window Transparency Guide: performs the window transparency guide action with structured, human-readable output.",
+            "description": "Show guidance for window transparency.",
             "handler": "operations.window_transparency_guide",
             "cli_command": "window-transparency-guide",
             "dependencies": ["powershell"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Window Hotkey Guide",
             "category": "Window Manager",
-            "description": "Window Hotkey Guide: performs the window hotkey guide action with structured, human-readable output.",
+            "description": "Show guidance for window hotkey.",
             "handler": "operations.window_hotkey_guide",
             "cli_command": "window-hotkey-guide",
             "dependencies": ["powershell"],

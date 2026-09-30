@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Video Duration",
             "category": "Video Tools",
-            "description": "Video Duration: performs the video duration action with structured, human-readable output.",
+            "description": "Video Duration: query and display video duration details as structured JSON.",
             "handler": "operations.video_duration",
             "cli_command": "video-duration",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Video Stream Inspector",
             "category": "Video Tools",
-            "description": "Video Stream Inspector: performs the video stream inspector action with structured, human-readable output.",
+            "description": "Inspect video stream and report internals.",
             "handler": "operations.video_stream_inspector",
             "cli_command": "video-stream-inspector",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Video Screenshot",
             "category": "Video Tools",
-            "description": "Video Screenshot: performs the video screenshot action with structured, human-readable output.",
+            "description": "Video Screenshot: query and display video screenshot details as structured JSON.",
             "handler": "operations.video_screenshot",
             "cli_command": "video-screenshot",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Video Clip Cutter",
             "category": "Video Tools",
-            "description": "Video Clip Cutter: performs the video clip cutter action with structured, human-readable output.",
+            "description": "Cut video clip segments.",
             "handler": "operations.video_clip_cutter",
             "cli_command": "video-clip-cutter",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Video Concatenator",
             "category": "Video Tools",
-            "description": "Video Concatenator: performs the video concatenator action with structured, human-readable output.",
+            "description": "Video Concatenator: query and display video concatenator details as structured JSON.",
             "handler": "operations.video_concatenator",
             "cli_command": "video-concatenator",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Video GIF Maker",
             "category": "Video Tools",
-            "description": "Video GIF Maker: performs the video gif maker action with structured, human-readable output.",
+            "description": "Video GIF Maker: query and display video gif maker details as structured JSON.",
             "handler": "operations.video_gif_maker",
             "cli_command": "video-gif-maker",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Video Audio Extractor",
             "category": "Video Tools",
-            "description": "Video Audio Extractor: performs the video audio extractor action with structured, human-readable output.",
+            "description": "Extract data from video audio.",
             "handler": "operations.video_audio_extractor",
             "cli_command": "video-audio-extractor",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Video Frame Rate Inspector",
             "category": "Video Tools",
-            "description": "Video Frame Rate Inspector: performs the video frame rate inspector action with structured, human-readable output.",
+            "description": "Inspect video frame rate and report internals.",
             "handler": "operations.video_frame_rate_inspector",
             "cli_command": "video-frame-rate-inspector",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Video Resolution Inspector",
             "category": "Video Tools",
-            "description": "Video Resolution Inspector: performs the video resolution inspector action with structured, human-readable output.",
+            "description": "Inspect video resolution and report internals.",
             "handler": "operations.video_resolution_inspector",
             "cli_command": "video-resolution-inspector",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Video Bitrate Inspector",
             "category": "Video Tools",
-            "description": "Video Bitrate Inspector: performs the video bitrate inspector action with structured, human-readable output.",
+            "description": "Inspect video bitrate and report internals.",
             "handler": "operations.video_bitrate_inspector",
             "cli_command": "video-bitrate-inspector",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Video Thumbnail Sheet",
             "category": "Video Tools",
-            "description": "Video Thumbnail Sheet: performs the video thumbnail sheet action with structured, human-readable output.",
+            "description": "Video Thumbnail Sheet: query and display video thumbnail sheet details as structured JSON.",
             "handler": "operations.video_thumbnail_sheet",
             "cli_command": "video-thumbnail-sheet",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Video Metadata Cleaner",
             "category": "Video Tools",
-            "description": "Video Metadata Cleaner: performs the video metadata cleaner action with structured, human-readable output.",
+            "description": "Clean up video metadata.",
             "handler": "operations.video_metadata_cleaner",
             "cli_command": "video-metadata-cleaner",
             "dependencies": ["ffprobe", "ffmpeg"],

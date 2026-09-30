@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Event Log List",
             "category": "Event Tools",
-            "description": "Event Log List: performs the event log list action with structured, human-readable output.",
+            "description": "List event log entries.",
             "handler": "operations.event_log_list",
             "cli_command": "event-log-list",
             "dependencies": ["wevtutil"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Event Log Query",
             "category": "Event Tools",
-            "description": "Event Log Query: performs the event log query action with structured, human-readable output.",
+            "description": "Event Log Query: query and display event log query details as structured JSON.",
             "handler": "operations.event_log_query",
             "cli_command": "event-log-query",
             "dependencies": ["wevtutil"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Event Log Export",
             "category": "Event Tools",
-            "description": "Event Log Export: performs the event log export action with structured, human-readable output.",
+            "description": "Event Log Export: query and display event log export details as structured JSON.",
             "handler": "operations.event_log_export",
             "cli_command": "event-log-export",
             "dependencies": ["wevtutil"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Event Log Source Search",
             "category": "Event Tools",
-            "description": "Event Log Source Search: performs the event log source search action with structured, human-readable output.",
+            "description": "Event Log Source Search: query and display event log source search details as structured JSON.",
             "handler": "operations.event_log_source_search",
             "cli_command": "event-log-source-search",
             "dependencies": ["wevtutil"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Event Log Level Summary",
             "category": "Event Tools",
-            "description": "Event Log Level Summary: performs the event log level summary action with structured, human-readable output.",
+            "description": "Summarize event log level summary at a glance.",
             "handler": "operations.event_log_level_summary",
             "cli_command": "event-log-level-summary",
             "dependencies": ["wevtutil"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Event Log Time Filter",
             "category": "Event Tools",
-            "description": "Event Log Time Filter: performs the event log time filter action with structured, human-readable output.",
+            "description": "Filter event log time by criteria.",
             "handler": "operations.event_log_time_filter",
             "cli_command": "event-log-time-filter",
             "dependencies": ["wevtutil"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Event Log Keyword Filter",
             "category": "Event Tools",
-            "description": "Event Log Keyword Filter: performs the event log keyword filter action with structured, human-readable output.",
+            "description": "Filter event log keyword by criteria.",
             "handler": "operations.event_log_keyword_filter",
             "cli_command": "event-log-keyword-filter",
             "dependencies": ["wevtutil"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Event Log Statistics",
             "category": "Event Tools",
-            "description": "Event Log Statistics: performs the event log statistics action with structured, human-readable output.",
+            "description": "Event Log Statistics: query and display event log statistics details as structured JSON.",
             "handler": "operations.event_log_statistics",
             "cli_command": "event-log-statistics",
             "dependencies": ["wevtutil"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Event Log Recent Errors",
             "category": "Event Tools",
-            "description": "Event Log Recent Errors: performs the event log recent errors action with structured, human-readable output.",
+            "description": "Event Log Recent Errors: query and display event log recent errors details as structured JSON.",
             "handler": "operations.event_log_recent_errors",
             "cli_command": "event-log-recent-errors",
             "dependencies": ["wevtutil"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Event Log Recent Warnings",
             "category": "Event Tools",
-            "description": "Event Log Recent Warnings: performs the event log recent warnings action with structured, human-readable output.",
+            "description": "Event Log Recent Warnings: query and display event log recent warnings details as structured JSON.",
             "handler": "operations.event_log_recent_warnings",
             "cli_command": "event-log-recent-warnings",
             "dependencies": ["wevtutil"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Event Log Channel Inventory",
             "category": "Event Tools",
-            "description": "Event Log Channel Inventory: performs the event log channel inventory action with structured, human-readable output.",
+            "description": "Enumerate an inventory of event log channel inventory.",
             "handler": "operations.event_log_channel_inventory",
             "cli_command": "event-log-channel-inventory",
             "dependencies": ["wevtutil"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Event Log Guide",
             "category": "Event Tools",
-            "description": "Event Log Guide: performs the event log guide action with structured, human-readable output.",
+            "description": "Show guidance for event log.",
             "handler": "operations.event_log_guide",
             "cli_command": "event-log-guide",
             "dependencies": ["wevtutil"],

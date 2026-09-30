@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "DOCX Metadata",
             "category": "Office Tools",
-            "description": "DOCX Metadata: performs the docx metadata action with structured, human-readable output.",
+            "description": "DOCX Metadata: query and display docx metadata details as structured JSON.",
             "handler": "operations.docx_metadata",
             "cli_command": "docx-metadata",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "DOCX Text Extractor",
             "category": "Office Tools",
-            "description": "DOCX Text Extractor: performs the docx text extractor action with structured, human-readable output.",
+            "description": "Extract data from docx text.",
             "handler": "operations.docx_text_extractor",
             "cli_command": "docx-text-extractor",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "DOCX Paragraph Counter",
             "category": "Office Tools",
-            "description": "DOCX Paragraph Counter: performs the docx paragraph counter action with structured, human-readable output.",
+            "description": "Count occurrences within docx paragraph.",
             "handler": "operations.docx_paragraph_counter",
             "cli_command": "docx-paragraph-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "DOCX Heading Extractor",
             "category": "Office Tools",
-            "description": "DOCX Heading Extractor: performs the docx heading extractor action with structured, human-readable output.",
+            "description": "Extract data from docx heading.",
             "handler": "operations.docx_heading_extractor",
             "cli_command": "docx-heading-extractor",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "DOCX Image Inspector",
             "category": "Office Tools",
-            "description": "DOCX Image Inspector: performs the docx image inspector action with structured, human-readable output.",
+            "description": "Inspect docx image and report internals.",
             "handler": "operations.docx_image_inspector",
             "cli_command": "docx-image-inspector",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "DOCX Structure Inspector",
             "category": "Office Tools",
-            "description": "DOCX Structure Inspector: performs the docx structure inspector action with structured, human-readable output.",
+            "description": "Inspect docx structure and report internals.",
             "handler": "operations.docx_structure_inspector",
             "cli_command": "docx-structure-inspector",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "XLSX Metadata",
             "category": "Office Tools",
-            "description": "XLSX Metadata: performs the xlsx metadata action with structured, human-readable output.",
+            "description": "XLSX Metadata: query and display xlsx metadata details as structured JSON.",
             "handler": "operations.xlsx_metadata",
             "cli_command": "xlsx-metadata",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "XLSX Sheet Lister",
             "category": "Office Tools",
-            "description": "XLSX Sheet Lister: performs the xlsx sheet lister action with structured, human-readable output.",
+            "description": "XLSX Sheet Lister: query and display xlsx sheet lister details as structured JSON.",
             "handler": "operations.xlsx_sheet_lister",
             "cli_command": "xlsx-sheet-lister",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "XLSX Cell Counter",
             "category": "Office Tools",
-            "description": "XLSX Cell Counter: performs the xlsx cell counter action with structured, human-readable output.",
+            "description": "Count occurrences within xlsx cell.",
             "handler": "operations.xlsx_cell_counter",
             "cli_command": "xlsx-cell-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "XLSX Formula Counter",
             "category": "Office Tools",
-            "description": "XLSX Formula Counter: performs the xlsx formula counter action with structured, human-readable output.",
+            "description": "Count occurrences within xlsx formula.",
             "handler": "operations.xlsx_formula_counter",
             "cli_command": "xlsx-formula-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "PPTX Slide Counter",
             "category": "Office Tools",
-            "description": "PPTX Slide Counter: performs the pptx slide counter action with structured, human-readable output.",
+            "description": "Count occurrences within pptx slide.",
             "handler": "operations.pptx_slide_counter",
             "cli_command": "pptx-slide-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Office File Inventory",
             "category": "Office Tools",
-            "description": "Office File Inventory: performs the office file inventory action with structured, human-readable output.",
+            "description": "Enumerate an inventory of office file inventory.",
             "handler": "operations.office_file_inventory",
             "cli_command": "office-file-inventory",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],

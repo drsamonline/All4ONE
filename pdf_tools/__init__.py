@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "PDF Metadata Reader",
             "category": "PDF Tools",
-            "description": "PDF Metadata Reader: performs the pdf metadata reader action with structured, human-readable output.",
+            "description": "Read and print pdf metadata.",
             "handler": "operations.pdf_metadata_reader",
             "cli_command": "pdf-metadata-reader",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "PDF Metadata Cleaner",
             "category": "PDF Tools",
-            "description": "PDF Metadata Cleaner: performs the pdf metadata cleaner action with structured, human-readable output.",
+            "description": "Clean up pdf metadata.",
             "handler": "operations.pdf_metadata_cleaner",
             "cli_command": "pdf-metadata-cleaner",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "PDF Page Counter",
             "category": "PDF Tools",
-            "description": "PDF Page Counter: performs the pdf page counter action with structured, human-readable output.",
+            "description": "Count occurrences within pdf page.",
             "handler": "operations.pdf_page_counter",
             "cli_command": "pdf-page-counter",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "PDF Text Search",
             "category": "PDF Tools",
-            "description": "PDF Text Search: performs the pdf text search action with structured, human-readable output.",
+            "description": "PDF Text Search: query and display pdf text search details as structured JSON.",
             "handler": "operations.pdf_text_search",
             "cli_command": "pdf-text-search",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "PDF Page Extractor",
             "category": "PDF Tools",
-            "description": "PDF Page Extractor: performs the pdf page extractor action with structured, human-readable output.",
+            "description": "Extract data from pdf page.",
             "handler": "operations.pdf_page_extractor",
             "cli_command": "pdf-page-extractor",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "PDF Merge",
             "category": "PDF Tools",
-            "description": "PDF Merge: performs the pdf merge action with structured, human-readable output.",
+            "description": "PDF Merge: query and display pdf merge details as structured JSON.",
             "handler": "operations.pdf_merge",
             "cli_command": "pdf-merge",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "PDF Split",
             "category": "PDF Tools",
-            "description": "PDF Split: performs the pdf split action with structured, human-readable output.",
+            "description": "PDF Split: query and display pdf split details as structured JSON.",
             "handler": "operations.pdf_split",
             "cli_command": "pdf-split",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "PDF Rotate",
             "category": "PDF Tools",
-            "description": "PDF Rotate: performs the pdf rotate action with structured, human-readable output.",
+            "description": "PDF Rotate: query and display pdf rotate details as structured JSON.",
             "handler": "operations.pdf_rotate",
             "cli_command": "pdf-rotate",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "PDF Compress",
             "category": "PDF Tools",
-            "description": "PDF Compress: performs the pdf compress action with structured, human-readable output.",
+            "description": "PDF Compress: query and display pdf compress details as structured JSON.",
             "handler": "operations.pdf_compress",
             "cli_command": "pdf-compress",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "PDF Watermark",
             "category": "PDF Tools",
-            "description": "PDF Watermark: performs the pdf watermark action with structured, human-readable output.",
+            "description": "PDF Watermark: query and display pdf watermark details as structured JSON.",
             "handler": "operations.pdf_watermark",
             "cli_command": "pdf-watermark",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "PDF Image Extractor",
             "category": "PDF Tools",
-            "description": "PDF Image Extractor: performs the pdf image extractor action with structured, human-readable output.",
+            "description": "Extract data from pdf image.",
             "handler": "operations.pdf_image_extractor",
             "cli_command": "pdf-image-extractor",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "PDF Attachment Inspector",
             "category": "PDF Tools",
-            "description": "PDF Attachment Inspector: performs the pdf attachment inspector action with structured, human-readable output.",
+            "description": "Inspect pdf attachment and report internals.",
             "handler": "operations.pdf_attachment_inspector",
             "cli_command": "pdf-attachment-inspector",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],

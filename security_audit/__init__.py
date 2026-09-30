@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "File Permission Report",
         "category": "Security Auditing",
-        "description": "File Permission Report: performs the file permission report action with structured, human-readable output.",
+        "description": "File Permission Report: query and display file permission report details as structured JSON.",
         "handler": "operations.file_permission_report",
         "cli_command": "file-permission-report",
         "dependencies": [
@@ -16,7 +16,7 @@ def register_tools():
     {
         "name": "World Writable Finder",
         "category": "Security Auditing",
-        "description": "World Writable Finder: performs the world writable finder action with structured, human-readable output.",
+        "description": "Locate world writable on disk or in scope.",
         "handler": "operations.world_writable_finder",
         "cli_command": "world-writable-finder",
         "dependencies": [
@@ -26,7 +26,7 @@ def register_tools():
     {
         "name": "Executable Finder",
         "category": "Security Auditing",
-        "description": "Executable Finder: performs the executable finder action with structured, human-readable output.",
+        "description": "Locate executable on disk or in scope.",
         "handler": "operations.executable_finder",
         "cli_command": "executable-finder",
         "dependencies": [
@@ -36,7 +36,7 @@ def register_tools():
     {
         "name": "Hidden File Finder",
         "category": "Security Auditing",
-        "description": "Hidden File Finder: performs the hidden file finder action with structured, human-readable output.",
+        "description": "Locate hidden file on disk or in scope.",
         "handler": "operations.hidden_file_finder",
         "cli_command": "hidden-file-finder",
         "dependencies": [
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Sensitive Filename Finder",
         "category": "Security Auditing",
-        "description": "Sensitive Filename Finder: performs the sensitive filename finder action with structured, human-readable output.",
+        "description": "Locate sensitive filename on disk or in scope.",
         "handler": "operations.sensitive_filename_finder",
         "cli_command": "sensitive-filename-finder",
         "dependencies": [
@@ -56,7 +56,7 @@ def register_tools():
     {
         "name": "Credential Filename Finder",
         "category": "Security Auditing",
-        "description": "Credential Filename Finder: performs the credential filename finder action with structured, human-readable output.",
+        "description": "Locate credential filename on disk or in scope.",
         "handler": "operations.credential_filename_finder",
         "cli_command": "credential-filename-finder",
         "dependencies": [
@@ -66,7 +66,7 @@ def register_tools():
     {
         "name": "Private Key Filename Finder",
         "category": "Security Auditing",
-        "description": "Private Key Filename Finder: performs the private key filename finder action with structured, human-readable output.",
+        "description": "Locate private key filename on disk or in scope.",
         "handler": "operations.private_key_filename_finder",
         "cli_command": "private-key-filename-finder",
         "dependencies": [
@@ -76,7 +76,7 @@ def register_tools():
     {
         "name": "SSH Key Audit",
         "category": "Security Auditing",
-        "description": "SSH Key Audit: performs the ssh key audit action with structured, human-readable output.",
+        "description": "SSH Key Audit: query and display ssh key audit details as structured JSON.",
         "handler": "operations.ssh_key_audit",
         "cli_command": "ssh-key-audit",
         "dependencies": [
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Hosts File Audit",
         "category": "Security Auditing",
-        "description": "Hosts File Audit: performs the hosts file audit action with structured, human-readable output.",
+        "description": "Hosts File Audit: query and display hosts file audit details as structured JSON.",
         "handler": "operations.hosts_file_audit",
         "cli_command": "hosts-file-audit",
         "dependencies": [
@@ -96,7 +96,7 @@ def register_tools():
     {
         "name": "Startup Security Audit",
         "category": "Security Auditing",
-        "description": "Startup Security Audit: performs the startup security audit action with structured, human-readable output.",
+        "description": "Startup Security Audit: query and display startup security audit details as structured JSON.",
         "handler": "operations.startup_security_audit",
         "cli_command": "startup-security-audit",
         "dependencies": [
@@ -106,7 +106,7 @@ def register_tools():
     {
         "name": "Open Share Guide",
         "category": "Security Auditing",
-        "description": "Open Share Guide: performs the open share guide action with structured, human-readable output.",
+        "description": "Show guidance for open share.",
         "handler": "operations.open_share_guide",
         "cli_command": "open-share-guide",
         "dependencies": [
@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "Firewall Status",
         "category": "Security Auditing",
-        "description": "Firewall Status: performs the firewall status action with structured, human-readable output.",
+        "description": "Report current firewall status.",
         "handler": "operations.firewall_status",
         "cli_command": "firewall-status",
         "dependencies": [
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Defender Status",
         "category": "Security Auditing",
-        "description": "Defender Status: performs the defender status action with structured, human-readable output.",
+        "description": "Report current defender status.",
         "handler": "operations.defender_status",
         "cli_command": "defender-status",
         "dependencies": [
@@ -136,7 +136,7 @@ def register_tools():
     {
         "name": "Windows Update Status",
         "category": "Security Auditing",
-        "description": "Windows Update Status: performs the windows update status action with structured, human-readable output.",
+        "description": "Report current windows update status.",
         "handler": "operations.windows_update_status",
         "cli_command": "windows-update-status",
         "dependencies": [
@@ -146,7 +146,7 @@ def register_tools():
     {
         "name": "Local Account Inventory",
         "category": "Security Auditing",
-        "description": "Local Account Inventory: performs the local account inventory action with structured, human-readable output.",
+        "description": "Enumerate an inventory of local account inventory.",
         "handler": "operations.local_account_inventory",
         "cli_command": "local-account-inventory",
         "dependencies": [
@@ -156,7 +156,7 @@ def register_tools():
     {
         "name": "Administrator Group Inventory",
         "category": "Security Auditing",
-        "description": "Administrator Group Inventory: performs the administrator group inventory action with structured, human-readable output.",
+        "description": "Enumerate an inventory of administrator group inventory.",
         "handler": "operations.administrator_group_inventory",
         "cli_command": "administrator-group-inventory",
         "dependencies": [
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "Service Security Report",
         "category": "Security Auditing",
-        "description": "Service Security Report: performs the service security report action with structured, human-readable output.",
+        "description": "Service Security Report: query and display service security report details as structured JSON.",
         "handler": "operations.service_security_report",
         "cli_command": "service-security-report",
         "dependencies": [
@@ -176,7 +176,7 @@ def register_tools():
     {
         "name": "Security Event Summary",
         "category": "Security Auditing",
-        "description": "Security Event Summary: performs the security event summary action with structured, human-readable output.",
+        "description": "Summarize security event summary at a glance.",
         "handler": "operations.security_event_summary",
         "cli_command": "security-event-summary",
         "dependencies": [
@@ -186,7 +186,7 @@ def register_tools():
     {
         "name": "Portable App Suspicion Scanner",
         "category": "Security Audit",
-        "description": "Portable App Suspicion Scanner: performs the portable scan action with structured, human-readable output.",
+        "description": "Scan for portable app suspicion and list hits.",
         "handler": "operations.portable_app_suspicion_scanner",
         "cli_command": "portable-scan",
         "dependencies": []
@@ -194,7 +194,7 @@ def register_tools():
     {
         "name": "Autostart Registry Diff",
         "category": "Security Audit",
-        "description": "Autostart Registry Diff: performs the autostart diff action with structured, human-readable output.",
+        "description": "Autostart Registry Diff: query and display autostart registry diff details as structured JSON.",
         "handler": "operations.autostart_registry_diff",
         "cli_command": "autostart-diff",
         "dependencies": [
@@ -212,7 +212,7 @@ def register_tools():
     {
         "name": "Recent Docs Privacy Report",
         "category": "Security Audit",
-        "description": "Recent Docs Privacy Report: performs the recent docs report action with structured, human-readable output.",
+        "description": "Recent Docs Privacy Report: query and display recent docs privacy report details as structured JSON.",
         "handler": "operations.recent_docs_privacy_report",
         "cli_command": "recent-docs-report",
         "dependencies": []

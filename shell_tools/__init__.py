@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Shell Command Runner",
             "category": "Shell & Command Tools",
-            "description": "Shell Command Runner: performs the shell command runner action with structured, human-readable output.",
+            "description": "Shell Command Runner: query and display shell command runner details as structured JSON.",
             "handler": "operations.shell_command_runner",
             "cli_command": "shell-command-runner",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "PowerShell Command Runner",
             "category": "Shell & Command Tools",
-            "description": "PowerShell Command Runner: performs the powershell command runner action with structured, human-readable output.",
+            "description": "PowerShell Command Runner: query and display powershell command runner details as structured JSON.",
             "handler": "operations.powershell_command_runner",
             "cli_command": "powershell-command-runner",
             "dependencies": ["powershell"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Command Resolver",
             "category": "Shell & Command Tools",
-            "description": "Command Resolver: performs the command resolver action with structured, human-readable output.",
+            "description": "Command Resolver: query and display command resolver details as structured JSON.",
             "handler": "operations.command_resolver",
             "cli_command": "command-resolver",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "PATH Inspector",
             "category": "Shell & Command Tools",
-            "description": "PATH Inspector: performs the path inspector action with structured, human-readable output.",
+            "description": "Inspect path and report internals.",
             "handler": "operations.path_inspector",
             "cli_command": "path-inspector",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Executable Locator",
             "category": "Shell & Command Tools",
-            "description": "Executable Locator: performs the executable locator action with structured, human-readable output.",
+            "description": "Executable Locator: query and display executable locator details as structured JSON.",
             "handler": "operations.executable_locator",
             "cli_command": "executable-locator",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Command History Guide",
             "category": "Shell & Command Tools",
-            "description": "Command History Guide: performs the command history guide action with structured, human-readable output.",
+            "description": "Show guidance for command history.",
             "handler": "operations.command_history_guide",
             "cli_command": "command-history-guide",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Shell Environment Dump",
             "category": "Shell & Command Tools",
-            "description": "Shell Environment Dump: performs the shell environment dump action with structured, human-readable output.",
+            "description": "Shell Environment Dump: query and display shell environment dump details as structured JSON.",
             "handler": "operations.shell_environment_dump",
             "cli_command": "shell-environment-dump",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Working Directory Reporter",
             "category": "Shell & Command Tools",
-            "description": "Working Directory Reporter: performs the working directory reporter action with structured, human-readable output.",
+            "description": "Produce a detailed report of working directory.",
             "handler": "operations.working_directory_reporter",
             "cli_command": "working-directory-reporter",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Command Timeout Runner",
             "category": "Shell & Command Tools",
-            "description": "Command Timeout Runner: performs the command timeout runner action with structured, human-readable output.",
+            "description": "Command Timeout Runner: query and display command timeout runner details as structured JSON.",
             "handler": "operations.command_timeout_runner",
             "cli_command": "command-timeout-runner",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Batch File Generator",
             "category": "Shell & Command Tools",
-            "description": "Batch File Generator: performs the batch file generator action with structured, human-readable output.",
+            "description": "Generate batch file output.",
             "handler": "operations.batch_file_generator",
             "cli_command": "batch-file-generator",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "PowerShell Script Generator",
             "category": "Shell & Command Tools",
-            "description": "PowerShell Script Generator: performs the powershell script generator action with structured, human-readable output.",
+            "description": "Generate powershell script output.",
             "handler": "operations.powershell_script_generator",
             "cli_command": "powershell-script-generator",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Shell Quoting Helper",
             "category": "Shell & Command Tools",
-            "description": "Shell Quoting Helper: performs the shell quoting helper action with structured, human-readable output.",
+            "description": "Assist with shell quoting tasks.",
             "handler": "operations.shell_quoting_helper",
             "cli_command": "shell-quoting-helper",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Argument Escaper",
             "category": "Shell & Command Tools",
-            "description": "Argument Escaper: performs the argument escaper action with structured, human-readable output.",
+            "description": "Argument Escaper: query and display argument escaper details as structured JSON.",
             "handler": "operations.argument_escaper",
             "cli_command": "argument-escaper",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Exit Code Decoder",
             "category": "Shell & Command Tools",
-            "description": "Exit Code Decoder: performs the exit code decoder action with structured, human-readable output.",
+            "description": "Decode exit code.",
             "handler": "operations.exit_code_decoder",
             "cli_command": "exit-code-decoder",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "STDOUT Capture",
             "category": "Shell & Command Tools",
-            "description": "STDOUT Capture: performs the stdout capture action with structured, human-readable output.",
+            "description": "STDOUT Capture: query and display stdout capture details as structured JSON.",
             "handler": "operations.stdout_capture",
             "cli_command": "stdout-capture",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "STDERR Capture",
             "category": "Shell & Command Tools",
-            "description": "STDERR Capture: performs the stderr capture action with structured, human-readable output.",
+            "description": "STDERR Capture: query and display stderr capture details as structured JSON.",
             "handler": "operations.stderr_capture",
             "cli_command": "stderr-capture",
             "dependencies": [],
@@ -134,7 +134,7 @@ def register_tools():
         {
             "name": "Process Pipe Helper",
             "category": "Shell & Command Tools",
-            "description": "Process Pipe Helper: performs the process pipe helper action with structured, human-readable output.",
+            "description": "Assist with process pipe tasks.",
             "handler": "operations.process_pipe_helper",
             "cli_command": "process-pipe-helper",
             "dependencies": [],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Command Availability Scan",
             "category": "Shell & Command Tools",
-            "description": "Command Availability Scan: performs the command availability scan action with structured, human-readable output.",
+            "description": "Command Availability Scan: query and display command availability scan details as structured JSON.",
             "handler": "operations.command_availability_scan",
             "cli_command": "command-availability-scan",
             "dependencies": [],

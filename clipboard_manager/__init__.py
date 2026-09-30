@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Clipboard Read",
         "category": "Clipboard Manager",
-        "description": "Clipboard Read: performs the clipboard read action with structured, human-readable output.",
+        "description": "Clipboard Read: query and display clipboard read details as structured JSON.",
         "handler": "operations.clipboard_read",
         "cli_command": "clipboard-read",
         "dependencies": [
@@ -16,7 +16,7 @@ def register_tools():
     {
         "name": "Clipboard Write",
         "category": "Clipboard Manager",
-        "description": "Clipboard Write: performs the clipboard write action with structured, human-readable output.",
+        "description": "Clipboard Write: query and display clipboard write details as structured JSON.",
         "handler": "operations.clipboard_write",
         "cli_command": "clipboard-write",
         "dependencies": [
@@ -26,7 +26,7 @@ def register_tools():
     {
         "name": "Clipboard Clear",
         "category": "Clipboard Manager",
-        "description": "Clipboard Clear: performs the clipboard clear action with structured, human-readable output.",
+        "description": "Clipboard Clear: query and display clipboard clear details as structured JSON.",
         "handler": "operations.clipboard_clear",
         "cli_command": "clipboard-clear",
         "dependencies": [
@@ -36,7 +36,7 @@ def register_tools():
     {
         "name": "Clipboard Append",
         "category": "Clipboard Manager",
-        "description": "Clipboard Append: performs the clipboard append action with structured, human-readable output.",
+        "description": "Clipboard Append: query and display clipboard append details as structured JSON.",
         "handler": "operations.clipboard_append",
         "cli_command": "clipboard-append",
         "dependencies": [
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Clipboard Text Length",
         "category": "Clipboard Manager",
-        "description": "Clipboard Text Length: performs the clipboard text length action with structured, human-readable output.",
+        "description": "Clipboard Text Length: query and display clipboard text length details as structured JSON.",
         "handler": "operations.clipboard_text_length",
         "cli_command": "clipboard-text-length",
         "dependencies": [
@@ -56,7 +56,7 @@ def register_tools():
     {
         "name": "Clipboard Word Count",
         "category": "Clipboard Manager",
-        "description": "Clipboard Word Count: performs the clipboard word count action with structured, human-readable output.",
+        "description": "Clipboard Word Count: query and display clipboard word count details as structured JSON.",
         "handler": "operations.clipboard_word_count",
         "cli_command": "clipboard-word-count",
         "dependencies": [
@@ -66,7 +66,7 @@ def register_tools():
     {
         "name": "Clipboard Line Count",
         "category": "Clipboard Manager",
-        "description": "Clipboard Line Count: performs the clipboard line count action with structured, human-readable output.",
+        "description": "Clipboard Line Count: query and display clipboard line count details as structured JSON.",
         "handler": "operations.clipboard_line_count",
         "cli_command": "clipboard-line-count",
         "dependencies": [
@@ -76,7 +76,7 @@ def register_tools():
     {
         "name": "Clipboard Save",
         "category": "Clipboard Manager",
-        "description": "Clipboard Save: performs the clipboard save action with structured, human-readable output.",
+        "description": "Clipboard Save: query and display clipboard save details as structured JSON.",
         "handler": "operations.clipboard_save",
         "cli_command": "clipboard-save",
         "dependencies": [
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Clipboard Load",
         "category": "Clipboard Manager",
-        "description": "Clipboard Load: performs the clipboard load action with structured, human-readable output.",
+        "description": "Clipboard Load: query and display clipboard load details as structured JSON.",
         "handler": "operations.clipboard_load",
         "cli_command": "clipboard-load",
         "dependencies": [
@@ -96,7 +96,7 @@ def register_tools():
     {
         "name": "Clipboard Normalize",
         "category": "Clipboard Manager",
-        "description": "Clipboard Normalize: performs the clipboard normalize action with structured, human-readable output.",
+        "description": "Clipboard Normalize: query and display clipboard normalize details as structured JSON.",
         "handler": "operations.clipboard_normalize",
         "cli_command": "clipboard-normalize",
         "dependencies": [
@@ -106,7 +106,7 @@ def register_tools():
     {
         "name": "Clipboard History Ring",
         "category": "Clipboard",
-        "description": "Clipboard History Ring: performs the clipboard history ring action with structured, human-readable output.",
+        "description": "Clipboard History Ring: query and display clipboard history ring details as structured JSON.",
         "handler": "operations.clipboard_history_ring",
         "cli_command": "clipboard-history-ring",
         "dependencies": [
@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "Clipboard Paste As Plain",
         "category": "Clipboard",
-        "description": "Clipboard Paste As Plain: performs the clipboard paste plain action with structured, human-readable output.",
+        "description": "Clipboard Paste As Plain: query and display clipboard paste as plain details as structured JSON.",
         "handler": "operations.clipboard_paste_as_plain",
         "cli_command": "clipboard-paste-plain",
         "dependencies": [
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Clipboard Hash",
         "category": "Clipboard",
-        "description": "Clipboard Hash: performs the clipboard hash action with structured, human-readable output.",
+        "description": "Clipboard Hash: query and display clipboard hash details as structured JSON.",
         "handler": "operations.clipboard_hash",
         "cli_command": "clipboard-hash",
         "dependencies": [

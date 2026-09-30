@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Ping Host",
         "category": "Advanced Networking",
-        "description": "Ping Host: performs the ping host action with structured, human-readable output.",
+        "description": "Ping Host: query and display ping host details as structured JSON.",
         "handler": "operations.ping_host",
         "cli_command": "ping-host",
         "dependencies": [
@@ -17,7 +17,7 @@ def register_tools():
     {
         "name": "DNS Lookup",
         "category": "Advanced Networking",
-        "description": "DNS Lookup: performs the dns lookup action with structured, human-readable output.",
+        "description": "DNS Lookup: query and display dns lookup details as structured JSON.",
         "handler": "operations.dns_lookup",
         "cli_command": "dns-lookup",
         "dependencies": [
@@ -28,7 +28,7 @@ def register_tools():
     {
         "name": "Reverse DNS",
         "category": "Advanced Networking",
-        "description": "Reverse DNS: performs the reverse dns action with structured, human-readable output.",
+        "description": "Reverse DNS: query and display reverse dns details as structured JSON.",
         "handler": "operations.reverse_dns",
         "cli_command": "reverse-dns",
         "dependencies": [
@@ -39,7 +39,7 @@ def register_tools():
     {
         "name": "IP Address Info",
         "category": "Advanced Networking",
-        "description": "IP Address Info: performs the ip address info action with structured, human-readable output.",
+        "description": "IP Address Info: query and display ip address info details as structured JSON.",
         "handler": "operations.ip_address_info",
         "cli_command": "ip-address-info",
         "dependencies": [
@@ -50,7 +50,7 @@ def register_tools():
     {
         "name": "WHOIS Lookup",
         "category": "Advanced Networking",
-        "description": "WHOIS Lookup: performs the whois lookup action with structured, human-readable output.",
+        "description": "WHOIS Lookup: query and display whois lookup details as structured JSON.",
         "handler": "operations.whois_lookup",
         "cli_command": "whois-lookup",
         "dependencies": [
@@ -61,7 +61,7 @@ def register_tools():
     {
         "name": "Route Trace",
         "category": "Advanced Networking",
-        "description": "Route Trace: performs the route trace action with structured, human-readable output.",
+        "description": "Route Trace: query and display route trace details as structured JSON.",
         "handler": "operations.route_trace",
         "cli_command": "route-trace",
         "dependencies": [
@@ -72,7 +72,7 @@ def register_tools():
     {
         "name": "ARP Table Viewer",
         "category": "Advanced Networking",
-        "description": "ARP Table Viewer: performs the arp table viewer action with structured, human-readable output.",
+        "description": "Display the contents of arp table.",
         "handler": "operations.arp_table_viewer",
         "cli_command": "arp-table-viewer",
         "dependencies": [
@@ -83,7 +83,7 @@ def register_tools():
     {
         "name": "Hosts File Viewer",
         "category": "Advanced Networking",
-        "description": "Hosts File Viewer: performs the hosts file viewer action with structured, human-readable output.",
+        "description": "Display the contents of hosts file.",
         "handler": "operations.hosts_file_viewer",
         "cli_command": "hosts-file-viewer",
         "dependencies": [
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Hosts File Entry Checker",
         "category": "Advanced Networking",
-        "description": "Hosts File Entry Checker: performs the hosts file entry checker action with structured, human-readable output.",
+        "description": "Check and validate hosts file entry.",
         "handler": "operations.hosts_file_entry_checker",
         "cli_command": "hosts-file-entry-checker",
         "dependencies": [
@@ -105,7 +105,7 @@ def register_tools():
     {
         "name": "TCP Port Checker",
         "category": "Advanced Networking",
-        "description": "TCP Port Checker: performs the tcp port checker action with structured, human-readable output.",
+        "description": "Check and validate tcp port.",
         "handler": "operations.tcp_port_checker",
         "cli_command": "tcp-port-checker",
         "dependencies": [
@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "UDP Port Probe",
         "category": "Advanced Networking",
-        "description": "UDP Port Probe: performs the udp port probe action with structured, human-readable output.",
+        "description": "UDP Port Probe: query and display udp port probe details as structured JSON.",
         "handler": "operations.udp_port_probe",
         "cli_command": "udp-port-probe",
         "dependencies": [
@@ -127,7 +127,7 @@ def register_tools():
     {
         "name": "HTTP Header Inspector",
         "category": "Advanced Networking",
-        "description": "HTTP Header Inspector: performs the http header inspector action with structured, human-readable output.",
+        "description": "Inspect http header and report internals.",
         "handler": "operations.http_header_inspector",
         "cli_command": "http-header-inspector",
         "dependencies": [
@@ -138,7 +138,7 @@ def register_tools():
     {
         "name": "TLS Certificate Inspector",
         "category": "Advanced Networking",
-        "description": "TLS Certificate Inspector: performs the tls certificate inspector action with structured, human-readable output.",
+        "description": "Inspect tls certificate and report internals.",
         "handler": "operations.tls_certificate_inspector",
         "cli_command": "tls-certificate-inspector",
         "dependencies": [
@@ -149,7 +149,7 @@ def register_tools():
     {
         "name": "URL Redirect Checker",
         "category": "Advanced Networking",
-        "description": "URL Redirect Checker: performs the url redirect checker action with structured, human-readable output.",
+        "description": "Check and validate url redirect.",
         "handler": "operations.url_redirect_checker",
         "cli_command": "url-redirect-checker",
         "dependencies": [
@@ -160,7 +160,7 @@ def register_tools():
     {
         "name": "Local Listening Ports",
         "category": "Advanced Networking",
-        "description": "Local Listening Ports: performs the local listening ports action with structured, human-readable output.",
+        "description": "Local Listening Ports: query and display local listening ports details as structured JSON.",
         "handler": "operations.local_listening_ports",
         "cli_command": "local-listening-ports",
         "dependencies": [
@@ -171,7 +171,7 @@ def register_tools():
     {
         "name": "Network Route Viewer",
         "category": "Advanced Networking",
-        "description": "Network Route Viewer: performs the network route viewer action with structured, human-readable output.",
+        "description": "Display the contents of network route.",
         "handler": "operations.network_route_viewer",
         "cli_command": "network-route-viewer",
         "dependencies": [
@@ -182,7 +182,7 @@ def register_tools():
     {
         "name": "Subnet Calculator",
         "category": "Networking",
-        "description": "Subnet Calculator: performs the subnet calculator action with structured, human-readable output.",
+        "description": "Compute subnet values.",
         "handler": "operations.subnet_calculator",
         "cli_command": "subnet-calculator",
         "dependencies": []
@@ -190,7 +190,7 @@ def register_tools():
     {
         "name": "MAC Vendor Lookup",
         "category": "Networking",
-        "description": "MAC Vendor Lookup: performs the mac vendor action with structured, human-readable output.",
+        "description": "MAC Vendor Lookup: query and display mac vendor lookup details as structured JSON.",
         "handler": "operations.mac_vendor_lookup",
         "cli_command": "mac-vendor",
         "dependencies": []
@@ -198,7 +198,7 @@ def register_tools():
     {
         "name": "SSL Expiry Monitor",
         "category": "Networking",
-        "description": "SSL Expiry Monitor: performs the ssl expiry action with structured, human-readable output.",
+        "description": "Monitor ssl expiry over time.",
         "handler": "operations.ssl_expiry_monitor",
         "cli_command": "ssl-expiry",
         "dependencies": []
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "Speed Test Probe",
         "category": "Networking",
-        "description": "Speed Test Probe: performs the speed probe action with structured, human-readable output.",
+        "description": "Speed Test Probe: query and display speed test probe details as structured JSON.",
         "handler": "operations.speed_test_probe",
         "cli_command": "speed-probe",
         "dependencies": []

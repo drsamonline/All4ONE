@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Image Resizer",
             "category": "Advanced Imaging",
-            "description": "Image Resizer: performs the image resizer action with structured, human-readable output.",
+            "description": "Resize image.",
             "handler": "operations.image_resizer",
             "cli_command": "image-resizer",
             "dependencies": ["Pillow"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Image Cropper",
             "category": "Advanced Imaging",
-            "description": "Image Cropper: performs the image cropper action with structured, human-readable output.",
+            "description": "Crop image.",
             "handler": "operations.image_cropper",
             "cli_command": "image-cropper",
             "dependencies": ["Pillow"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Image Rotator",
             "category": "Advanced Imaging",
-            "description": "Image Rotator: performs the image rotator action with structured, human-readable output.",
+            "description": "Rotate image.",
             "handler": "operations.image_rotator",
             "cli_command": "image-rotator",
             "dependencies": ["Pillow"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Image Flipper",
             "category": "Advanced Imaging",
-            "description": "Image Flipper: performs the image flipper action with structured, human-readable output.",
+            "description": "Flip image.",
             "handler": "operations.image_flipper",
             "cli_command": "image-flipper",
             "dependencies": ["Pillow"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Image Converter",
             "category": "Advanced Imaging",
-            "description": "Image Converter: performs the image converter action with structured, human-readable output.",
+            "description": "Convert image between units or formats.",
             "handler": "operations.image_converter",
             "cli_command": "image-converter",
             "dependencies": ["Pillow"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Image Optimizer",
             "category": "Advanced Imaging",
-            "description": "Image Optimizer: performs the image optimizer action with structured, human-readable output.",
+            "description": "Optimize image.",
             "handler": "operations.image_optimizer",
             "cli_command": "image-optimizer",
             "dependencies": ["Pillow"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Image Metadata Cleaner",
             "category": "Advanced Imaging",
-            "description": "Image Metadata Cleaner: performs the image metadata cleaner action with structured, human-readable output.",
+            "description": "Clean up image metadata.",
             "handler": "operations.image_metadata_cleaner",
             "cli_command": "image-metadata-cleaner",
             "dependencies": ["Pillow"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Image Contact Sheet",
             "category": "Advanced Imaging",
-            "description": "Image Contact Sheet: performs the image contact sheet action with structured, human-readable output.",
+            "description": "Image Contact Sheet: query and display image contact sheet details as structured JSON.",
             "handler": "operations.image_contact_sheet",
             "cli_command": "image-contact-sheet",
             "dependencies": ["Pillow"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Image Montage Builder",
             "category": "Advanced Imaging",
-            "description": "Image Montage Builder: performs the image montage builder action with structured, human-readable output.",
+            "description": "Image Montage Builder: query and display image montage builder details as structured JSON.",
             "handler": "operations.image_montage_builder",
             "cli_command": "image-montage-builder",
             "dependencies": ["Pillow"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Image Border Adder",
             "category": "Advanced Imaging",
-            "description": "Image Border Adder: performs the image border adder action with structured, human-readable output.",
+            "description": "Image Border Adder: query and display image border adder details as structured JSON.",
             "handler": "operations.image_border_adder",
             "cli_command": "image-border-adder",
             "dependencies": ["Pillow"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Image Watermark Tool",
             "category": "Advanced Imaging",
-            "description": "Image Watermark Tool: performs the image watermark tool action with structured, human-readable output.",
+            "description": "Image Watermark Tool: query and display image watermark tool details as structured JSON.",
             "handler": "operations.image_watermark_tool",
             "cli_command": "image-watermark-tool",
             "dependencies": ["Pillow"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Image Batch Renamer",
             "category": "Advanced Imaging",
-            "description": "Image Batch Renamer: performs the image batch renamer action with structured, human-readable output.",
+            "description": "Rename image batch in bulk.",
             "handler": "operations.image_batch_renamer",
             "cli_command": "image-batch-renamer",
             "dependencies": ["Pillow"],

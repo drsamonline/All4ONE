@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Drive Information",
             "category": "Advanced Disk Tools",
-            "description": "Drive Information: performs the drive information action with structured, human-readable output.",
+            "description": "Drive Information: query and display drive information details as structured JSON.",
             "handler": "operations.drive_information",
             "cli_command": "drive-information",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Volume List",
             "category": "Advanced Disk Tools",
-            "description": "Volume List: performs the volume list action with structured, human-readable output.",
+            "description": "List volume entries.",
             "handler": "operations.volume_list",
             "cli_command": "volume-list",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Partition Information",
             "category": "Advanced Disk Tools",
-            "description": "Partition Information: performs the partition information action with structured, human-readable output.",
+            "description": "Partition Information: query and display partition information details as structured JSON.",
             "handler": "operations.partition_information",
             "cli_command": "partition-information",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Disk Free Space",
             "category": "Advanced Disk Tools",
-            "description": "Disk Free Space: performs the disk free space action with structured, human-readable output.",
+            "description": "Disk Free Space: query and display disk free space details as structured JSON.",
             "handler": "operations.disk_free_space",
             "cli_command": "disk-free-space",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Disk Usage Top Files",
             "category": "Advanced Disk Tools",
-            "description": "Disk Usage Top Files: performs the disk usage top files action with structured, human-readable output.",
+            "description": "Disk Usage Top Files: query and display disk usage top files details as structured JSON.",
             "handler": "operations.disk_usage_top_files",
             "cli_command": "disk-usage-top-files",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Directory Size Tree",
             "category": "Advanced Disk Tools",
-            "description": "Directory Size Tree: performs the directory size tree action with structured, human-readable output.",
+            "description": "Directory Size Tree: query and display directory size tree details as structured JSON.",
             "handler": "operations.directory_size_tree",
             "cli_command": "directory-size-tree",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Sparse File Inspector",
             "category": "Advanced Disk Tools",
-            "description": "Sparse File Inspector: performs the sparse file inspector action with structured, human-readable output.",
+            "description": "Inspect sparse file and report internals.",
             "handler": "operations.sparse_file_inspector",
             "cli_command": "sparse-file-inspector",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "File Allocation Inspector",
             "category": "Advanced Disk Tools",
-            "description": "File Allocation Inspector: performs the file allocation inspector action with structured, human-readable output.",
+            "description": "Inspect file allocation and report internals.",
             "handler": "operations.file_allocation_inspector",
             "cli_command": "file-allocation-inspector",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Disk Benchmark Reader",
             "category": "Advanced Disk Tools",
-            "description": "Disk Benchmark Reader: performs the disk benchmark reader action with structured, human-readable output.",
+            "description": "Read and print disk benchmark.",
             "handler": "operations.disk_benchmark_reader",
             "cli_command": "disk-benchmark-reader",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "SMART Status",
             "category": "Advanced Disk Tools",
-            "description": "SMART Status: performs the smart status action with structured, human-readable output.",
+            "description": "Report current smart status.",
             "handler": "operations.smart_status",
             "cli_command": "smart-status",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Mount Point Viewer",
             "category": "Advanced Disk Tools",
-            "description": "Mount Point Viewer: performs the mount point viewer action with structured, human-readable output.",
+            "description": "Display the contents of mount point.",
             "handler": "operations.mount_point_viewer",
             "cli_command": "mount-point-viewer",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Volume Serial Reader",
             "category": "Advanced Disk Tools",
-            "description": "Volume Serial Reader: performs the volume serial reader action with structured, human-readable output.",
+            "description": "Read and print volume serial.",
             "handler": "operations.volume_serial_reader",
             "cli_command": "volume-serial-reader",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "NTFS Alternate Stream Finder",
             "category": "Advanced Disk Tools",
-            "description": "NTFS Alternate Stream Finder: performs the ntfs alternate stream finder action with structured, human-readable output.",
+            "description": "Locate ntfs alternate stream on disk or in scope.",
             "handler": "operations.ntfs_alternate_stream_finder",
             "cli_command": "ntfs-alternate-stream-finder",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Large File Finder",
             "category": "Advanced Disk Tools",
-            "description": "Large File Finder: performs the large file finder action with structured, human-readable output.",
+            "description": "Locate large file on disk or in scope.",
             "handler": "operations.large_file_finder",
             "cli_command": "large-file-finder",
             "dependencies": [],

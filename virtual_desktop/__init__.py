@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Virtual Desktop List",
             "category": "Virtual Desktops",
-            "description": "Virtual Desktop List: performs the virtual desktop list action with structured, human-readable output.",
+            "description": "List virtual desktop entries.",
             "handler": "operations.virtual_desktop_list",
             "cli_command": "virtual-desktop-list",
             "dependencies": ["powershell"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Virtual Desktop Shortcut",
             "category": "Virtual Desktops",
-            "description": "Virtual Desktop Shortcut: performs the virtual desktop shortcut action with structured, human-readable output.",
+            "description": "Virtual Desktop Shortcut: query and display virtual desktop shortcut details as structured JSON.",
             "handler": "operations.virtual_desktop_shortcut",
             "cli_command": "virtual-desktop-shortcut",
             "dependencies": ["powershell"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Window Desktop Mapper",
             "category": "Virtual Desktops",
-            "description": "Window Desktop Mapper: performs the window desktop mapper action with structured, human-readable output.",
+            "description": "Window Desktop Mapper: query and display window desktop mapper details as structured JSON.",
             "handler": "operations.window_desktop_mapper",
             "cli_command": "window-desktop-mapper",
             "dependencies": ["powershell"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Desktop Count Reader",
             "category": "Virtual Desktops",
-            "description": "Desktop Count Reader: performs the desktop count reader action with structured, human-readable output.",
+            "description": "Read and print desktop count.",
             "handler": "operations.desktop_count_reader",
             "cli_command": "desktop-count-reader",
             "dependencies": ["powershell"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Virtual Desktop Settings",
             "category": "Virtual Desktops",
-            "description": "Virtual Desktop Settings: performs the virtual desktop settings action with structured, human-readable output.",
+            "description": "Virtual Desktop Settings: query and display virtual desktop settings details as structured JSON.",
             "handler": "operations.virtual_desktop_settings",
             "cli_command": "virtual-desktop-settings",
             "dependencies": ["powershell"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Desktop Hotkey Guide",
             "category": "Virtual Desktops",
-            "description": "Desktop Hotkey Guide: performs the desktop hotkey guide action with structured, human-readable output.",
+            "description": "Show guidance for desktop hotkey.",
             "handler": "operations.desktop_hotkey_guide",
             "cli_command": "desktop-hotkey-guide",
             "dependencies": ["powershell"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Desktop Process Summary",
             "category": "Virtual Desktops",
-            "description": "Desktop Process Summary: performs the desktop process summary action with structured, human-readable output.",
+            "description": "Summarize desktop process summary at a glance.",
             "handler": "operations.desktop_process_summary",
             "cli_command": "desktop-process-summary",
             "dependencies": ["powershell"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Desktop Launch Helper",
             "category": "Virtual Desktops",
-            "description": "Desktop Launch Helper: performs the desktop launch helper action with structured, human-readable output.",
+            "description": "Assist with desktop launch tasks.",
             "handler": "operations.desktop_launch_helper",
             "cli_command": "desktop-launch-helper",
             "dependencies": ["powershell"],
