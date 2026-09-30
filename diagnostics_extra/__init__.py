@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "System Information JSON Export",
             "category": "Extended Diagnostics",
-            "description": "System Information JSON Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "System Information JSON Export: performs the system information json export action with structured, human-readable output.",
             "handler": "operations.system_information_json_export",
             "cli_command": "system-information-json-export",
             "dependencies": ["powershell"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "System Information Text Export",
             "category": "Extended Diagnostics",
-            "description": "System Information Text Export. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "System Information Text Export: performs the system information text export action with structured, human-readable output.",
             "handler": "operations.system_information_text_export",
             "cli_command": "system-information-text-export",
             "dependencies": ["powershell"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Installed Software Snapshot",
             "category": "Extended Diagnostics",
-            "description": "Installed Software Snapshot. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Installed Software Snapshot: performs the installed software snapshot action with structured, human-readable output.",
             "handler": "operations.installed_software_snapshot",
             "cli_command": "installed-software-snapshot",
             "dependencies": ["powershell"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Windows Features Snapshot",
             "category": "Extended Diagnostics",
-            "description": "Windows Features Snapshot. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Windows Features Snapshot: performs the windows features snapshot action with structured, human-readable output.",
             "handler": "operations.windows_features_snapshot",
             "cli_command": "windows-features-snapshot",
             "dependencies": ["powershell"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Windows Hotfix Snapshot",
             "category": "Extended Diagnostics",
-            "description": "Windows Hotfix Snapshot. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Windows Hotfix Snapshot: performs the windows hotfix snapshot action with structured, human-readable output.",
             "handler": "operations.windows_hotfix_snapshot",
             "cli_command": "windows-hotfix-snapshot",
             "dependencies": ["powershell"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Device Class Summary",
             "category": "Extended Diagnostics",
-            "description": "Device Class Summary. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Device Class Summary: performs the device class summary action with structured, human-readable output.",
             "handler": "operations.device_class_summary",
             "cli_command": "device-class-summary",
             "dependencies": ["powershell"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "USB Device Inventory",
             "category": "Extended Diagnostics",
-            "description": "USB Device Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "USB Device Inventory: performs the usb device inventory action with structured, human-readable output.",
             "handler": "operations.usb_device_inventory",
             "cli_command": "usb-device-inventory",
             "dependencies": ["powershell"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Bluetooth Device Inventory",
             "category": "Extended Diagnostics",
-            "description": "Bluetooth Device Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Bluetooth Device Inventory: performs the bluetooth device inventory action with structured, human-readable output.",
             "handler": "operations.bluetooth_device_inventory",
             "cli_command": "bluetooth-device-inventory",
             "dependencies": ["powershell"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Printer Inventory",
             "category": "Extended Diagnostics",
-            "description": "Printer Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Printer Inventory: performs the printer inventory action with structured, human-readable output.",
             "handler": "operations.printer_inventory",
             "cli_command": "printer-inventory",
             "dependencies": ["powershell"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Display Inventory",
             "category": "Extended Diagnostics",
-            "description": "Display Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Display Inventory: performs the display inventory action with structured, human-readable output.",
             "handler": "operations.display_inventory",
             "cli_command": "display-inventory",
             "dependencies": ["powershell"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Audio Device Inventory",
             "category": "Extended Diagnostics",
-            "description": "Audio Device Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Audio Device Inventory: performs the audio device inventory action with structured, human-readable output.",
             "handler": "operations.audio_device_inventory",
             "cli_command": "audio-device-inventory",
             "dependencies": ["powershell"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Environment Variable Diff",
             "category": "Extended Diagnostics",
-            "description": "Environment Variable Diff. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Environment Variable Diff: performs the environment variable diff action with structured, human-readable output.",
             "handler": "operations.environment_variable_diff",
             "cli_command": "environment-variable-diff",
             "dependencies": ["powershell"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "PATH Deduplication Report",
             "category": "Extended Diagnostics",
-            "description": "PATH Deduplication Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "PATH Deduplication Report: performs the path deduplication report action with structured, human-readable output.",
             "handler": "operations.path_deduplication_report",
             "cli_command": "path-deduplication-report",
             "dependencies": ["powershell"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "DNS Cache Viewer",
             "category": "Extended Diagnostics",
-            "description": "DNS Cache Viewer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "DNS Cache Viewer: performs the dns cache viewer action with structured, human-readable output.",
             "handler": "operations.dns_cache_viewer",
             "cli_command": "dns-cache-viewer",
             "dependencies": ["powershell"],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Windows Firewall Rule Count",
             "category": "Extended Diagnostics",
-            "description": "Windows Firewall Rule Count. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Windows Firewall Rule Count: performs the windows firewall rule count action with structured, human-readable output.",
             "handler": "operations.windows_firewall_rule_count",
             "cli_command": "windows-firewall-rule-count",
             "dependencies": ["powershell"],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Network Connection Table",
             "category": "Extended Diagnostics",
-            "description": "Network Connection Table. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Network Connection Table: performs the network connection table action with structured, human-readable output.",
             "handler": "operations.network_connection_table",
             "cli_command": "network-connection-table",
             "dependencies": ["powershell"],
@@ -134,7 +134,7 @@ def register_tools():
         {
             "name": "Open File Guide",
             "category": "Extended Diagnostics",
-            "description": "Open File Guide. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Open File Guide: performs the open file guide action with structured, human-readable output.",
             "handler": "operations.open_file_guide",
             "cli_command": "open-file-guide",
             "dependencies": ["powershell"],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Crash Dump Inventory",
             "category": "Extended Diagnostics",
-            "description": "Crash Dump Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Crash Dump Inventory: performs the crash dump inventory action with structured, human-readable output.",
             "handler": "operations.crash_dump_inventory",
             "cli_command": "crash-dump-inventory",
             "dependencies": ["powershell"],
@@ -150,7 +150,7 @@ def register_tools():
         {
             "name": "Log Directory Inventory",
             "category": "Extended Diagnostics",
-            "description": "Log Directory Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Log Directory Inventory: performs the log directory inventory action with structured, human-readable output.",
             "handler": "operations.log_directory_inventory",
             "cli_command": "log-directory-inventory",
             "dependencies": ["powershell"],
@@ -158,7 +158,7 @@ def register_tools():
         {
             "name": "Utility Suite Diagnostics",
             "category": "Extended Diagnostics",
-            "description": "Utility Suite Diagnostics. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Utility Suite Diagnostics: performs the utility suite diagnostics action with structured, human-readable output.",
             "handler": "operations.utility_suite_diagnostics",
             "cli_command": "utility-suite-diagnostics",
             "dependencies": ["powershell"],

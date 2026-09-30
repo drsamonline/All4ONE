@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Bytes Converter",
             "category": "Unit Conversion",
-            "description": "Bytes Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Bytes Converter: performs the bytes converter action with structured, human-readable output.",
             "handler": "operations.bytes_converter",
             "cli_command": "bytes-converter",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Size Formatter",
             "category": "Unit Conversion",
-            "description": "Size Formatter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Size Formatter: performs the size formatter action with structured, human-readable output.",
             "handler": "operations.size_formatter",
             "cli_command": "size-formatter",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Seconds Converter",
             "category": "Unit Conversion",
-            "description": "Seconds Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Seconds Converter: performs the seconds converter action with structured, human-readable output.",
             "handler": "operations.seconds_converter",
             "cli_command": "seconds-converter",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Temperature Converter",
             "category": "Unit Conversion",
-            "description": "Temperature Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Temperature Converter: performs the temperature converter action with structured, human-readable output.",
             "handler": "operations.temperature_converter",
             "cli_command": "temperature-converter",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Length Converter",
             "category": "Unit Conversion",
-            "description": "Length Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Length Converter: performs the length converter action with structured, human-readable output.",
             "handler": "operations.length_converter",
             "cli_command": "length-converter",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Mass Converter",
             "category": "Unit Conversion",
-            "description": "Mass Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Mass Converter: performs the mass converter action with structured, human-readable output.",
             "handler": "operations.mass_converter",
             "cli_command": "mass-converter",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Area Converter",
             "category": "Unit Conversion",
-            "description": "Area Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Area Converter: performs the area converter action with structured, human-readable output.",
             "handler": "operations.area_converter",
             "cli_command": "area-converter",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Volume Converter",
             "category": "Unit Conversion",
-            "description": "Volume Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Volume Converter: performs the volume converter action with structured, human-readable output.",
             "handler": "operations.volume_converter",
             "cli_command": "volume-converter",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Speed Converter",
             "category": "Unit Conversion",
-            "description": "Speed Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Speed Converter: performs the speed converter action with structured, human-readable output.",
             "handler": "operations.speed_converter",
             "cli_command": "speed-converter",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Pressure Converter",
             "category": "Unit Conversion",
-            "description": "Pressure Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Pressure Converter: performs the pressure converter action with structured, human-readable output.",
             "handler": "operations.pressure_converter",
             "cli_command": "pressure-converter",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Energy Converter",
             "category": "Unit Conversion",
-            "description": "Energy Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Energy Converter: performs the energy converter action with structured, human-readable output.",
             "handler": "operations.energy_converter",
             "cli_command": "energy-converter",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Power Converter",
             "category": "Unit Conversion",
-            "description": "Power Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Power Converter: performs the power converter action with structured, human-readable output.",
             "handler": "operations.power_converter",
             "cli_command": "power-converter",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Angle Converter",
             "category": "Unit Conversion",
-            "description": "Angle Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Angle Converter: performs the angle converter action with structured, human-readable output.",
             "handler": "operations.angle_converter",
             "cli_command": "angle-converter",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Frequency Converter",
             "category": "Unit Conversion",
-            "description": "Frequency Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Frequency Converter: performs the frequency converter action with structured, human-readable output.",
             "handler": "operations.frequency_converter",
             "cli_command": "frequency-converter",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Data Rate Converter",
             "category": "Unit Conversion",
-            "description": "Data Rate Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Data Rate Converter: performs the data rate converter action with structured, human-readable output.",
             "handler": "operations.data_rate_converter",
             "cli_command": "data-rate-converter",
             "dependencies": [],

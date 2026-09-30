@@ -1,8 +1,16 @@
-**Author:** Dr. Sohil Momin, BHMS
+<div align="center">
 
-# Utility Suite Compilation and Release Guide
+# 🏗️ Utility Suite — Compilation & Release Guide
 
-## 0. Fastest path: automated CI build (no Windows machine needed)
+![PyInstaller](https://img.shields.io/badge/PyInstaller-6.x-orange?style=flat-square)
+![Target](https://img.shields.io/badge/target-utility__suite.exe-0078D4?style=flat-square&logo=windows&logoColor=white)
+![CI build](https://img.shields.io/badge/GitHub%20Actions-Windows%20runner-brightgreen?style=flat-square&logo=githubactions&logoColor=white)
+
+*Author: Dr. Sohil Momin, BHMS*
+
+</div>
+
+## 0. Fastest path: automated CI build (no Windows machine needed) 🤖
 
 This repository includes `.github/workflows/build-windows-exe.yml`. Push
 the repository to GitHub and either:

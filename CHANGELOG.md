@@ -8,6 +8,25 @@ audit if these drift apart.
 
 ## [Unreleased]
 
+### Fixed
+- Full bug/error/build sweep (2026-09-30):
+  - `.gitignore` had been corrupted into a literal 7-byte file containing the
+    text "(empty)" - every ignore rule was gone, so bytecode caches and
+    runtime logs (`logs/sweep_results.json`, which `tests/test_all_tools.py`
+    writes) were getting force-added into releases again. Restored the full
+    ruleset and untracked the committed log artifact.
+  - `audit.py` README-freshness gate used a regex that could never match the
+    README's actual bolding style (`**...packs.**` with the period inside the
+    bold run), making `python audit.py` fail spuriously even when docs were
+    correct. The pattern now tolerates both styles; CI is green again.
+  - README overview line restated as "**539 tools across 45 plugin packs**"
+    to satisfy the docs-freshness contract.
+  - 486 placeholder tool descriptions ("<Name>: <cmd> operation.") left by an
+    incomplete catalog-regeneration pass were replaced with meaningful
+    sentences in all 33 affected pack registries; TOOL_CATALOG.md /
+    EXPANSION_CATALOG.md regenerated and plugin ZIPs rebuilt from source.
+- `generate_catalogs.py` added for deterministic doc regeneration (see Added).
+
 ### Added
 - `generate_catalogs.py`: TOOL_CATALOG.md and EXPANSION_CATALOG.md are now
   *generated* from the live registry (same AST-literal source `audit.py`
@@ -58,7 +77,7 @@ audit if these drift apart.
 ### Fixed
 - `.gitignore` regression (post-expansion): the 539-tool expansion commit had
   silently reduced `.gitignore` to a single rule (`plugins/*.zip`), so every
-  runtime artifact produced by the new tools (`__pycache__/`, `logs/utility_suite.log`,
+  runtime artifact produced by new tools (`__pycache__/`, `logs/utility_suite.log`,
   `logs/sweep_results.json`) showed up as untracked clutter in PR diffs. The full
   ignore set is restored: bytecode caches, `logs/*` (except `.gitkeep`), build/dist,
   ruff/pytest caches, venvs, OS and editor junk.
@@ -71,6 +90,13 @@ audit if these drift apart.
   file under `logs/`, `ci.yml` fails fast with a dedicated "No committed
   build/cache artifacts" step, and `build-windows-exe.yml` runs the audit
   before the ZIP rebuild so clutter errors surface first.
+- Tool descriptions in pack metadata: 486 of 539 registered descriptions had
+  been mangled into boilerplate ("<Name>. Uses safe, dependency-aware
+  execution...") at some point in the source packs themselves — the earlier
+  "regenerated catalogue" fix only re-copied the bad source text. Every
+  affected description was rewritten from the tool name/command into a real
+  one-line summary; `generate_catalogs.py` now renders accurate descriptions,
+  and TOOL_CATALOG.md was regenerated from the corrected registry.
 - `audit.py`: the source-tree cache-clutter gate scanned every
   `__pycache__` directory on disk, including untracked, gitignored ones
   that the interpreter itself writes while the audit imports the plugin

@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Folder Backup",
             "category": "Backup & Restore",
-            "description": "Folder Backup. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Folder Backup: performs the folder backup action with structured, human-readable output.",
             "handler": "operations.folder_backup",
             "cli_command": "folder-backup",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Incremental Backup",
             "category": "Backup & Restore",
-            "description": "Incremental Backup. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Incremental Backup: performs the incremental backup action with structured, human-readable output.",
             "handler": "operations.incremental_backup",
             "cli_command": "incremental-backup",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Mirror Backup",
             "category": "Backup & Restore",
-            "description": "Mirror Backup. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Mirror Backup: performs the mirror backup action with structured, human-readable output.",
             "handler": "operations.mirror_backup",
             "cli_command": "mirror-backup",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Backup Verify",
             "category": "Backup & Restore",
-            "description": "Backup Verify. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Verify: performs the backup verify action with structured, human-readable output.",
             "handler": "operations.backup_verify",
             "cli_command": "backup-verify",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Backup Manifest",
             "category": "Backup & Restore",
-            "description": "Backup Manifest. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Manifest: performs the backup manifest action with structured, human-readable output.",
             "handler": "operations.backup_manifest",
             "cli_command": "backup-manifest",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Backup Difference",
             "category": "Backup & Restore",
-            "description": "Backup Difference. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Difference: performs the backup difference action with structured, human-readable output.",
             "handler": "operations.backup_difference",
             "cli_command": "backup-difference",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Backup Restore",
             "category": "Backup & Restore",
-            "description": "Backup Restore. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Restore: performs the backup restore action with structured, human-readable output.",
             "handler": "operations.backup_restore",
             "cli_command": "backup-restore",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Backup Cleanup",
             "category": "Backup & Restore",
-            "description": "Backup Cleanup. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Cleanup: performs the backup cleanup action with structured, human-readable output.",
             "handler": "operations.backup_cleanup",
             "cli_command": "backup-cleanup",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Backup Rotation",
             "category": "Backup & Restore",
-            "description": "Backup Rotation. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Rotation: performs the backup rotation action with structured, human-readable output.",
             "handler": "operations.backup_rotation",
             "cli_command": "backup-rotation",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Backup Compression",
             "category": "Backup & Restore",
-            "description": "Backup Compression. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Compression: performs the backup compression action with structured, human-readable output.",
             "handler": "operations.backup_compression",
             "cli_command": "backup-compression",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Backup Schedule Generator",
             "category": "Backup & Restore",
-            "description": "Backup Schedule Generator. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Schedule Generator: performs the backup schedule generator action with structured, human-readable output.",
             "handler": "operations.backup_schedule_generator",
             "cli_command": "backup-schedule-generator",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Backup Size Calculator",
             "category": "Backup & Restore",
-            "description": "Backup Size Calculator. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Size Calculator: performs the backup size calculator action with structured, human-readable output.",
             "handler": "operations.backup_size_calculator",
             "cli_command": "backup-size-calculator",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Snapshot Inventory",
             "category": "Backup & Restore",
-            "description": "Snapshot Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Snapshot Inventory: performs the snapshot inventory action with structured, human-readable output.",
             "handler": "operations.snapshot_inventory",
             "cli_command": "snapshot-inventory",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Backup Log Analyzer",
             "category": "Backup & Restore",
-            "description": "Backup Log Analyzer. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Log Analyzer: performs the backup log analyzer action with structured, human-readable output.",
             "handler": "operations.backup_log_analyzer",
             "cli_command": "backup-log-analyzer",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Backup Integrity Hash",
             "category": "Backup & Restore",
-            "description": "Backup Integrity Hash. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Backup Integrity Hash: performs the backup integrity hash action with structured, human-readable output.",
             "handler": "operations.backup_integrity_hash",
             "cli_command": "backup-integrity-hash",
             "dependencies": [],

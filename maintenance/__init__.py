@@ -32,7 +32,7 @@ def register_tools():
     {
         "name": "Temp File Aging Cleaner",
         "category": "Maintenance",
-        "description": "Temp File Aging Cleaner. Temp File Aging Cleaner with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Temp File Aging Cleaner: performs the temp aging cleaner action with structured, human-readable output.",
         "handler": "operations.temp_file_aging_cleaner",
         "cli_command": "temp-aging-cleaner",
         "dependencies": []
@@ -40,7 +40,7 @@ def register_tools():
     {
         "name": "Broken Link Finder",
         "category": "Maintenance",
-        "description": "Broken Link Finder. Broken Link Finder with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Broken Link Finder: performs the broken link finder action with structured, human-readable output.",
         "handler": "operations.broken_link_finder",
         "cli_command": "broken-link-finder",
         "dependencies": []
@@ -48,7 +48,7 @@ def register_tools():
     {
         "name": "Disk Cleanup Preview",
         "category": "Maintenance",
-        "description": "Disk Cleanup Preview. Disk Cleanup Preview with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Disk Cleanup Preview: performs the disk cleanup preview action with structured, human-readable output.",
         "handler": "operations.disk_cleanup_preview",
         "cli_command": "disk-cleanup-preview",
         "dependencies": []
@@ -56,7 +56,7 @@ def register_tools():
     {
         "name": "Log Rotation Helper",
         "category": "Maintenance",
-        "description": "Log Rotation Helper. Log Rotation Helper with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Log Rotation Helper: performs the log rotate action with structured, human-readable output.",
         "handler": "operations.log_rotation_helper",
         "cli_command": "log-rotate",
         "dependencies": []

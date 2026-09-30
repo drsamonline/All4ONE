@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Driver List",
             "category": "Driver Tools",
-            "description": "Driver List. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Driver List: performs the driver list action with structured, human-readable output.",
             "handler": "operations.driver_list",
             "cli_command": "driver-list",
             "dependencies": ["pnputil"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Driver Details",
             "category": "Driver Tools",
-            "description": "Driver Details. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Driver Details: performs the driver details action with structured, human-readable output.",
             "handler": "operations.driver_details",
             "cli_command": "driver-details",
             "dependencies": ["pnputil"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Driver Store Inventory",
             "category": "Driver Tools",
-            "description": "Driver Store Inventory. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Driver Store Inventory: performs the driver store inventory action with structured, human-readable output.",
             "handler": "operations.driver_store_inventory",
             "cli_command": "driver-store-inventory",
             "dependencies": ["pnputil"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Driver Signature Check",
             "category": "Driver Tools",
-            "description": "Driver Signature Check. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Driver Signature Check: performs the driver signature check action with structured, human-readable output.",
             "handler": "operations.driver_signature_check",
             "cli_command": "driver-signature-check",
             "dependencies": ["pnputil"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Driver Version Report",
             "category": "Driver Tools",
-            "description": "Driver Version Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Driver Version Report: performs the driver version report action with structured, human-readable output.",
             "handler": "operations.driver_version_report",
             "cli_command": "driver-version-report",
             "dependencies": ["pnputil"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Driver Provider Report",
             "category": "Driver Tools",
-            "description": "Driver Provider Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Driver Provider Report: performs the driver provider report action with structured, human-readable output.",
             "handler": "operations.driver_provider_report",
             "cli_command": "driver-provider-report",
             "dependencies": ["pnputil"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Driver Class Report",
             "category": "Driver Tools",
-            "description": "Driver Class Report. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Driver Class Report: performs the driver class report action with structured, human-readable output.",
             "handler": "operations.driver_class_report",
             "cli_command": "driver-class-report",
             "dependencies": ["pnputil"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Driver Device Status",
             "category": "Driver Tools",
-            "description": "Driver Device Status. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Driver Device Status: performs the driver device status action with structured, human-readable output.",
             "handler": "operations.driver_device_status",
             "cli_command": "driver-device-status",
             "dependencies": ["pnputil"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Driver Update Reminder",
             "category": "Driver Tools",
-            "description": "Driver Update Reminder. Uses safe, dependency-aware execution with clear diagnostics.",
+            "description": "Driver Update Reminder: performs the driver update reminder action with structured, human-readable output.",
             "handler": "operations.driver_update_reminder",
             "cli_command": "driver-update-reminder",
             "dependencies": ["pnputil"],

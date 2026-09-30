@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "CSV Inspector",
         "category": "Data & Structured Data",
-        "description": "CSV Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "CSV Inspector: performs the csv inspector action with structured, human-readable output.",
         "handler": "operations.csv_inspector",
         "cli_command": "csv-inspector",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "CSV Normalizer",
         "category": "Data & Structured Data",
-        "description": "CSV Normalizer. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "CSV Normalizer: performs the csv normalizer action with structured, human-readable output.",
         "handler": "operations.csv_normalizer",
         "cli_command": "csv-normalizer",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "CSV Column Selector",
         "category": "Data & Structured Data",
-        "description": "CSV Column Selector. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "CSV Column Selector: performs the csv column selector action with structured, human-readable output.",
         "handler": "operations.csv_column_selector",
         "cli_command": "csv-column-selector",
         "dependencies": []
@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "CSV Row Filter",
         "category": "Data & Structured Data",
-        "description": "CSV Row Filter. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "CSV Row Filter: performs the csv row filter action with structured, human-readable output.",
         "handler": "operations.csv_row_filter",
         "cli_command": "csv-row-filter",
         "dependencies": []
@@ -38,7 +38,7 @@ def register_tools():
     {
         "name": "CSV Sorter",
         "category": "Data & Structured Data",
-        "description": "CSV Sorter. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "CSV Sorter: performs the csv sorter action with structured, human-readable output.",
         "handler": "operations.csv_sorter",
         "cli_command": "csv-sorter",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "CSV Deduplicator",
         "category": "Data & Structured Data",
-        "description": "CSV Deduplicator. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "CSV Deduplicator: performs the csv deduplicator action with structured, human-readable output.",
         "handler": "operations.csv_deduplicator",
         "cli_command": "csv-deduplicator",
         "dependencies": []
@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "CSV Statistics",
         "category": "Data & Structured Data",
-        "description": "CSV Statistics. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "CSV Statistics: performs the csv statistics action with structured, human-readable output.",
         "handler": "operations.csv_statistics",
         "cli_command": "csv-statistics",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "CSV Transposer",
         "category": "Data & Structured Data",
-        "description": "CSV Transposer. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "CSV Transposer: performs the csv transposer action with structured, human-readable output.",
         "handler": "operations.csv_transposer",
         "cli_command": "csv-transposer",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "JSON Inspector",
         "category": "Data & Structured Data",
-        "description": "JSON Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "JSON Inspector: performs the json inspector action with structured, human-readable output.",
         "handler": "operations.json_inspector",
         "cli_command": "json-inspector",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "JSON Minifier",
         "category": "Data & Structured Data",
-        "description": "JSON Minifier. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "JSON Minifier: performs the json minifier action with structured, human-readable output.",
         "handler": "operations.json_minifier",
         "cli_command": "json-minifier",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "JSON Pretty Printer",
         "category": "Data & Structured Data",
-        "description": "JSON Pretty Printer. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "JSON Pretty Printer: performs the json pretty printer action with structured, human-readable output.",
         "handler": "operations.json_pretty_printer",
         "cli_command": "json-pretty-printer",
         "dependencies": []
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "JSON Path Extractor",
         "category": "Data & Structured Data",
-        "description": "JSON Path Extractor. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "JSON Path Extractor: performs the json path extractor action with structured, human-readable output.",
         "handler": "operations.json_path_extractor",
         "cli_command": "json-path-extractor",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "JSON Key Flattener",
         "category": "Data & Structured Data",
-        "description": "JSON Key Flattener. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "JSON Key Flattener: performs the json key flattener action with structured, human-readable output.",
         "handler": "operations.json_key_flattener",
         "cli_command": "json-key-flattener",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "JSON Unflattener",
         "category": "Data & Structured Data",
-        "description": "JSON Unflattener. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "JSON Unflattener: performs the json unflattener action with structured, human-readable output.",
         "handler": "operations.json_unflattener",
         "cli_command": "json-unflattener",
         "dependencies": []
@@ -118,7 +118,7 @@ def register_tools():
     {
         "name": "NDJSON Inspector",
         "category": "Data & Structured Data",
-        "description": "NDJSON Inspector. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "NDJSON Inspector: performs the ndjson inspector action with structured, human-readable output.",
         "handler": "operations.ndjson_inspector",
         "cli_command": "ndjson-inspector",
         "dependencies": []
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "NDJSON Filter",
         "category": "Data & Structured Data",
-        "description": "NDJSON Filter. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "NDJSON Filter: performs the ndjson filter action with structured, human-readable output.",
         "handler": "operations.ndjson_filter",
         "cli_command": "ndjson-filter",
         "dependencies": []
@@ -134,7 +134,7 @@ def register_tools():
     {
         "name": "SQLite Schema Viewer",
         "category": "Data & Structured Data",
-        "description": "SQLite Schema Viewer. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "SQLite Schema Viewer: performs the sqlite schema viewer action with structured, human-readable output.",
         "handler": "operations.sqlite_schema_viewer",
         "cli_command": "sqlite-schema-viewer",
         "dependencies": []
@@ -142,7 +142,7 @@ def register_tools():
     {
         "name": "SQLite Table Counter",
         "category": "Data & Structured Data",
-        "description": "SQLite Table Counter. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "SQLite Table Counter: performs the sqlite table counter action with structured, human-readable output.",
         "handler": "operations.sqlite_table_counter",
         "cli_command": "sqlite-table-counter",
         "dependencies": []
@@ -150,7 +150,7 @@ def register_tools():
     {
         "name": "SQLite Query Runner",
         "category": "Data & Structured Data",
-        "description": "SQLite Query Runner. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "SQLite Query Runner: performs the sqlite query runner action with structured, human-readable output.",
         "handler": "operations.sqlite_query_runner",
         "cli_command": "sqlite-query-runner",
         "dependencies": []
@@ -158,7 +158,7 @@ def register_tools():
     {
         "name": "SQLite Vacuum Helper",
         "category": "Data & Structured Data",
-        "description": "SQLite Vacuum Helper. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "SQLite Vacuum Helper: performs the sqlite vacuum helper action with structured, human-readable output.",
         "handler": "operations.sqlite_vacuum_helper",
         "cli_command": "sqlite-vacuum-helper",
         "dependencies": []
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "CSV Column Extractor",
         "category": "Data Tools",
-        "description": "CSV Column Extractor. Csv Column Extractor with safe, dependency-aware execution and clear diagnostics.",
+        "description": "CSV Column Extractor: performs the csv column extractor action with structured, human-readable output.",
         "handler": "operations.csv_column_extractor",
         "cli_command": "csv-column-extractor",
         "dependencies": []

@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Stopwatch",
         "category": "Time & Productivity",
-        "description": "Stopwatch. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Stopwatch: performs the stopwatch action with structured, human-readable output.",
         "handler": "operations.stopwatch",
         "cli_command": "stopwatch",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "Countdown",
         "category": "Time & Productivity",
-        "description": "Countdown. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Countdown: performs the countdown action with structured, human-readable output.",
         "handler": "operations.countdown",
         "cli_command": "countdown",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "Date Difference",
         "category": "Time & Productivity",
-        "description": "Date Difference. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Date Difference: performs the date difference action with structured, human-readable output.",
         "handler": "operations.date_difference",
         "cli_command": "date-difference",
         "dependencies": []
@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "Business Day Difference",
         "category": "Time & Productivity",
-        "description": "Business Day Difference. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Business Day Difference: performs the business day difference action with structured, human-readable output.",
         "handler": "operations.business_day_difference",
         "cli_command": "business-day-difference",
         "dependencies": []
@@ -38,7 +38,7 @@ def register_tools():
     {
         "name": "Timestamp Converter",
         "category": "Time & Productivity",
-        "description": "Timestamp Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Timestamp Converter: performs the timestamp converter action with structured, human-readable output.",
         "handler": "operations.timestamp_converter",
         "cli_command": "timestamp-converter",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Epoch Converter",
         "category": "Time & Productivity",
-        "description": "Epoch Converter. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Epoch Converter: performs the epoch converter action with structured, human-readable output.",
         "handler": "operations.epoch_converter",
         "cli_command": "epoch-converter",
         "dependencies": []
@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "ISO Time Formatter",
         "category": "Time & Productivity",
-        "description": "ISO Time Formatter. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "ISO Time Formatter: performs the iso time formatter action with structured, human-readable output.",
         "handler": "operations.iso_time_formatter",
         "cli_command": "iso-time-formatter",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Calendar Month",
         "category": "Time & Productivity",
-        "description": "Calendar Month. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Calendar Month: performs the calendar month action with structured, human-readable output.",
         "handler": "operations.calendar_month",
         "cli_command": "calendar-month",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "Calendar Year",
         "category": "Time & Productivity",
-        "description": "Calendar Year. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Calendar Year: performs the calendar year action with structured, human-readable output.",
         "handler": "operations.calendar_year",
         "cli_command": "calendar-year",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "Week Number",
         "category": "Time & Productivity",
-        "description": "Week Number. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Week Number: performs the week number action with structured, human-readable output.",
         "handler": "operations.week_number",
         "cli_command": "week-number",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Day Of Year",
         "category": "Time & Productivity",
-        "description": "Day Of Year. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Day Of Year: performs the day of year action with structured, human-readable output.",
         "handler": "operations.day_of_year",
         "cli_command": "day-of-year",
         "dependencies": []
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Working Hours Calculator",
         "category": "Time & Productivity",
-        "description": "Working Hours Calculator. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Working Hours Calculator: performs the working hours calculator action with structured, human-readable output.",
         "handler": "operations.working_hours_calculator",
         "cli_command": "working-hours-calculator",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "Pomodoro Timer",
         "category": "Time & Productivity",
-        "description": "Pomodoro Timer. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Pomodoro Timer: performs the pomodoro timer action with structured, human-readable output.",
         "handler": "operations.pomodoro_timer",
         "cli_command": "pomodoro-timer",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "Time Zone Offset",
         "category": "Time & Productivity",
-        "description": "Time Zone Offset. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Time Zone Offset: performs the time zone offset action with structured, human-readable output.",
         "handler": "operations.time_zone_offset",
         "cli_command": "time-zone-offset",
         "dependencies": []
@@ -118,7 +118,7 @@ def register_tools():
     {
         "name": "Meeting Time Table",
         "category": "Time & Productivity",
-        "description": "Meeting Time Table. Uses safe, dependency-aware execution with clear diagnostics.",
+        "description": "Meeting Time Table: performs the meeting time table action with structured, human-readable output.",
         "handler": "operations.meeting_time_table",
         "cli_command": "meeting-time-table",
         "dependencies": []
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Cron Expression Explainer",
         "category": "Time & Productivity",
-        "description": "Cron Expression Explainer. Cron Expression Explainer with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Cron Expression Explainer: performs the cron explainer action with structured, human-readable output.",
         "handler": "operations.cron_expression_explainer",
         "cli_command": "cron-explainer",
         "dependencies": []
@@ -134,7 +134,7 @@ def register_tools():
     {
         "name": "Date Range Expander",
         "category": "Time & Productivity",
-        "description": "Date Range Expander. Date Range Expander with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Date Range Expander: performs the date range expander action with structured, human-readable output.",
         "handler": "operations.date_range_expander",
         "cli_command": "date-range-expander",
         "dependencies": []
@@ -142,7 +142,7 @@ def register_tools():
     {
         "name": "Relative Time Formatter",
         "category": "Time & Productivity",
-        "description": "Relative Time Formatter. Relative Time Formatter with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Relative Time Formatter: performs the relative time action with structured, human-readable output.",
         "handler": "operations.relative_time_formatter",
         "cli_command": "relative-time",
         "dependencies": []
@@ -150,7 +150,7 @@ def register_tools():
     {
         "name": "Habit Streak Counter",
         "category": "Time & Productivity",
-        "description": "Habit Streak Counter. Habit Streak Counter with safe, dependency-aware execution and clear diagnostics.",
+        "description": "Habit Streak Counter: performs the habit streak action with structured, human-readable output.",
         "handler": "operations.habit_streak_counter",
         "cli_command": "habit-streak",
         "dependencies": []

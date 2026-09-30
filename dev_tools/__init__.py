@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "JSON YAML Converter",
         "category": "Developer Tools",
-        "description": "JSON YAML Converter. Json Yaml Converter with safe, dependency-aware execution and clear diagnostics.",
+        "description": "JSON YAML Converter: performs the json yaml action with structured, human-readable output.",
         "handler": "operations.json_yaml_converter",
         "cli_command": "json-yaml",
         "dependencies": [
@@ -40,7 +40,7 @@ def register_tools():
     {
         "name": "JSON Diff",
         "category": "Developer Tools",
-        "description": "JSON Diff. Json Diff with safe, dependency-aware execution and clear diagnostics.",
+        "description": "JSON Diff: performs the json diff action with structured, human-readable output.",
         "handler": "operations.json_diff",
         "cli_command": "json-diff",
         "dependencies": []
@@ -48,7 +48,7 @@ def register_tools():
     {
         "name": "JSON Schema Validator",
         "category": "Developer Tools",
-        "description": "JSON Schema Validator. Json Schema Validator with safe, dependency-aware execution and clear diagnostics.",
+        "description": "JSON Schema Validator: performs the json schema validate action with structured, human-readable output.",
         "handler": "operations.json_schema_validator",
         "cli_command": "json-schema-validate",
         "dependencies": []
