@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "CPU Monitor Snapshot",
         "category": "Monitoring & Telemetry",
-        "description": "CPU Monitor Snapshot: cpu-monitor-snapshot operation.",
+        "description": "Take a point-in-time snapshot of cpu monitor snapshot.",
         "handler": "operations.cpu_monitor_snapshot",
         "cli_command": "cpu-monitor-snapshot",
         "dependencies": [
@@ -16,7 +16,7 @@ def register_tools():
     {
         "name": "Memory Monitor Snapshot",
         "category": "Monitoring & Telemetry",
-        "description": "Memory Monitor Snapshot: memory-monitor-snapshot operation.",
+        "description": "Take a point-in-time snapshot of memory monitor snapshot.",
         "handler": "operations.memory_monitor_snapshot",
         "cli_command": "memory-monitor-snapshot",
         "dependencies": [
@@ -26,7 +26,7 @@ def register_tools():
     {
         "name": "Disk Monitor Snapshot",
         "category": "Monitoring & Telemetry",
-        "description": "Disk Monitor Snapshot: disk-monitor-snapshot operation.",
+        "description": "Take a point-in-time snapshot of disk monitor snapshot.",
         "handler": "operations.disk_monitor_snapshot",
         "cli_command": "disk-monitor-snapshot",
         "dependencies": [
@@ -36,7 +36,7 @@ def register_tools():
     {
         "name": "Network Monitor Snapshot",
         "category": "Monitoring & Telemetry",
-        "description": "Network Monitor Snapshot: network-monitor-snapshot operation.",
+        "description": "Take a point-in-time snapshot of network monitor snapshot.",
         "handler": "operations.network_monitor_snapshot",
         "cli_command": "network-monitor-snapshot",
         "dependencies": [
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Process Monitor Snapshot",
         "category": "Monitoring & Telemetry",
-        "description": "Process Monitor Snapshot: process-monitor-snapshot operation.",
+        "description": "Take a point-in-time snapshot of process monitor snapshot.",
         "handler": "operations.process_monitor_snapshot",
         "cli_command": "process-monitor-snapshot",
         "dependencies": [
@@ -56,7 +56,7 @@ def register_tools():
     {
         "name": "Directory Change Snapshot",
         "category": "Monitoring & Telemetry",
-        "description": "Directory Change Snapshot: directory-change-snapshot operation.",
+        "description": "Take a point-in-time snapshot of directory change snapshot.",
         "handler": "operations.directory_change_snapshot",
         "cli_command": "directory-change-snapshot",
         "dependencies": [
@@ -66,7 +66,7 @@ def register_tools():
     {
         "name": "File Count Monitor",
         "category": "Monitoring & Telemetry",
-        "description": "File Count Monitor: file-count-monitor operation.",
+        "description": "Monitor file count over time.",
         "handler": "operations.file_count_monitor",
         "cli_command": "file-count-monitor",
         "dependencies": [
@@ -76,7 +76,7 @@ def register_tools():
     {
         "name": "Directory Size Monitor",
         "category": "Monitoring & Telemetry",
-        "description": "Directory Size Monitor: directory-size-monitor operation.",
+        "description": "Monitor directory size over time.",
         "handler": "operations.directory_size_monitor",
         "cli_command": "directory-size-monitor",
         "dependencies": [
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "System Load Report",
         "category": "Monitoring & Telemetry",
-        "description": "System Load Report: system-load-report operation.",
+        "description": "System Load Report: query and display system load report details as structured JSON.",
         "handler": "operations.system_load_report",
         "cli_command": "system-load-report",
         "dependencies": [
@@ -96,7 +96,7 @@ def register_tools():
     {
         "name": "Resource Trend CSV",
         "category": "Monitoring & Telemetry",
-        "description": "Resource Trend CSV: resource-trend-csv operation.",
+        "description": "Resource Trend CSV: query and display resource trend csv details as structured JSON.",
         "handler": "operations.resource_trend_csv",
         "cli_command": "resource-trend-csv",
         "dependencies": [
@@ -106,7 +106,7 @@ def register_tools():
     {
         "name": "Resource Log Viewer",
         "category": "Monitoring & Telemetry",
-        "description": "Resource Log Viewer: resource-log-viewer operation.",
+        "description": "Display the contents of resource log.",
         "handler": "operations.resource_log_viewer",
         "cli_command": "resource-log-viewer",
         "dependencies": [
@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "Monitor Threshold Calculator",
         "category": "Monitoring & Telemetry",
-        "description": "Monitor Threshold Calculator: monitor-threshold-calculator operation.",
+        "description": "Compute monitor threshold values.",
         "handler": "operations.monitor_threshold_calculator",
         "cli_command": "monitor-threshold-calculator",
         "dependencies": [
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Disk Space Threshold Check",
         "category": "Monitoring & Telemetry",
-        "description": "Disk Space Threshold Check: disk-space-threshold-check operation.",
+        "description": "Disk Space Threshold Check: query and display disk space threshold check details as structured JSON.",
         "handler": "operations.disk_space_threshold_check",
         "cli_command": "disk-space-threshold-check",
         "dependencies": [
@@ -136,7 +136,7 @@ def register_tools():
     {
         "name": "Memory Threshold Check",
         "category": "Monitoring & Telemetry",
-        "description": "Memory Threshold Check: memory-threshold-check operation.",
+        "description": "Memory Threshold Check: query and display memory threshold check details as structured JSON.",
         "handler": "operations.memory_threshold_check",
         "cli_command": "memory-threshold-check",
         "dependencies": [
@@ -146,7 +146,7 @@ def register_tools():
     {
         "name": "CPU Threshold Check",
         "category": "Monitoring & Telemetry",
-        "description": "CPU Threshold Check: cpu-threshold-check operation.",
+        "description": "CPU Threshold Check: query and display cpu threshold check details as structured JSON.",
         "handler": "operations.cpu_threshold_check",
         "cli_command": "cpu-threshold-check",
         "dependencies": [
@@ -156,7 +156,7 @@ def register_tools():
     {
         "name": "Network Adapter Snapshot",
         "category": "Monitoring & Telemetry",
-        "description": "Network Adapter Snapshot: network-adapter-snapshot operation.",
+        "description": "Take a point-in-time snapshot of network adapter snapshot.",
         "handler": "operations.network_adapter_snapshot",
         "cli_command": "network-adapter-snapshot",
         "dependencies": [
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "Battery Status",
         "category": "Monitoring & Telemetry",
-        "description": "Battery Status: battery-status operation.",
+        "description": "Report current battery status.",
         "handler": "operations.battery_status",
         "cli_command": "battery-status",
         "dependencies": [
@@ -176,7 +176,7 @@ def register_tools():
     {
         "name": "Power Source Status",
         "category": "Monitoring & Telemetry",
-        "description": "Power Source Status: power-source-status operation.",
+        "description": "Report current power source status.",
         "handler": "operations.power_source_status",
         "cli_command": "power-source-status",
         "dependencies": [
@@ -186,7 +186,7 @@ def register_tools():
     {
         "name": "Resource Snapshot Diff",
         "category": "Monitoring",
-        "description": "Resource Snapshot Diff: resource-snapshot operation.",
+        "description": "Resource Snapshot Diff: query and display resource snapshot diff details as structured JSON.",
         "handler": "operations.resource_snapshot_diff",
         "cli_command": "resource-snapshot",
         "dependencies": [
@@ -196,7 +196,7 @@ def register_tools():
     {
         "name": "Long Running Process Finder",
         "category": "Monitoring",
-        "description": "Long Running Process Finder: long-running-procs operation.",
+        "description": "Locate long running process on disk or in scope.",
         "handler": "operations.long_running_process_finder",
         "cli_command": "long-running-procs",
         "dependencies": [
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "Open File Handle Report",
         "category": "Monitoring",
-        "description": "Open File Handle Report: open-handles operation.",
+        "description": "Open File Handle Report: query and display open file handle report details as structured JSON.",
         "handler": "operations.open_file_handle_report",
         "cli_command": "open-handles",
         "dependencies": [

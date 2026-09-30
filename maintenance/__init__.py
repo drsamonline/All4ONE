@@ -32,7 +32,7 @@ def register_tools():
     {
         "name": "Temp File Aging Cleaner",
         "category": "Maintenance",
-        "description": "Temp File Aging Cleaner: temp-aging-cleaner operation.",
+        "description": "Clean up temp file aging.",
         "handler": "operations.temp_file_aging_cleaner",
         "cli_command": "temp-aging-cleaner",
         "dependencies": []
@@ -40,7 +40,7 @@ def register_tools():
     {
         "name": "Broken Link Finder",
         "category": "Maintenance",
-        "description": "Broken Link Finder: broken-link-finder operation.",
+        "description": "Locate broken link on disk or in scope.",
         "handler": "operations.broken_link_finder",
         "cli_command": "broken-link-finder",
         "dependencies": []
@@ -48,7 +48,7 @@ def register_tools():
     {
         "name": "Disk Cleanup Preview",
         "category": "Maintenance",
-        "description": "Disk Cleanup Preview: disk-cleanup-preview operation.",
+        "description": "Disk Cleanup Preview: query and display disk cleanup preview details as structured JSON.",
         "handler": "operations.disk_cleanup_preview",
         "cli_command": "disk-cleanup-preview",
         "dependencies": []
@@ -56,7 +56,7 @@ def register_tools():
     {
         "name": "Log Rotation Helper",
         "category": "Maintenance",
-        "description": "Log Rotation Helper: log-rotate operation.",
+        "description": "Assist with log rotation tasks.",
         "handler": "operations.log_rotation_helper",
         "cli_command": "log-rotate",
         "dependencies": []

@@ -96,6 +96,18 @@ Docs-freshness pass (this report refresh):
   - DEVELOPER_GUIDE.md "Adding a tool" checklist, COMPILATION.md manual
     build + release checklist updated to include the regeneration step.
 
+Bug/error/build sweep (2026-09-30):
+  - .gitignore was found corrupted to a literal "(empty)" stub; full rules
+    restored and the committed runtime artifact logs/sweep_results.json
+    untracked (tests/test_all_tools.py regenerates it locally).
+  - audit.py README-freshness regex could never match the README's actual
+    bolding style ("**...packs.**"), so plain `python audit.py` failed even
+    on a correct tree; pattern now tolerates both styles. Verified: AUDIT
+    PASSED, exit 0, 539/539 handlers resolved.
+  - 486 placeholder descriptions ("<Name>: <cmd> operation.") left in 33
+    pack registries by an incomplete regeneration pass were replaced with
+    meaningful sentences; catalogs regenerated, plugin ZIPs rebuilt.
+
 Qualification note (unchanged since 2.1.2): this audit environment is
 Linux, so native Windows integrations remain dependency-gated and
 statically verified rather than executed against a live Windows kernel.

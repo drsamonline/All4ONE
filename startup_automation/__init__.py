@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Startup Folder Viewer",
             "category": "Startup & Automation",
-            "description": "Startup Folder Viewer: startup-folder-viewer operation.",
+            "description": "Display the contents of startup folder.",
             "handler": "operations.startup_folder_viewer",
             "cli_command": "startup-folder-viewer",
             "dependencies": ["schtasks"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Startup Entry Inventory",
             "category": "Startup & Automation",
-            "description": "Startup Entry Inventory: startup-entry-inventory operation.",
+            "description": "Enumerate an inventory of startup entry inventory.",
             "handler": "operations.startup_entry_inventory",
             "cli_command": "startup-entry-inventory",
             "dependencies": ["schtasks"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Startup Folder Cleaner",
             "category": "Startup & Automation",
-            "description": "Startup Folder Cleaner: startup-folder-cleaner operation.",
+            "description": "Clean up startup folder.",
             "handler": "operations.startup_folder_cleaner",
             "cli_command": "startup-folder-cleaner",
             "dependencies": ["schtasks"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Scheduled Task List",
             "category": "Startup & Automation",
-            "description": "Scheduled Task List: scheduled-task-list operation.",
+            "description": "List scheduled task entries.",
             "handler": "operations.scheduled_task_list",
             "cli_command": "scheduled-task-list",
             "dependencies": ["schtasks"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Scheduled Task Details",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Details: scheduled-task-details operation.",
+            "description": "Scheduled Task Details: query and display scheduled task details details as structured JSON.",
             "handler": "operations.scheduled_task_details",
             "cli_command": "scheduled-task-details",
             "dependencies": ["schtasks"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Scheduled Task Run",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Run: scheduled-task-run operation.",
+            "description": "Scheduled Task Run: query and display scheduled task run details as structured JSON.",
             "handler": "operations.scheduled_task_run",
             "cli_command": "scheduled-task-run",
             "dependencies": ["schtasks"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Scheduled Task Disable",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Disable: scheduled-task-disable operation.",
+            "description": "Scheduled Task Disable: query and display scheduled task disable details as structured JSON.",
             "handler": "operations.scheduled_task_disable",
             "cli_command": "scheduled-task-disable",
             "dependencies": ["schtasks"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Scheduled Task Enable",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Enable: scheduled-task-enable operation.",
+            "description": "Scheduled Task Enable: query and display scheduled task enable details as structured JSON.",
             "handler": "operations.scheduled_task_enable",
             "cli_command": "scheduled-task-enable",
             "dependencies": ["schtasks"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Task XML Export",
             "category": "Startup & Automation",
-            "description": "Task XML Export: task-xml-export operation.",
+            "description": "Task XML Export: query and display task xml export details as structured JSON.",
             "handler": "operations.task_xml_export",
             "cli_command": "task-xml-export",
             "dependencies": ["schtasks"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Task Trigger Guide",
             "category": "Startup & Automation",
-            "description": "Task Trigger Guide: task-trigger-guide operation.",
+            "description": "Show guidance for task trigger.",
             "handler": "operations.task_trigger_guide",
             "cli_command": "task-trigger-guide",
             "dependencies": ["schtasks"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Folder Watch Snapshot",
             "category": "Startup & Automation",
-            "description": "Folder Watch Snapshot: folder-watch-snapshot operation.",
+            "description": "Take a point-in-time snapshot of folder watch snapshot.",
             "handler": "operations.folder_watch_snapshot",
             "cli_command": "folder-watch-snapshot",
             "dependencies": ["schtasks"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Automation Manifest",
             "category": "Startup & Automation",
-            "description": "Automation Manifest: automation-manifest operation.",
+            "description": "Automation Manifest: query and display automation manifest details as structured JSON.",
             "handler": "operations.automation_manifest",
             "cli_command": "automation-manifest",
             "dependencies": ["schtasks"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Startup Report",
             "category": "Startup & Automation",
-            "description": "Startup Report: startup-report operation.",
+            "description": "Startup Report: query and display startup report details as structured JSON.",
             "handler": "operations.startup_report",
             "cli_command": "startup-report",
             "dependencies": ["schtasks"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Logon Task Report",
             "category": "Startup & Automation",
-            "description": "Logon Task Report: logon-task-report operation.",
+            "description": "Logon Task Report: query and display logon task report details as structured JSON.",
             "handler": "operations.logon_task_report",
             "cli_command": "logon-task-report",
             "dependencies": ["schtasks"],

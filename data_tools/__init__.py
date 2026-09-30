@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "CSV Inspector",
         "category": "Data & Structured Data",
-        "description": "CSV Inspector: csv-inspector operation.",
+        "description": "Inspect csv and report internals.",
         "handler": "operations.csv_inspector",
         "cli_command": "csv-inspector",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "CSV Normalizer",
         "category": "Data & Structured Data",
-        "description": "CSV Normalizer: csv-normalizer operation.",
+        "description": "Normalize csv to a canonical form.",
         "handler": "operations.csv_normalizer",
         "cli_command": "csv-normalizer",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "CSV Column Selector",
         "category": "Data & Structured Data",
-        "description": "CSV Column Selector: csv-column-selector operation.",
+        "description": "CSV Column Selector: query and display csv column selector details as structured JSON.",
         "handler": "operations.csv_column_selector",
         "cli_command": "csv-column-selector",
         "dependencies": []
@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "CSV Row Filter",
         "category": "Data & Structured Data",
-        "description": "CSV Row Filter: csv-row-filter operation.",
+        "description": "Filter csv row by criteria.",
         "handler": "operations.csv_row_filter",
         "cli_command": "csv-row-filter",
         "dependencies": []
@@ -38,7 +38,7 @@ def register_tools():
     {
         "name": "CSV Sorter",
         "category": "Data & Structured Data",
-        "description": "CSV Sorter: csv-sorter operation.",
+        "description": "Sort csv records.",
         "handler": "operations.csv_sorter",
         "cli_command": "csv-sorter",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "CSV Deduplicator",
         "category": "Data & Structured Data",
-        "description": "CSV Deduplicator: csv-deduplicator operation.",
+        "description": "CSV Deduplicator: query and display csv deduplicator details as structured JSON.",
         "handler": "operations.csv_deduplicator",
         "cli_command": "csv-deduplicator",
         "dependencies": []
@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "CSV Statistics",
         "category": "Data & Structured Data",
-        "description": "CSV Statistics: csv-statistics operation.",
+        "description": "CSV Statistics: query and display csv statistics details as structured JSON.",
         "handler": "operations.csv_statistics",
         "cli_command": "csv-statistics",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "CSV Transposer",
         "category": "Data & Structured Data",
-        "description": "CSV Transposer: csv-transposer operation.",
+        "description": "CSV Transposer: query and display csv transposer details as structured JSON.",
         "handler": "operations.csv_transposer",
         "cli_command": "csv-transposer",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "JSON Inspector",
         "category": "Data & Structured Data",
-        "description": "JSON Inspector: json-inspector operation.",
+        "description": "Inspect json and report internals.",
         "handler": "operations.json_inspector",
         "cli_command": "json-inspector",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "JSON Minifier",
         "category": "Data & Structured Data",
-        "description": "JSON Minifier: json-minifier operation.",
+        "description": "JSON Minifier: query and display json minifier details as structured JSON.",
         "handler": "operations.json_minifier",
         "cli_command": "json-minifier",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "JSON Pretty Printer",
         "category": "Data & Structured Data",
-        "description": "JSON Pretty Printer: json-pretty-printer operation.",
+        "description": "Print formatted json pretty.",
         "handler": "operations.json_pretty_printer",
         "cli_command": "json-pretty-printer",
         "dependencies": []
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "JSON Path Extractor",
         "category": "Data & Structured Data",
-        "description": "JSON Path Extractor: json-path-extractor operation.",
+        "description": "Extract data from json path.",
         "handler": "operations.json_path_extractor",
         "cli_command": "json-path-extractor",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "JSON Key Flattener",
         "category": "Data & Structured Data",
-        "description": "JSON Key Flattener: json-key-flattener operation.",
+        "description": "JSON Key Flattener: query and display json key flattener details as structured JSON.",
         "handler": "operations.json_key_flattener",
         "cli_command": "json-key-flattener",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "JSON Unflattener",
         "category": "Data & Structured Data",
-        "description": "JSON Unflattener: json-unflattener operation.",
+        "description": "JSON Unflattener: query and display json unflattener details as structured JSON.",
         "handler": "operations.json_unflattener",
         "cli_command": "json-unflattener",
         "dependencies": []
@@ -118,7 +118,7 @@ def register_tools():
     {
         "name": "NDJSON Inspector",
         "category": "Data & Structured Data",
-        "description": "NDJSON Inspector: ndjson-inspector operation.",
+        "description": "Inspect ndjson and report internals.",
         "handler": "operations.ndjson_inspector",
         "cli_command": "ndjson-inspector",
         "dependencies": []
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "NDJSON Filter",
         "category": "Data & Structured Data",
-        "description": "NDJSON Filter: ndjson-filter operation.",
+        "description": "Filter ndjson by criteria.",
         "handler": "operations.ndjson_filter",
         "cli_command": "ndjson-filter",
         "dependencies": []
@@ -134,7 +134,7 @@ def register_tools():
     {
         "name": "SQLite Schema Viewer",
         "category": "Data & Structured Data",
-        "description": "SQLite Schema Viewer: sqlite-schema-viewer operation.",
+        "description": "Display the contents of sqlite schema.",
         "handler": "operations.sqlite_schema_viewer",
         "cli_command": "sqlite-schema-viewer",
         "dependencies": []
@@ -142,7 +142,7 @@ def register_tools():
     {
         "name": "SQLite Table Counter",
         "category": "Data & Structured Data",
-        "description": "SQLite Table Counter: sqlite-table-counter operation.",
+        "description": "Count occurrences within sqlite table.",
         "handler": "operations.sqlite_table_counter",
         "cli_command": "sqlite-table-counter",
         "dependencies": []
@@ -150,7 +150,7 @@ def register_tools():
     {
         "name": "SQLite Query Runner",
         "category": "Data & Structured Data",
-        "description": "SQLite Query Runner: sqlite-query-runner operation.",
+        "description": "SQLite Query Runner: query and display sqlite query runner details as structured JSON.",
         "handler": "operations.sqlite_query_runner",
         "cli_command": "sqlite-query-runner",
         "dependencies": []
@@ -158,7 +158,7 @@ def register_tools():
     {
         "name": "SQLite Vacuum Helper",
         "category": "Data & Structured Data",
-        "description": "SQLite Vacuum Helper: sqlite-vacuum-helper operation.",
+        "description": "Assist with sqlite vacuum tasks.",
         "handler": "operations.sqlite_vacuum_helper",
         "cli_command": "sqlite-vacuum-helper",
         "dependencies": []
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "CSV Column Extractor",
         "category": "Data Tools",
-        "description": "CSV Column Extractor: csv-column-extractor operation.",
+        "description": "Extract data from csv column.",
         "handler": "operations.csv_column_extractor",
         "cli_command": "csv-column-extractor",
         "dependencies": []

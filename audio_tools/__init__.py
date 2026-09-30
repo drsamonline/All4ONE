@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Audio Duration",
             "category": "Audio Tools",
-            "description": "Audio Duration: audio-duration operation.",
+            "description": "Audio Duration: query and display audio duration details as structured JSON.",
             "handler": "operations.audio_duration",
             "cli_command": "audio-duration",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Audio Stream Inspector",
             "category": "Audio Tools",
-            "description": "Audio Stream Inspector: audio-stream-inspector operation.",
+            "description": "Inspect audio stream and report internals.",
             "handler": "operations.audio_stream_inspector",
             "cli_command": "audio-stream-inspector",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Audio Normalizer",
             "category": "Audio Tools",
-            "description": "Audio Normalizer: audio-normalizer operation.",
+            "description": "Normalize audio to a canonical form.",
             "handler": "operations.audio_normalizer",
             "cli_command": "audio-normalizer",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Audio Trim",
             "category": "Audio Tools",
-            "description": "Audio Trim: audio-trim operation.",
+            "description": "Audio Trim: query and display audio trim details as structured JSON.",
             "handler": "operations.audio_trim",
             "cli_command": "audio-trim",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Audio Concatenator",
             "category": "Audio Tools",
-            "description": "Audio Concatenator: audio-concatenator operation.",
+            "description": "Audio Concatenator: query and display audio concatenator details as structured JSON.",
             "handler": "operations.audio_concatenator",
             "cli_command": "audio-concatenator",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Audio Silence Detector",
             "category": "Audio Tools",
-            "description": "Audio Silence Detector: audio-silence-detector operation.",
+            "description": "Detect and identify audio silence.",
             "handler": "operations.audio_silence_detector",
             "cli_command": "audio-silence-detector",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Audio Waveform Exporter",
             "category": "Audio Tools",
-            "description": "Audio Waveform Exporter: audio-waveform-exporter operation.",
+            "description": "Export audio waveform to a file.",
             "handler": "operations.audio_waveform_exporter",
             "cli_command": "audio-waveform-exporter",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Audio Metadata Reader",
             "category": "Audio Tools",
-            "description": "Audio Metadata Reader: audio-metadata-reader operation.",
+            "description": "Read and print audio metadata.",
             "handler": "operations.audio_metadata_reader",
             "cli_command": "audio-metadata-reader",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Audio Metadata Cleaner",
             "category": "Audio Tools",
-            "description": "Audio Metadata Cleaner: audio-metadata-cleaner operation.",
+            "description": "Clean up audio metadata.",
             "handler": "operations.audio_metadata_cleaner",
             "cli_command": "audio-metadata-cleaner",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Audio Format Converter",
             "category": "Audio Tools",
-            "description": "Audio Format Converter: audio-format-converter operation.",
+            "description": "Convert audio format between units or formats.",
             "handler": "operations.audio_format_converter",
             "cli_command": "audio-format-converter",
             "dependencies": ["ffprobe", "ffmpeg"],

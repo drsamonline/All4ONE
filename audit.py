@@ -267,7 +267,12 @@ def main():
         problems.append("EXPANSION_CATALOG.md is missing")
     readme = ROOT / "README.md"
     if readme.exists():
-        rm = re.search(r"\*\*(\d+) tools across (\d+) plugin packs\*\*", readme.read_text(encoding="utf-8"))
+        # Tolerant of either bolding style: **539 tools across 45 plugin packs**
+        # or **539 tools across 45 plugin packs.** (period inside the bold run).
+        rm = re.search(
+            r"\*\*(\d+) tools across (\d+) plugin packs\.?\*\*",
+            readme.read_text(encoding="utf-8"),
+        )
         if not rm or int(rm.group(1)) != len(all_tools) or int(rm.group(2)) != len(packs):
             problems.append(
                 f"STALE DOCS: README.md overview does not state {len(all_tools)} tools across "

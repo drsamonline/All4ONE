@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Whitespace Cleaner",
         "category": "Text Processing",
-        "description": "Whitespace Cleaner: whitespace-cleaner operation.",
+        "description": "Clean up whitespace.",
         "handler": "operations.whitespace_cleaner",
         "cli_command": "whitespace-cleaner",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "Blank Line Cleaner",
         "category": "Text Processing",
-        "description": "Blank Line Cleaner: blank-line-cleaner operation.",
+        "description": "Clean up blank line.",
         "handler": "operations.blank_line_cleaner",
         "cli_command": "blank-line-cleaner",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "Trailing Space Cleaner",
         "category": "Text Processing",
-        "description": "Trailing Space Cleaner: trailing-space-cleaner operation.",
+        "description": "Clean up trailing space.",
         "handler": "operations.trailing_space_cleaner",
         "cli_command": "trailing-space-cleaner",
         "dependencies": []
@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "Indentation Normalizer",
         "category": "Text Processing",
-        "description": "Indentation Normalizer: indentation-normalizer operation.",
+        "description": "Normalize indentation to a canonical form.",
         "handler": "operations.indentation_normalizer",
         "cli_command": "indentation-normalizer",
         "dependencies": []
@@ -38,7 +38,7 @@ def register_tools():
     {
         "name": "Case Converter",
         "category": "Text Processing",
-        "description": "Case Converter: case-converter operation.",
+        "description": "Convert case between units or formats.",
         "handler": "operations.case_converter",
         "cli_command": "case-converter",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Title Case Converter",
         "category": "Text Processing",
-        "description": "Title Case Converter: title-case-converter operation.",
+        "description": "Convert title case between units or formats.",
         "handler": "operations.title_case_converter",
         "cli_command": "title-case-converter",
         "dependencies": []
@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "Snake Case Converter",
         "category": "Text Processing",
-        "description": "Snake Case Converter: snake-case-converter operation.",
+        "description": "Convert snake case between units or formats.",
         "handler": "operations.snake_case_converter",
         "cli_command": "snake-case-converter",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Kebab Case Converter",
         "category": "Text Processing",
-        "description": "Kebab Case Converter: kebab-case-converter operation.",
+        "description": "Convert kebab case between units or formats.",
         "handler": "operations.kebab_case_converter",
         "cli_command": "kebab-case-converter",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "Camel Case Converter",
         "category": "Text Processing",
-        "description": "Camel Case Converter: camel-case-converter operation.",
+        "description": "Convert camel case between units or formats.",
         "handler": "operations.camel_case_converter",
         "cli_command": "camel-case-converter",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "Text Deduplicator",
         "category": "Text Processing",
-        "description": "Text Deduplicator: text-deduplicator operation.",
+        "description": "Text Deduplicator: query and display text deduplicator details as structured JSON.",
         "handler": "operations.text_deduplicator",
         "cli_command": "text-deduplicator",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Text Sorter",
         "category": "Text Processing",
-        "description": "Text Sorter: text-sorter operation.",
+        "description": "Sort text records.",
         "handler": "operations.text_sorter",
         "cli_command": "text-sorter",
         "dependencies": []
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Text Reverse",
         "category": "Text Processing",
-        "description": "Text Reverse: text-reverse operation.",
+        "description": "Text Reverse: query and display text reverse details as structured JSON.",
         "handler": "operations.text_reverse",
         "cli_command": "text-reverse",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "Text Wrap",
         "category": "Text Processing",
-        "description": "Text Wrap: text-wrap operation.",
+        "description": "Text Wrap: query and display text wrap details as structured JSON.",
         "handler": "operations.text_wrap",
         "cli_command": "text-wrap",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "Text Unwrap",
         "category": "Text Processing",
-        "description": "Text Unwrap: text-unwrap operation.",
+        "description": "Text Unwrap: query and display text unwrap details as structured JSON.",
         "handler": "operations.text_unwrap",
         "cli_command": "text-unwrap",
         "dependencies": []
@@ -118,7 +118,7 @@ def register_tools():
     {
         "name": "Character Frequency",
         "category": "Text Processing",
-        "description": "Character Frequency: character-frequency operation.",
+        "description": "Character Frequency: query and display character frequency details as structured JSON.",
         "handler": "operations.character_frequency",
         "cli_command": "character-frequency",
         "dependencies": []
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Word Frequency",
         "category": "Text Processing",
-        "description": "Word Frequency: word-frequency operation.",
+        "description": "Word Frequency: query and display word frequency details as structured JSON.",
         "handler": "operations.word_frequency",
         "cli_command": "word-frequency",
         "dependencies": []
@@ -134,7 +134,7 @@ def register_tools():
     {
         "name": "Ngram Counter",
         "category": "Text Processing",
-        "description": "Ngram Counter: ngram-counter operation.",
+        "description": "Count occurrences within ngram.",
         "handler": "operations.ngram_counter",
         "cli_command": "ngram-counter",
         "dependencies": []
@@ -142,7 +142,7 @@ def register_tools():
     {
         "name": "Sentence Counter",
         "category": "Text Processing",
-        "description": "Sentence Counter: sentence-counter operation.",
+        "description": "Count occurrences within sentence.",
         "handler": "operations.sentence_counter",
         "cli_command": "sentence-counter",
         "dependencies": []
@@ -150,7 +150,7 @@ def register_tools():
     {
         "name": "Slugify Converter",
         "category": "Text Processing",
-        "description": "Slugify Converter: slugify-converter operation.",
+        "description": "Convert slugify between units or formats.",
         "handler": "operations.slugify_converter",
         "cli_command": "slugify-converter",
         "dependencies": []
@@ -158,7 +158,7 @@ def register_tools():
     {
         "name": "Regex Replacer",
         "category": "Text Processing",
-        "description": "Regex Replacer: regex-replacer operation.",
+        "description": "Regex Replacer: query and display regex replacer details as structured JSON.",
         "handler": "operations.regex_replacer",
         "cli_command": "regex-replacer",
         "dependencies": []
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "Markdown Table Formatter",
         "category": "Text Processing",
-        "description": "Markdown Table Formatter: markdown-table-formatter operation.",
+        "description": "Reformat markdown table to a clean layout.",
         "handler": "operations.markdown_table_formatter",
         "cli_command": "markdown-table-formatter",
         "dependencies": []
@@ -174,7 +174,7 @@ def register_tools():
     {
         "name": "Line Number Prefixer",
         "category": "Text Processing",
-        "description": "Line Number Prefixer: line-number-prefixer operation.",
+        "description": "Line Number Prefixer: query and display line number prefixer details as structured JSON.",
         "handler": "operations.line_number_prefixer",
         "cli_command": "line-number-prefixer",
         "dependencies": []
@@ -182,7 +182,7 @@ def register_tools():
     {
         "name": "Unicode Normalizer",
         "category": "Text Processing",
-        "description": "Unicode Normalizer: unicode-normalizer operation.",
+        "description": "Normalize unicode to a canonical form.",
         "handler": "operations.unicode_normalizer",
         "cli_command": "unicode-normalizer",
         "dependencies": []

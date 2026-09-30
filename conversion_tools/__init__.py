@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Bytes Converter",
             "category": "Unit Conversion",
-            "description": "Bytes Converter: bytes-converter operation.",
+            "description": "Convert bytes between units or formats.",
             "handler": "operations.bytes_converter",
             "cli_command": "bytes-converter",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Size Formatter",
             "category": "Unit Conversion",
-            "description": "Size Formatter: size-formatter operation.",
+            "description": "Reformat size to a clean layout.",
             "handler": "operations.size_formatter",
             "cli_command": "size-formatter",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Seconds Converter",
             "category": "Unit Conversion",
-            "description": "Seconds Converter: seconds-converter operation.",
+            "description": "Convert seconds between units or formats.",
             "handler": "operations.seconds_converter",
             "cli_command": "seconds-converter",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Temperature Converter",
             "category": "Unit Conversion",
-            "description": "Temperature Converter: temperature-converter operation.",
+            "description": "Convert temperature between units or formats.",
             "handler": "operations.temperature_converter",
             "cli_command": "temperature-converter",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Length Converter",
             "category": "Unit Conversion",
-            "description": "Length Converter: length-converter operation.",
+            "description": "Convert length between units or formats.",
             "handler": "operations.length_converter",
             "cli_command": "length-converter",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Mass Converter",
             "category": "Unit Conversion",
-            "description": "Mass Converter: mass-converter operation.",
+            "description": "Convert mass between units or formats.",
             "handler": "operations.mass_converter",
             "cli_command": "mass-converter",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Area Converter",
             "category": "Unit Conversion",
-            "description": "Area Converter: area-converter operation.",
+            "description": "Convert area between units or formats.",
             "handler": "operations.area_converter",
             "cli_command": "area-converter",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Volume Converter",
             "category": "Unit Conversion",
-            "description": "Volume Converter: volume-converter operation.",
+            "description": "Convert volume between units or formats.",
             "handler": "operations.volume_converter",
             "cli_command": "volume-converter",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Speed Converter",
             "category": "Unit Conversion",
-            "description": "Speed Converter: speed-converter operation.",
+            "description": "Convert speed between units or formats.",
             "handler": "operations.speed_converter",
             "cli_command": "speed-converter",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Pressure Converter",
             "category": "Unit Conversion",
-            "description": "Pressure Converter: pressure-converter operation.",
+            "description": "Convert pressure between units or formats.",
             "handler": "operations.pressure_converter",
             "cli_command": "pressure-converter",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Energy Converter",
             "category": "Unit Conversion",
-            "description": "Energy Converter: energy-converter operation.",
+            "description": "Convert energy between units or formats.",
             "handler": "operations.energy_converter",
             "cli_command": "energy-converter",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Power Converter",
             "category": "Unit Conversion",
-            "description": "Power Converter: power-converter operation.",
+            "description": "Convert power between units or formats.",
             "handler": "operations.power_converter",
             "cli_command": "power-converter",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Angle Converter",
             "category": "Unit Conversion",
-            "description": "Angle Converter: angle-converter operation.",
+            "description": "Convert angle between units or formats.",
             "handler": "operations.angle_converter",
             "cli_command": "angle-converter",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Frequency Converter",
             "category": "Unit Conversion",
-            "description": "Frequency Converter: frequency-converter operation.",
+            "description": "Convert frequency between units or formats.",
             "handler": "operations.frequency_converter",
             "cli_command": "frequency-converter",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Data Rate Converter",
             "category": "Unit Conversion",
-            "description": "Data Rate Converter: data-rate-converter operation.",
+            "description": "Convert data rate between units or formats.",
             "handler": "operations.data_rate_converter",
             "cli_command": "data-rate-converter",
             "dependencies": [],

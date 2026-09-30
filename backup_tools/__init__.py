@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Folder Backup",
             "category": "Backup & Restore",
-            "description": "Folder Backup: folder-backup operation.",
+            "description": "Folder Backup: query and display folder backup details as structured JSON.",
             "handler": "operations.folder_backup",
             "cli_command": "folder-backup",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Incremental Backup",
             "category": "Backup & Restore",
-            "description": "Incremental Backup: incremental-backup operation.",
+            "description": "Incremental Backup: query and display incremental backup details as structured JSON.",
             "handler": "operations.incremental_backup",
             "cli_command": "incremental-backup",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Mirror Backup",
             "category": "Backup & Restore",
-            "description": "Mirror Backup: mirror-backup operation.",
+            "description": "Mirror Backup: query and display mirror backup details as structured JSON.",
             "handler": "operations.mirror_backup",
             "cli_command": "mirror-backup",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Backup Verify",
             "category": "Backup & Restore",
-            "description": "Backup Verify: backup-verify operation.",
+            "description": "Backup Verify: query and display backup verify details as structured JSON.",
             "handler": "operations.backup_verify",
             "cli_command": "backup-verify",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Backup Manifest",
             "category": "Backup & Restore",
-            "description": "Backup Manifest: backup-manifest operation.",
+            "description": "Backup Manifest: query and display backup manifest details as structured JSON.",
             "handler": "operations.backup_manifest",
             "cli_command": "backup-manifest",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Backup Difference",
             "category": "Backup & Restore",
-            "description": "Backup Difference: backup-difference operation.",
+            "description": "Backup Difference: query and display backup difference details as structured JSON.",
             "handler": "operations.backup_difference",
             "cli_command": "backup-difference",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Backup Restore",
             "category": "Backup & Restore",
-            "description": "Backup Restore: backup-restore operation.",
+            "description": "Backup Restore: query and display backup restore details as structured JSON.",
             "handler": "operations.backup_restore",
             "cli_command": "backup-restore",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Backup Cleanup",
             "category": "Backup & Restore",
-            "description": "Backup Cleanup: backup-cleanup operation.",
+            "description": "Backup Cleanup: query and display backup cleanup details as structured JSON.",
             "handler": "operations.backup_cleanup",
             "cli_command": "backup-cleanup",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Backup Rotation",
             "category": "Backup & Restore",
-            "description": "Backup Rotation: backup-rotation operation.",
+            "description": "Backup Rotation: query and display backup rotation details as structured JSON.",
             "handler": "operations.backup_rotation",
             "cli_command": "backup-rotation",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Backup Compression",
             "category": "Backup & Restore",
-            "description": "Backup Compression: backup-compression operation.",
+            "description": "Backup Compression: query and display backup compression details as structured JSON.",
             "handler": "operations.backup_compression",
             "cli_command": "backup-compression",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Backup Schedule Generator",
             "category": "Backup & Restore",
-            "description": "Backup Schedule Generator: backup-schedule-generator operation.",
+            "description": "Generate backup schedule output.",
             "handler": "operations.backup_schedule_generator",
             "cli_command": "backup-schedule-generator",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Backup Size Calculator",
             "category": "Backup & Restore",
-            "description": "Backup Size Calculator: backup-size-calculator operation.",
+            "description": "Compute backup size values.",
             "handler": "operations.backup_size_calculator",
             "cli_command": "backup-size-calculator",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Snapshot Inventory",
             "category": "Backup & Restore",
-            "description": "Snapshot Inventory: snapshot-inventory operation.",
+            "description": "Enumerate an inventory of snapshot inventory.",
             "handler": "operations.snapshot_inventory",
             "cli_command": "snapshot-inventory",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Backup Log Analyzer",
             "category": "Backup & Restore",
-            "description": "Backup Log Analyzer: backup-log-analyzer operation.",
+            "description": "Analyze backup log and summarize findings.",
             "handler": "operations.backup_log_analyzer",
             "cli_command": "backup-log-analyzer",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Backup Integrity Hash",
             "category": "Backup & Restore",
-            "description": "Backup Integrity Hash: backup-integrity-hash operation.",
+            "description": "Backup Integrity Hash: query and display backup integrity hash details as structured JSON.",
             "handler": "operations.backup_integrity_hash",
             "cli_command": "backup-integrity-hash",
             "dependencies": [],

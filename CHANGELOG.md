@@ -8,6 +8,25 @@ audit if these drift apart.
 
 ## [Unreleased]
 
+### Fixed
+- Full bug/error/build sweep (2026-09-30):
+  - `.gitignore` had been corrupted into a literal 7-byte file containing the
+    text "(empty)" - every ignore rule was gone, so bytecode caches and
+    runtime logs (`logs/sweep_results.json`, which `tests/test_all_tools.py`
+    writes) were getting force-added into releases again. Restored the full
+    ruleset and untracked the committed log artifact.
+  - `audit.py` README-freshness gate used a regex that could never match the
+    README's actual bolding style (`**...packs.**` with the period inside the
+    bold run), making `python audit.py` fail spuriously even when docs were
+    correct. The pattern now tolerates both styles; CI is green again.
+  - README overview line restated as "**539 tools across 45 plugin packs**"
+    to satisfy the docs-freshness contract.
+  - 486 placeholder tool descriptions ("<Name>: <cmd> operation.") left by an
+    incomplete catalog-regeneration pass were replaced with meaningful
+    sentences in all 33 affected pack registries; TOOL_CATALOG.md /
+    EXPANSION_CATALOG.md regenerated and plugin ZIPs rebuilt from source.
+- `generate_catalogs.py` added for deterministic doc regeneration (see Added).
+
 ### Added
 - `generate_catalogs.py`: TOOL_CATALOG.md and EXPANSION_CATALOG.md are now
   *generated* from the live registry (same AST-literal source `audit.py`

@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Stopwatch",
         "category": "Time & Productivity",
-        "description": "Stopwatch: stopwatch operation.",
+        "description": "Stopwatch: query and display stopwatch details as structured JSON.",
         "handler": "operations.stopwatch",
         "cli_command": "stopwatch",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "Countdown",
         "category": "Time & Productivity",
-        "description": "Countdown: countdown operation.",
+        "description": "Countdown: query and display countdown details as structured JSON.",
         "handler": "operations.countdown",
         "cli_command": "countdown",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "Date Difference",
         "category": "Time & Productivity",
-        "description": "Date Difference: date-difference operation.",
+        "description": "Date Difference: query and display date difference details as structured JSON.",
         "handler": "operations.date_difference",
         "cli_command": "date-difference",
         "dependencies": []
@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "Business Day Difference",
         "category": "Time & Productivity",
-        "description": "Business Day Difference: business-day-difference operation.",
+        "description": "Business Day Difference: query and display business day difference details as structured JSON.",
         "handler": "operations.business_day_difference",
         "cli_command": "business-day-difference",
         "dependencies": []
@@ -38,7 +38,7 @@ def register_tools():
     {
         "name": "Timestamp Converter",
         "category": "Time & Productivity",
-        "description": "Timestamp Converter: timestamp-converter operation.",
+        "description": "Convert timestamp between units or formats.",
         "handler": "operations.timestamp_converter",
         "cli_command": "timestamp-converter",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Epoch Converter",
         "category": "Time & Productivity",
-        "description": "Epoch Converter: epoch-converter operation.",
+        "description": "Convert epoch between units or formats.",
         "handler": "operations.epoch_converter",
         "cli_command": "epoch-converter",
         "dependencies": []
@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "ISO Time Formatter",
         "category": "Time & Productivity",
-        "description": "ISO Time Formatter: iso-time-formatter operation.",
+        "description": "Reformat iso time to a clean layout.",
         "handler": "operations.iso_time_formatter",
         "cli_command": "iso-time-formatter",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Calendar Month",
         "category": "Time & Productivity",
-        "description": "Calendar Month: calendar-month operation.",
+        "description": "Calendar Month: query and display calendar month details as structured JSON.",
         "handler": "operations.calendar_month",
         "cli_command": "calendar-month",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "Calendar Year",
         "category": "Time & Productivity",
-        "description": "Calendar Year: calendar-year operation.",
+        "description": "Calendar Year: query and display calendar year details as structured JSON.",
         "handler": "operations.calendar_year",
         "cli_command": "calendar-year",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "Week Number",
         "category": "Time & Productivity",
-        "description": "Week Number: week-number operation.",
+        "description": "Week Number: query and display week number details as structured JSON.",
         "handler": "operations.week_number",
         "cli_command": "week-number",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Day Of Year",
         "category": "Time & Productivity",
-        "description": "Day Of Year: day-of-year operation.",
+        "description": "Day Of Year: query and display day of year details as structured JSON.",
         "handler": "operations.day_of_year",
         "cli_command": "day-of-year",
         "dependencies": []
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Working Hours Calculator",
         "category": "Time & Productivity",
-        "description": "Working Hours Calculator: working-hours-calculator operation.",
+        "description": "Compute working hours values.",
         "handler": "operations.working_hours_calculator",
         "cli_command": "working-hours-calculator",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "Pomodoro Timer",
         "category": "Time & Productivity",
-        "description": "Pomodoro Timer: pomodoro-timer operation.",
+        "description": "Pomodoro Timer: query and display pomodoro timer details as structured JSON.",
         "handler": "operations.pomodoro_timer",
         "cli_command": "pomodoro-timer",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "Time Zone Offset",
         "category": "Time & Productivity",
-        "description": "Time Zone Offset: time-zone-offset operation.",
+        "description": "Time Zone Offset: query and display time zone offset details as structured JSON.",
         "handler": "operations.time_zone_offset",
         "cli_command": "time-zone-offset",
         "dependencies": []
@@ -118,7 +118,7 @@ def register_tools():
     {
         "name": "Meeting Time Table",
         "category": "Time & Productivity",
-        "description": "Meeting Time Table: meeting-time-table operation.",
+        "description": "Meeting Time Table: query and display meeting time table details as structured JSON.",
         "handler": "operations.meeting_time_table",
         "cli_command": "meeting-time-table",
         "dependencies": []
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Cron Expression Explainer",
         "category": "Time & Productivity",
-        "description": "Cron Expression Explainer: cron-explainer operation.",
+        "description": "Explain cron expression in human terms.",
         "handler": "operations.cron_expression_explainer",
         "cli_command": "cron-explainer",
         "dependencies": []
@@ -134,7 +134,7 @@ def register_tools():
     {
         "name": "Date Range Expander",
         "category": "Time & Productivity",
-        "description": "Date Range Expander: date-range-expander operation.",
+        "description": "Date Range Expander: query and display date range expander details as structured JSON.",
         "handler": "operations.date_range_expander",
         "cli_command": "date-range-expander",
         "dependencies": []
@@ -142,7 +142,7 @@ def register_tools():
     {
         "name": "Relative Time Formatter",
         "category": "Time & Productivity",
-        "description": "Relative Time Formatter: relative-time operation.",
+        "description": "Reformat relative time to a clean layout.",
         "handler": "operations.relative_time_formatter",
         "cli_command": "relative-time",
         "dependencies": []
@@ -150,7 +150,7 @@ def register_tools():
     {
         "name": "Habit Streak Counter",
         "category": "Time & Productivity",
-        "description": "Habit Streak Counter: habit-streak operation.",
+        "description": "Count occurrences within habit streak.",
         "handler": "operations.habit_streak_counter",
         "cli_command": "habit-streak",
         "dependencies": []

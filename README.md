@@ -7,7 +7,7 @@
 
 # 🧰 Utility Suite
 
-### ⚡ One workstation. **539 tools. 45 plugin packs.** Zero installer drama.
+### ⚡ One workstation. **539 tools across 45 plugin packs.** Zero installer drama.
 
 A modular, portable Windows utility workstation — pure-Python core, lazily loaded
 plugin packs, CLI *and* desktop GUI, built to be compiled into a single `.exe`.
