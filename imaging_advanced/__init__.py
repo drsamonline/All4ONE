@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Image Converter",
             "category": "Advanced Imaging",
-            "description": "Convert image between units or formats.",
+            "description": "Convert an image file between formats (PNG/JPEG/WebP...).",
             "handler": "operations.image_converter",
             "cli_command": "image-converter",
             "dependencies": ["Pillow"],

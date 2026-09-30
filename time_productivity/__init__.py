@@ -38,7 +38,7 @@ def register_tools():
     {
         "name": "Timestamp Converter",
         "category": "Time & Productivity",
-        "description": "Convert timestamp between units or formats.",
+        "description": "Convert between ISO-8601 timestamps and Unix epochs.",
         "handler": "operations.timestamp_converter",
         "cli_command": "timestamp-converter",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Epoch Converter",
         "category": "Time & Productivity",
-        "description": "Convert epoch between units or formats.",
+        "description": "Convert a Unix epoch timestamp to a human-readable date and back.",
         "handler": "operations.epoch_converter",
         "cli_command": "epoch-converter",
         "dependencies": []

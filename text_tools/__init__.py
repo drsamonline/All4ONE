@@ -38,7 +38,7 @@ def register_tools():
     {
         "name": "Case Converter",
         "category": "Text Processing",
-        "description": "Convert case between units or formats.",
+        "description": "Convert text to upper, lower, or swapped case.",
         "handler": "operations.case_converter",
         "cli_command": "case-converter",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Title Case Converter",
         "category": "Text Processing",
-        "description": "Convert title case between units or formats.",
+        "description": "Capitalize the first letter of every word (Title Case).",
         "handler": "operations.title_case_converter",
         "cli_command": "title-case-converter",
         "dependencies": []
@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "Snake Case Converter",
         "category": "Text Processing",
-        "description": "Convert snake case between units or formats.",
+        "description": "Convert text words into snake_case identifiers.",
         "handler": "operations.snake_case_converter",
         "cli_command": "snake-case-converter",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Kebab Case Converter",
         "category": "Text Processing",
-        "description": "Convert kebab case between units or formats.",
+        "description": "Convert text words into kebab-case slugs.",
         "handler": "operations.kebab_case_converter",
         "cli_command": "kebab-case-converter",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "Camel Case Converter",
         "category": "Text Processing",
-        "description": "Convert camel case between units or formats.",
+        "description": "Convert text words into camelCase identifiers.",
         "handler": "operations.camel_case_converter",
         "cli_command": "camel-case-converter",
         "dependencies": []
@@ -150,7 +150,7 @@ def register_tools():
     {
         "name": "Slugify Converter",
         "category": "Text Processing",
-        "description": "Convert slugify between units or formats.",
+        "description": "Turn any title or sentence into a URL-safe lowercase slug.",
         "handler": "operations.slugify_converter",
         "cli_command": "slugify-converter",
         "dependencies": []

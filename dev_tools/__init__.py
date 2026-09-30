@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "JSON YAML Converter",
         "category": "Developer Tools",
-        "description": "Convert json yaml between units or formats.",
+        "description": "Convert content between JSON and YAML formats.",
         "handler": "operations.json_yaml_converter",
         "cli_command": "json-yaml",
         "dependencies": [

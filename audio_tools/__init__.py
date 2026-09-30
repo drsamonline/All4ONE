@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Audio Format Converter",
             "category": "Audio Tools",
-            "description": "Convert audio format between units or formats.",
+            "description": "Convert an audio file between formats using ffmpeg.",
             "handler": "operations.audio_format_converter",
             "cli_command": "audio-format-converter",
             "dependencies": ["ffprobe", "ffmpeg"],

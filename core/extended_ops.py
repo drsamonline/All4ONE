@@ -238,7 +238,15 @@ def run_extended(args: list[str], operation: str) -> int:
                     re.sub(r"^\s+", lambda m: " " * (len(m.group(0).expandtabs(4))), x) for x in lines
                 )
             elif op == "case converter":
-                out = s.lower()
+                mode = a[1].lower() if len(a) > 1 else "lower"
+                if mode in {"upper", "up"}:
+                    out = s.upper()
+                elif mode in {"lower", "low"}:
+                    out = s.lower()
+                elif mode in {"swap", "invert"}:
+                    out = s.swapcase()
+                else:
+                    return _emit({"error": f"Unknown case mode '{mode}'. Use: upper, lower, swap."})
             elif op == "title case converter":
                 out = s.title()
             elif op in {"snake case converter", "kebab case converter", "camel case converter"}:

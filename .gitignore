@@ -1,2 +1,6 @@
-# Backup directories
-backup/
+# Compiled/Binary files
+__pycache__/
+*.pyc
+
+# Logs and temp files
+logs/
