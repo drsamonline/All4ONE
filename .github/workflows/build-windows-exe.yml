@@ -16,6 +16,12 @@ on:
     tags: ['v*']
   workflow_dispatch: {}
 
+# Required so softprops/action-gh-release can create a release and upload
+# assets. Without this, the release step fails with "Resource not
+# accessible by integration" / 403.
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -91,8 +97,19 @@ jobs:
           path: dist/utility_suite/
           if-no-files-found: error
 
+      - name: Zip the built app for release
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist/utility_suite/* -DestinationPath dist/utility_suite-windows.zip -Force
+
       - name: Attach to GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/utility_suite/**
+          # `files` must point at actual files/globs, not a directory tree.
+          # A zip is the most reliable, portable asset for Windows users.
+          files: dist/utility_suite-windows.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
