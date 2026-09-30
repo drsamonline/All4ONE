@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Folder Backup",
             "category": "Backup & Restore",
-            "description": "Folder Backup: query and display folder backup details as structured JSON.",
+            "description": "Back up folder targets.",
             "handler": "operations.folder_backup",
             "cli_command": "folder-backup",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Incremental Backup",
             "category": "Backup & Restore",
-            "description": "Incremental Backup: query and display incremental backup details as structured JSON.",
+            "description": "Back up folder targets.",
             "handler": "operations.incremental_backup",
             "cli_command": "incremental-backup",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Mirror Backup",
             "category": "Backup & Restore",
-            "description": "Mirror Backup: query and display mirror backup details as structured JSON.",
+            "description": "Back up incremental targets.",
             "handler": "operations.mirror_backup",
             "cli_command": "mirror-backup",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Backup Verify",
             "category": "Backup & Restore",
-            "description": "Backup Verify: query and display backup verify details as structured JSON.",
+            "description": "Back up mirror targets.",
             "handler": "operations.backup_verify",
             "cli_command": "backup-verify",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Backup Manifest",
             "category": "Backup & Restore",
-            "description": "Backup Manifest: query and display backup manifest details as structured JSON.",
+            "description": "Backup Verify: run the 'backup verify' operation and print structured JSON results.",
             "handler": "operations.backup_manifest",
             "cli_command": "backup-manifest",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Backup Difference",
             "category": "Backup & Restore",
-            "description": "Backup Difference: query and display backup difference details as structured JSON.",
+            "description": "Backup Manifest: run the 'backup manifest' operation and print structured JSON results.",
             "handler": "operations.backup_difference",
             "cli_command": "backup-difference",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Backup Restore",
             "category": "Backup & Restore",
-            "description": "Backup Restore: query and display backup restore details as structured JSON.",
+            "description": "Compute the difference between backup inputs.",
             "handler": "operations.backup_restore",
             "cli_command": "backup-restore",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Backup Cleanup",
             "category": "Backup & Restore",
-            "description": "Backup Cleanup: query and display backup cleanup details as structured JSON.",
+            "description": "Restore previously backed-up backup data.",
             "handler": "operations.backup_cleanup",
             "cli_command": "backup-cleanup",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Backup Rotation",
             "category": "Backup & Restore",
-            "description": "Backup Rotation: query and display backup rotation details as structured JSON.",
+            "description": "Backup Cleanup: run the 'backup cleanup' operation and print structured JSON results.",
             "handler": "operations.backup_rotation",
             "cli_command": "backup-rotation",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Backup Compression",
             "category": "Backup & Restore",
-            "description": "Backup Compression: query and display backup compression details as structured JSON.",
+            "description": "Backup Rotation: run the 'backup rotation' operation and print structured JSON results.",
             "handler": "operations.backup_compression",
             "cli_command": "backup-compression",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Backup Integrity Hash",
             "category": "Backup & Restore",
-            "description": "Backup Integrity Hash: query and display backup integrity hash details as structured JSON.",
+            "description": "Analyze backup log and summarize findings.",
             "handler": "operations.backup_integrity_hash",
             "cli_command": "backup-integrity-hash",
             "dependencies": [],

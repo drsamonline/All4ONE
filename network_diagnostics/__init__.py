@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Network Adapter Details",
             "category": "Network Diagnostics",
-            "description": "Network Adapter Details: query and display network adapter details details as structured JSON.",
+            "description": "List network adapter entries.",
             "handler": "operations.network_adapter_details",
             "cli_command": "network-adapter-details",
             "dependencies": ["powershell", "ipconfig"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "IPv4 Configuration",
             "category": "Network Diagnostics",
-            "description": "IPv4 Configuration: query and display ipv4 configuration details as structured JSON.",
+            "description": "Show detailed network adapter details.",
             "handler": "operations.ipv4_configuration",
             "cli_command": "ipv4-configuration",
             "dependencies": ["powershell", "ipconfig"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "IPv6 Configuration",
             "category": "Network Diagnostics",
-            "description": "IPv6 Configuration: query and display ipv6 configuration details as structured JSON.",
+            "description": "IPv4 Configuration: run the 'ipv4 configuration' operation and print structured JSON results.",
             "handler": "operations.ipv6_configuration",
             "cli_command": "ipv6-configuration",
             "dependencies": ["powershell", "ipconfig"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Default Gateway",
             "category": "Network Diagnostics",
-            "description": "Default Gateway: query and display default gateway details as structured JSON.",
+            "description": "List dns server entries.",
             "handler": "operations.default_gateway",
             "cli_command": "default-gateway",
             "dependencies": ["powershell", "ipconfig"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Connection Test",
             "category": "Network Diagnostics",
-            "description": "Connection Test: query and display connection test details as structured JSON.",
+            "description": "Display the contents of mac address.",
             "handler": "operations.connection_test",
             "cli_command": "connection-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "HTTP Connectivity Test",
             "category": "Network Diagnostics",
-            "description": "HTTP Connectivity Test: query and display http connectivity test details as structured JSON.",
+            "description": "Test connection reachability or behavior.",
             "handler": "operations.http_connectivity_test",
             "cli_command": "http-connectivity-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "HTTPS Connectivity Test",
             "category": "Network Diagnostics",
-            "description": "HTTPS Connectivity Test: query and display https connectivity test details as structured JSON.",
+            "description": "Test http connectivity reachability or behavior.",
             "handler": "operations.https_connectivity_test",
             "cli_command": "https-connectivity-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "DNS Connectivity Test",
             "category": "Network Diagnostics",
-            "description": "DNS Connectivity Test: query and display dns connectivity test details as structured JSON.",
+            "description": "Test https connectivity reachability or behavior.",
             "handler": "operations.dns_connectivity_test",
             "cli_command": "dns-connectivity-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Internet Reachability",
             "category": "Network Diagnostics",
-            "description": "Internet Reachability: query and display internet reachability details as structured JSON.",
+            "description": "Test dns connectivity reachability or behavior.",
             "handler": "operations.internet_reachability",
             "cli_command": "internet-reachability",
             "dependencies": ["powershell", "ipconfig"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Latency Test",
             "category": "Network Diagnostics",
-            "description": "Latency Test: query and display latency test details as structured JSON.",
+            "description": "Internet Reachability: run the 'internet reachability' operation and print structured JSON results.",
             "handler": "operations.latency_test",
             "cli_command": "latency-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Packet Loss Test",
             "category": "Network Diagnostics",
-            "description": "Packet Loss Test: query and display packet loss test details as structured JSON.",
+            "description": "Test latency reachability or behavior.",
             "handler": "operations.packet_loss_test",
             "cli_command": "packet-loss-test",
             "dependencies": ["powershell", "ipconfig"],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Proxy Configuration",
             "category": "Network Diagnostics",
-            "description": "Proxy Configuration: query and display proxy configuration details as structured JSON.",
+            "description": "Test packet loss reachability or behavior.",
             "handler": "operations.proxy_configuration",
             "cli_command": "proxy-configuration",
             "dependencies": ["powershell", "ipconfig"],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Network Diagnostics Bundle",
             "category": "Network Diagnostics",
-            "description": "Network Diagnostics Bundle: query and display network diagnostics bundle details as structured JSON.",
+            "description": "Display the contents of winhttp proxy.",
             "handler": "operations.network_diagnostics_bundle",
             "cli_command": "network-diagnostics-bundle",
             "dependencies": ["powershell", "ipconfig"],

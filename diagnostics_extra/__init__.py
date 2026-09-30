@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "System Information JSON Export",
             "category": "Extended Diagnostics",
-            "description": "System Information JSON Export: query and display system information json export details as structured JSON.",
+            "description": "Export system information json data to a file.",
             "handler": "operations.system_information_json_export",
             "cli_command": "system-information-json-export",
             "dependencies": ["powershell"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "System Information Text Export",
             "category": "Extended Diagnostics",
-            "description": "System Information Text Export: query and display system information text export details as structured JSON.",
+            "description": "Export system information json data to a file.",
             "handler": "operations.system_information_text_export",
             "cli_command": "system-information-text-export",
             "dependencies": ["powershell"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Environment Variable Diff",
             "category": "Extended Diagnostics",
-            "description": "Environment Variable Diff: query and display environment variable diff details as structured JSON.",
+            "description": "Enumerate an inventory of audio device inventory.",
             "handler": "operations.environment_variable_diff",
             "cli_command": "environment-variable-diff",
             "dependencies": ["powershell"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "PATH Deduplication Report",
             "category": "Extended Diagnostics",
-            "description": "PATH Deduplication Report: query and display path deduplication report details as structured JSON.",
+            "description": "Environment Variable Diff: show differences between two inputs.",
             "handler": "operations.path_deduplication_report",
             "cli_command": "path-deduplication-report",
             "dependencies": ["powershell"],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Windows Firewall Rule Count",
             "category": "Extended Diagnostics",
-            "description": "Windows Firewall Rule Count: query and display windows firewall rule count details as structured JSON.",
+            "description": "Display the contents of dns cache.",
             "handler": "operations.windows_firewall_rule_count",
             "cli_command": "windows-firewall-rule-count",
             "dependencies": ["powershell"],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Network Connection Table",
             "category": "Extended Diagnostics",
-            "description": "Network Connection Table: query and display network connection table details as structured JSON.",
+            "description": "Produce a windows firewall rule count count.",
             "handler": "operations.network_connection_table",
             "cli_command": "network-connection-table",
             "dependencies": ["powershell"],
@@ -158,7 +158,7 @@ def register_tools():
         {
             "name": "Utility Suite Diagnostics",
             "category": "Extended Diagnostics",
-            "description": "Utility Suite Diagnostics: query and display utility suite diagnostics details as structured JSON.",
+            "description": "Enumerate an inventory of log directory inventory.",
             "handler": "operations.utility_suite_diagnostics",
             "cli_command": "utility-suite-diagnostics",
             "dependencies": ["powershell"],

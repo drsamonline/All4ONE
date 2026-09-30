@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Shell Command Runner",
             "category": "Shell & Command Tools",
-            "description": "Shell Command Runner: query and display shell command runner details as structured JSON.",
+            "description": "Run shell command commands and capture output.",
             "handler": "operations.shell_command_runner",
             "cli_command": "shell-command-runner",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "PowerShell Command Runner",
             "category": "Shell & Command Tools",
-            "description": "PowerShell Command Runner: query and display powershell command runner details as structured JSON.",
+            "description": "Run shell command commands and capture output.",
             "handler": "operations.powershell_command_runner",
             "cli_command": "powershell-command-runner",
             "dependencies": ["powershell"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Command Resolver",
             "category": "Shell & Command Tools",
-            "description": "Command Resolver: query and display command resolver details as structured JSON.",
+            "description": "Run powershell command commands and capture output.",
             "handler": "operations.command_resolver",
             "cli_command": "command-resolver",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Executable Locator",
             "category": "Shell & Command Tools",
-            "description": "Executable Locator: query and display executable locator details as structured JSON.",
+            "description": "Inspect path and report internals.",
             "handler": "operations.executable_locator",
             "cli_command": "executable-locator",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Shell Environment Dump",
             "category": "Shell & Command Tools",
-            "description": "Shell Environment Dump: query and display shell environment dump details as structured JSON.",
+            "description": "Show guidance for command history.",
             "handler": "operations.shell_environment_dump",
             "cli_command": "shell-environment-dump",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Command Timeout Runner",
             "category": "Shell & Command Tools",
-            "description": "Command Timeout Runner: query and display command timeout runner details as structured JSON.",
+            "description": "Produce a detailed report of working directory.",
             "handler": "operations.command_timeout_runner",
             "cli_command": "command-timeout-runner",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Argument Escaper",
             "category": "Shell & Command Tools",
-            "description": "Argument Escaper: query and display argument escaper details as structured JSON.",
+            "description": "Assist with shell quoting tasks.",
             "handler": "operations.argument_escaper",
             "cli_command": "argument-escaper",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "STDOUT Capture",
             "category": "Shell & Command Tools",
-            "description": "STDOUT Capture: query and display stdout capture details as structured JSON.",
+            "description": "Decode exit code.",
             "handler": "operations.stdout_capture",
             "cli_command": "stdout-capture",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "STDERR Capture",
             "category": "Shell & Command Tools",
-            "description": "STDERR Capture: query and display stderr capture details as structured JSON.",
+            "description": "Capture stdout streams from child processes.",
             "handler": "operations.stderr_capture",
             "cli_command": "stderr-capture",
             "dependencies": [],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Command Availability Scan",
             "category": "Shell & Command Tools",
-            "description": "Command Availability Scan: query and display command availability scan details as structured JSON.",
+            "description": "Assist with process pipe tasks.",
             "handler": "operations.command_availability_scan",
             "cli_command": "command-availability-scan",
             "dependencies": [],

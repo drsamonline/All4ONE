@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Event Log Query",
             "category": "Event Tools",
-            "description": "Event Log Query: query and display event log query details as structured JSON.",
+            "description": "List event log entries.",
             "handler": "operations.event_log_query",
             "cli_command": "event-log-query",
             "dependencies": ["wevtutil"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Event Log Export",
             "category": "Event Tools",
-            "description": "Event Log Export: query and display event log export details as structured JSON.",
+            "description": "Event Log Query: run the 'event log query' operation and print structured JSON results.",
             "handler": "operations.event_log_export",
             "cli_command": "event-log-export",
             "dependencies": ["wevtutil"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Event Log Source Search",
             "category": "Event Tools",
-            "description": "Event Log Source Search: query and display event log source search details as structured JSON.",
+            "description": "Export event log data to a file.",
             "handler": "operations.event_log_source_search",
             "cli_command": "event-log-source-search",
             "dependencies": ["wevtutil"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Event Log Statistics",
             "category": "Event Tools",
-            "description": "Event Log Statistics: query and display event log statistics details as structured JSON.",
+            "description": "Filter event log keyword by criteria.",
             "handler": "operations.event_log_statistics",
             "cli_command": "event-log-statistics",
             "dependencies": ["wevtutil"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Event Log Recent Errors",
             "category": "Event Tools",
-            "description": "Event Log Recent Errors: query and display event log recent errors details as structured JSON.",
+            "description": "Event Log Statistics: run the 'event log statistics' operation and print structured JSON results.",
             "handler": "operations.event_log_recent_errors",
             "cli_command": "event-log-recent-errors",
             "dependencies": ["wevtutil"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Event Log Recent Warnings",
             "category": "Event Tools",
-            "description": "Event Log Recent Warnings: query and display event log recent warnings details as structured JSON.",
+            "description": "Event Log Recent Errors: run the 'event log recent errors' operation and print structured JSON results.",
             "handler": "operations.event_log_recent_warnings",
             "cli_command": "event-log-recent-warnings",
             "dependencies": ["wevtutil"],

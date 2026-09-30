@@ -30,14 +30,15 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-EXCLUDE = {"core", "tests"}
+# Directories that are not plugin packs (skip entirely, incl. recursive scans)
+EXCLUDE_DIRS = {"core", "tests", "backup", "plugins", ".github", "scripts", "logs"}
 
 
 def pack_names():
     return sorted(
         p.name
         for p in ROOT.iterdir()
-        if p.is_dir() and (p / "__init__.py").exists() and p.name not in EXCLUDE
+        if p.is_dir() and (p / "__init__.py").exists() and p.name not in EXCLUDE_DIRS
     )
 
 
@@ -64,7 +65,12 @@ def main():
     problems = []
     packs = pack_names()
     all_tools = []
-    py_files = [p for p in ROOT.rglob("*.py") if ".git" not in p.parts and "__pycache__" not in p.parts]
+    py_files = [
+        p for p in ROOT.rglob("*.py")
+        if ".git" not in p.parts
+        and "__pycache__" not in p.parts
+        and not (set(p.relative_to(ROOT).parts) & EXCLUDE_DIRS)
+    ]
     for p in py_files:
         text = p.read_text(encoding="utf-8")
         for line_no, line in enumerate(text.splitlines(), 1):

@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Audio Duration",
             "category": "Audio Tools",
-            "description": "Audio Duration: query and display audio duration details as structured JSON.",
+            "description": "Audio Duration: run the 'audio duration' operation and print structured JSON results.",
             "handler": "operations.audio_duration",
             "cli_command": "audio-duration",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Audio Trim",
             "category": "Audio Tools",
-            "description": "Audio Trim: query and display audio trim details as structured JSON.",
+            "description": "Normalize audio to a canonical form.",
             "handler": "operations.audio_trim",
             "cli_command": "audio-trim",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Audio Concatenator",
             "category": "Audio Tools",
-            "description": "Audio Concatenator: query and display audio concatenator details as structured JSON.",
+            "description": "Audio Trim: run the 'audio trim' operation and print structured JSON results.",
             "handler": "operations.audio_concatenator",
             "cli_command": "audio-concatenator",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Audio Format Converter",
             "category": "Audio Tools",
-            "description": "Convert audio format between units or formats.",
+            "description": "Convert an audio file between formats using ffmpeg.",
             "handler": "operations.audio_format_converter",
             "cli_command": "audio-format-converter",
             "dependencies": ["ffprobe", "ffmpeg"],

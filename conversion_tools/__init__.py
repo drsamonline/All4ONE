@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Bytes Converter",
             "category": "Unit Conversion",
-            "description": "Convert bytes between units or formats.",
+            "description": "Convert a byte count to a human-readable size (KB/MB/GiB...).",
             "handler": "operations.bytes_converter",
             "cli_command": "bytes-converter",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Seconds Converter",
             "category": "Unit Conversion",
-            "description": "Convert seconds between units or formats.",
+            "description": "Convert a duration in seconds into days/hours/minutes/seconds.",
             "handler": "operations.seconds_converter",
             "cli_command": "seconds-converter",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Temperature Converter",
             "category": "Unit Conversion",
-            "description": "Convert temperature between units or formats.",
+            "description": "Convert temperature between c, f, k, and r scales.",
             "handler": "operations.temperature_converter",
             "cli_command": "temperature-converter",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Length Converter",
             "category": "Unit Conversion",
-            "description": "Convert length between units or formats.",
+            "description": "Convert length/distance between units (m, ft, in, mi, km...).",
             "handler": "operations.length_converter",
             "cli_command": "length-converter",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Mass Converter",
             "category": "Unit Conversion",
-            "description": "Convert mass between units or formats.",
+            "description": "Convert mass between units (kg, lb, oz, g, ton...).",
             "handler": "operations.mass_converter",
             "cli_command": "mass-converter",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Area Converter",
             "category": "Unit Conversion",
-            "description": "Convert area between units or formats.",
+            "description": "Convert an area between units (m2, ft2, acre, hectare, etc.).",
             "handler": "operations.area_converter",
             "cli_command": "area-converter",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Volume Converter",
             "category": "Unit Conversion",
-            "description": "Convert volume between units or formats.",
+            "description": "Convert volume between units (L, gal, mL, ft3, cup...).",
             "handler": "operations.volume_converter",
             "cli_command": "volume-converter",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Speed Converter",
             "category": "Unit Conversion",
-            "description": "Convert speed between units or formats.",
+            "description": "Convert speed between units (km/h, mph, m/s, knots...).",
             "handler": "operations.speed_converter",
             "cli_command": "speed-converter",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Pressure Converter",
             "category": "Unit Conversion",
-            "description": "Convert pressure between units or formats.",
+            "description": "Convert pressure between units (Pa, bar, psi, atm...).",
             "handler": "operations.pressure_converter",
             "cli_command": "pressure-converter",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Energy Converter",
             "category": "Unit Conversion",
-            "description": "Convert energy between units or formats.",
+            "description": "Convert energy between units (J, cal, kWh, BTU, eV...).",
             "handler": "operations.energy_converter",
             "cli_command": "energy-converter",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Power Converter",
             "category": "Unit Conversion",
-            "description": "Convert power between units or formats.",
+            "description": "Convert power between units (W, kW, hp, BTU/h...).",
             "handler": "operations.power_converter",
             "cli_command": "power-converter",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Angle Converter",
             "category": "Unit Conversion",
-            "description": "Convert angle between units or formats.",
+            "description": "Convert an angle between units (deg, rad, grad, turn).",
             "handler": "operations.angle_converter",
             "cli_command": "angle-converter",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Frequency Converter",
             "category": "Unit Conversion",
-            "description": "Convert frequency between units or formats.",
+            "description": "Convert frequency between units (Hz, kHz, MHz, GHz...).",
             "handler": "operations.frequency_converter",
             "cli_command": "frequency-converter",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Data Rate Converter",
             "category": "Unit Conversion",
-            "description": "Convert data rate between units or formats.",
+            "description": "Convert a data-transfer rate between units (bps, KB/s, MB/s...).",
             "handler": "operations.data_rate_converter",
             "cli_command": "data-rate-converter",
             "dependencies": [],

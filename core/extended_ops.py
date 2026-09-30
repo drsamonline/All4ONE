@@ -238,7 +238,23 @@ def run_extended(args: list[str], operation: str) -> int:
                     re.sub(r"^\s+", lambda m: " " * (len(m.group(0).expandtabs(4))), x) for x in lines
                 )
             elif op == "case converter":
-                out = s.lower()
+                # Mode may appear as first or second argument; text is the rest.
+                # e.g. `run case-converter upper "hello"` or `run case-converter "hello" upper`
+                mode = ""
+                for cand in ("upper", "up", "lower", "low", "swap", "invert"):
+                    if cand in [x.lower() for x in a]:
+                        mode = cand.lower()
+                        break
+                if not mode:
+                    return _emit({"error": "Missing case mode. Use: upper, lower, swap."})
+                payload = [x for x in a if x.lower() != mode]
+                s = _text(p) if p.exists() and p.is_file() else " ".join(payload)
+                if mode in {"upper", "up"}:
+                    out = s.upper()
+                elif mode in {"lower", "low"}:
+                    out = s.lower()
+                else:
+                    out = s.swapcase()
             elif op == "title case converter":
                 out = s.title()
             elif op in {"snake case converter", "kebab case converter", "camel case converter"}:
@@ -593,8 +609,12 @@ def run_extended(args: list[str], operation: str) -> int:
                     return _emit({"error": "Unsupported unit", "supported_units": sorted(table)})
                 out = value * table[fu] / table[tu]
             return _emit({"input": value, "from": from_unit or "c", "to": to_unit or "c", "result": out})
-        if "converter" in op:
-            return _emit({"error": "Unsupported conversion operation.", "operation": operation})
+        # NOTE: a former blanket `if "converter" in op:` fallback used to sit here and
+        # shadowed every converter tool implemented later in this function (e.g.
+        # slugify-converter always returned "Unsupported conversion operation.").
+        # Unknown operations now fall through to their real handlers below and, if
+        # still unmatched, to the final generic handler. Do not re-add a name-substring
+        # catch-all before the specific handlers.
 
         # ---------- time/date productivity ----------
         if op in {
@@ -1669,7 +1689,7 @@ def run_extended(args: list[str], operation: str) -> int:
             "video thumbnail sheet",
             "video metadata cleaner",
         }:
-            if not p.exists():
+            if not p.is_file():
                 return _emit({"error": f"Input file not found: {p}"})
             if not shutil.which("ffmpeg") and op != "audio metadata reader":
                 return _emit({"error": "ffmpeg is required."})
@@ -2657,8 +2677,8 @@ def run_extended(args: list[str], operation: str) -> int:
                     rows = list(csv.DictReader(f))
                 out = [r.get(col, "") for r in rows]
                 return _emit(out)
-            except FileNotFoundError:
-                return _emit({"error": f"File not found: {path}"})
+            except (FileNotFoundError, IsADirectoryError) as exc:
+                return _emit({"error": f"Cannot read file ({exc}): {path}"})
             except Exception as exc:
                 return _emit({"error": str(exc)})
         if op == "regex replacer":
@@ -2790,8 +2810,8 @@ def run_extended(args: list[str], operation: str) -> int:
             path = _path(a, 0, "")
             try:
                 raw = Path(path).read_text(encoding="utf-8")
-            except FileNotFoundError:
-                return _emit({"error": f"File not found: {path}"})
+            except (FileNotFoundError, IsADirectoryError) as exc:
+                return _emit({"error": f"Cannot read file ({exc}): {path}"})
             dates = set()
             for m in re.finditer(r"\d{4}-\d{2}-\d{2}", raw):
                 try:
@@ -2926,6 +2946,8 @@ def run_extended(args: list[str], operation: str) -> int:
                 lines = Path(path).read_text(encoding="utf-8").splitlines()
             except FileNotFoundError:
                 return _emit({"error": f"Not found: {path}"})
+            except IsADirectoryError:
+                return _emit({"error": f"Not a file (directory given): {path}"})
             pkgs = []
             unpinned = []
             for ln in lines:
@@ -2972,6 +2994,8 @@ def run_extended(args: list[str], operation: str) -> int:
                     return _emit(summary)
             except FileNotFoundError:
                 return _emit({"error": f"Wheel not found: {zp}"})
+            except IsADirectoryError:
+                return _emit({"error": f"Not a file (directory given): {zp}"})
             except Exception as exc:
                 return _emit({"error": str(exc)})
         if op == "temp file aging cleaner":
@@ -3085,6 +3109,8 @@ def run_extended(args: list[str], operation: str) -> int:
                 data = Path(path).read_bytes()
             except FileNotFoundError:
                 return _emit({"error": f"Not found: {path}"})
+            except IsADirectoryError:
+                return _emit({"error": f"Not a file (directory given): {path}"})
             out = {"file": path, "size": len(data)}
             for alg in ("md5", "sha1", "sha256", "sha512"):
                 out[alg] = hashlib.new(alg, data).hexdigest()
@@ -3096,6 +3122,8 @@ def run_extended(args: list[str], operation: str) -> int:
                 lines = Path(manifest).read_text(encoding="utf-8").splitlines()
             except FileNotFoundError:
                 return _emit({"error": f"Manifest not found: {manifest}"})
+            except IsADirectoryError:
+                return _emit({"error": f"Not a file (directory given): {manifest}"})
             ok = bad = missing = 0
             failures = []
             for ln in lines:
@@ -3122,6 +3150,8 @@ def run_extended(args: list[str], operation: str) -> int:
                 data = json.loads(Path(path).read_text(encoding="utf-8"))
             except FileNotFoundError:
                 return _emit({"error": f"Not found: {path}"})
+            except IsADirectoryError:
+                return _emit({"error": f"Not a file (directory given): {path}"})
             except json.JSONDecodeError as exc:
                 return _emit({"error": f"Invalid JSON: {exc}"})
             if mode in {"to-yaml", "yaml"}:
@@ -3137,7 +3167,7 @@ def run_extended(args: list[str], operation: str) -> int:
             try:
                 da = json.loads(Path(fa).read_text(encoding="utf-8"))
                 db = json.loads(Path(fb).read_text(encoding="utf-8"))
-            except FileNotFoundError as exc:
+            except (FileNotFoundError, IsADirectoryError) as exc:
                 return _emit({"error": str(exc)})
             except json.JSONDecodeError as exc:
                 return _emit({"error": f"Invalid JSON: {exc}"})
@@ -3165,7 +3195,7 @@ def run_extended(args: list[str], operation: str) -> int:
             try:
                 schema = json.loads(Path(schema_path).read_text(encoding="utf-8"))
                 doc = json.loads(Path(doc_path).read_text(encoding="utf-8"))
-            except FileNotFoundError as exc:
+            except (FileNotFoundError, IsADirectoryError) as exc:
                 return _emit({"error": str(exc)})
             except json.JSONDecodeError as exc:
                 return _emit({"error": f"Invalid JSON: {exc}"})
@@ -3192,6 +3222,8 @@ def run_extended(args: list[str], operation: str) -> int:
                 data = Path(path).read_bytes()
             except FileNotFoundError:
                 return _emit({"error": f"Not found: {path}"})
+            except IsADirectoryError:
+                return _emit({"error": f"Not a file (directory given): {path}"})
             if mode == "encode":
                 return _emit(base64.b64encode(data).decode())
             try:
@@ -3216,6 +3248,8 @@ def run_extended(args: list[str], operation: str) -> int:
                 raw = Path(path).read_bytes()
             except FileNotFoundError:
                 return _emit({"error": f"Not found: {path}"})
+            except IsADirectoryError:
+                return _emit({"error": f"Not a file (directory given): {path}"})
             encodings = ["ascii", "utf-8", "utf-16", "utf-16-le", "utf-16-be", "latin-1", "cp1252"]
             detected = []
             for enc in encodings:
@@ -3233,6 +3267,8 @@ def run_extended(args: list[str], operation: str) -> int:
                 raw = Path(path).read_bytes()
             except FileNotFoundError:
                 return _emit({"error": f"Not found: {path}"})
+            except IsADirectoryError:
+                return _emit({"error": f"Not a file (directory given): {path}"})
             boms = {b"\xef\xbb\xbf": "utf-8-sig", b"\xff\xfe": "utf-16-le", b"\xfe\xff": "utf-16-be"}
             found = next((v for k, v in boms.items() if raw.startswith(k)), None)
             if mode == "detect":
