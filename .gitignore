@@ -1,6 +1,27 @@
-# Compiled/Binary files
+# Bytecode / caches
 __pycache__/
-*.pyc
+*.py[cod]
 
-# Common compressed file
-*.zip
+# Runtime logs (logs/ ships empty with .gitkeep)
+logs/*
+!logs/.gitkeep
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Tooling caches
+.ruff_cache/
+.pytest_cache/
+.coverage
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
