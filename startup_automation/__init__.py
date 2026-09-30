@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Scheduled Task Details",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Details: query and display scheduled task details details as structured JSON.",
+            "description": "List scheduled task entries.",
             "handler": "operations.scheduled_task_details",
             "cli_command": "scheduled-task-details",
             "dependencies": ["schtasks"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Scheduled Task Run",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Run: query and display scheduled task run details as structured JSON.",
+            "description": "Show detailed scheduled task details.",
             "handler": "operations.scheduled_task_run",
             "cli_command": "scheduled-task-run",
             "dependencies": ["schtasks"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Scheduled Task Disable",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Disable: query and display scheduled task disable details as structured JSON.",
+            "description": "Scheduled Task Run: run the 'scheduled task run' operation and print structured JSON results.",
             "handler": "operations.scheduled_task_disable",
             "cli_command": "scheduled-task-disable",
             "dependencies": ["schtasks"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Scheduled Task Enable",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Enable: query and display scheduled task enable details as structured JSON.",
+            "description": "Scheduled Task Disable: run the 'scheduled task disable' operation and print structured JSON results.",
             "handler": "operations.scheduled_task_enable",
             "cli_command": "scheduled-task-enable",
             "dependencies": ["schtasks"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Task XML Export",
             "category": "Startup & Automation",
-            "description": "Task XML Export: query and display task xml export details as structured JSON.",
+            "description": "Scheduled Task Enable: run the 'scheduled task enable' operation and print structured JSON results.",
             "handler": "operations.task_xml_export",
             "cli_command": "task-xml-export",
             "dependencies": ["schtasks"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Automation Manifest",
             "category": "Startup & Automation",
-            "description": "Automation Manifest: query and display automation manifest details as structured JSON.",
+            "description": "Take a point-in-time snapshot of folder watch snapshot.",
             "handler": "operations.automation_manifest",
             "cli_command": "automation-manifest",
             "dependencies": ["schtasks"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Startup Report",
             "category": "Startup & Automation",
-            "description": "Startup Report: query and display startup report details as structured JSON.",
+            "description": "Automation Manifest: run the 'automation manifest' operation and print structured JSON results.",
             "handler": "operations.startup_report",
             "cli_command": "startup-report",
             "dependencies": ["schtasks"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Logon Task Report",
             "category": "Startup & Automation",
-            "description": "Logon Task Report: query and display logon task report details as structured JSON.",
+            "description": "Compile a readable startup report report.",
             "handler": "operations.logon_task_report",
             "cli_command": "logon-task-report",
             "dependencies": ["schtasks"],

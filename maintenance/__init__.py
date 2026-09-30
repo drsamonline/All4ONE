@@ -48,7 +48,7 @@ def register_tools():
     {
         "name": "Disk Cleanup Preview",
         "category": "Maintenance",
-        "description": "Disk Cleanup Preview: query and display disk cleanup preview details as structured JSON.",
+        "description": "Locate broken link on disk or in scope.",
         "handler": "operations.disk_cleanup_preview",
         "cli_command": "disk-cleanup-preview",
         "dependencies": []

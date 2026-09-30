@@ -238,15 +238,23 @@ def run_extended(args: list[str], operation: str) -> int:
                     re.sub(r"^\s+", lambda m: " " * (len(m.group(0).expandtabs(4))), x) for x in lines
                 )
             elif op == "case converter":
-                mode = a[1].lower() if len(a) > 1 else "lower"
+                # Mode may appear as first or second argument; text is the rest.
+                # e.g. `run case-converter upper "hello"` or `run case-converter "hello" upper`
+                mode = ""
+                for cand in ("upper", "up", "lower", "low", "swap", "invert"):
+                    if cand in [x.lower() for x in a]:
+                        mode = cand.lower()
+                        break
+                if not mode:
+                    return _emit({"error": "Missing case mode. Use: upper, lower, swap."})
+                payload = [x for x in a if x.lower() != mode]
+                s = _text(p) if p.exists() and p.is_file() else " ".join(payload)
                 if mode in {"upper", "up"}:
                     out = s.upper()
                 elif mode in {"lower", "low"}:
                     out = s.lower()
-                elif mode in {"swap", "invert"}:
-                    out = s.swapcase()
                 else:
-                    return _emit({"error": f"Unknown case mode '{mode}'. Use: upper, lower, swap."})
+                    out = s.swapcase()
             elif op == "title case converter":
                 out = s.title()
             elif op in {"snake case converter", "kebab case converter", "camel case converter"}:

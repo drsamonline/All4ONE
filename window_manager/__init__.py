@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Window Details",
             "category": "Window Manager",
-            "description": "Window Details: query and display window details details as structured JSON.",
+            "description": "List window entries.",
             "handler": "operations.window_details",
             "cli_command": "window-details",
             "dependencies": ["powershell"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Always On Top Toggle",
             "category": "Window Manager",
-            "description": "Always On Top Toggle: query and display always on top toggle details as structured JSON.",
+            "description": "Assist with window focus tasks.",
             "handler": "operations.always_on_top_toggle",
             "cli_command": "always-on-top-toggle",
             "dependencies": ["powershell"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Window Minimize All",
             "category": "Window Manager",
-            "description": "Window Minimize All: query and display window minimize all details as structured JSON.",
+            "description": "Toggle always on top state on/off.",
             "handler": "operations.window_minimize_all",
             "cli_command": "window-minimize-all",
             "dependencies": ["powershell"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Window Restore All",
             "category": "Window Manager",
-            "description": "Window Restore All: query and display window restore all details as structured JSON.",
+            "description": "Window Minimize All: run the 'window minimize all' operation and print structured JSON results.",
             "handler": "operations.window_restore_all",
             "cli_command": "window-restore-all",
             "dependencies": ["powershell"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Window Title Search",
             "category": "Window Manager",
-            "description": "Window Title Search: query and display window title search details as structured JSON.",
+            "description": "Window Restore All: run the 'window restore all' operation and print structured JSON results.",
             "handler": "operations.window_title_search",
             "cli_command": "window-title-search",
             "dependencies": ["powershell"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Window Process Mapping",
             "category": "Window Manager",
-            "description": "Window Process Mapping: query and display window process mapping details as structured JSON.",
+            "description": "Search window title targets for matches.",
             "handler": "operations.window_process_mapping",
             "cli_command": "window-process-mapping",
             "dependencies": ["powershell"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Window Geometry Setter",
             "category": "Window Manager",
-            "description": "Window Geometry Setter: query and display window geometry setter details as structured JSON.",
+            "description": "Read and print window geometry.",
             "handler": "operations.window_geometry_setter",
             "cli_command": "window-geometry-setter",
             "dependencies": ["powershell"],

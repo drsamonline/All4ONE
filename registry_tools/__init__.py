@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Registry Query",
             "category": "Registry Tools",
-            "description": "Registry Query: query and display registry query details as structured JSON.",
+            "description": "Registry Query: run the 'registry query' operation and print structured JSON results.",
             "handler": "operations.registry_query",
             "cli_command": "registry-query",
             "dependencies": ["reg"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Registry Export",
             "category": "Registry Tools",
-            "description": "Registry Export: query and display registry export details as structured JSON.",
+            "description": "Registry Query: run the 'registry query' operation and print structured JSON results.",
             "handler": "operations.registry_export",
             "cli_command": "registry-export",
             "dependencies": ["reg"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Registry Import",
             "category": "Registry Tools",
-            "description": "Registry Import: query and display registry import details as structured JSON.",
+            "description": "Export registry data to a file.",
             "handler": "operations.registry_import",
             "cli_command": "registry-import",
             "dependencies": ["reg"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Registry Key Creator",
             "category": "Registry Tools",
-            "description": "Registry Key Creator: query and display registry key creator details as structured JSON.",
+            "description": "Import registry data from a file.",
             "handler": "operations.registry_key_creator",
             "cli_command": "registry-key-creator",
             "dependencies": ["reg"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Registry Key Deleter",
             "category": "Registry Tools",
-            "description": "Registry Key Deleter: query and display registry key deleter details as structured JSON.",
+            "description": "Registry Key Creator: run the 'registry key creator' operation and print structured JSON results.",
             "handler": "operations.registry_key_deleter",
             "cli_command": "registry-key-deleter",
             "dependencies": ["reg"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Registry Value Setter",
             "category": "Registry Tools",
-            "description": "Registry Value Setter: query and display registry value setter details as structured JSON.",
+            "description": "Registry Key Deleter: run the 'registry key deleter' operation and print structured JSON results.",
             "handler": "operations.registry_value_setter",
             "cli_command": "registry-value-setter",
             "dependencies": ["reg"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Registry Value Deleter",
             "category": "Registry Tools",
-            "description": "Registry Value Deleter: query and display registry value deleter details as structured JSON.",
+            "description": "Set/apply registry value configuration.",
             "handler": "operations.registry_value_deleter",
             "cli_command": "registry-value-deleter",
             "dependencies": ["reg"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Registry Value Enumerator",
             "category": "Registry Tools",
-            "description": "Registry Value Enumerator: query and display registry value enumerator details as structured JSON.",
+            "description": "Registry Value Deleter: run the 'registry value deleter' operation and print structured JSON results.",
             "handler": "operations.registry_value_enumerator",
             "cli_command": "registry-value-enumerator",
             "dependencies": ["reg"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Registry Backup",
             "category": "Registry Tools",
-            "description": "Registry Backup: query and display registry backup details as structured JSON.",
+            "description": "Registry Value Enumerator: run the 'registry value enumerator' operation and print structured JSON results.",
             "handler": "operations.registry_backup",
             "cli_command": "registry-backup",
             "dependencies": ["reg"],

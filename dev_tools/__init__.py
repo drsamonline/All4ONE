@@ -40,7 +40,7 @@ def register_tools():
     {
         "name": "JSON Diff",
         "category": "Developer Tools",
-        "description": "JSON Diff: query and display json diff details as structured JSON.",
+        "description": "Convert content between JSON and YAML formats.",
         "handler": "operations.json_diff",
         "cli_command": "json-diff",
         "dependencies": []

@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Image Contact Sheet",
             "category": "Advanced Imaging",
-            "description": "Image Contact Sheet: query and display image contact sheet details as structured JSON.",
+            "description": "Clean up image metadata.",
             "handler": "operations.image_contact_sheet",
             "cli_command": "image-contact-sheet",
             "dependencies": ["Pillow"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Image Montage Builder",
             "category": "Advanced Imaging",
-            "description": "Image Montage Builder: query and display image montage builder details as structured JSON.",
+            "description": "Image Contact Sheet: run the 'image contact sheet' operation and print structured JSON results.",
             "handler": "operations.image_montage_builder",
             "cli_command": "image-montage-builder",
             "dependencies": ["Pillow"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Image Border Adder",
             "category": "Advanced Imaging",
-            "description": "Image Border Adder: query and display image border adder details as structured JSON.",
+            "description": "Image Montage Builder: run the 'image montage builder' operation and print structured JSON results.",
             "handler": "operations.image_border_adder",
             "cli_command": "image-border-adder",
             "dependencies": ["Pillow"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Image Watermark Tool",
             "category": "Advanced Imaging",
-            "description": "Image Watermark Tool: query and display image watermark tool details as structured JSON.",
+            "description": "Image Border Adder: run the 'image border adder' operation and print structured JSON results.",
             "handler": "operations.image_watermark_tool",
             "cli_command": "image-watermark-tool",
             "dependencies": ["Pillow"],

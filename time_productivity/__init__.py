@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Stopwatch",
         "category": "Time & Productivity",
-        "description": "Stopwatch: query and display stopwatch details as structured JSON.",
+        "description": "Stopwatch: run the 'stopwatch' operation and print structured JSON results.",
         "handler": "operations.stopwatch",
         "cli_command": "stopwatch",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "Countdown",
         "category": "Time & Productivity",
-        "description": "Countdown: query and display countdown details as structured JSON.",
+        "description": "Stopwatch: run the 'stopwatch' operation and print structured JSON results.",
         "handler": "operations.countdown",
         "cli_command": "countdown",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "Date Difference",
         "category": "Time & Productivity",
-        "description": "Date Difference: query and display date difference details as structured JSON.",
+        "description": "Countdown: run the 'countdown' operation and print structured JSON results.",
         "handler": "operations.date_difference",
         "cli_command": "date-difference",
         "dependencies": []
@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "Business Day Difference",
         "category": "Time & Productivity",
-        "description": "Business Day Difference: query and display business day difference details as structured JSON.",
+        "description": "Compute the difference between date inputs.",
         "handler": "operations.business_day_difference",
         "cli_command": "business-day-difference",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Calendar Month",
         "category": "Time & Productivity",
-        "description": "Calendar Month: query and display calendar month details as structured JSON.",
+        "description": "Reformat iso time to a clean layout.",
         "handler": "operations.calendar_month",
         "cli_command": "calendar-month",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "Calendar Year",
         "category": "Time & Productivity",
-        "description": "Calendar Year: query and display calendar year details as structured JSON.",
+        "description": "Calendar Month: run the 'calendar month' operation and print structured JSON results.",
         "handler": "operations.calendar_year",
         "cli_command": "calendar-year",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "Week Number",
         "category": "Time & Productivity",
-        "description": "Week Number: query and display week number details as structured JSON.",
+        "description": "Calendar Year: run the 'calendar year' operation and print structured JSON results.",
         "handler": "operations.week_number",
         "cli_command": "week-number",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Day Of Year",
         "category": "Time & Productivity",
-        "description": "Day Of Year: query and display day of year details as structured JSON.",
+        "description": "Week Number: run the 'week number' operation and print structured JSON results.",
         "handler": "operations.day_of_year",
         "cli_command": "day-of-year",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "Pomodoro Timer",
         "category": "Time & Productivity",
-        "description": "Pomodoro Timer: query and display pomodoro timer details as structured JSON.",
+        "description": "Compute working hours values.",
         "handler": "operations.pomodoro_timer",
         "cli_command": "pomodoro-timer",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "Time Zone Offset",
         "category": "Time & Productivity",
-        "description": "Time Zone Offset: query and display time zone offset details as structured JSON.",
+        "description": "Pomodoro Timer: run the 'pomodoro timer' operation and print structured JSON results.",
         "handler": "operations.time_zone_offset",
         "cli_command": "time-zone-offset",
         "dependencies": []
@@ -118,7 +118,7 @@ def register_tools():
     {
         "name": "Meeting Time Table",
         "category": "Time & Productivity",
-        "description": "Meeting Time Table: query and display meeting time table details as structured JSON.",
+        "description": "Time Zone Offset: run the 'time zone offset' operation and print structured JSON results.",
         "handler": "operations.meeting_time_table",
         "cli_command": "meeting-time-table",
         "dependencies": []
@@ -134,7 +134,7 @@ def register_tools():
     {
         "name": "Date Range Expander",
         "category": "Time & Productivity",
-        "description": "Date Range Expander: query and display date range expander details as structured JSON.",
+        "description": "Explain cron expression in human terms.",
         "handler": "operations.date_range_expander",
         "cli_command": "date-range-expander",
         "dependencies": []

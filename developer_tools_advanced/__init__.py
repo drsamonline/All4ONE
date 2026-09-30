@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "Diff Text Files",
         "category": "Advanced Developer Tools",
-        "description": "Diff Text Files: query and display diff text files details as structured JSON.",
+        "description": "Test connectivity/behavior of regex.",
         "handler": "operations.diff_text_files",
         "cli_command": "diff-text-files",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Patch Preview",
         "category": "Advanced Developer Tools",
-        "description": "Patch Preview: query and display patch preview details as structured JSON.",
+        "description": "Diff Text Files: run the 'diff text files' operation and print structured JSON results.",
         "handler": "operations.patch_preview",
         "cli_command": "patch-preview",
         "dependencies": []
@@ -182,7 +182,7 @@ def register_tools():
     {
         "name": "Base64 File Codec",
         "category": "Advanced Developer Tools",
-        "description": "Base64 File Codec: query and display base64 file codec details as structured JSON.",
+        "description": "Verify checksum integrity.",
         "handler": "operations.base64_file_codec",
         "cli_command": "b64-file",
         "dependencies": []
@@ -190,7 +190,7 @@ def register_tools():
     {
         "name": "Hex Codec",
         "category": "Advanced Developer Tools",
-        "description": "Hex Codec: query and display hex codec details as structured JSON.",
+        "description": "Base64 File Codec: run the 'base64 file codec' operation and print structured JSON results.",
         "handler": "operations.hex_codec",
         "cli_command": "hex-codec",
         "dependencies": []
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "BOM Handler",
         "category": "Advanced Developer Tools",
-        "description": "BOM Handler: query and display bom handler details as structured JSON.",
+        "description": "Detect and identify charset.",
         "handler": "operations.bom_handler",
         "cli_command": "bom-handler",
         "dependencies": []

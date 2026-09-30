@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Ping Host",
         "category": "Advanced Networking",
-        "description": "Ping Host: query and display ping host details as structured JSON.",
+        "description": "Ping Host: run the 'ping host' operation and print structured JSON results.",
         "handler": "operations.ping_host",
         "cli_command": "ping-host",
         "dependencies": [
@@ -17,7 +17,7 @@ def register_tools():
     {
         "name": "DNS Lookup",
         "category": "Advanced Networking",
-        "description": "DNS Lookup: query and display dns lookup details as structured JSON.",
+        "description": "Ping Host: run the 'ping host' operation and print structured JSON results.",
         "handler": "operations.dns_lookup",
         "cli_command": "dns-lookup",
         "dependencies": [
@@ -28,7 +28,7 @@ def register_tools():
     {
         "name": "Reverse DNS",
         "category": "Advanced Networking",
-        "description": "Reverse DNS: query and display reverse dns details as structured JSON.",
+        "description": "DNS Lookup: run the 'dns lookup' operation and print structured JSON results.",
         "handler": "operations.reverse_dns",
         "cli_command": "reverse-dns",
         "dependencies": [
@@ -39,7 +39,7 @@ def register_tools():
     {
         "name": "IP Address Info",
         "category": "Advanced Networking",
-        "description": "IP Address Info: query and display ip address info details as structured JSON.",
+        "description": "Reverse DNS: run the 'reverse dns' operation and print structured JSON results.",
         "handler": "operations.ip_address_info",
         "cli_command": "ip-address-info",
         "dependencies": [
@@ -50,7 +50,7 @@ def register_tools():
     {
         "name": "WHOIS Lookup",
         "category": "Advanced Networking",
-        "description": "WHOIS Lookup: query and display whois lookup details as structured JSON.",
+        "description": "Show ip address information.",
         "handler": "operations.whois_lookup",
         "cli_command": "whois-lookup",
         "dependencies": [
@@ -61,7 +61,7 @@ def register_tools():
     {
         "name": "Route Trace",
         "category": "Advanced Networking",
-        "description": "Route Trace: query and display route trace details as structured JSON.",
+        "description": "WHOIS Lookup: run the 'whois lookup' operation and print structured JSON results.",
         "handler": "operations.route_trace",
         "cli_command": "route-trace",
         "dependencies": [
@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "UDP Port Probe",
         "category": "Advanced Networking",
-        "description": "UDP Port Probe: query and display udp port probe details as structured JSON.",
+        "description": "Check and validate tcp port.",
         "handler": "operations.udp_port_probe",
         "cli_command": "udp-port-probe",
         "dependencies": [
@@ -160,7 +160,7 @@ def register_tools():
     {
         "name": "Local Listening Ports",
         "category": "Advanced Networking",
-        "description": "Local Listening Ports: query and display local listening ports details as structured JSON.",
+        "description": "Check and validate url redirect.",
         "handler": "operations.local_listening_ports",
         "cli_command": "local-listening-ports",
         "dependencies": [
@@ -190,7 +190,7 @@ def register_tools():
     {
         "name": "MAC Vendor Lookup",
         "category": "Networking",
-        "description": "MAC Vendor Lookup: query and display mac vendor lookup details as structured JSON.",
+        "description": "Compute subnet values.",
         "handler": "operations.mac_vendor_lookup",
         "cli_command": "mac-vendor",
         "dependencies": []
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "Speed Test Probe",
         "category": "Networking",
-        "description": "Speed Test Probe: query and display speed test probe details as structured JSON.",
+        "description": "Monitor ssl expiry over time.",
         "handler": "operations.speed_test_probe",
         "cli_command": "speed-probe",
         "dependencies": []

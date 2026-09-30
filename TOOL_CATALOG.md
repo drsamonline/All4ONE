@@ -68,7 +68,7 @@ Plugin packs: 45
 | Image Batch Renamer | `image-batch-renamer` | `imaging_advanced` | Pillow | Rename image batch in bulk. |
 | Image Border Adder | `image-border-adder` | `imaging_advanced` | Pillow | Image Border Adder: query and display image border adder details as structured JSON. |
 | Image Contact Sheet | `image-contact-sheet` | `imaging_advanced` | Pillow | Image Contact Sheet: query and display image contact sheet details as structured JSON. |
-| Image Converter | `image-converter` | `imaging_advanced` | Pillow | Convert image between units or formats. |
+| Image Converter | `image-converter` | `imaging_advanced` | Pillow | Convert an image file between formats (PNG/JPEG/WebP...). |
 | Image Cropper | `image-cropper` | `imaging_advanced` | Pillow | Crop image. |
 | Image Flipper | `image-flipper` | `imaging_advanced` | Pillow | Flip image. |
 | Image Metadata Cleaner | `image-metadata-cleaner` | `imaging_advanced` | Pillow | Clean up image metadata. |
@@ -118,7 +118,7 @@ Plugin packs: 45
 |---|---|---|---|---|
 | Audio Concatenator | `audio-concatenator` | `audio_tools` | ffprobe, ffmpeg | Audio Concatenator: query and display audio concatenator details as structured JSON. |
 | Audio Duration | `audio-duration` | `audio_tools` | ffprobe, ffmpeg | Audio Duration: query and display audio duration details as structured JSON. |
-| Audio Format Converter | `audio-format-converter` | `audio_tools` | ffprobe, ffmpeg | Convert audio format between units or formats. |
+| Audio Format Converter | `audio-format-converter` | `audio_tools` | ffprobe, ffmpeg | Convert an audio file between formats using ffmpeg. |
 | Audio Metadata Cleaner | `audio-metadata-cleaner` | `audio_tools` | ffprobe, ffmpeg | Clean up audio metadata. |
 | Audio Metadata Reader | `audio-metadata-reader` | `audio_tools` | ffprobe, ffmpeg | Read and print audio metadata. |
 | Audio Normalizer | `audio-normalizer` | `audio_tools` | ffprobe, ffmpeg | Normalize audio to a canonical form. |
@@ -226,7 +226,7 @@ Plugin packs: 45
 | JSON Diff | `json-diff` | `dev_tools` | — | JSON Diff: query and display json diff details as structured JSON. |
 | JSON Formatter | `json-format` | `dev_tools` | — | Validate and pretty-print JSON, optionally writing a formatted file. |
 | JSON Schema Validator | `json-schema-validate` | `dev_tools` | — | Validate json schema structure or content. |
-| JSON YAML Converter | `json-yaml` | `dev_tools` | python:yaml | Convert json yaml between units or formats. |
+| JSON YAML Converter | `json-yaml` | `dev_tools` | python:yaml | Convert content between JSON and YAML formats. |
 
 ## Directory Management
 
@@ -651,24 +651,24 @@ Plugin packs: 45
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
 | Blank Line Cleaner | `blank-line-cleaner` | `text_tools` | — | Clean up blank line. |
-| Camel Case Converter | `camel-case-converter` | `text_tools` | — | Convert camel case between units or formats. |
-| Case Converter | `case-converter` | `text_tools` | — | Convert case between units or formats. |
+| Camel Case Converter | `camel-case-converter` | `text_tools` | — | Convert text words into camelCase identifiers. |
+| Case Converter | `case-converter` | `text_tools` | — | Convert text to upper, lower, or swapped case. |
 | Character Frequency | `character-frequency` | `text_tools` | — | Character Frequency: query and display character frequency details as structured JSON. |
 | Indentation Normalizer | `indentation-normalizer` | `text_tools` | — | Normalize indentation to a canonical form. |
-| Kebab Case Converter | `kebab-case-converter` | `text_tools` | — | Convert kebab case between units or formats. |
+| Kebab Case Converter | `kebab-case-converter` | `text_tools` | — | Convert text words into kebab-case slugs. |
 | Line Number Prefixer | `line-number-prefixer` | `text_tools` | — | Line Number Prefixer: query and display line number prefixer details as structured JSON. |
 | Markdown Table Formatter | `markdown-table-formatter` | `text_tools` | — | Reformat markdown table to a clean layout. |
 | Ngram Counter | `ngram-counter` | `text_tools` | — | Count occurrences within ngram. |
 | Regex Replacer | `regex-replacer` | `text_tools` | — | Regex Replacer: query and display regex replacer details as structured JSON. |
 | Sentence Counter | `sentence-counter` | `text_tools` | — | Count occurrences within sentence. |
-| Slugify Converter | `slugify-converter` | `text_tools` | — | Convert slugify between units or formats. |
-| Snake Case Converter | `snake-case-converter` | `text_tools` | — | Convert snake case between units or formats. |
+| Slugify Converter | `slugify-converter` | `text_tools` | — | Turn any title or sentence into a URL-safe lowercase slug. |
+| Snake Case Converter | `snake-case-converter` | `text_tools` | — | Convert text words into snake_case identifiers. |
 | Text Deduplicator | `text-deduplicator` | `text_tools` | — | Text Deduplicator: query and display text deduplicator details as structured JSON. |
 | Text Reverse | `text-reverse` | `text_tools` | — | Text Reverse: query and display text reverse details as structured JSON. |
 | Text Sorter | `text-sorter` | `text_tools` | — | Sort text records. |
 | Text Unwrap | `text-unwrap` | `text_tools` | — | Text Unwrap: query and display text unwrap details as structured JSON. |
 | Text Wrap | `text-wrap` | `text_tools` | — | Text Wrap: query and display text wrap details as structured JSON. |
-| Title Case Converter | `title-case-converter` | `text_tools` | — | Convert title case between units or formats. |
+| Title Case Converter | `title-case-converter` | `text_tools` | — | Capitalize the first letter of every word (Title Case). |
 | Trailing Space Cleaner | `trailing-space-cleaner` | `text_tools` | — | Clean up trailing space. |
 | Unicode Normalizer | `unicode-normalizer` | `text_tools` | — | Normalize unicode to a canonical form. |
 | Whitespace Cleaner | `whitespace-cleaner` | `text_tools` | — | Clean up whitespace. |
@@ -686,7 +686,7 @@ Plugin packs: 45
 | Date Difference | `date-difference` | `time_productivity` | — | Date Difference: query and display date difference details as structured JSON. |
 | Date Range Expander | `date-range-expander` | `time_productivity` | — | Date Range Expander: query and display date range expander details as structured JSON. |
 | Day Of Year | `day-of-year` | `time_productivity` | — | Day Of Year: query and display day of year details as structured JSON. |
-| Epoch Converter | `epoch-converter` | `time_productivity` | — | Convert epoch between units or formats. |
+| Epoch Converter | `epoch-converter` | `time_productivity` | — | Convert a Unix epoch timestamp to a human-readable date and back. |
 | Habit Streak Counter | `habit-streak` | `time_productivity` | — | Count occurrences within habit streak. |
 | ISO Time Formatter | `iso-time-formatter` | `time_productivity` | — | Reformat iso time to a clean layout. |
 | Meeting Time Table | `meeting-time-table` | `time_productivity` | — | Meeting Time Table: query and display meeting time table details as structured JSON. |
@@ -694,7 +694,7 @@ Plugin packs: 45
 | Relative Time Formatter | `relative-time` | `time_productivity` | — | Reformat relative time to a clean layout. |
 | Stopwatch | `stopwatch` | `time_productivity` | — | Stopwatch: query and display stopwatch details as structured JSON. |
 | Time Zone Offset | `time-zone-offset` | `time_productivity` | — | Time Zone Offset: query and display time zone offset details as structured JSON. |
-| Timestamp Converter | `timestamp-converter` | `time_productivity` | — | Convert timestamp between units or formats. |
+| Timestamp Converter | `timestamp-converter` | `time_productivity` | — | Convert between ISO-8601 timestamps and Unix epochs. |
 | Week Number | `week-number` | `time_productivity` | — | Week Number: query and display week number details as structured JSON. |
 | Working Hours Calculator | `working-hours-calculator` | `time_productivity` | — | Compute working hours values. |
 
@@ -702,21 +702,21 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| Angle Converter | `angle-converter` | `conversion_tools` | — | Convert angle between units or formats. |
-| Area Converter | `area-converter` | `conversion_tools` | — | Convert area between units or formats. |
-| Bytes Converter | `bytes-converter` | `conversion_tools` | — | Convert bytes between units or formats. |
-| Data Rate Converter | `data-rate-converter` | `conversion_tools` | — | Convert data rate between units or formats. |
-| Energy Converter | `energy-converter` | `conversion_tools` | — | Convert energy between units or formats. |
-| Frequency Converter | `frequency-converter` | `conversion_tools` | — | Convert frequency between units or formats. |
-| Length Converter | `length-converter` | `conversion_tools` | — | Convert length between units or formats. |
-| Mass Converter | `mass-converter` | `conversion_tools` | — | Convert mass between units or formats. |
-| Power Converter | `power-converter` | `conversion_tools` | — | Convert power between units or formats. |
-| Pressure Converter | `pressure-converter` | `conversion_tools` | — | Convert pressure between units or formats. |
-| Seconds Converter | `seconds-converter` | `conversion_tools` | — | Convert seconds between units or formats. |
+| Angle Converter | `angle-converter` | `conversion_tools` | — | Convert an angle between units (deg, rad, grad, turn). |
+| Area Converter | `area-converter` | `conversion_tools` | — | Convert an area between units (m2, ft2, acre, hectare, etc.). |
+| Bytes Converter | `bytes-converter` | `conversion_tools` | — | Convert a byte count to a human-readable size (KB/MB/GiB...). |
+| Data Rate Converter | `data-rate-converter` | `conversion_tools` | — | Convert a data-transfer rate between units (bps, KB/s, MB/s...). |
+| Energy Converter | `energy-converter` | `conversion_tools` | — | Convert energy between units (J, cal, kWh, BTU, eV...). |
+| Frequency Converter | `frequency-converter` | `conversion_tools` | — | Convert frequency between units (Hz, kHz, MHz, GHz...). |
+| Length Converter | `length-converter` | `conversion_tools` | — | Convert length/distance between units (m, ft, in, mi, km...). |
+| Mass Converter | `mass-converter` | `conversion_tools` | — | Convert mass between units (kg, lb, oz, g, ton...). |
+| Power Converter | `power-converter` | `conversion_tools` | — | Convert power between units (W, kW, hp, BTU/h...). |
+| Pressure Converter | `pressure-converter` | `conversion_tools` | — | Convert pressure between units (Pa, bar, psi, atm...). |
+| Seconds Converter | `seconds-converter` | `conversion_tools` | — | Convert a duration in seconds into days/hours/minutes/seconds. |
 | Size Formatter | `size-formatter` | `conversion_tools` | — | Reformat size to a clean layout. |
-| Speed Converter | `speed-converter` | `conversion_tools` | — | Convert speed between units or formats. |
-| Temperature Converter | `temperature-converter` | `conversion_tools` | — | Convert temperature between units or formats. |
-| Volume Converter | `volume-converter` | `conversion_tools` | — | Convert volume between units or formats. |
+| Speed Converter | `speed-converter` | `conversion_tools` | — | Convert speed between units (km/h, mph, m/s, knots...). |
+| Temperature Converter | `temperature-converter` | `conversion_tools` | — | Convert temperature between c, f, k, and r scales. |
+| Volume Converter | `volume-converter` | `conversion_tools` | — | Convert volume between units (L, gal, mL, ft3, cup...). |
 
 ## Video Tools
 

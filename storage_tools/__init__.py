@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "File Age Histogram",
             "category": "Storage Analytics",
-            "description": "File Age Histogram: query and display file age histogram details as structured JSON.",
+            "description": "File Age Histogram: run the 'file age histogram' operation and print structured JSON results.",
             "handler": "operations.file_age_histogram",
             "cli_command": "file-age-histogram",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Extension Statistics",
             "category": "Storage Analytics",
-            "description": "Extension Statistics: query and display extension statistics details as structured JSON.",
+            "description": "File Age Histogram: run the 'file age histogram' operation and print structured JSON results.",
             "handler": "operations.extension_statistics",
             "cli_command": "extension-statistics",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Directory Tree Export",
             "category": "Storage Analytics",
-            "description": "Directory Tree Export: query and display directory tree export details as structured JSON.",
+            "description": "Extension Statistics: run the 'extension statistics' operation and print structured JSON results.",
             "handler": "operations.directory_tree_export",
             "cli_command": "directory-tree-export",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Directory CSV Export",
             "category": "Storage Analytics",
-            "description": "Directory CSV Export: query and display directory csv export details as structured JSON.",
+            "description": "Export directory tree data to a file.",
             "handler": "operations.directory_csv_export",
             "cli_command": "directory-csv-export",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Directory JSON Export",
             "category": "Storage Analytics",
-            "description": "Directory JSON Export: query and display directory json export details as structured JSON.",
+            "description": "Export directory csv data to a file.",
             "handler": "operations.directory_json_export",
             "cli_command": "directory-json-export",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Hidden File Report",
             "category": "Storage Analytics",
-            "description": "Hidden File Report: query and display hidden file report details as structured JSON.",
+            "description": "Locate read only on disk or in scope.",
             "handler": "operations.hidden_file_report",
             "cli_command": "hidden-file-report",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "File Size Histogram",
             "category": "Storage Analytics",
-            "description": "File Size Histogram: query and display file size histogram details as structured JSON.",
+            "description": "Locate recent file on disk or in scope.",
             "handler": "operations.file_size_histogram",
             "cli_command": "file-size-histogram",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Storage Health Report",
             "category": "Storage Analytics",
-            "description": "Storage Health Report: query and display storage health report details as structured JSON.",
+            "description": "File Size Histogram: run the 'file size histogram' operation and print structured JSON results.",
             "handler": "operations.storage_health_report",
             "cli_command": "storage-health-report",
             "dependencies": [],

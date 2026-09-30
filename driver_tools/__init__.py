@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Driver Details",
             "category": "Driver Tools",
-            "description": "Driver Details: query and display driver details details as structured JSON.",
+            "description": "List driver entries.",
             "handler": "operations.driver_details",
             "cli_command": "driver-details",
             "dependencies": ["pnputil"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Driver Signature Check",
             "category": "Driver Tools",
-            "description": "Driver Signature Check: query and display driver signature check details as structured JSON.",
+            "description": "Enumerate an inventory of driver store inventory.",
             "handler": "operations.driver_signature_check",
             "cli_command": "driver-signature-check",
             "dependencies": ["pnputil"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Driver Version Report",
             "category": "Driver Tools",
-            "description": "Driver Version Report: query and display driver version report details as structured JSON.",
+            "description": "Check driver signature and report pass/fail status.",
             "handler": "operations.driver_version_report",
             "cli_command": "driver-version-report",
             "dependencies": ["pnputil"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Driver Provider Report",
             "category": "Driver Tools",
-            "description": "Driver Provider Report: query and display driver provider report details as structured JSON.",
+            "description": "Compile a readable driver version report report.",
             "handler": "operations.driver_provider_report",
             "cli_command": "driver-provider-report",
             "dependencies": ["pnputil"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Driver Class Report",
             "category": "Driver Tools",
-            "description": "Driver Class Report: query and display driver class report details as structured JSON.",
+            "description": "Compile a readable driver provider report report.",
             "handler": "operations.driver_class_report",
             "cli_command": "driver-class-report",
             "dependencies": ["pnputil"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Driver Update Reminder",
             "category": "Driver Tools",
-            "description": "Driver Update Reminder: query and display driver update reminder details as structured JSON.",
+            "description": "Report current driver device status.",
             "handler": "operations.driver_update_reminder",
             "cli_command": "driver-update-reminder",
             "dependencies": ["pnputil"],

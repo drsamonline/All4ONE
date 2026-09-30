@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Process Details",
             "category": "Process Tools",
-            "description": "Process Details: query and display process details details as structured JSON.",
+            "description": "List process entries.",
             "handler": "operations.process_details",
             "cli_command": "process-details",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Process Search",
             "category": "Process Tools",
-            "description": "Process Search: query and display process search details as structured JSON.",
+            "description": "Show detailed process details.",
             "handler": "operations.process_search",
             "cli_command": "process-search",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Process Tree",
             "category": "Process Tools",
-            "description": "Process Tree: query and display process tree details as structured JSON.",
+            "description": "Search process targets for matches.",
             "handler": "operations.process_tree",
             "cli_command": "process-tree",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Process Start Time",
             "category": "Process Tools",
-            "description": "Process Start Time: query and display process start time details as structured JSON.",
+            "description": "Summarize process handle summary at a glance.",
             "handler": "operations.process_start_time",
             "cli_command": "process-start-time",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Process Path Resolver",
             "category": "Process Tools",
-            "description": "Process Path Resolver: query and display process path resolver details as structured JSON.",
+            "description": "Summarize process environment summary at a glance.",
             "handler": "operations.process_path_resolver",
             "cli_command": "process-path-resolver",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Process Priority Setter",
             "category": "Process Tools",
-            "description": "Process Priority Setter: query and display process priority setter details as structured JSON.",
+            "description": "Read and print process priority.",
             "handler": "operations.process_priority_setter",
             "cli_command": "process-priority-setter",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Process Affinity Setter",
             "category": "Process Tools",
-            "description": "Process Affinity Setter: query and display process affinity setter details as structured JSON.",
+            "description": "Read and print process affinity.",
             "handler": "operations.process_affinity_setter",
             "cli_command": "process-affinity-setter",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Process Terminate",
             "category": "Process Tools",
-            "description": "Process Terminate: query and display process terminate details as structured JSON.",
+            "description": "Set/apply process affinity configuration.",
             "handler": "operations.process_terminate",
             "cli_command": "process-terminate",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Process Wait",
             "category": "Process Tools",
-            "description": "Process Wait: query and display process wait details as structured JSON.",
+            "description": "Process Terminate: run the 'process terminate' operation and print structured JSON results.",
             "handler": "operations.process_wait",
             "cli_command": "process-wait",
             "dependencies": [],

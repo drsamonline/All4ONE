@@ -10,7 +10,7 @@ def pack_names():
     return sorted(
         p.name
         for p in ROOT.iterdir()
-        if p.is_dir() and (p / "__init__.py").exists() and p.name not in {"core", "tests"}
+        if p.is_dir() and (p / "__init__.py").exists() and p.name not in {"core", "tests", "backup"}
     )
 
 
