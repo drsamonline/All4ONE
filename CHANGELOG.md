@@ -6,6 +6,21 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 `core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
 `audit.py` fails the release audit if these drift apart.
 
+## [3.0.5.1] — 2026-10-01
+
+### Fixed
+- **Windows build**: verified green on tag v3.0.5.1 (run 36850493868). The only
+  failing Windows run in the last week was 58544a2 (VarFileInfo parse error),
+  already fixed before v3.0.5/v3.0.5.1 were tagged; historical failures
+  (Sep 24/30) were "Static release audit" steps rejecting tracked .pyc clutter
+  — now prevented by the restored .gitignore guard.
+- **Version metadata mismatch**: released exe reported ProductVersion 3.0.5
+  while the tag/release was v3.0.5.1. `build_single_exe.py` now regenerates
+  `version_info.txt` from VERSION.txt at the start of every build, so embedded
+  FileVersion/ProductVersion can never drift from the release again.
+- Version synced to 3.0.5.1 across VERSION.txt, config.json, core/__init__.py,
+  version_info.txt, README badge/snippet and USER_GUIDE header.
+
 ## [3.0.5] — 2026-10-01
 
 ### Added

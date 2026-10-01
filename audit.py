@@ -217,14 +217,22 @@ def main():
                 ROOT / "config.json", r'"version"\s*:\s*"([^"]+)"'
             ),
             "build_onefile.spec header": read_literal(
-                # The 3.0 header line reads e.g. "# Utility Suite 3.0 — SINGLE-FILE"
-                # (major.minor only, followed by prose), so match major.minor.patch
-                # loosely against the first two components of VERSION.txt below.
+                # The header line reads e.g. "# Utility Suite 3.0.5 — SINGLE-FILE".
+                # Releases may add a 4th build component (e.g. tag v3.0.5.1) while
+                # the spec keeps the major.minor.patch series, so compare on the
+                # shared prefix instead of exact equality.
                 ROOT / "build_onefile.spec", r"# Utility Suite (\d+\.\d+(?:\.\d+)?)"
             ),
         }
         for label, actual in checked.items():
-            if actual != expected_version:
+            if label == "build_onefile.spec header":
+                ok = actual and (
+                    actual == expected_version
+                    or expected_version.startswith(actual + ".")
+                )
+            else:
+                ok = actual == expected_version
+            if not ok:
                 problems.append(
                     f"VERSION MISMATCH: VERSION.txt says '{expected_version}' but "
                     f"{label} is '{actual}'"

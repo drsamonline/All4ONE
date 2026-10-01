@@ -150,3 +150,11 @@ Bug/error/build sweep (2026-09-30):
 Qualification note (unchanged since 2.1.2): this audit environment is
 Linux, so native Windows integrations remain dependency-gated and
 statically verified rather than executed against a live Windows kernel.
+
+Post-release CI verification pass (2026-10-01, v3.0.5.1):
+- Queried GitHub Actions API: latest Windows build run 36850493868 (tag
+  v3.0.5.1, commit 9509f0f) => SUCCESS; Linux CI @ main => SUCCESS.
+- Release asset UtilitySuite-3.0.5-windows.zip attached to v3.0.5.1 exists.
+- Found cosmetic mismatch: embedded exe ProductVersion said 3.0.5 vs tag
+  v3.0.5.1. Fixed by auto-generating version_info.txt from VERSION.txt in
+  build_single_exe.py (step 0) and syncing all version strings to 3.0.5.1.
