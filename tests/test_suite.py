@@ -81,10 +81,17 @@ def main():
         assert (root3 / "source-x.txt").exists()
     from core.plugin_loader import PluginLoader
 
+    # Legacy external plugins/ layout is gone in 3.0; the empty directory
+    # must scan cleanly (deterministic, zero tools) rather than crash.
     loader = PluginLoader(ROOT / "plugins")
-    first = loader.get_tools()
-    second = loader.get_tools()
-    assert len(first) == len(second) == 539
+    assert loader.get_tools() == []
+    # Single-file layout: the embedded bundle must expose the same catalogue.
+    from core.bundle import BundleLoader, build_bundle
+
+    bundle_path, count = build_bundle(ROOT)
+    assert count == 539, count
+    bundle_tools = BundleLoader(bundle_path).get_tools()
+    assert len(bundle_tools) == 539
     print("SMOKE TESTS PASSED")
     print(f"{len(reg.tools)} tools validated")
 

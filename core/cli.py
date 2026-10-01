@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 
 from . import __version__
@@ -13,11 +14,57 @@ from .tool_registry import ToolRegistry
 
 
 def build_registry() -> ToolRegistry:
+    """Build the tool registry.
+
+    Priority:
+      1. Embedded single-file bundle (``bundle/tools.dat``) — the layout used
+         by released builds, where everything ships inside one .exe.
+      2. Legacy external ``plugins/`` directory (ZIP packs) — dev/fallback.
+      3. Source-tree packages (dev checkout without any bundle/plugins built).
+    """
+    from .bundle import BundleLoader, get_bundle_path
+
     config = load_config()
+    bundle = get_bundle_path()
+    if bundle is not None:
+        tools = BundleLoader(bundle).get_tools()
+        if tools:
+            return ToolRegistry(tools)
+
     plugins_dir = Path(config.get("plugins_directory", "plugins"))
     if not plugins_dir.is_absolute():
         plugins_dir = get_config_path().parent / plugins_dir
-    return ToolRegistry(PluginLoader(plugins_dir).get_tools())
+    loader = PluginLoader(plugins_dir)
+    tools = loader.get_tools()
+    if tools:
+        return ToolRegistry(tools)
+
+    # Final fallback: import packs straight from the source tree.
+    from pathlib import Path as _P
+
+    root = _P(__file__).resolve().parent.parent
+    src_tools: list[dict] = []
+    seen: set[str] = set()
+    for pack in sorted(
+        p.name
+        for p in root.iterdir()
+        if p.is_dir()
+        and (p / "__init__.py").exists()
+        and p.name not in {"core", "tests", "backup", "bundle", "dist", "build", "logs", "scripts", "plugins"}
+    ):
+        try:
+            module = __import__(pack)
+            entries = module.register_tools()
+        except Exception:
+            continue
+        for entry in entries:
+            cmd = str(entry.get("cli_command", "")).strip()
+            if cmd and cmd not in seen:
+                seen.add(cmd)
+                tool = dict(entry)
+                tool["pack"] = pack
+                src_tools.append(tool)
+    return ToolRegistry(src_tools)
 
 
 def _launch_gui(registry: ToolRegistry) -> int:
@@ -41,6 +88,17 @@ def _launch_gui(registry: ToolRegistry) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # Everything from "run <tool>" onward belongs to the tool, including flags
+    # like --help/-h/--version — split it out before argparse sees it so those
+    # flags are forwarded to the tool instead of being consumed by the suite.
+    raw = list(sys.argv[1:] if argv is None else argv)
+    tool_remainder: list[str] = []
+    for i, tok in enumerate(raw):
+        if tok == "run" and i + 1 < len(raw) and not raw[i + 1].startswith("-"):
+            tool_name, tool_remainder = raw[i + 1], raw[i + 2:]
+            raw = raw[:i + 1] + [tool_name, "--"]
+            break
+
     parser = argparse.ArgumentParser(
         prog="utility_suite", description="Utility Suite — modular Windows utility workstation"
     )
@@ -50,7 +108,7 @@ def main(argv: list[str] | None = None) -> int:
     p_list.add_argument("--category")
     p_search = sub.add_parser("search", help="Search tools")
     p_search.add_argument("query")
-    p_run = sub.add_parser("run", help="Run a tool")
+    p_run = sub.add_parser("run", help="Run a tool (remaining arguments go to the tool)")
     p_run.add_argument("tool_name")
     p_run.add_argument("tool_args", nargs=argparse.REMAINDER)
     sub.add_parser("refresh", help="Rescan plugins")
@@ -59,7 +117,7 @@ def main(argv: list[str] | None = None) -> int:
     p_open = sub.add_parser("open", help="Open using the system default application")
     p_open.add_argument("file_path")
     sub.add_parser("gui", help="Launch desktop GUI")
-    args = parser.parse_args(argv)
+    args = parser.parse_args(raw)
 
     registry = build_registry()
     if not args.command:
@@ -85,7 +143,10 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{tool['cli_command']:18} {tool['name']:<30} [{state}]\n  {tool['description']}")
         return 0
     if args.command == "run":
-        return registry.run_tool(args.tool_name, args.tool_args)
+        # tool_remainder holds everything after "run <tool>" verbatim (flags
+        # like --help/-h/--version are forwarded to the tool, not consumed).
+        forwarded = [t for t in tool_remainder if t != "--"] or list(args.tool_args)
+        return registry.run_tool(args.tool_name, forwarded)
     if args.command == "refresh":
         refreshed = build_registry()
         print(f"Loaded {len(refreshed.tools)} tools from plugins.")

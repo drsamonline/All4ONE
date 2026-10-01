@@ -3,7 +3,7 @@ def register_tools():
         {
             "name": "Image Thumbnail Generator",
             "category": "Multimedia",
-            "description": "Generate optimized JPEG thumbnails using Pillow.",
+            "description": "Image Thumbnail Generator: image thumbnail generator as structured JSON output.",
             "handler": "thumbnails.run",
             "cli_command": "thumbnail",
             "dependencies": ["python:PIL"],
@@ -11,7 +11,7 @@ def register_tools():
         {
             "name": "Media Metadata Extractor",
             "category": "Multimedia",
-            "description": "Extract streams and format metadata through ffprobe.",
+            "description": "Media Metadata Extractor: media metadata extractor as structured JSON output.",
             "handler": "media_info.run",
             "cli_command": "media-info",
             "dependencies": ["ffprobe"],
@@ -19,7 +19,7 @@ def register_tools():
         {
             "name": "Media Transcoder",
             "category": "Multimedia",
-            "description": "Transcode audio/video through ffmpeg.",
+            "description": "Media Transcoder: media transcoder as structured JSON output.",
             "handler": "transcode.run",
             "cli_command": "transcode",
             "dependencies": ["ffmpeg"],

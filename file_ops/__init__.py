@@ -3,7 +3,7 @@ def register_tools():
         {
             "name": "Smart Sorter",
             "category": "File Operations",
-            "description": "Organize files by extension, modification month, or size class.",
+            "description": "Smart Sorter: smart sorter as structured JSON output.",
             "handler": "sorter.run",
             "cli_command": "sorter",
             "dependencies": [],
@@ -11,7 +11,7 @@ def register_tools():
         {
             "name": "Batch Renamer",
             "category": "File Operations",
-            "description": "Rename files with {name}, {ext}, {counter}, and {date} placeholders.",
+            "description": "Batch Renamer: batch renamer as structured JSON output.",
             "handler": "renamer.run",
             "cli_command": "renamer",
             "dependencies": [],
@@ -19,7 +19,7 @@ def register_tools():
         {
             "name": "Duplicate Finder",
             "category": "File Operations",
-            "description": "Find duplicate files using size pre-filtering and content hashes.",
+            "description": "Duplicate Finder: duplicate finder as structured JSON output.",
             "handler": "duplicate_finder.run",
             "cli_command": "dupefinder",
             "dependencies": [],
@@ -27,7 +27,7 @@ def register_tools():
         {
             "name": "File Splitter",
             "category": "File Operations",
-            "description": "Split large files into numbered binary parts.",
+            "description": "File Splitter: file splitter as structured JSON output.",
             "handler": "splitter.run",
             "cli_command": "splitter",
             "dependencies": [],
@@ -35,7 +35,7 @@ def register_tools():
         {
             "name": "File Joiner",
             "category": "File Operations",
-            "description": "Join numbered file parts back into one binary file.",
+            "description": "File Joiner: file joiner as structured JSON output.",
             "handler": "joiner.run",
             "cli_command": "joiner",
             "dependencies": [],
@@ -43,7 +43,7 @@ def register_tools():
         {
             "name": "Checksum Tool",
             "category": "File Operations",
-            "description": "Generate or verify cryptographic checksums.",
+            "description": "Checksum Tool: checksum tool as structured JSON output.",
             "handler": "checksum.run",
             "cli_command": "checksum",
             "dependencies": [],
@@ -51,7 +51,7 @@ def register_tools():
         {
             "name": "Secure Delete",
             "category": "File Operations",
-            "description": "Overwrite and delete files, optionally using Sysinternals SDelete.",
+            "description": "Secure Delete: secure delete as structured JSON output.",
             "handler": "secure_delete.run",
             "cli_command": "sdelete",
             "dependencies": [],
@@ -59,7 +59,7 @@ def register_tools():
         {
             "name": "File Age Actions",
             "category": "File Operations",
-            "description": "Move, copy, or delete files older than a selected age threshold.",
+            "description": "File Age Actions: file age actions as structured JSON output.",
             "handler": "age_actions.run",
             "cli_command": "ageactions",
             "dependencies": [],

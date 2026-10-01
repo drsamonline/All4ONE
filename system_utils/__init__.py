@@ -3,7 +3,7 @@ def register_tools():
         {
             "name": "Service Manager",
             "category": "System Utilities",
-            "description": "Query, start, stop, pause, or continue Windows services.",
+            "description": "Service Manager: service manager as structured JSON output.",
             "handler": "services.run",
             "cli_command": "service",
             "dependencies": ["sc"],
@@ -11,7 +11,7 @@ def register_tools():
         {
             "name": "Startup Program Manager",
             "category": "System Utilities",
-            "description": "Inspect Windows Run registry keys.",
+            "description": "Startup Program Manager: startup program manager as structured JSON output.",
             "handler": "startup.run",
             "cli_command": "startup",
             "dependencies": ["reg"],
@@ -19,7 +19,7 @@ def register_tools():
         {
             "name": "Environment Variable Editor",
             "category": "System Utilities",
-            "description": "View variables and optionally set them for the current process or Windows environment.",
+            "description": "Environment Variable Editor: environment variable editor as structured JSON output.",
             "handler": "env_vars.run",
             "cli_command": "env",
             "dependencies": [],
@@ -27,7 +27,7 @@ def register_tools():
         {
             "name": "Event Log Viewer",
             "category": "System Utilities",
-            "description": "Query Windows event logs via wevtutil.",
+            "description": "Event Log Viewer: event log viewer as structured JSON output.",
             "handler": "event_log.run",
             "cli_command": "eventlog",
             "dependencies": ["wevtutil"],
@@ -35,7 +35,7 @@ def register_tools():
         {
             "name": "Network Adapter Reset",
             "category": "System Utilities",
-            "description": "Disable and re-enable a Windows network adapter with elevation.",
+            "description": "Network Adapter Reset: network adapter reset as structured JSON output.",
             "handler": "net_reset.run",
             "cli_command": "net-reset",
             "dependencies": ["powershell"],

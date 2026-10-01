@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Media Size Report",
             "category": "Media Metadata",
-            "description": "Scan for media file and list hits.",
+            "description": "Compile a readable media size report report.",
             "handler": "operations.media_size_report",
             "cli_command": "media-size-report",
             "dependencies": ["ffprobe"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Media Folder Report",
             "category": "Media Metadata",
-            "description": "Enumerate an inventory of media hash inventory.",
+            "description": "Compile a readable media folder report report.",
             "handler": "operations.media_folder_report",
             "cli_command": "media-folder-report",
             "dependencies": ["ffprobe"],

@@ -46,7 +46,7 @@ Expansion packs use a shared lazy adapter factory so the project does not copy 1
 **Exit-code contract (CI gate):** `python audit.py` exits **0** on
 `AUDIT PASSED` and **1** on `AUDIT FAILED` (propagated via
 `raise SystemExit(main())`). Chain it with `&&` in release scripts — e.g.
-`python audit.py && python create_plugin_zips.py` — so a failed audit stops
+`python audit.py && python build_single_exe.py --skip-tests` — so a failed audit stops
 the pipeline loudly instead of silently shipping broken releases. The audit
 is findings-only: it never mutates the tree, so delete stray `__pycache__/`
 directories yourself before expecting a PASS (running the audit itself is
@@ -58,7 +58,7 @@ safe — it sets `sys.dont_write_bytecode` internally).
 2. Add the lazy operation mapping.
 3. Implement the actual operation.
 4. Add or update a smoke test.
-5. Rebuild plugin ZIPs (`python create_plugin_zips.py`).
+5. Regenerate the embedded bundle (`python -c "from core.bundle import build_bundle; build_bundle('.')"`) or simply run `python build_single_exe.py` which does this automatically.
 6. Regenerate the catalogues (`python generate_catalogs.py`) so
    TOOL_CATALOG.md / EXPANSION_CATALOG.md match the registry.
 7. Run the audit again (`python audit.py`).
@@ -72,9 +72,9 @@ There are three layers of testing in this repository, and they are
 exactly what previously broke the Windows CI build:
 
 1. **`audit.py`** - static, safe, fast. Checks catalogue integrity,
-   syntax, handler wiring, plugin ZIP consistency, and a couple of
-   packaging-regression guards (version-string drift, `build.spec`
-   accidentally re-bundling `plugins/`). Runs everywhere: locally, in
+   syntax, handler wiring, bundle integrity, and a couple of
+   packaging-regression guards (version-string drift, `build_onefile.spec`
+   accidentally reverting to a onedir/`plugins/` layout). Runs everywhere: locally, in
    CI, on every platform. No side effects.
 
 2. **`tests/test_suite.py`** (`python -B -m tests.test_suite`) -

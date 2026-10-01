@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Video Duration",
             "category": "Video Tools",
-            "description": "Video Duration: run the 'video duration' operation and print structured JSON results.",
+            "description": "Video Duration: video duration as structured JSON output.",
             "handler": "operations.video_duration",
             "cli_command": "video-duration",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Video Screenshot",
             "category": "Video Tools",
-            "description": "Inspect video stream and report internals.",
+            "description": "Video Screenshot: video screenshot as structured JSON output.",
             "handler": "operations.video_screenshot",
             "cli_command": "video-screenshot",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Video Concatenator",
             "category": "Video Tools",
-            "description": "Cut video clip segments.",
+            "description": "Video Concatenator: video concatenator as structured JSON output.",
             "handler": "operations.video_concatenator",
             "cli_command": "video-concatenator",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Video GIF Maker",
             "category": "Video Tools",
-            "description": "Video Concatenator: run the 'video concatenator' operation and print structured JSON results.",
+            "description": "Video GIF Maker: video gif maker as structured JSON output.",
             "handler": "operations.video_gif_maker",
             "cli_command": "video-gif-maker",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Video Thumbnail Sheet",
             "category": "Video Tools",
-            "description": "Inspect video bitrate and report internals.",
+            "description": "Video Thumbnail Sheet: video thumbnail sheet as structured JSON output.",
             "handler": "operations.video_thumbnail_sheet",
             "cli_command": "video-thumbnail-sheet",
             "dependencies": ["ffprobe", "ffmpeg"],

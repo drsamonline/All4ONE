@@ -16,7 +16,7 @@ def register_tools():
     {
         "name": "Python Package Versions",
         "category": "Package & Environment Tools",
-        "description": "List python package entries.",
+        "description": "Python Package Versions: python package versions as structured JSON output.",
         "handler": "operations.python_package_versions",
         "cli_command": "python-package-versions",
         "dependencies": [
@@ -36,7 +36,7 @@ def register_tools():
     {
         "name": "Executable Package Locator",
         "category": "Package & Environment Tools",
-        "description": "Show guidance for pip command.",
+        "description": "Locate executable package paths on disk.",
         "handler": "operations.executable_package_locator",
         "cli_command": "executable-package-locator",
         "dependencies": [
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Import Package Test",
         "category": "Package & Environment Tools",
-        "description": "Locate executable package paths on disk.",
+        "description": "Test import package reachability or behavior.",
         "handler": "operations.import_package_test",
         "cli_command": "import-package-test",
         "dependencies": [
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Virtual Environment Report",
         "category": "Package & Environment Tools",
-        "description": "Locate virtual environment on disk or in scope.",
+        "description": "Compile a readable virtual environment report report.",
         "handler": "operations.virtual_environment_report",
         "cli_command": "virtual-environment-report",
         "dependencies": [

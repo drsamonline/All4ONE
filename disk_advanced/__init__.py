@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Drive Information",
             "category": "Advanced Disk Tools",
-            "description": "Drive Information: run the 'drive information' operation and print structured JSON results.",
+            "description": "Drive Information: drive information as structured JSON output.",
             "handler": "operations.drive_information",
             "cli_command": "drive-information",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Partition Information",
             "category": "Advanced Disk Tools",
-            "description": "List volume entries.",
+            "description": "Partition Information: partition information as structured JSON output.",
             "handler": "operations.partition_information",
             "cli_command": "partition-information",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Disk Free Space",
             "category": "Advanced Disk Tools",
-            "description": "Partition Information: run the 'partition information' operation and print structured JSON results.",
+            "description": "Disk Free Space: disk free space as structured JSON output.",
             "handler": "operations.disk_free_space",
             "cli_command": "disk-free-space",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Disk Usage Top Files",
             "category": "Advanced Disk Tools",
-            "description": "Disk Free Space: run the 'disk free space' operation and print structured JSON results.",
+            "description": "Disk Usage Top Files: disk usage top files as structured JSON output.",
             "handler": "operations.disk_usage_top_files",
             "cli_command": "disk-usage-top-files",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Directory Size Tree",
             "category": "Advanced Disk Tools",
-            "description": "Disk Usage Top Files: run the 'disk usage top files' operation and print structured JSON results.",
+            "description": "Directory Size Tree: directory size tree as structured JSON output.",
             "handler": "operations.directory_size_tree",
             "cli_command": "directory-size-tree",
             "dependencies": [],

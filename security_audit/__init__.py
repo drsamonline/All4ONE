@@ -76,7 +76,7 @@ def register_tools():
     {
         "name": "SSH Key Audit",
         "category": "Security Auditing",
-        "description": "Locate private key filename on disk or in scope.",
+        "description": "Audit ssh key for policy or safety issues.",
         "handler": "operations.ssh_key_audit",
         "cli_command": "ssh-key-audit",
         "dependencies": [
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Hosts File Audit",
         "category": "Security Auditing",
-        "description": "Audit ssh key for policy or safety issues.",
+        "description": "Audit hosts file for policy or safety issues.",
         "handler": "operations.hosts_file_audit",
         "cli_command": "hosts-file-audit",
         "dependencies": [
@@ -96,7 +96,7 @@ def register_tools():
     {
         "name": "Startup Security Audit",
         "category": "Security Auditing",
-        "description": "Audit hosts file for policy or safety issues.",
+        "description": "Audit startup security for policy or safety issues.",
         "handler": "operations.startup_security_audit",
         "cli_command": "startup-security-audit",
         "dependencies": [
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "Service Security Report",
         "category": "Security Auditing",
-        "description": "Enumerate an inventory of administrator group inventory.",
+        "description": "Compile a readable service security report report.",
         "handler": "operations.service_security_report",
         "cli_command": "service-security-report",
         "dependencies": [
@@ -194,7 +194,7 @@ def register_tools():
     {
         "name": "Autostart Registry Diff",
         "category": "Security Audit",
-        "description": "Scan for portable app suspicion and list hits.",
+        "description": "Autostart Registry Diff: show differences between two inputs.",
         "handler": "operations.autostart_registry_diff",
         "cli_command": "autostart-diff",
         "dependencies": [
@@ -204,7 +204,7 @@ def register_tools():
     {
         "name": "Temp Integrity Baseline",
         "category": "Security Audit",
-        "description": "Temp Integrity Baseline. Stores SHA-256 baselines in a temp-dir store with --verify comparison.",
+        "description": "Temp Integrity Baseline: temp integrity baseline as structured JSON output.",
         "handler": "operations.file_integrity_baseline",
         "cli_command": "integrity-baseline-plus",
         "dependencies": []
