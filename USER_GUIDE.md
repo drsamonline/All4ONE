@@ -2,7 +2,7 @@
 
 # 👤 Utility Suite — User Guide
 
-**Version 3.0.3** · 551 tools · 45 plugin packs · CLI + GUI · one portable EXE
+**Version 3.0.4** · 551 tools · 45 plugin packs · CLI + GUI · one portable EXE
 
 ![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![Level](https://img.shields.io/badge/level-beginner%20→%20power%20user-brightgreen?style=flat-square)
@@ -209,6 +209,10 @@ Where are logs?     logs/utility_suite.log
 ```
 
 ### ⭐ New in 3.0.x — quick try (all stdlib-only, ship inside the EXE)
+
+> Tip: run `python run.py deps` (or `utility_suite.exe deps`) any time a tool shows
+> 🚫 Unavailable — it prints exactly which dependency to download and from where.
+
 
 ```text
 Identify a hash     python run.py run hash-identify 5d41402abc4b2a76b9719d911017c592

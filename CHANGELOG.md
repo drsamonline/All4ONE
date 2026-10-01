@@ -9,6 +9,18 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 ## [3.0.4] — 2026-10-01
 
 ### Fixed
+- **GUI layout overflow:** the main window is now DPI-aware
+  (`SetProcessDpiAwareness` before window realization) and the category chip
+  strip was replaced with a single horizontally scrollable canvas, so buttons
+  and text no longer spill off-screen on scaled Windows displays. Detail-pane
+  text wrapping recomputes on window resize.
+- **"Only 491/551 tools available" false negatives:** `core/capability_checker.py`
+  previously probed pip packages (`python-docx`, `openpyxl`, `Pillow`, …) with
+  `shutil.which()` — an executable lookup that can never succeed for importable
+  modules — so ~50 installed-but-misdetected tools were hidden. The checker now
+  resolves Python packages via `importlib.util.find_spec`, recognises Windows
+  built-ins (`powershell`, `ipconfig`, `reg`, `schtasks`, `wevtutil`, …) by
+  platform, and accepts common Linux equivalents for network tools.
 - **`.gitignore` re-corrupted to a `(empty)` stub (regression):** housekeeping
   commit `e81a728` ("Fix hardcoded tool count in catalog badge and clear
   .gitignore") overwrote the full ignore set restored in 3.0.1 with a literal
@@ -16,10 +28,23 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
   had caused old build artifacts to keep returning. The complete ignore set is
   now restored (bytecode caches, `build/`, `dist/`, `logs/*` except
   `.gitkeep`, virtual environments, ruff/pytest/mypy caches, OS/editor junk,
-  `.env`/local overrides). Verified with `git check-ignore`: all artifact
-  paths are excluded while tracked essentials (`bundle/tools.dat`,
-  `VERSION.txt`, docs) remain unaffected. The audit's tracked-artifact gate
-  continues to guard against recurrence.
+  `.env`/local overrides), the nine tracked `core/__pycache__/*.pyc` files and
+  `logs/utility_suite.log` are untracked again, and verified with
+  `git check-ignore`. The audit's tracked-artifact gate continues to guard
+  against recurrence.
+
+### Added
+- **Dependency download guide:** new `deps` command (`utility_suite.exe deps` /
+  `python run.py deps`) lists every missing optional dependency grouped by how
+  many tools it unlocks, each with a direct download source — FFmpeg →
+  gyan.dev/ffmpeg/builds, pdftotext/pdfunite → poppler-windows releases, qpdf
+  → GitHub releases, GnuPG → gnupg.org/download, Tesseract → UB-Mannheim
+  installer, plus exact `pip install …` lines for Python packages. Running an
+  unavailable tool prints the same per-dependency hint. In the GUI the
+  status-bar "X/551 tools ready" label opens a clickable install-guide dialog
+  with a copyable list and refresh button.
+- README gains an Author shield badge; version strings bumped 3.0.3 → 3.0.4
+  across VERSION.txt, config.json, core/__init__.py and build_onefile.spec.
 
 ### Documentation
 - **USER_GUIDE.md:** new "⭐ New in 3.0.x — quick try" cheat-sheet block under

@@ -13,15 +13,16 @@ A modular, portable Windows utility workstation — pure-Python core, lazily loa
 plugin packs, CLI *and* desktop GUI, compiled into a **single `utility_suite.exe`**
 with everything embedded. No installer, no sidecar files, no registry pollution.
 
-[![CI](https://github.com/drsamonline/utility_suite/actions/workflows/ci.yml/badge.svg)](https://github.com/drsamonline/utility_suite/actions/workflows/ci.yml)
-[![Build Windows executable](https://github.com/drsamonline/utility_suite/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/drsamonline/utility_suite/actions/workflows/build-windows-exe.yml)
-![Version](https://img.shields.io/badge/version-3.0.3-blue?style=flat-square&logo=python&logoColor=white)
+[![CI](https://github.com/drsamonline/All4ONE/actions/workflows/ci.yml/badge.svg)](https://github.com/drsamonline/All4ONE/actions/workflows/ci.yml)
+[![Build Windows executable](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml)
+![Version](https://img.shields.io/badge/version-3.0.4-blue?style=flat-square&logo=python&logoColor=white)
 ![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
 ![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square&logo=python&logoColor=black)
 ![Dependencies](https://img.shields.io/badge/mandatory%20deps-0-orange?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)
+![Author](https://img.shields.io/badge/author-Dr.%20Sohil%20Momin%2C%20BHMS-fuchsia?style=flat-square)
 ![Size](https://img.shields.io/badge/installer-none%20—%20portable-lightgrey?style=flat-square)
 
 *No registry pollution · No background services · Unplug it and walk away.*
@@ -40,7 +41,11 @@ audits, disk maintenance, monitoring — and more.
 
 Every tool is metadata-registered, **loaded lazily**, and declares its own
 optional dependencies. A missing dependency (say, FFmpeg) disables exactly one
-tool — never the suite.
+tool — never the suite. Run `utility_suite.exe deps` (or `python run.py deps`)
+to list every missing dependency, how many tools it unlocks, and a direct
+download link for each one (gyan.dev for FFmpeg, poppler-windows releases for
+pdftotext, `pip install …` for Python packages). In the GUI, click the
+"X/551 tools ready" status-bar label to open the same install guide.
 
 ## ✨ Highlights
 
@@ -123,6 +128,7 @@ All 551 tools described → **[TOOL_CATALOG.md](TOOL_CATALOG.md)**
 .\utility_suite.exe search image                # find tools by keyword
 .\utility_suite.exe run checksum C:\f.txt --algorithm sha256
 .\utility_suite.exe run ip-calc 192.168.1.10/24   # new in 3.0.x: subnet math
+.\utility_suite.exe deps                          # missing tools? shows what to download & where
 ```
 
 Releases are produced automatically by GitHub Actions whenever a version tag
@@ -131,8 +137,8 @@ is pushed (see *Building & releasing* below).
 ### From source (any OS for development, Windows for full functionality)
 
 ```powershell
-git clone https://github.com/drsamonline/utility_suite.git
-cd utility_suite
+git clone https://github.com/drsamonline/All4ONE.git
+cd All4ONE
 
 python run.py list                    # browse all 551 tools
 python run.py search image            # find tools by keyword
@@ -171,7 +177,7 @@ auto-generated GitHub Release:
 # 1. sync the version literal everywhere (audit.py enforces this)
 #    VERSION.txt, config.json, core/__init__.py, build_onefile.spec header
 # 2. tag and push
-git tag v3.0.3 && git push origin v3.0.3
+git tag v3.0.4 && git push origin v3.0.4
 ```
 
 Full details: [COMPILATION.md](COMPILATION.md).

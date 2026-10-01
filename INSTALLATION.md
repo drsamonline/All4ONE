@@ -49,8 +49,8 @@ you want to keep them.
 | 🐍 Python | **3.10+** | `python --version` |
 
 ```powershell
-git clone https://github.com/drsamonline/utility_suite.git
-cd utility_suite
+git clone https://github.com/drsamonline/All4ONE.git
+cd All4ONE
 python --version        # must print 3.10 or newer
 python run.py gui       # that's it — zero mandatory pip installs
 ```
@@ -58,6 +58,13 @@ python run.py gui       # that's it — zero mandatory pip installs
 No mandatory third-party runtime package is required for the standard-library tools.
 
 ## 🧩 Optional features
+
+Don't know what's missing? Ask the suite itself — it lists every unmet
+dependency, how many tools each one unlocks, and where to download it:
+
+```powershell
+python run.py deps        # or: utility_suite.exe deps
+```
 
 Install optional dependencies **only when a tool you want shows 🚫 Unavailable**:
 
@@ -68,8 +75,8 @@ python -m pip install send2trash    # 🗑️ safe recycle-bin deletion
 ```
 
 FFmpeg 🎬, qpdf 📑, Poppler 📃 and other external command-line programs must be
-installed separately and available on `PATH` (see [USER_GUIDE.md §7](USER_GUIDE.md)
-for exact `winget` commands).
+installed separately and available on `PATH` (the `deps` command prints their exact
+download URLs; see also [USER_GUIDE.md §7](USER_GUIDE.md) for `winget` commands).
 
 ## 🖥️ Command-line launcher
 
