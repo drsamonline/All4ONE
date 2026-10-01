@@ -41,7 +41,8 @@ def render_tool_catalog(by_pack) -> str:
         "",
         f"![Tools](https://img.shields.io/badge/tools-{total}-brightgreen?style=flat-square)"
         f" ![Packs](https://img.shields.io/badge/packs-{len(by_pack)}-8A2BE2?style=flat-square)"
-        " ![Status](https://img.shields.io/badge/registry%20verified-539%2F539%20%E2%9C%85-blue?style=flat-square)",
+        f" ![Status](https://img.shields.io/badge/registry%20verified-{total}%2F{total}"
+        "%20%E2%9C%85-blue?style=flat-square)",
         "",
         f"*{total} tools · {len(by_pack)} plugin packs · generated from the live registry "
         "by `generate_catalogs.py` — do not edit by hand.*",

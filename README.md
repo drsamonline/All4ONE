@@ -7,7 +7,7 @@
 
 # 🧰 Utility Suite
 
-### ⚡ One workstation. **539 tools across 45 plugin packs.** Zero installer drama.
+### ⚡ One workstation. **543 tools across 45 plugin packs.** Zero installer drama.
 
 A modular, portable Windows utility workstation — pure-Python core, lazily loaded
 plugin packs, CLI *and* desktop GUI, compiled into a **single `utility_suite.exe`**
@@ -16,7 +16,7 @@ with everything embedded. No installer, no sidecar files, no registry pollution.
 [![CI](https://github.com/drsamonline/utility_suite/actions/workflows/ci.yml/badge.svg)](https://github.com/drsamonline/utility_suite/actions/workflows/ci.yml)
 [![Build Windows executable](https://github.com/drsamonline/utility_suite/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/drsamonline/utility_suite/actions/workflows/build-windows-exe.yml)
 ![Version](https://img.shields.io/badge/version-3.0.0-blue?style=flat-square&logo=python&logoColor=white)
-![Tools](https://img.shields.io/badge/tools-539-brightgreen?style=flat-square)
+![Tools](https://img.shields.io/badge/tools-543-brightgreen?style=flat-square)
 ![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square&logo=python&logoColor=black)
@@ -32,7 +32,7 @@ with everything embedded. No installer, no sidecar files, no registry pollution.
 
 ## 🌈 What is this?
 
-**Utility Suite** bundles **539 hand-crafted Windows utilities** into one coherent
+**Utility Suite** bundles **543 hand-crafted Windows utilities** into one coherent
 workstation. Instead of fifty sketchy downloads, you get one audited codebase:
 file ops, hashing, media tooling, PDF work, networking diagnostics, registry
 editing helpers, clipboard history, automation, developer codecs, security
@@ -63,7 +63,7 @@ tool — never the suite.
 <td width="50%">
 
 ### 🔍 Audit-grade quality
-- `audit.py` enforces **539/539 handler resolution**, unique commands, bundle
+- `audit.py` enforces **543/543 handler resolution**, unique commands, bundle
   integrity, version sync, and **documentation freshness** on every release
 - CI: Linux validation on every push + automated Windows single-file EXE build
 - Full docs: user guide, tool catalogue, expansion map, dev guide
@@ -80,9 +80,9 @@ tool — never the suite.
 
 | Metric | Value |
 |---|---|
-| 🛠️ Registered tools | **539** |
+| 🛠️ Registered tools | **543** |
 | 📦 Plugin packs | **45** |
-| 🧪 Smoke-tested handlers | 539 / 539 ✅ |
+| 🧪 Smoke-tested handlers | 543 / 543 ✅ |
 | 🔒 Mandatory third-party deps | **0** |
 | 🐍 Language | Python 3.10+ (stdlib-first) |
 | 🖱️ Frontends | CLI + Tkinter GUI |
@@ -105,7 +105,7 @@ tool — never the suite.
 | 🧹 **Maintenance & Storage** | `maintenance` · `disk_advanced` · `storage_tools` · `backup_tools` · `clipboard_manager` · `time_productivity` · `monitoring_tools` · `diagnostics_extra` | 125 |
 
 Full per-pack breakdown → **[EXPANSION_CATALOG.md](EXPANSION_CATALOG.md)** ·
-All 539 tools described → **[TOOL_CATALOG.md](TOOL_CATALOG.md)**
+All 543 tools described → **[TOOL_CATALOG.md](TOOL_CATALOG.md)**
 
 </details>
 
@@ -119,7 +119,7 @@ All 539 tools described → **[TOOL_CATALOG.md](TOOL_CATALOG.md)**
 3. Double-click for the GUI, or use it as a CLI:
 
 ```powershell
-.\utility_suite.exe list                        # browse all 539 tools
+.\utility_suite.exe list                        # browse all 543 tools
 .\utility_suite.exe search image                # find tools by keyword
 .\utility_suite.exe run checksum C:\f.txt --algorithm sha256
 ```
@@ -133,7 +133,7 @@ is pushed (see *Building & releasing* below).
 git clone https://github.com/drsamonline/utility_suite.git
 cd utility_suite
 
-python run.py list                    # browse all 539 tools
+python run.py list                    # browse all 543 tools
 python run.py search image            # find tools by keyword
 python run.py run checksum C:\f.txt --algorithm sha256   # run a tool
 python run.py gui                     # launch the desktop GUI
@@ -143,6 +143,16 @@ Zero mandatory `pip install`s — the suite runs on the standard library alone.
 
 ## 🏗️ Building & releasing
 
+> [!IMPORTANT]
+> **A push to `main` does NOT build the Windows EXE.** Plain pushes only run
+> the Linux validation workflow (`ci.yml`). The single-file
+> `utility_suite.exe` is produced by `build-windows-exe.yml`, which fires on:
+>
+> 1. **pushing a version tag** → builds *and* publishes a GitHub Release, or
+> 2. a manual **Actions → Build Windows executable → Run workflow**.
+>
+> If CI is green but no Windows build appeared, you forgot to tag. 👇
+
 PyInstaller cannot cross-compile a Windows binary from Linux/macOS, so the
 real `.exe` is built on a **Windows GitHub Actions runner**. The entire local
 pipeline is one command:
@@ -151,15 +161,18 @@ pipeline is one command:
 python build_single_exe.py    # audit → bundle → tests → exe → verify → zip
 ```
 
-To publish a release, **push a version tag** — the tagged build attaches
-`UtilitySuite-<version>-windows.zip` to an auto-generated GitHub Release:
+To publish a release, **bump the version, then push a version tag** — the
+tagged build attaches `UtilitySuite-<version>-windows.zip` to an
+auto-generated GitHub Release:
 
 ```bash
+# 1. sync the version literal everywhere (audit.py enforces this)
+#    VERSION.txt, config.json, core/__init__.py, build_onefile.spec header
+# 2. tag and push
 git tag v3.0.0 && git push origin v3.0.0
 ```
 
-A normal push to `main` is validated by `ci.yml` but does not publish a
-release. Full details: [COMPILATION.md](COMPILATION.md).
+Full details: [COMPILATION.md](COMPILATION.md).
 
 ## 📖 Documentation map
 
@@ -172,7 +185,7 @@ release. Full details: [COMPILATION.md](COMPILATION.md).
 |---|---|
 | 👤 [USER_GUIDE.md](USER_GUIDE.md) | End-user manual |
 | 📥 [INSTALLATION.md](INSTALLATION.md) | Setup & portable use |
-| 🗂️ [TOOL_CATALOG.md](TOOL_CATALOG.md) | All 539 tools |
+| 🗂️ [TOOL_CATALOG.md](TOOL_CATALOG.md) | All 543 tools |
 | 📦 [EXPANSION_CATALOG.md](EXPANSION_CATALOG.md) | Per-pack counts |
 
 </td>
@@ -237,7 +250,7 @@ utility_suite/
 The release process performs:
 
 - 🐍 Python syntax compilation across all source files
-- 🔢 Tool-count + unique-command checks (**539/539**)
+- 🔢 Tool-count + unique-command checks (**543/543**)
 - 📚 **Documentation freshness gate** — `TOOL_CATALOG.md`,
   `EXPANSION_CATALOG.md` and this README must match the live registry
   (regenerate anytime with `python generate_catalogs.py`)
@@ -248,7 +261,9 @@ The release process performs:
   **Windows single-file EXE build** (`build-windows-exe.yml`) triggered by
   version tags or a manual run
 - 🧾 Tracked-artifact guard: `__pycache__`, `.pyc` and runtime logs can never
-  be committed again (enforced by both `audit.py` and `ci.yml`)
+  be committed again (enforced by both `audit.py` and `ci.yml`, and excluded
+  up-front by the full `.gitignore` ruleset — keep it intact; an emptied
+  `.gitignore` is what previously let old build files creep back into the tree)
 
 `audit.py` exits **0 only on `AUDIT PASSED`**, so CI can rely on
 `python audit.py && <next step>` failing loudly. Release hashes are generated

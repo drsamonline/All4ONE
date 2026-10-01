@@ -6,6 +6,54 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 `core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
 `audit.py` fails the release audit if these drift apart.
 
+## [3.0.2] — 2026-10-01
+
+Tool expansion: four new dependency-free tools added to the `misc` pack
+(3 → 7 tools), registry grown from **539 → 543** across the same 45 packs.
+
+### Added
+- `hash-identify` (Hash Identifier) — recognises likely hash algorithm from a
+  digest string (MD5/SHA-1/SHA-256/SHA-512/NTLM/bcrypt/argon2/MySQL/etc.) via
+  length + format heuristics, with optional `--verify <plaintext>` against all
+  common hashlib algorithms. Useful for security triage and CTF work.
+- `password-entropy` (Password Entropy Calculator) — estimates charset-based
+  and Shannon entropy of a password with a WEAK/MODERATE/STRONG/EXCELLENT
+  verdict, or generates strong `secrets`-based random passwords
+  (`--length/--count`). Complements `security_tools` and `security_audit`.
+- `b64-codec` (Base64 Codec) — strict Base64 encode/decode with `--urlsafe`
+  and `--no-pad` modes and file input; complements the existing loose base64
+  helpers in `data_tools`.
+- `json-schema` (JSON Schema Explorer) — prints a leaf-path schema
+  (`path<TAB>type<TAB>value`) of any JSON document with optional `--keys`
+  regex filter; pairs with the pre-existing `json-diff` in `dev_tools`.
+
+### Changed
+- `audit.py`: EXPECTED_TOOLS raised 539 → 543.
+- `bundle/tools.dat` regenerated (deterministic); TOOL_CATALOG.md,
+  EXPANSION_CATALOG.md, README.md, USER_GUIDE.md, INSTALLATION.md,
+  DEVELOPER_GUIDE.md and AUTHORS.md re-synced to the live 543-tool registry.
+
+## [3.0.1] — 2026-10-01
+
+Post-release hygiene patch: the repository kept re-accumulating build clutter
+and stale docs after every merge because the ignore rules had silently been
+destroyed.
+
+### Fixed
+- **`.gitignore` restored (root cause):** the merged cleanup commit shipped
+  `.gitignore` as a literal 7-byte `(empty)` stub. With no ignore rules,
+  `dist/`, `build/`, `__pycache__/*.pyc` and runtime logs were no longer
+  excluded and kept getting force-added back into release commits — the old
+  build files that persisted in the tree. The full ruleset is now committed:
+  bytecode caches, `build/`, `dist/`, venvs, `logs/*` (except `.gitkeep`),
+  ruff/pytest/mypy caches, and OS/editor junk.
+- **No Windows EXE despite green CI:** by design, a plain push to `main` only
+  runs the Linux validation (`ci.yml`). The single-file Windows build fires on
+  a `v*` tag push or a manual *Run workflow*. Documented prominently in README
+  ("Building & releasing") so the tag step is never missed again.
+- `AUDIT_REPORT.txt` header corrected to 130 Python files (matches
+  `python audit.py` output) and annotated with the post-merge repair pass.
+
 ## [3.0.0] — 2026-10-01
 
 The single-file release: everything now ships inside **one portable

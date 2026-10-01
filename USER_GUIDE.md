@@ -2,7 +2,7 @@
 
 # 👤 Utility Suite — User Guide
 
-**Version 3.0.0** · 539 tools · 45 plugin packs · CLI + GUI · one portable EXE
+**Version 3.0.0** · 543 tools · 45 plugin packs · CLI + GUI · one portable EXE
 
 ![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![Level](https://img.shields.io/badge/level-beginner%20→%20power%20user-brightgreen?style=flat-square)
@@ -34,14 +34,14 @@
 
 Utility Suite is a single workstation for common **file, Windows, networking,
 media, data, developer, security, storage, backup, productivity, and diagnostic**
-tasks. The catalogue contains **539 tools organized into 45 plugin packs**.
+tasks. The catalogue contains **543 tools organized into 45 plugin packs**.
 
 The application deliberately does not bundle every external engine. Tools that
 need an external program are marked 🚫 **Unavailable** until that capability is
 installed. This keeps the application smaller and follows the project's
 dependency-isolation design — one missing tool never breaks the suite.
 
-💡 **Tip:** browse all 539 tools with descriptions in
+💡 **Tip:** browse all 543 tools with descriptions in
 [TOOL_CATALOG.md](TOOL_CATALOG.md), or per-pack counts in
 [EXPANSION_CATALOG.md](EXPANSION_CATALOG.md).
 
@@ -72,7 +72,7 @@ The GUI provides:
 ### CLI (for scripting and power users)
 
 ```powershell
-utility_suite.exe list                                        # all 539 tools
+utility_suite.exe list                                        # all 543 tools
 utility_suite.exe list --category "File Operations"           # filter by category
 utility_suite.exe search "duplicate"                          # keyword search
 utility_suite.exe run checksum C:\data\file.bin --algorithm sha256

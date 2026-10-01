@@ -63,7 +63,7 @@ safe — it sets `sys.dont_write_bytecode` internally).
    TOOL_CATALOG.md / EXPANSION_CATALOG.md match the registry.
 7. Run the audit again (`python audit.py`).
 
-audit.py enforces the current catalogue size (EXPECTED_TOOLS = 539 as of the 2026-09 expansion). Bump that constant deliberately when adding or removing tools. The docs-freshness gate in audit.py fails the release if TOOL_CATALOG.md, EXPANSION_CATALOG.md, or the README overview no longer matches the live registry — fix by running `python generate_catalogs.py` and updating the README line, then re-running the audit.
+audit.py enforces the current catalogue size (EXPECTED_TOOLS = 543 as of the 2026-10 misc-pack expansion). Bump that constant deliberately when adding or removing tools. The docs-freshness gate in audit.py fails the release if TOOL_CATALOG.md, EXPANSION_CATALOG.md, or the README overview no longer matches the live registry — fix by running `python generate_catalogs.py` and updating the README line, then re-running the audit.
 
 ## Testing tiers - which one runs where
 
@@ -84,7 +84,7 @@ exactly what previously broke the Windows CI build:
    side effects. Runs everywhere, including CI, before every build.
 
 3. **`tests/test_all_tools.py`** - an exhaustive sweep that invokes
-   *every one* of the 539 registered tools in its own subprocess. This
+   *every one* of the 543 registered tools in its own subprocess. This
    is a **local/manual developer diagnostic only** - it is intentionally
    **not** part of the CI build pipeline. The reason: on a Linux dev
    machine, Windows-only tools (services, registry, event log, network
