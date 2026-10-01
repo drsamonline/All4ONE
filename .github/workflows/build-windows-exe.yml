@@ -1,37 +1,17 @@
 name: Build Windows executable
 
-# Utility Suite 3.0 — SINGLE-FILE release pipeline.
-#
-# Everything ships inside ONE utility_suite.exe (runtime + all 45 tool
-# packs + catalog metadata embedded via bundle/tools.dat). No plugins/
-# folder, no sidecar files. PyInstaller cannot cross-compile a Windows
-# binary from Linux/macOS, so this must run on windows-latest.
-#
-# Triggers:
-#   * push of a version tag (v*)      -> build + GitHub Release (auto)
-#   * manual "Run workflow"           -> build + artifact only
-# A normal push to main does NOT produce a release; it is validated by
-# ci.yml. Tag a commit (git tag v3.0.0 && git push --tags) to publish.
-#
-# The whole local pipeline (audit -> bundle -> tests -> exe -> verify ->
-# zip) is driven by exactly one command: `python build_single_exe.py`,
-# so CI and local builds can never drift apart.
-
 on:
   push:
     tags: ['v*']
-  workflow_dispatch: {}
+  workflow_dispatch:
 
-# Required so softprops/action-gh-release can create a release and upload
-# assets. Without this, the release step fails with "Resource not
-# accessible by integration" / 403.
 permissions:
   contents: write
 
 jobs:
   build:
     runs-on: windows-latest
-    timeout-minutes: 25  # safety net: fail fast instead of hanging until the runner's own limit
+    timeout-minutes: 45          # increased from 25 — PyInstaller onefile builds can be slow
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
@@ -42,39 +22,50 @@ jobs:
           python-version: '3.12'
 
       - name: Install build dependencies
+        shell: pwsh
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade pip setuptools wheel
           python -m pip install pyinstaller
-          if (Test-Path requirements.txt) { python -m pip install -r requirements.txt }
+          if (Test-Path requirements.txt) {
+            python -m pip install -r requirements.txt
+          }
+
+      - name: Verify build script exists
+        shell: pwsh
+        run: |
+          if (-not (Test-Path build_single_exe.py)) {
+            Write-Error "ERROR: build_single_exe.py was not found in the repository root."
+            exit 1
+          }
+          Write-Host "build_single_exe.py found — proceeding."
 
       - name: Automated single-file build
-        # One command = the entire pipeline:
-        #   1. audit.py (static gate)
-        #   2. regenerate bundle/tools.dat from the source tree
-        #   3. behavioural smoke tests (tests/test_suite.py)
-        #   4. PyInstaller onefile build (build_onefile.spec)
-        #   5. self-check: dist/utility_suite.exe list must find >0 tools
-        #   6. dist/UtilitySuite-<version>-windows.zip (exe only)
-        # NOTE: tests/test_all_tools.py (exhaustive per-tool sweep) is
-        # intentionally NOT part of this pipeline — several tools have
-        # real system side effects / require UAC and are unsafe on a
-        # shared CI VM. Run it locally on a disposable Windows VM; see
-        # DEVELOPER_GUIDE.md.
+        shell: pwsh
         run: python build_single_exe.py
+
+      - name: List dist folder (debug)
+        if: always()
+        shell: pwsh
+        run: |
+          if (Test-Path dist) {
+            Get-ChildItem -Recurse dist
+          } else {
+            Write-Host "dist folder was not created."
+          }
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: utility_suite-single-file
-          path: dist/utility_suite.exe
-          if-no-files-found: error
+          path: |
+            dist/utility_suite.exe
+            dist/UtilitySuite-*-windows.zip
+          if-no-files-found: warn
 
       - name: Attach to GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          # The release asset is a zip containing exactly ONE file:
-          # utility_suite.exe. Users download, unzip, double-click. Done.
           files: dist/UtilitySuite-*-windows.zip
           generate_release_notes: true
         env:
