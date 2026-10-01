@@ -6,6 +6,21 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 `core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
 `audit.py` fails the release audit if these drift apart.
 
+## [3.0.4] — 2026-10-01
+
+### Fixed
+- **`.gitignore` re-corrupted to a `(empty)` stub (regression):** housekeeping
+  commit `e81a728` ("Fix hardcoded tool count in catalog badge and clear
+  .gitignore") overwrote the full ignore set restored in 3.0.1 with a literal
+  7-byte `(empty)` file, silently re-opening the exact clutter loophole that
+  had caused old build artifacts to keep returning. The complete ignore set is
+  now restored (bytecode caches, `build/`, `dist/`, `logs/*` except
+  `.gitkeep`, virtual environments, ruff/pytest/mypy caches, OS/editor junk,
+  `.env`/local overrides). Verified with `git check-ignore`: all artifact
+  paths are excluded while tracked essentials (`bundle/tools.dat`,
+  `VERSION.txt`, docs) remain unaffected. The audit's tracked-artifact gate
+  continues to guard against recurrence.
+
 ## [3.0.3] — 2026-10-01
 
 Second tool-expansion wave: eight more **stdlib-only** tools added to the
