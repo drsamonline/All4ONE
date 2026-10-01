@@ -2,7 +2,7 @@
 
 # 🗂️ Utility Suite 3.0.0 — Complete Tool Catalogue
 
-![Tools](https://img.shields.io/badge/tools-543-brightgreen?style=flat-square) ![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Status](https://img.shields.io/badge/registry%20verified-539%2F539%20%E2%9C%85-blue?style=flat-square)
+![Tools](https://img.shields.io/badge/tools-543-brightgreen?style=flat-square) ![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Status](https://img.shields.io/badge/registry%20verified-543%2F543%20%E2%9C%85-blue?style=flat-square)
 
 *543 tools · 45 plugin packs · generated from the live registry by `generate_catalogs.py` — do not edit by hand.*
 
