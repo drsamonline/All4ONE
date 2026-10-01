@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Virtual Desktop Shortcut",
             "category": "Virtual Desktops",
-            "description": "List virtual desktop entries.",
+            "description": "Virtual Desktop Shortcut: manage/create virtual desktop shortcuts.",
             "handler": "operations.virtual_desktop_shortcut",
             "cli_command": "virtual-desktop-shortcut",
             "dependencies": ["powershell"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Window Desktop Mapper",
             "category": "Virtual Desktops",
-            "description": "Virtual Desktop Shortcut: manage/create virtual desktop shortcuts.",
+            "description": "Map relationships for window desktop mapper.",
             "handler": "operations.window_desktop_mapper",
             "cli_command": "window-desktop-mapper",
             "dependencies": ["powershell"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Virtual Desktop Settings",
             "category": "Virtual Desktops",
-            "description": "Read and print desktop count.",
+            "description": "Show or change virtual desktop settings.",
             "handler": "operations.virtual_desktop_settings",
             "cli_command": "virtual-desktop-settings",
             "dependencies": ["powershell"],

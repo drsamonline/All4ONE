@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "Text Deduplicator",
         "category": "Text Processing",
-        "description": "Convert text words into camelCase identifiers.",
+        "description": "Text Deduplicator: text deduplicator as structured JSON output.",
         "handler": "operations.text_deduplicator",
         "cli_command": "text-deduplicator",
         "dependencies": []
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Text Reverse",
         "category": "Text Processing",
-        "description": "Sort text records.",
+        "description": "Text Reverse: text reverse as structured JSON output.",
         "handler": "operations.text_reverse",
         "cli_command": "text-reverse",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "Text Wrap",
         "category": "Text Processing",
-        "description": "Text Reverse: run the 'text reverse' operation and print structured JSON results.",
+        "description": "Text Wrap: text wrap as structured JSON output.",
         "handler": "operations.text_wrap",
         "cli_command": "text-wrap",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "Text Unwrap",
         "category": "Text Processing",
-        "description": "Text Wrap: run the 'text wrap' operation and print structured JSON results.",
+        "description": "Text Unwrap: text unwrap as structured JSON output.",
         "handler": "operations.text_unwrap",
         "cli_command": "text-unwrap",
         "dependencies": []
@@ -118,7 +118,7 @@ def register_tools():
     {
         "name": "Character Frequency",
         "category": "Text Processing",
-        "description": "Text Unwrap: run the 'text unwrap' operation and print structured JSON results.",
+        "description": "Character Frequency: character frequency as structured JSON output.",
         "handler": "operations.character_frequency",
         "cli_command": "character-frequency",
         "dependencies": []
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Word Frequency",
         "category": "Text Processing",
-        "description": "Character Frequency: run the 'character frequency' operation and print structured JSON results.",
+        "description": "Word Frequency: word frequency as structured JSON output.",
         "handler": "operations.word_frequency",
         "cli_command": "word-frequency",
         "dependencies": []
@@ -158,7 +158,7 @@ def register_tools():
     {
         "name": "Regex Replacer",
         "category": "Text Processing",
-        "description": "Turn any title or sentence into a URL-safe lowercase slug.",
+        "description": "Regex Replacer: regex replacer as structured JSON output.",
         "handler": "operations.regex_replacer",
         "cli_command": "regex-replacer",
         "dependencies": []
@@ -174,7 +174,7 @@ def register_tools():
     {
         "name": "Line Number Prefixer",
         "category": "Text Processing",
-        "description": "Reformat markdown table to a clean layout.",
+        "description": "Line Number Prefixer: line number prefixer as structured JSON output.",
         "handler": "operations.line_number_prefixer",
         "cli_command": "line-number-prefixer",
         "dependencies": []

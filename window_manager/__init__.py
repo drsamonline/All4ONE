@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Window Details",
             "category": "Window Manager",
-            "description": "List window entries.",
+            "description": "Show detailed window details.",
             "handler": "operations.window_details",
             "cli_command": "window-details",
             "dependencies": ["powershell"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Always On Top Toggle",
             "category": "Window Manager",
-            "description": "Assist with window focus tasks.",
+            "description": "Toggle always on top state on/off.",
             "handler": "operations.always_on_top_toggle",
             "cli_command": "always-on-top-toggle",
             "dependencies": ["powershell"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Window Minimize All",
             "category": "Window Manager",
-            "description": "Toggle always on top state on/off.",
+            "description": "Window Minimize All: window minimize all as structured JSON output.",
             "handler": "operations.window_minimize_all",
             "cli_command": "window-minimize-all",
             "dependencies": ["powershell"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Window Restore All",
             "category": "Window Manager",
-            "description": "Window Minimize All: run the 'window minimize all' operation and print structured JSON results.",
+            "description": "Window Restore All: window restore all as structured JSON output.",
             "handler": "operations.window_restore_all",
             "cli_command": "window-restore-all",
             "dependencies": ["powershell"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Window Title Search",
             "category": "Window Manager",
-            "description": "Window Restore All: run the 'window restore all' operation and print structured JSON results.",
+            "description": "Search window title targets for matches.",
             "handler": "operations.window_title_search",
             "cli_command": "window-title-search",
             "dependencies": ["powershell"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Window Process Mapping",
             "category": "Window Manager",
-            "description": "Search window title targets for matches.",
+            "description": "Report window process mapping associations.",
             "handler": "operations.window_process_mapping",
             "cli_command": "window-process-mapping",
             "dependencies": ["powershell"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Window Geometry Setter",
             "category": "Window Manager",
-            "description": "Read and print window geometry.",
+            "description": "Set/apply window geometry configuration.",
             "handler": "operations.window_geometry_setter",
             "cli_command": "window-geometry-setter",
             "dependencies": ["powershell"],

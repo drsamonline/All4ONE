@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "System Load Report",
         "category": "Monitoring & Telemetry",
-        "description": "Monitor directory size over time.",
+        "description": "Compile a readable system load report report.",
         "handler": "operations.system_load_report",
         "cli_command": "system-load-report",
         "dependencies": [
@@ -96,7 +96,7 @@ def register_tools():
     {
         "name": "Resource Trend CSV",
         "category": "Monitoring & Telemetry",
-        "description": "Compile a readable system load report report.",
+        "description": "Resource Trend CSV: resource trend csv as structured JSON output.",
         "handler": "operations.resource_trend_csv",
         "cli_command": "resource-trend-csv",
         "dependencies": [
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Disk Space Threshold Check",
         "category": "Monitoring & Telemetry",
-        "description": "Compute monitor threshold values.",
+        "description": "Check disk space threshold and report pass/fail status.",
         "handler": "operations.disk_space_threshold_check",
         "cli_command": "disk-space-threshold-check",
         "dependencies": [
@@ -136,7 +136,7 @@ def register_tools():
     {
         "name": "Memory Threshold Check",
         "category": "Monitoring & Telemetry",
-        "description": "Check disk space threshold and report pass/fail status.",
+        "description": "Check memory threshold and report pass/fail status.",
         "handler": "operations.memory_threshold_check",
         "cli_command": "memory-threshold-check",
         "dependencies": [
@@ -146,7 +146,7 @@ def register_tools():
     {
         "name": "CPU Threshold Check",
         "category": "Monitoring & Telemetry",
-        "description": "Check memory threshold and report pass/fail status.",
+        "description": "Check cpu threshold and report pass/fail status.",
         "handler": "operations.cpu_threshold_check",
         "cli_command": "cpu-threshold-check",
         "dependencies": [
@@ -186,7 +186,7 @@ def register_tools():
     {
         "name": "Resource Snapshot Diff",
         "category": "Monitoring",
-        "description": "Report current power source status.",
+        "description": "Resource Snapshot Diff: show differences between two inputs.",
         "handler": "operations.resource_snapshot_diff",
         "cli_command": "resource-snapshot",
         "dependencies": [
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "Open File Handle Report",
         "category": "Monitoring",
-        "description": "Locate long running process on disk or in scope.",
+        "description": "Compile a readable open file handle report report.",
         "handler": "operations.open_file_handle_report",
         "cli_command": "open-handles",
         "dependencies": [

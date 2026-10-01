@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "JSON Formatter",
         "category": "Developer Tools",
-        "description": "Validate and pretty-print JSON, optionally writing a formatted file.",
+        "description": "JSON Formatter: json formatter as structured JSON output.",
         "handler": "json_fmt.run",
         "cli_command": "json-format",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "Binary Hex Viewer",
         "category": "Developer Tools",
-        "description": "View arbitrary files as a conventional hexadecimal dump.",
+        "description": "Binary Hex Viewer: binary hex viewer as structured JSON output.",
         "handler": "hex_view.run",
         "cli_command": "hexview",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "File Type Detector",
         "category": "Developer Tools",
-        "description": "Identify common file types from magic bytes.",
+        "description": "File Type Detector: file type detector as structured JSON output.",
         "handler": "file_type.run",
         "cli_command": "filetype",
         "dependencies": []
@@ -40,7 +40,7 @@ def register_tools():
     {
         "name": "JSON Diff",
         "category": "Developer Tools",
-        "description": "Convert content between JSON and YAML formats.",
+        "description": "JSON Diff: show differences between two inputs.",
         "handler": "operations.json_diff",
         "cli_command": "json-diff",
         "dependencies": []

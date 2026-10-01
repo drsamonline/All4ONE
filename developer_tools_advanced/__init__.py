@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "Diff Text Files",
         "category": "Advanced Developer Tools",
-        "description": "Test connectivity/behavior of regex.",
+        "description": "Diff Text Files: diff text files as structured JSON output.",
         "handler": "operations.diff_text_files",
         "cli_command": "diff-text-files",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Patch Preview",
         "category": "Advanced Developer Tools",
-        "description": "Diff Text Files: run the 'diff text files' operation and print structured JSON results.",
+        "description": "Preview the effect of patch before applying it.",
         "handler": "operations.patch_preview",
         "cli_command": "patch-preview",
         "dependencies": []
@@ -182,7 +182,7 @@ def register_tools():
     {
         "name": "Base64 File Codec",
         "category": "Advanced Developer Tools",
-        "description": "Verify checksum integrity.",
+        "description": "Base64 File Codec: base64 file codec as structured JSON output.",
         "handler": "operations.base64_file_codec",
         "cli_command": "b64-file",
         "dependencies": []
@@ -190,7 +190,7 @@ def register_tools():
     {
         "name": "Hex Codec",
         "category": "Advanced Developer Tools",
-        "description": "Base64 File Codec: run the 'base64 file codec' operation and print structured JSON results.",
+        "description": "Hex Codec: hex codec as structured JSON output.",
         "handler": "operations.hex_codec",
         "cli_command": "hex-codec",
         "dependencies": []
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "BOM Handler",
         "category": "Advanced Developer Tools",
-        "description": "Detect and identify charset.",
+        "description": "BOM Handler: handle bom input and return processed results.",
         "handler": "operations.bom_handler",
         "cli_command": "bom-handler",
         "dependencies": []

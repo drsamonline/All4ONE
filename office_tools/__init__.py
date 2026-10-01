@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "DOCX Metadata",
             "category": "Office Tools",
-            "description": "DOCX Metadata: run the 'docx metadata' operation and print structured JSON results.",
+            "description": "DOCX Metadata: docx metadata as structured JSON output.",
             "handler": "operations.docx_metadata",
             "cli_command": "docx-metadata",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "XLSX Metadata",
             "category": "Office Tools",
-            "description": "Inspect docx structure and report internals.",
+            "description": "XLSX Metadata: xlsx metadata as structured JSON output.",
             "handler": "operations.xlsx_metadata",
             "cli_command": "xlsx-metadata",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "XLSX Sheet Lister",
             "category": "Office Tools",
-            "description": "XLSX Metadata: run the 'xlsx metadata' operation and print structured JSON results.",
+            "description": "XLSX Sheet Lister: xlsx sheet lister as structured JSON output.",
             "handler": "operations.xlsx_sheet_lister",
             "cli_command": "xlsx-sheet-lister",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],

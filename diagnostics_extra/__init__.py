@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "System Information Text Export",
             "category": "Extended Diagnostics",
-            "description": "Export system information json data to a file.",
+            "description": "Export system information text data to a file.",
             "handler": "operations.system_information_text_export",
             "cli_command": "system-information-text-export",
             "dependencies": ["powershell"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Environment Variable Diff",
             "category": "Extended Diagnostics",
-            "description": "Enumerate an inventory of audio device inventory.",
+            "description": "Environment Variable Diff: show differences between two inputs.",
             "handler": "operations.environment_variable_diff",
             "cli_command": "environment-variable-diff",
             "dependencies": ["powershell"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "PATH Deduplication Report",
             "category": "Extended Diagnostics",
-            "description": "Environment Variable Diff: show differences between two inputs.",
+            "description": "Compile a readable path deduplication report report.",
             "handler": "operations.path_deduplication_report",
             "cli_command": "path-deduplication-report",
             "dependencies": ["powershell"],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Windows Firewall Rule Count",
             "category": "Extended Diagnostics",
-            "description": "Display the contents of dns cache.",
+            "description": "Produce a windows firewall rule count count.",
             "handler": "operations.windows_firewall_rule_count",
             "cli_command": "windows-firewall-rule-count",
             "dependencies": ["powershell"],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Network Connection Table",
             "category": "Extended Diagnostics",
-            "description": "Produce a windows firewall rule count count.",
+            "description": "Lay out data as a network connection table table.",
             "handler": "operations.network_connection_table",
             "cli_command": "network-connection-table",
             "dependencies": ["powershell"],
@@ -158,7 +158,7 @@ def register_tools():
         {
             "name": "Utility Suite Diagnostics",
             "category": "Extended Diagnostics",
-            "description": "Enumerate an inventory of log directory inventory.",
+            "description": "Utility Suite Diagnostics: utility suite diagnostics as structured JSON output.",
             "handler": "operations.utility_suite_diagnostics",
             "cli_command": "utility-suite-diagnostics",
             "dependencies": ["powershell"],

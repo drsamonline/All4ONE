@@ -3,7 +3,7 @@ def register_tools():
         {
             "name": "Registry Editor Shortcut",
             "category": "Windows Power Tools",
-            "description": "Launch Windows Registry Editor.",
+            "description": "Registry Editor Shortcut: registry editor shortcut as structured JSON output.",
             "handler": "regedit.run",
             "cli_command": "regedit",
             "dependencies": ["regedit"],
@@ -11,7 +11,7 @@ def register_tools():
         {
             "name": "System Restore Point Creator",
             "category": "Windows Power Tools",
-            "description": "Create a Windows system restore point through PowerShell.",
+            "description": "System Restore Point Creator: system restore point creator as structured JSON output.",
             "handler": "restore_point.run",
             "cli_command": "restore-point",
             "dependencies": ["powershell"],
@@ -19,7 +19,7 @@ def register_tools():
         {
             "name": "Driver Backup",
             "category": "Windows Power Tools",
-            "description": "Export installed Windows drivers using pnputil.",
+            "description": "Driver Backup: driver backup as structured JSON output.",
             "handler": "driver_backup.run",
             "cli_command": "driver-backup",
             "dependencies": ["pnputil"],

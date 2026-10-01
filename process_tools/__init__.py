@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Process Details",
             "category": "Process Tools",
-            "description": "List process entries.",
+            "description": "Show detailed process details.",
             "handler": "operations.process_details",
             "cli_command": "process-details",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Process Search",
             "category": "Process Tools",
-            "description": "Show detailed process details.",
+            "description": "Search process targets for matches.",
             "handler": "operations.process_search",
             "cli_command": "process-search",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Process Tree",
             "category": "Process Tools",
-            "description": "Search process targets for matches.",
+            "description": "Process Tree: process tree as structured JSON output.",
             "handler": "operations.process_tree",
             "cli_command": "process-tree",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Process Start Time",
             "category": "Process Tools",
-            "description": "Summarize process handle summary at a glance.",
+            "description": "Compute process start time values.",
             "handler": "operations.process_start_time",
             "cli_command": "process-start-time",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Process Path Resolver",
             "category": "Process Tools",
-            "description": "Summarize process environment summary at a glance.",
+            "description": "Resolve process path names to concrete targets.",
             "handler": "operations.process_path_resolver",
             "cli_command": "process-path-resolver",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Process Priority Setter",
             "category": "Process Tools",
-            "description": "Read and print process priority.",
+            "description": "Set/apply process priority configuration.",
             "handler": "operations.process_priority_setter",
             "cli_command": "process-priority-setter",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Process Affinity Setter",
             "category": "Process Tools",
-            "description": "Read and print process affinity.",
+            "description": "Set/apply process affinity configuration.",
             "handler": "operations.process_affinity_setter",
             "cli_command": "process-affinity-setter",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Process Terminate",
             "category": "Process Tools",
-            "description": "Set/apply process affinity configuration.",
+            "description": "Process Terminate: process terminate as structured JSON output.",
             "handler": "operations.process_terminate",
             "cli_command": "process-terminate",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Process Wait",
             "category": "Process Tools",
-            "description": "Process Terminate: run the 'process terminate' operation and print structured JSON results.",
+            "description": "Process Wait: process wait as structured JSON output.",
             "handler": "operations.process_wait",
             "cli_command": "process-wait",
             "dependencies": [],

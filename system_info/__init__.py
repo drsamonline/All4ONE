@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "OS Version",
             "category": "System Information",
-            "description": "Summarize system summary at a glance.",
+            "description": "OS Version: os version as structured JSON output.",
             "handler": "operations.os_version",
             "cli_command": "os-version",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Computer Name",
             "category": "System Information",
-            "description": "OS Version: run the 'os version' operation and print structured JSON results.",
+            "description": "Computer Name: computer name as structured JSON output.",
             "handler": "operations.computer_name",
             "cli_command": "computer-name",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "CPU Information",
             "category": "System Information",
-            "description": "Computer Name: run the 'computer name' operation and print structured JSON results.",
+            "description": "CPU Information: cpu information as structured JSON output.",
             "handler": "operations.cpu_information",
             "cli_command": "cpu-information",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Memory Information",
             "category": "System Information",
-            "description": "CPU Information: run the 'cpu information' operation and print structured JSON results.",
+            "description": "Memory Information: memory information as structured JSON output.",
             "handler": "operations.memory_information",
             "cli_command": "memory-information",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Boot Time",
             "category": "System Information",
-            "description": "Memory Information: run the 'memory information' operation and print structured JSON results.",
+            "description": "Compute boot time values.",
             "handler": "operations.boot_time",
             "cli_command": "boot-time",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Current User",
             "category": "System Information",
-            "description": "Compute boot time values.",
+            "description": "Current User: current user as structured JSON output.",
             "handler": "operations.current_user",
             "cli_command": "current-user",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Python Environment",
             "category": "System Information",
-            "description": "Current User: run the 'current user' operation and print structured JSON results.",
+            "description": "Python Environment: python environment as structured JSON output.",
             "handler": "operations.python_environment",
             "cli_command": "python-environment",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Environment Report",
             "category": "System Information",
-            "description": "Python Environment: run the 'python environment' operation and print structured JSON results.",
+            "description": "Compile a readable environment report report.",
             "handler": "operations.environment_report",
             "cli_command": "environment-report",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Locale Information",
             "category": "System Information",
-            "description": "Compile a readable environment report report.",
+            "description": "Locale Information: locale information as structured JSON output.",
             "handler": "operations.locale_information",
             "cli_command": "locale-information",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Time Zone Information",
             "category": "System Information",
-            "description": "Locale Information: run the 'locale information' operation and print structured JSON results.",
+            "description": "Time Zone Information: time zone information as structured JSON output.",
             "handler": "operations.time_zone_information",
             "cli_command": "time-zone-information",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "System Uptime",
             "category": "System Information",
-            "description": "Time Zone Information: run the 'time zone information' operation and print structured JSON results.",
+            "description": "System Uptime: system uptime as structured JSON output.",
             "handler": "operations.system_uptime",
             "cli_command": "system-uptime",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Machine Architecture",
             "category": "System Information",
-            "description": "System Uptime: run the 'system uptime' operation and print structured JSON results.",
+            "description": "Machine Architecture: machine architecture as structured JSON output.",
             "handler": "operations.machine_architecture",
             "cli_command": "machine-architecture",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "System Directory Report",
             "category": "System Information",
-            "description": "Machine Architecture: run the 'machine architecture' operation and print structured JSON results.",
+            "description": "Compile a readable system directory report report.",
             "handler": "operations.system_directory_report",
             "cli_command": "system-directory-report",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Temporary Directory Report",
             "category": "System Information",
-            "description": "Compile a readable system directory report report.",
+            "description": "Compile a readable temporary directory report report.",
             "handler": "operations.temporary_directory_report",
             "cli_command": "temporary-directory-report",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "User Profile Report",
             "category": "System Information",
-            "description": "Compile a readable temporary directory report report.",
+            "description": "Compile a readable user profile report report.",
             "handler": "operations.user_profile_report",
             "cli_command": "user-profile-report",
             "dependencies": [],
@@ -134,7 +134,7 @@ def register_tools():
         {
             "name": "PowerShell Version",
             "category": "System Information",
-            "description": "Compile a readable user profile report report.",
+            "description": "PowerShell Version: powershell version as structured JSON output.",
             "handler": "operations.powershell_version",
             "cli_command": "powershell-version",
             "dependencies": ["powershell"],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Windows Version Report",
             "category": "System Information",
-            "description": "PowerShell Version: run the 'powershell version' operation and print structured JSON results.",
+            "description": "Compile a readable windows version report report.",
             "handler": "operations.windows_version_report",
             "cli_command": "windows-version-report",
             "dependencies": [],
@@ -158,7 +158,7 @@ def register_tools():
         {
             "name": "System Environment Export",
             "category": "System Information",
-            "description": "Summarize installed ram summary at a glance.",
+            "description": "Export system environment data to a file.",
             "handler": "operations.system_environment_export",
             "cli_command": "system-environment-export",
             "dependencies": [],

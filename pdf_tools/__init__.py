@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "PDF Text Search",
             "category": "PDF Tools",
-            "description": "Count occurrences within pdf page.",
+            "description": "Search pdf text targets for matches.",
             "handler": "operations.pdf_text_search",
             "cli_command": "pdf-text-search",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "PDF Merge",
             "category": "PDF Tools",
-            "description": "Extract data from pdf page.",
+            "description": "PDF Merge: pdf merge as structured JSON output.",
             "handler": "operations.pdf_merge",
             "cli_command": "pdf-merge",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "PDF Split",
             "category": "PDF Tools",
-            "description": "PDF Merge: run the 'pdf merge' operation and print structured JSON results.",
+            "description": "PDF Split: pdf split as structured JSON output.",
             "handler": "operations.pdf_split",
             "cli_command": "pdf-split",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "PDF Rotate",
             "category": "PDF Tools",
-            "description": "PDF Split: run the 'pdf split' operation and print structured JSON results.",
+            "description": "Rotate pdf logs or content.",
             "handler": "operations.pdf_rotate",
             "cli_command": "pdf-rotate",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "PDF Compress",
             "category": "PDF Tools",
-            "description": "Rotate pdf logs or content.",
+            "description": "PDF Compress: pdf compress as structured JSON output.",
             "handler": "operations.pdf_compress",
             "cli_command": "pdf-compress",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "PDF Watermark",
             "category": "PDF Tools",
-            "description": "PDF Compress: run the 'pdf compress' operation and print structured JSON results.",
+            "description": "PDF Watermark: pdf watermark as structured JSON output.",
             "handler": "operations.pdf_watermark",
             "cli_command": "pdf-watermark",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],

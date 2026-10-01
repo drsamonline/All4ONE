@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Ping Host",
         "category": "Advanced Networking",
-        "description": "Ping Host: run the 'ping host' operation and print structured JSON results.",
+        "description": "Ping Host: ping host as structured JSON output.",
         "handler": "operations.ping_host",
         "cli_command": "ping-host",
         "dependencies": [
@@ -17,7 +17,7 @@ def register_tools():
     {
         "name": "DNS Lookup",
         "category": "Advanced Networking",
-        "description": "Ping Host: run the 'ping host' operation and print structured JSON results.",
+        "description": "DNS Lookup: dns lookup as structured JSON output.",
         "handler": "operations.dns_lookup",
         "cli_command": "dns-lookup",
         "dependencies": [
@@ -28,7 +28,7 @@ def register_tools():
     {
         "name": "Reverse DNS",
         "category": "Advanced Networking",
-        "description": "DNS Lookup: run the 'dns lookup' operation and print structured JSON results.",
+        "description": "Reverse DNS: reverse dns as structured JSON output.",
         "handler": "operations.reverse_dns",
         "cli_command": "reverse-dns",
         "dependencies": [
@@ -39,7 +39,7 @@ def register_tools():
     {
         "name": "IP Address Info",
         "category": "Advanced Networking",
-        "description": "Reverse DNS: run the 'reverse dns' operation and print structured JSON results.",
+        "description": "Show ip address information.",
         "handler": "operations.ip_address_info",
         "cli_command": "ip-address-info",
         "dependencies": [
@@ -50,7 +50,7 @@ def register_tools():
     {
         "name": "WHOIS Lookup",
         "category": "Advanced Networking",
-        "description": "Show ip address information.",
+        "description": "WHOIS Lookup: whois lookup as structured JSON output.",
         "handler": "operations.whois_lookup",
         "cli_command": "whois-lookup",
         "dependencies": [
@@ -61,7 +61,7 @@ def register_tools():
     {
         "name": "Route Trace",
         "category": "Advanced Networking",
-        "description": "WHOIS Lookup: run the 'whois lookup' operation and print structured JSON results.",
+        "description": "Route Trace: route trace as structured JSON output.",
         "handler": "operations.route_trace",
         "cli_command": "route-trace",
         "dependencies": [
@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "UDP Port Probe",
         "category": "Advanced Networking",
-        "description": "Check and validate tcp port.",
+        "description": "UDP Port Probe: udp port probe as structured JSON output.",
         "handler": "operations.udp_port_probe",
         "cli_command": "udp-port-probe",
         "dependencies": [
@@ -160,7 +160,7 @@ def register_tools():
     {
         "name": "Local Listening Ports",
         "category": "Advanced Networking",
-        "description": "Check and validate url redirect.",
+        "description": "Local Listening Ports: local listening ports as structured JSON output.",
         "handler": "operations.local_listening_ports",
         "cli_command": "local-listening-ports",
         "dependencies": [
@@ -190,7 +190,7 @@ def register_tools():
     {
         "name": "MAC Vendor Lookup",
         "category": "Networking",
-        "description": "Compute subnet values.",
+        "description": "MAC Vendor Lookup: mac vendor lookup as structured JSON output.",
         "handler": "operations.mac_vendor_lookup",
         "cli_command": "mac-vendor",
         "dependencies": []
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "Speed Test Probe",
         "category": "Networking",
-        "description": "Monitor ssl expiry over time.",
+        "description": "Speed Test Probe: speed test probe as structured JSON output.",
         "handler": "operations.speed_test_probe",
         "cli_command": "speed-probe",
         "dependencies": []
