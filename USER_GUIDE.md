@@ -208,6 +208,25 @@ Reload packs        python run.py refresh
 Where are logs?     logs/utility_suite.log
 ```
 
+### ⭐ New in 3.0.x — quick try (all stdlib-only, ship inside the EXE)
+
+```text
+Identify a hash     python run.py run hash-identify 5d41402abc4b2a76b9719d911017c592
+Check password      python run.py run password-entropy --password "Tr0ub4dor&3"
+Generate password   python run.py run password-entropy --length 20
+Strict Base64       python run.py run b64-codec "hello world"   (--decode to reverse)
+Explore JSON        python run.py run json-schema data.json --keys "user|email"
+Query a CSV         python run.py run csv-query staff.csv --where dept=eng --columns name,salary
+CSV column stats    python run.py run csv-query staff.csv --numeric salary --stats
+Diff two files      python run.py run text-diff old.txt new.txt --summary
+Subnet math         python run.py run ip-calc 192.168.1.10/24
+Read an INI value   python run.py run ini-tool app.ini --get user.name
+Make UUIDs          python run.py run uuid-tool --version v4 --count 5
+Browse a folder     python run.py run tree-print . --depth 2 --sizes
+Convert units       python run.py run bytes-units 4.5GiB --to MiB
+Make a test file    python run.py run rand-file 100MB -o bigfile.bin
+```
+
 <div align="center">
 
 📖 Next: setup details in [INSTALLATION.md](INSTALLATION.md) ·

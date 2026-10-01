@@ -30,6 +30,18 @@ Stdlib-only expansion pass #2 (2026-10-01, CHANGELOG 3.0.3):
   - The tracked-artifact gate caught three .pyc files that a housekeeping
     commit had re-added under core/__pycache__/; untracked and deleted again.
 
+Documentation polish pass (2026-10-01, CHANGELOG 3.0.4):
+  - USER_GUIDE.md gained a "New in 3.0.x - quick try" cheat-sheet block with
+    verified runnable examples for all 12 tools added in 3.0.2/3.0.3; each
+    example was executed against the live registry first, so documented flags
+    match the real argument parsers (--password, --version v4, positional
+    size + -o, etc.). README Quick start now showcases ip-calc and csv-query.
+  - Full-document freshness sweep: README/USER_GUIDE/INSTALLATION/
+    DEVELOPER_GUIDE/AUTHORS/COMPILATION/SECURITY/CHANGELOG/AUDIT_REPORT and
+    both generated catalogs confirmed current at 551 tools / 45 packs /
+    version 3.0.3; generate_catalogs.py output byte-identical to committed
+    TOOL_CATALOG.md and EXPANSION_CATALOG.md.
+
 Post-merge CI repair pass (2026-10-01):
   - Root cause of "Linux CI green but no Windows build / stale artifacts":
     the merged commit shipped .gitignore as a literal 7-byte "(empty)" stub.

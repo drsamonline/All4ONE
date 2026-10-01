@@ -21,6 +21,24 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
   `VERSION.txt`, docs) remain unaffected. The audit's tracked-artifact gate
   continues to guard against recurrence.
 
+### Documentation
+- **USER_GUIDE.md:** new "⭐ New in 3.0.x — quick try" cheat-sheet block under
+  🚀 Cheat sheet listing runnable examples for all twelve tools added in
+  3.0.2/3.0.3 (`hash-identify`, `password-entropy`, `b64-codec`,
+  `json-schema`, `csv-query`, `text-diff`, `ip-calc`, `ini-tool`, `uuid-tool`,
+  `tree-print`, `bytes-units`, `rand-file`). Every example was executed
+  against the live registry before being written down, so the documented
+  flags match the actual argument parsers exactly (e.g. `--password` for
+  `password-entropy`, `--version v4` for `uuid-tool`, positional size + `-o`
+  for `rand-file`).
+- **README.md:** Quick start snippets now showcase two of the new tools
+  (`ip-calc` subnet math from the exe, `csv-query --stats` from source).
+- Verified remaining documents (TOOL_CATALOG.md, EXPANSION_CATALOG.md,
+  AUDIT_REPORT.txt, AUTHORS.md, COMPILATION.md, INSTALLATION.md,
+  DEVELOPER_GUIDE.md, SECURITY.md) are current at 551 tools / 45 packs /
+  version 3.0.3; regenerated catalogs confirmed byte-identical to the live
+  registry.
+
 ## [3.0.3] — 2026-10-01
 
 Second tool-expansion wave: eight more **stdlib-only** tools added to the

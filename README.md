@@ -122,6 +122,7 @@ All 551 tools described → **[TOOL_CATALOG.md](TOOL_CATALOG.md)**
 .\utility_suite.exe list                        # browse all 551 tools
 .\utility_suite.exe search image                # find tools by keyword
 .\utility_suite.exe run checksum C:\f.txt --algorithm sha256
+.\utility_suite.exe run ip-calc 192.168.1.10/24   # new in 3.0.x: subnet math
 ```
 
 Releases are produced automatically by GitHub Actions whenever a version tag
@@ -136,6 +137,7 @@ cd utility_suite
 python run.py list                    # browse all 551 tools
 python run.py search image            # find tools by keyword
 python run.py run checksum C:\f.txt --algorithm sha256   # run a tool
+python run.py run csv-query staff.csv --numeric salary --stats  # 3.0.x
 python run.py gui                     # launch the desktop GUI
 ```
 
