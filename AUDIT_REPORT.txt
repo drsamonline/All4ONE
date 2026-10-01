@@ -2,7 +2,7 @@ Utility Suite 3.0.0 — Merged Audit Report
 (reflects the 3.0 single-file release; see CHANGELOG.md for what changed and why)
 (539 tools across 45 packs; refreshed after the repository-cleanup & docs-sync pass)
 
-Python files: 128
+Python files: 130
 Plugin packs: 45
 Tools: 539/539
 Unique commands: 539/539
@@ -20,7 +20,21 @@ Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 539/539 tools
   0 unexpected timeouts, 0 uncaught tracebacks, 0 crashes
 Source cache residue: NONE
 
-Repository cleanup pass (this refresh):
+Post-merge CI repair pass (2026-10-01):
+  - Root cause of "Linux CI green but no Windows build / stale artifacts":
+    the merged commit shipped .gitignore as a literal 7-byte "(empty)" stub.
+    With every ignore rule gone, local build output (dist/, build/,
+    __pycache__/*.pyc, runtime logs) was no longer excluded and kept being
+    force-added back into release commits — the clutter the audit gate then
+    rejected. Restored the complete ignore set (bytecode caches, build/,
+    dist/, logs/* except .gitkeep, venvs, ruff/pytest/mypy caches, OS/editor
+    junk). Verified: tracked-artifact scan clean, `python audit.py` exits 0,
+    smoke suite passes 539/539.
+  - Reminder for maintainers: the Windows EXE is only produced when a v* tag
+    is pushed (git tag v3.0.0 && git push origin v3.0.0) or via a manual
+    workflow_dispatch run — a plain push to main runs ci.yml only.
+
+Repository cleanup pass (previous refresh):
   - Removed stale one-shot helper scripts (scripts/descriptions_map.py,
     scripts/write_descriptions.py — their registry description rewrites are
     already committed in the pack metadata) and a redundant bundle/.gitkeep

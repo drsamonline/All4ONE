@@ -143,6 +143,16 @@ Zero mandatory `pip install`s — the suite runs on the standard library alone.
 
 ## 🏗️ Building & releasing
 
+> [!IMPORTANT]
+> **A push to `main` does NOT build the Windows EXE.** Plain pushes only run
+> the Linux validation workflow (`ci.yml`). The single-file
+> `utility_suite.exe` is produced by `build-windows-exe.yml`, which fires on:
+>
+> 1. **pushing a version tag** → builds *and* publishes a GitHub Release, or
+> 2. a manual **Actions → Build Windows executable → Run workflow**.
+>
+> If CI is green but no Windows build appeared, you forgot to tag. 👇
+
 PyInstaller cannot cross-compile a Windows binary from Linux/macOS, so the
 real `.exe` is built on a **Windows GitHub Actions runner**. The entire local
 pipeline is one command:
@@ -151,15 +161,18 @@ pipeline is one command:
 python build_single_exe.py    # audit → bundle → tests → exe → verify → zip
 ```
 
-To publish a release, **push a version tag** — the tagged build attaches
-`UtilitySuite-<version>-windows.zip` to an auto-generated GitHub Release:
+To publish a release, **bump the version, then push a version tag** — the
+tagged build attaches `UtilitySuite-<version>-windows.zip` to an
+auto-generated GitHub Release:
 
 ```bash
+# 1. sync the version literal everywhere (audit.py enforces this)
+#    VERSION.txt, config.json, core/__init__.py, build_onefile.spec header
+# 2. tag and push
 git tag v3.0.0 && git push origin v3.0.0
 ```
 
-A normal push to `main` is validated by `ci.yml` but does not publish a
-release. Full details: [COMPILATION.md](COMPILATION.md).
+Full details: [COMPILATION.md](COMPILATION.md).
 
 ## 📖 Documentation map
 
@@ -248,7 +261,9 @@ The release process performs:
   **Windows single-file EXE build** (`build-windows-exe.yml`) triggered by
   version tags or a manual run
 - 🧾 Tracked-artifact guard: `__pycache__`, `.pyc` and runtime logs can never
-  be committed again (enforced by both `audit.py` and `ci.yml`)
+  be committed again (enforced by both `audit.py` and `ci.yml`, and excluded
+  up-front by the full `.gitignore` ruleset — keep it intact; an emptied
+  `.gitignore` is what previously let old build files creep back into the tree)
 
 `audit.py` exits **0 only on `AUDIT PASSED`**, so CI can rely on
 `python audit.py && <next step>` failing loudly. Release hashes are generated
