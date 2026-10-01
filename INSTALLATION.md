@@ -49,7 +49,7 @@ you want to keep them.
 | 🐍 Python | **3.10+** | `python --version` |
 
 ```powershell
-git clone https://github.com/sohil-momin/utility_suite.git
+git clone https://github.com/drsamonline/utility_suite.git
 cd utility_suite
 python --version        # must print 3.10 or newer
 python run.py gui       # that's it — zero mandatory pip installs
@@ -83,10 +83,12 @@ utility_suite.exe run checksum f.bin       # python run.py run checksum f.bin
 
 ## 🔐 Security note
 
-> ⚠️ Only install plugin ZIPs from sources you trust. Plugins execute Python
+> ⚠️ Only add plugin packs from sources you trust. Pack modules execute Python
 > code within the user account and therefore have the same authority as the
-> process running Utility Suite. Review third-party packs before dropping them
-> into `plugins/`. Found an issue? See [SECURITY.md](SECURITY.md).
+> process running Utility Suite. In official releases all 45 packs are already
+> embedded inside `utility_suite.exe`; review third-party pack source before
+> rebuilding the bundle from a modified checkout. Found an issue? See
+> [SECURITY.md](SECURITY.md).
 
 ---
 

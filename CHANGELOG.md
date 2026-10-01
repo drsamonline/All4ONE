@@ -2,13 +2,52 @@
 
 All notable changes to **Utility Suite** are documented in this file.
 This project follows semantic versioning; the authoritative version string
-lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field)
-and `core/__init__.py`. A regression guard in `audit.py` fails the release
-audit if these drift apart.
+lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
+`core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
+`audit.py` fails the release audit if these drift apart.
 
-## [Unreleased]
+## [3.0.0] — 2026-10-01
+
+The single-file release: everything now ships inside **one portable
+`utility_suite.exe`** — runtime, all 45 tool packs, and catalog metadata
+embedded via `bundle/tools.dat`. No `plugins/` folder, no sidecar files.
+
+### Added
+- `core/bundle.py`: deterministic in-memory tool bundle (`bundle/tools.dat`)
+  that replaces the external `plugins/` directory at runtime (loaded via
+  `zipimport` from PyInstaller's `_MEIPASS`).
+- `build_onefile.spec` + `build_single_exe.py`: one-command release pipeline
+  (audit → bundle regeneration → smoke tests → PyInstaller onefile build →
+  packaged-exe self-check → `UtilitySuite-<version>-windows.zip`).
+- `.github/workflows/build-windows-exe.yml`: automated Windows EXE build on a
+  `windows-latest` runner. Triggered by pushing a `v*` tag (builds *and*
+  publishes a GitHub Release with the zip attached) or manually via
+  *Run workflow*. PyInstaller cannot cross-compile from Linux, so this job —
+  not `ci.yml` — produces the real binary.
+
+### Changed
+- Version bumped to **3.0.0** everywhere (`VERSION.txt`, `config.json`,
+  `core/__init__.py`, `build_onefile.spec`); README/docs refreshed for the
+  single-file architecture and the tag-driven release flow.
+- Releases are cut by pushing a version tag; ordinary pushes to `main` are
+  validated by `ci.yml` only (Linux: ruff advisory + hard gates on
+  `audit.py`, catalogue drift, tracked-artifact hygiene, and the smoke suite).
 
 ### Fixed
+- **Windows CI build never triggered**: the workflow only ran on `v*` tags,
+  which had never been pushed, so no Windows artifact/release existed. The
+  flow is now documented end-to-end (README "Building & releasing",
+  COMPILATION.md §0) — push `v3.0.0` to publish the first built exe.
+- Repository clutter removed: stale one-shot helper scripts (`scripts/
+  descriptions_map.py`, `scripts/write_descriptions.py` — their registry
+  rewrites are already committed), a redundant `bundle/.gitkeep` (the
+  directory always contains the tracked `tools.dat`), and a truncated
+  `.gitignore` (two rules) restored to the full ignore set covering bytecode
+  caches, `logs/*`, `build/`, `dist/`, venvs, ruff/pytest caches, and OS/editor
+  junk — the root cause of previously re-committed build artifacts.
+- Documentation drift: every guide still quoting the pre-3.0 layout
+  (external plugin ZIPs, `plugins/` folder, version 2.1.3 badges) was
+  rewritten for the embedded-bundle, single-exe reality.
 - Full bug/error/build sweep (2026-09-30):
   - `.gitignore` had been corrupted into a literal 7-byte file containing the
     text "(empty)" - every ignore rule was gone, so bytecode caches and
