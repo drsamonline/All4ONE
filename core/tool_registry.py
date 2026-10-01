@@ -81,8 +81,13 @@ class ToolRegistry:
             emit(f"Tool '{cli_command}' not found.")
             return 2
         if not tool.get("available", False):
-            missing = ", ".join(tool.get("missing_dependencies", [])) or "unknown dependency"
-            emit(f"Tool '{tool['name']}' is unavailable. Missing: {missing}")
+            missing = tool.get("missing_dependencies", []) or []
+            from .capability_checker import download_hint
+
+            lines = [f"Tool '{tool['name']}' is unavailable. Missing: {', '.join(missing) or 'unknown dependency'}"]
+            for dep in missing:
+                lines.append(f"  - {dep}: {download_hint(dep)}")
+            emit("\n".join(lines))
             return 3
         try:
             handler = self._resolve_handler(tool)

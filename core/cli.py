@@ -117,6 +117,7 @@ def main(argv: list[str] | None = None) -> int:
     p_open = sub.add_parser("open", help="Open using the system default application")
     p_open.add_argument("file_path")
     sub.add_parser("gui", help="Launch desktop GUI")
+    sub.add_parser("deps", help="List missing dependencies and where to download them")
     args = parser.parse_args(raw)
 
     registry = build_registry()
@@ -167,4 +168,21 @@ def main(argv: list[str] | None = None) -> int:
             return 1
     if args.command == "gui":
         return _launch_gui(registry)
+    if args.command == "deps":
+        from .capability_checker import download_hint
+
+        missing: dict[str, int] = {}
+        for tool in registry.tools.values():
+            if not tool["available"]:
+                for dep in tool["missing_dependencies"]:
+                    missing[dep] = missing.get(dep, 0) + 1
+        if not missing:
+            print("Nothing is missing — every tool on this system is ready.")
+            return 0
+        print("Missing optional dependencies (install them, then tools unlock automatically):\n")
+        for dep, count in sorted(missing.items(), key=lambda kv: (-kv[1], kv[0].lower())):
+            print(f"  {dep}  ({count} tool{'s' if count != 1 else ''})")
+            print(f"      -> {download_hint(dep)}")
+        print("\nAfter installing a pip package restart Utility Suite; PATH tools are picked up by 'refresh'.")
+        return 0
     return 0

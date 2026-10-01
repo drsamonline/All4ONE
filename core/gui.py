@@ -16,13 +16,20 @@ from __future__ import annotations
 import os
 import queue
 import shlex
+import sys
 import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from typing import Any
 
+from .capability_checker import download_hint
 from .preview import open_with_default, preview_file
 from .tool_registry import ToolRegistry
+
+try:  # single source of truth for the version string
+    from . import __version__ as APP_VERSION
+except Exception:  # pragma: no cover - defensive fallback
+    APP_VERSION = "3.0.4"
 
 # Tools that can delete/overwrite data or otherwise irreversibly change the
 # system - the GUI confirms before running these.
@@ -126,9 +133,20 @@ class UtilitySuiteGUI(tk.Tk):
         super().__init__()
         self.registry = registry
         self.on_refresh = on_refresh
-        self.title("Utility Suite")
-        self.geometry("1080x720")
-        self.minsize(900, 600)
+        # DPI awareness must be set *before* the window is realised, otherwise
+        # on 125/150% Windows displays every widget keeps its tiny 96-DPI size
+        # while fonts/layout scale -> text and buttons spill out of the window.
+        if sys.platform == "win32":
+            try:
+                import ctypes
+
+                ctypes.windll.shcore.SetProcessDpiAwareness(1)
+            except Exception:
+                pass
+        self._scale = max(1.0, min(2.0, self.winfo_fpixels("1i") / 72.0))
+        self.title(f"Utility Suite {APP_VERSION} — by Dr. Sohil Momin, BHMS")
+        self.geometry(f"{int(1080 * min(self._scale, 1.25))}x{int(720 * min(self._scale, 1.25))}")
+        self.minsize(800, 560)
         self.configure(bg=BG)
         self._selected: dict[str, Any] | None = None
         self._queue: queue.Queue[str] = queue.Queue()
@@ -137,6 +155,7 @@ class UtilitySuiteGUI(tk.Tk):
         self._tools_by_label: dict[str, dict[str, Any]] = {}
         self._build_style()
         self._build_ui()
+        self._build_body()
         self._populate()
         self.after(80, self._drain_output)
 
@@ -200,15 +219,42 @@ class UtilitySuiteGUI(tk.Tk):
         self.search_entry.bind("<Return>", lambda _e: self._filter_tools())
         self._ghost_button(search_wrap, "Clear", lambda: self.search_var.set("")).pack(side="right", padx=6)
 
-        # Category selector: wrap of Win10 chips
+        # Category selector: a horizontally scrollable single-row strip of
+        # Win10 chips. A Canvas + inner frame lets the row overflow gracefully
+        # (mouse wheel scrolls) instead of spilling widgets off the window.
         cat_card = self._card(self, padx=12, pady=8)
         cat_card.pack(fill="x", padx=24, pady=(0, 10))
         tk.Label(cat_card, text="Category", bg=CARD, fg=SUBTLE, font=("Segoe UI", 9, "bold")).grid(
             row=0, column=0, sticky="w", padx=(2, 8), pady=(0, 6)
         )
-        self.chip_holder = tk.Frame(cat_card, bg=CARD)
-        self.chip_holder.grid(row=1, column=0, sticky="w")
+        cat_card.columnconfigure(0, weight=1)
+        self.chip_canvas = tk.Canvas(cat_card, bg=CARD, highlightthickness=0, height=38)
+        self.chip_canvas.grid(row=1, column=0, sticky="ew")
+        self.chip_holder = tk.Frame(self.chip_canvas, bg=CARD)
+        self._chip_window = self.chip_canvas.create_window((0, 0), window=self.chip_holder, anchor="w")
+        self.chip_holder.bind(
+            "<Configure>",
+            lambda _e: self.chip_canvas.configure(scrollregion=self.chip_canvas.bbox("all") or (0, 0, 0, 0)),
+        )
+        self.chip_canvas.bind(
+            "<Configure>", lambda e: self.chip_canvas.itemconfigure(self._chip_window, width=max(e.width, 1))
+        )
+        for seq in ("<Button-4>", "<Button-5>", "<MouseWheel>"):
+            self.chip_canvas.bind(seq, self._scroll_chips)
 
+    def _scroll_chips(self, event):
+        try:
+            if event.num == 4:
+                delta = -20
+            elif event.num == 5:
+                delta = 20
+            else:
+                delta = -20 if event.delta > 0 else 20
+            self.chip_canvas.xview_scroll(delta, "units")
+        except Exception:
+            pass
+
+    def _build_body(self):
         # Middle: tool selection box + details
         body = tk.Frame(self, bg=BG)
         body.pack(fill="both", expand=True, padx=24)
@@ -242,6 +288,14 @@ class UtilitySuiteGUI(tk.Tk):
             anchor="w", justify="left", wraplength=900,
         )
         self.detail_meta.grid(row=1, column=0, sticky="new", pady=(4, 0))
+
+        def _rescale_wrap(event=None):
+            # Keep text wrapping inside the window instead of spilling out.
+            w = max(320, detail_card.winfo_width() - 40)
+            self.detail_title.configure(wraplength=w)
+            self.detail_meta.configure(wraplength=w)
+
+        detail_card.bind("<Configure>", _rescale_wrap)
 
         # Bottom action bar: args + run + output
         bottom = tk.Frame(self, bg=BG)
@@ -306,15 +360,19 @@ class UtilitySuiteGUI(tk.Tk):
         cats = list(self.registry.list_categories().keys())
         total = len(self.registry.tools)
         avail = sum(1 for t in self.registry.tools.values() if t["available"])
-        self.status_lbl.configure(text=f"{avail}/{total} tools ready")
+        self.status_lbl.configure(text=f"{avail}/{total} tools ready — click for install guide")
+        self.status_lbl.configure(cursor="hand2")
+        self.status_lbl.bind("<Button-1>", lambda _e: self._install_guide())
         for chip in self._chips:
             chip.destroy()
         self._chips.clear()
         entries = [(None, "All")] + [(c, c) for c in cats]
+        # Single scrollable row — stacking chips in a grid used to push the
+        # lower rows (and everything below them) off-screen on small windows.
         for i, (cat, label) in enumerate(entries):
             chip = Chip(self.chip_holder, label, self._select_category)
             chip.cat = cat  # type: ignore[attr-defined]
-            chip.grid(row=i // 8, column=i % 8, padx=3, pady=3)
+            chip.grid(row=0, column=i, padx=3, pady=3)
             self._chips.append(chip)
         self._chips[0].set_selected(True)
         self._filter_tools()
@@ -334,6 +392,59 @@ class UtilitySuiteGUI(tk.Tk):
             tools = [t for t in tools if t["available"]]
         tools = sorted(tools, key=lambda t: str(t.get("name", "")).lower())
         return tools[:500]  # keep the dropdown responsive
+
+    def _install_guide(self):
+        """Show exactly what to download so unavailable tools turn green."""
+        missing: dict[str, int] = {}
+        for tool in self.registry.tools.values():
+            if not tool["available"]:
+                for dep in tool["missing_dependencies"]:
+                    missing[dep] = missing.get(dep, 0) + 1
+        win32 = sys.platform == "win32"
+        lines = []
+        for dep, count in sorted(missing.items(), key=lambda kv: (-kv[1], kv[0].lower())):
+            hint = download_hint(dep)
+            tag = " [Windows only]" if hint.startswith("Built into Windows") and not win32 else ""
+            lines.append(f"{dep} ({count} tool{'s' if count != 1 else ''}){tag}\n    -> {hint}")
+        body = "\n\n".join(lines) or "Nothing is missing - every tool on this system is ready."
+        dlg = tk.Toplevel(self)
+        dlg.title("Install missing dependencies")
+        dlg.geometry("680x520")
+        dlg.configure(bg=BG)
+        tk.Label(
+            dlg, text="Download / install guide", bg=BG, fg=TEXT,
+            font=("Segoe UI", 14, "bold"), anchor="w",
+        ).pack(fill="x", padx=18, pady=(14, 4))
+        tk.Label(
+            dlg,
+            text=(
+                "Tools whose optional dependency is missing are hidden by default.\n"
+                "Install anything below, then press 'Refresh tools' - it turns Ready automatically.\n"
+                "After installing a pip package, restart Utility Suite so the new import is picked up."
+            ),
+            bg=BG, fg=SUBTLE, font=("Segoe UI", 9), justify="left", anchor="w",
+        ).pack(fill="x", padx=18, pady=(0, 8))
+        card = self._card(dlg, padx=2, pady=2)
+        card.pack(fill="both", expand=True, padx=18, pady=(0, 8))
+        txt = tk.Text(card, wrap="word", font=("Consolas", 10), relief="flat", bg="#fbfbfb", height=10)
+        scroll = ttk.Scrollbar(card, command=txt.yview)
+        txt.configure(yscrollcommand=scroll.set)
+        scroll.pack(side="right", fill="y")
+        txt.pack(side="left", fill="both", expand=True)
+        txt.insert("1.0", body)
+        txt.configure(state="disabled")
+        btn_row = tk.Frame(dlg, bg=BG)
+        btn_row.pack(fill="x", padx=18, pady=(0, 16))
+
+        def copy_all():
+            self.clipboard_clear()
+            self.clipboard_append(body)
+
+        self._ghost_button(btn_row, "Copy list", copy_all).pack(side="left", padx=(0, 8))
+        self._accent_button(
+            btn_row, "Refresh tools", lambda: (dlg.destroy(), self._refresh())
+        ).pack(side="left")
+        tk.Button(btn_row, text="Close", command=dlg.destroy, bg=CARD, relief="flat").pack(side="right")
 
     def _filter_tools(self):
         tools = self._matching_tools()
@@ -363,13 +474,14 @@ class UtilitySuiteGUI(tk.Tk):
         self._selected = tool
         self.detail_title.configure(text=f"{tool['name']}   [{tool['cli_command']}]")
         deps = ", ".join(tool.get("dependencies", []) or [])
-        status = (
-            "Ready"
-            if tool["available"]
-            else f"Unavailable — missing: {', '.join(tool['missing_dependencies'])}"
-        )
+        if tool["available"]:
+            status = "Ready"
+        else:
+            miss = tool["missing_dependencies"]
+            hints = "; ".join(f"{d}: {download_hint(d)}" for d in miss)
+            status = f"Needs install — {hints}"
         meta = f"{tool.get('description', '')}\nCategory: {tool.get('category', '')}   •   Status: {status}"
-        if deps:
+        if deps and tool["available"]:
             meta += f"   •   Optional deps: {deps}"
         self.detail_meta.configure(text=meta)
         self.args_var.set("")
