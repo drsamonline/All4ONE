@@ -1,11 +1,12 @@
 # UTF-8
 #
-# PyInstaller version-resource file — embedded into utility_suite.exe so the
-# Windows file Properties dialog shows real product metadata.
+# PyInstaller version resource for utility_suite.exe
+# (Windows File Properties -> Details tab). Generated as plain text so the
+# values are auditable; consumed via EXE(..., version="version_info.txt").
 VSVersionInfo(
   ffi=FixedFileInfo(
-    filevers=(3, 0, 4, 0),
-    prodvers=(3, 0, 4, 0),
+    filevers=(3, 0, 5, 0),
+    prodvers=(3, 0, 5, 0),
     mask=0x3f,
     flags=0x0,
     OS=0x40004,
@@ -15,18 +16,16 @@ VSVersionInfo(
   ),
   kids=[
     StringFileInfo([
-      StringTable('000004b0', [
+      StringTable('040904B0', [
         StringStruct('CompanyName', 'Dr. Sohil Momin, BHMS'),
-        StringStruct('FileDescription', 'Utility Suite - 551 portable workstation tools'),
-        StringStruct('FileVersion', '3.0.4.0'),
-        StringStruct('InternalName', 'utility_suite'),
-        StringStruct('LegalCopyright', 'Copyright (C) 2026 Dr. Sohil Momin, BHMS. MIT License.'),
-        StringStruct('OriginalFilename', 'utility_suite.exe'),
+        StringStruct('FileDescription', 'Utility Suite - 551 offline tools in one executable'),
         StringStruct('ProductName', 'Utility Suite'),
-        StringStruct('ProductVersion', '3.0.4.0'),
+        StringStruct('ProductVersion', '3.0.5'),
+        StringStruct('FileVersion', '3.0.5.0'),
+        StringStruct('LegalCopyright', 'Copyright (C) 2026 Dr. Sohil Momin, BHMS. All rights reserved.'),
+        StringStruct('OriginalFilename', 'utility_suite.exe'),
         StringStruct('Author', 'Dr. Sohil Momin, BHMS'),
       ])
-    ]),
-    VarFileInfo([VarStruct('Translation', [0, 1200])])
+    ])
   ]
 )
