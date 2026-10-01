@@ -6,6 +6,15 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 `core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
 `audit.py` fails the release audit if these drift apart.
 
+## [3.0.4.1] — 2026-10-01
+
+### Fixed
+- **Windows EXE author metadata**: `build_onefile.spec` now passes
+  `version="version_info.txt"` to PyInstaller, embedding a Win32 VERSIONINFO
+  resource so `utility_suite.exe` → Properties → Details shows
+  *Company/Author: Dr. Sohil Momin, BHMS*, Product: Utility Suite, version 3.0.4.
+- Documented the new `version_info.txt` file and its role in COMPILATION.md.
+
 ## [3.0.4] — 2026-10-01
 
 ### Fixed

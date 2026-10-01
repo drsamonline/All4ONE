@@ -50,6 +50,7 @@ exe = EXE(
     a.datas,
     [],
     name="utility_suite",
+    version=str(ROOT / "version_info.txt"),  # embeds author Dr. Sohil Momin, BHMS in exe Properties
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

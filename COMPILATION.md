@@ -125,3 +125,22 @@ The application ships as a single portable `utility_suite.exe`. An installer (e.
 ## 9. Reproducibility
 
 `bundle/tools.dat` is rebuilt deterministically from source by `core.bundle.build_bundle()` (fixed timestamps, sorted entries), so repeated builds produce byte-identical archives. Release audits verify pack membership, handler metadata, and command uniqueness.
+
+## Windows file-properties metadata (version_info.txt)
+
+`build_onefile.spec` passes `version="version_info.txt"` to PyInstaller's EXE(),
+which embeds a Win32 VERSIONINFO resource into `utility_suite.exe`. Right-click
+the exe -> Properties -> Details and you will see:
+
+| Field | Value |
+|---|---|
+| Company name / Author | Dr. Sohil Momin, BHMS |
+| Product name | Utility Suite |
+| File description | Utility Suite - 551 offline tools in one executable |
+| File/Product version | 3.0.4.0 / 3.0.4 |
+| Legal copyright | Copyright (C) 2026 Dr. Sohil Momin, BHMS |
+
+When bumping the suite version, update the numbers in `version_info.txt`
+(both `filevers`/`prodvers` tuples and the string fields) alongside
+VERSION.txt, config.json and core/__init__.py — CI's version-sync gate checks
+the latter three; version_info.txt is checked by review.

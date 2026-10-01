@@ -1,0 +1,32 @@
+# UTF-8
+#
+# PyInstaller version resource for utility_suite.exe
+# (Windows File Properties -> Details tab). Generated as plain text so the
+# values are auditable; consumed via EXE(..., version="version_info.txt").
+VSVersionInfo(
+  ffi=FixedFileInfo(
+    filevers=(3, 0, 4, 0),
+    prodvers=(3, 0, 4, 0),
+    mask=0x3f,
+    flags=0x0,
+    OS=0x40004,
+    fileType=0x1,
+    subtype=0x0,
+    date=(0, 0)
+  ),
+  kids=[
+    StringFileInfo([
+      StringTable('040904B0', [
+        StringStruct('CompanyName', 'Dr. Sohil Momin, BHMS'),
+        StringStruct('FileDescription', 'Utility Suite - 551 offline tools in one executable'),
+        StringStruct('ProductName', 'Utility Suite'),
+        StringStruct('ProductVersion', '3.0.4'),
+        StringStruct('FileVersion', '3.0.4.0'),
+        StringStruct('LegalCopyright', 'Copyright (C) 2026 Dr. Sohil Momin, BHMS. All rights reserved.'),
+        StringStruct('OriginalFilename', 'utility_suite.exe'),
+        StringStruct('Author', 'Dr. Sohil Momin, BHMS'),
+      ])
+    ]),
+    VarFileInfo([VarTranslation(0x0409, 1200)])
+  ]
+)
