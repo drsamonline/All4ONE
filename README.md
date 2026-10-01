@@ -160,14 +160,19 @@ Python packages → exact `pip install …` lines. Nothing else to configure.
 ## 🏗️ Building & releasing
 
 > [!IMPORTANT]
-> **A push to `main` does NOT build the Windows EXE.** Plain pushes only run
-> the Linux validation workflow (`ci.yml`). The single-file
-> `utility_suite.exe` is produced by `build-windows-exe.yml`, which fires on:
+> **Every push to `main` automatically builds the Windows EXE** — no tag and
+> no manual action required. The Linux validation workflow (`ci.yml`) gates
+> the tree, and `build-windows-exe.yml` fires on:
 >
-> 1. **pushing a version tag** → builds *and* publishes a GitHub Release, or
-> 2. a manual **Actions → Build Windows executable → Run workflow**.
+> 1. **any push to `main`** → builds `utility_suite.exe`, uploads it as a
+>    run artifact, and refreshes the floating **`latest-build`** pre-release
+>    so there is always a current download at the same URL,
+> 2. **pushing a version tag** → all of the above *plus* a permanent GitHub
+>    Release with auto-generated notes, or
+> 3. a manual **Actions → Build Windows executable → Run workflow** for one-offs.
 >
-> If CI is green but no Windows build appeared, you forgot to tag. 👇
+> Tagging is now only needed when you want an *official numbered release*;
+> plain pushes still produce a working `.exe`. 👇
 
 PyInstaller cannot cross-compile a Windows binary from Linux/macOS, so the
 real `.exe` is built on a **Windows GitHub Actions runner**. The entire local
@@ -186,6 +191,10 @@ GitHub Release (with author/version metadata embedded in the binary):
 # 2. tag and push
 git tag v3.0.5.1 && git push origin v3.0.5.1
 ```
+
+If you just want the newest `.exe` without cutting a release, grab it from the
+floating [`latest-build` pre-release](https://github.com/drsamonline/All4ONE/releases/tag/latest-build)
+— it is overwritten automatically by every successful push to `main`.
 
 Full details: [COMPILATION.md](COMPILATION.md).
 
@@ -238,7 +247,7 @@ utility_suite/
 ├── generate_catalogs.py  # regenerates TOOL_CATALOG.md / EXPANSION_CATALOG.md
 ├── build_onefile.spec    # PyInstaller SINGLE-FILE specification
 ├── build_single_exe.py   # one-command automated release pipeline
-├── .github/workflows/    # ci.yml (Linux) + build-windows-exe.yml (tagged releases)
+├── .github/workflows/    # ci.yml (Linux) + build-windows-exe.yml (main pushes + tagged releases)
 ├── VERSION.txt           # authoritative version; audit enforces sync
 └── LICENSE · SECURITY.md · AUTHORS.md · *.md docs set
 ```

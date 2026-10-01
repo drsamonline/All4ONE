@@ -1,12 +1,25 @@
 name: Build Windows executable
 
+# Triggers:
+#   - every push to main (no tag needed) -> builds utility_suite.exe and
+#     uploads it as a downloadable run artifact, plus updates the floating
+#     "latest-build" pre-release so there is always a current .exe to grab.
+#   - a version tag (v*) -> additionally publishes a permanent GitHub Release.
+#   - manual Run workflow (Actions tab) for one-off builds.
 on:
   push:
+    branches: [main]
     tags: ['v*']
   workflow_dispatch:
 
 permissions:
   contents: write
+
+# Keep only the newest run per ref; cancel-in-progress avoids two builds of
+# the same branch racing when commits are pushed rapidly.
+concurrency:
+  group: build-windows-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -56,11 +69,31 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: utility_suite-single-file
+          name: utility_suite-single-file-${{ github.sha }}
           path: |
             dist/utility_suite.exe
             dist/UtilitySuite-*-windows.zip
-          if-no-files-found: warn
+          if-no-files-found: error
+
+      # Floating "latest" download: every main push overwrites this one
+      # pre-release, so users always find a current .exe at the same URL.
+      - name: Update latest-build pre-release (all pushes)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest-build
+          name: 'Latest Windows build (auto)'
+          prerelease: true
+          make_latest: false
+          generate_release_notes: false
+          body: |
+            Auto-updated by `build-windows-exe.yml` on every push to `main`.
+            This is the most recent successful Windows build of `utility_suite.exe`,
+            not an official release. Official releases are tagged `v*`.
+          files: |
+            dist/utility_suite.exe
+            dist/UtilitySuite-*-windows.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Attach to GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')

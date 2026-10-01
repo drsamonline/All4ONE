@@ -12,12 +12,16 @@
 
 ## 0. Fastest path: automated CI build (no Windows machine needed) 🤖
 
-This repository includes `.github/workflows/build-windows-exe.yml`. Push
-the repository to GitHub and either:
+This repository includes `.github/workflows/build-windows-exe.yml`. It runs
+automatically — no manual action required — on:
 
-- go to the **Actions** tab → **Build Windows executable** → **Run workflow**, or
-- push a version tag (e.g. `git tag v3.0.4 && git push origin v3.0.4`) to also
-  attach the build to a GitHub Release.
+- **every push to `main`** → builds the exe, uploads it as a run artifact, and
+  refreshes the floating `latest-build` pre-release (a stable download URL for
+  the most recent build),
+- **a version tag** (e.g. `git tag v3.0.4 && git push origin v3.0.4`) → all of
+  the above *plus* an official GitHub Release with release notes, or
+- a manual **Actions** tab → **Build Windows executable** → **Run workflow**,
+  if you ever want a one-off rebuild.
 
 GitHub provides the Windows runner, so you don't need to own a Windows PC
 to get a real `utility_suite.exe`. The workflow runs exactly one command —
