@@ -1,0 +1,160 @@
+Utility Suite 3.0.3 — Merged Audit Report
+(reflects the 3.0 single-file release; see CHANGELOG.md for what changed and why)
+(551 tools across 45 packs; refreshed after the 2026-10 misc-pack expansion)
+
+Python files: 142
+Plugin packs: 45
+Tools: 551/551
+Unique commands: 551/551
+Runtime handler resolution: 551/551
+AST parse: PASS
+Safety-pattern scan (shell=True / os.system): PASS
+Embedded bundle integrity (bundle/tools.dat, deterministic rebuild): PASS
+Behavioral smoke suite (tests/test_suite.py): PASS
+Archive traversal regressions (zip-slip / tar-slip): PASS
+Tracked-artifact hygiene (no committed __pycache__/*.pyc, no tracked logs except .gitkeep): PASS
+Documentation freshness (TOOL_CATALOG.md / EXPANSION_CATALOG.md / README vs live registry): PASS
+Version sync (VERSION.txt == core/__init__.py == config.json == build_onefile.spec header): PASS
+Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 551/551 tools
+  individually invoked with a hard timeout, run on Windows): 551 OK,
+  0 unexpected timeouts, 0 uncaught tracebacks, 0 crashes
+Source cache residue: NONE
+
+Stdlib-only expansion pass #2 (2026-10-01, CHANGELOG 3.0.3):
+  - Added 8 new misc-pack tools with ZERO external dependencies (audit +
+    import scan verify every handler uses only Python stdlib modules, so the
+    single-file Windows EXE cannot break on a missing third-party package):
+    csv-query, text-diff, ip-calc, ini-tool, uuid-tool, tree-print,
+    bytes-units, rand-file. Registry 543 -> 551; EXPECTED_TOOLS and the smoke
+    suite synced; bundle/tools.dat regenerated deterministically.
+  - The tracked-artifact gate caught three .pyc files that a housekeeping
+    commit had re-added under core/__pycache__/; untracked and deleted again.
+
+Documentation polish pass (2026-10-01, CHANGELOG 3.0.5):
+  - USER_GUIDE.md gained a "New in 3.0.x - quick try" cheat-sheet block with
+    verified runnable examples for all 12 tools added in 3.0.2/3.0.3; each
+    example was executed against the live registry first, so documented flags
+    match the real argument parsers (--password, --version v4, positional
+    size + -o, etc.). README Quick start now showcases ip-calc and csv-query.
+  - Full-document freshness sweep: README/USER_GUIDE/INSTALLATION/
+    DEVELOPER_GUIDE/AUTHORS/COMPILATION/SECURITY/CHANGELOG/AUDIT_REPORT and
+    both generated catalogs confirmed current at 551 tools / 45 packs /
+    version 3.0.3; generate_catalogs.py output byte-identical to committed
+    TOOL_CATALOG.md and EXPANSION_CATALOG.md.
+
+Post-merge CI repair pass (2026-10-01):
+  - Root cause of "Linux CI green but no Windows build / stale artifacts":
+    the merged commit shipped .gitignore as a literal 7-byte "(empty)" stub.
+    With every ignore rule gone, local build output (dist/, build/,
+    __pycache__/*.pyc, runtime logs) was no longer excluded and kept being
+    force-added back into release commits — the clutter the audit gate then
+    rejected. Restored the complete ignore set (bytecode caches, build/,
+    dist/, logs/* except .gitkeep, venvs, ruff/pytest/mypy caches, OS/editor
+    junk). Verified: tracked-artifact scan clean, `python audit.py` exits 0,
+    smoke suite passes 551/551.
+  - Reminder for maintainers: the Windows EXE is only produced when a v* tag
+    is pushed (git tag v3.0.3 && git push origin v3.0.3) or via a manual
+    workflow_dispatch run — a plain push to main runs ci.yml only.
+
+Repository cleanup pass (previous refresh):
+  - Removed stale one-shot helper scripts (scripts/descriptions_map.py,
+    scripts/write_descriptions.py — their registry description rewrites are
+    already committed in the pack metadata) and a redundant bundle/.gitkeep
+    (the directory always contains the tracked tools.dat).
+  - .gitignore restored from a truncated two-rule stub to the full ignore set
+    (bytecode caches, logs/* except .gitkeep, build/, dist/, venvs,
+    ruff/pytest/mypy caches, OS/editor junk) — the missing rules were the
+    root cause of build/runtime artifacts being force-added back into the tree.
+  - All documentation synced to the 3.0 single-file architecture: README,
+    USER_GUIDE, INSTALLATION, COMPILATION, SECURITY, AUTHORS, DEVELOPER_GUIDE
+    now describe the embedded bundle (no external plugins/ folder in releases)
+    and the tag-driven Windows EXE release pipeline.
+
+Project hardening pass (see CHANGELOG.md [3.0.0] and earlier):
+  - Added LICENSE (MIT), SECURITY.md, .editorconfig, pyproject.toml (ruff
+    config only — the project is not a pip package).
+  - Added .github/workflows/ci.yml: Linux validation job running ruff
+    (advisory) plus hard gates on audit.py and the smoke-test suite.
+  - audit.py version gate rewritten to static text matching against
+    VERSION.txt for core/__init__.py, config.json AND build.spec (the old
+    import-based check risked re-introducing the __pycache__ self-sabotage
+    bug class); verified it fails loudly when any literal is desynced.
+  - Silent `except Exception:` fallbacks in core/extended_ops.py (JSON
+    input parse, psutil probes, clipboard teardown) now log debug detail
+    before falling back; console output stays clean via ConsoleFormatter.
+
+CI failure post-mortem (Linux + Windows builds failed on GitHub): a later
+commit force-added tracked build/runtime clutter — three __pycache__/*.pyc
+files and an empty logs/utility_suite.log — and emptied .gitignore, which
+deleted the __pycache__/*.pyc and logs/* ignore rules. audit.py's tracked-
+cache gate then correctly failed every CI job ("Build tree contains tracked
+__pycache__/.pyc files"). Fixed by: untracking all four files, restoring a
+complete .gitignore, extending audit.py with a companion gate that rejects
+any tracked non-.gitkeep file under logs/, adding a fail-fast "No committed
+build/cache artifacts" step to ci.yml, and moving the audit step ahead of
+the ZIP rebuild in build-windows-exe.yml so clutter is reported first.
+
+Fixes applied in this pass (see CHANGELOG.md for full detail):
+  - count / download / filetype / hexview / integrity-baseline: now give a
+    friendly message instead of a raw errno/traceback when pointed at a
+    directory or an invalid URL.
+  - Console logging no longer prints full Python tracebacks for routine,
+    already-handled tool errors; full detail is still kept in the rotating
+    file log for developers.
+  - GUI launch ('utility_suite gui' and the no-argument default) now fails
+    gracefully with an actionable message if tkinter is unavailable or no
+    display is present, instead of an unhandled exception.
+  - security_tools/secure_delete.py renamed to integrity_baseline.py to
+    match what the module actually does.
+  - GUI: added a confirmation prompt before running tools that can delete
+    or overwrite data, plus File/Folder browse buttons that insert a
+    correctly-quoted path into the argument field.
+
+2026-09 tool expansion (see CHANGELOG.md [3.0.0] and earlier):
+  - Catalogue grown from 500 to 539 tools across the same 45 packs: 39 new
+    pure-Python tools spanning text, clipboard, time/productivity, security
+    audit, networking, packaging, maintenance, monitoring, hashing, JSON/
+    YAML and encoding work (e.g. slugify-converter, subnet-calculator,
+    multi-hash, json-diff, cron-explainer).
+  - audit.py EXPECTED_TOOLS raised to 539; .gitignore restored to its full
+    rule set after the expansion commit had silently reduced it to one line
+    (runtime artifacts were showing up as untracked clutter).
+
+Docs-freshness pass (this report refresh):
+  - TOOL_CATALOG.md / EXPANSION_CATALOG.md are now GENERATED from the live
+    registry by the new generate_catalogs.py (same AST-literal source this
+    audit uses). The previously committed TOOL_CATALOG.md contained mangled
+    boilerplate descriptions ("<Name>. Uses safe, dependency-aware
+    execution...") instead of the real per-tool descriptions; all 539 rows
+    were regenerated with correct metadata text.
+  - New audit.py gate: fails the release when the TOOL_CATALOG.md /
+    EXPANSION_CATALOG.md headers or the README "N tools across M plugin
+    packs" overview disagree with the live registry counts.
+  - ci.yml gained a "Catalogues are up to date" step that re-runs
+    generate_catalogs.py and diffs the result against the commit.
+  - DEVELOPER_GUIDE.md "Adding a tool" checklist, COMPILATION.md manual
+    build + release checklist updated to include the regeneration step.
+
+Bug/error/build sweep (2026-09-30):
+  - .gitignore was found corrupted to a literal "(empty)" stub; full rules
+    restored and the committed runtime artifact logs/sweep_results.json
+    untracked (tests/test_all_tools.py regenerates it locally).
+  - audit.py README-freshness regex could never match the README's actual
+    bolding style ("**...packs.**"), so plain `python audit.py` failed even
+    on a correct tree; pattern now tolerates both styles. Verified: AUDIT
+    PASSED, exit 0, 539/539 handlers resolved.
+  - 486 placeholder descriptions ("<Name>: <cmd> operation.") left in 33
+    pack registries by an incomplete regeneration pass were replaced with
+    meaningful sentences; catalogs regenerated, plugin ZIPs rebuilt.
+
+Qualification note (unchanged since 2.1.2): this audit environment is
+Linux, so native Windows integrations remain dependency-gated and
+statically verified rather than executed against a live Windows kernel.
+
+Post-release CI verification pass (2026-10-01, v3.0.5.1):
+- Queried GitHub Actions API: latest Windows build run 36850493868 (tag
+  v3.0.5.1, commit 9509f0f) => SUCCESS; Linux CI @ main => SUCCESS.
+- Release asset UtilitySuite-3.0.5-windows.zip attached to v3.0.5.1 exists.
+- Found cosmetic mismatch: embedded exe ProductVersion said 3.0.5 vs tag
+  v3.0.5.1. Fixed by auto-generating version_info.txt from VERSION.txt in
+  build_single_exe.py (step 0) and syncing all version strings to 3.0.5.1.

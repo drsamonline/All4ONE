@@ -1,0 +1,109 @@
+<div align="center">
+
+# 🧑‍💻 Utility Suite — Developer Guide
+
+![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square&logo=python&logoColor=black)
+![Lint](https://img.shields.io/badge/lint-ruff-blueviolet?style=flat-square)
+![CI](https://img.shields.io/badge/CI-Linux%20%2B%20Windows-brightgreen?style=flat-square)
+
+*Author: Dr. Sohil Momin, BHMS*
+
+</div>
+
+## Plugin contract 🧩
+
+Each pack contains `__init__.py` with a `register_tools()` function returning metadata dictionaries.
+
+Example:
+
+```python
+def register_tools():
+    return [{
+        "name": "Example Tool",
+        "category": "Example",
+        "description": "Does a concrete example task.",
+        "handler": "operations.example_tool",
+        "cli_command": "example-tool",
+        "dependencies": []
+    }]
+```
+
+Expansion packs use a shared lazy adapter factory so the project does not copy 10–20 identical wrapper functions into every pack. The operation implementation lives in `core/extended_ops.py` or a specialized module.
+
+## Handler rules
+
+- Accept a list of string arguments.
+- Return an integer process-style status code.
+- Print concise human-readable output for CLI use.
+- Import heavy dependencies inside the operation that needs them.
+- Never use shell command interpolation when a list of subprocess arguments is possible.
+- Fail with a clear diagnostic rather than terminating the suite.
+
+## Auditing
+
+`audit.py` is static and release-oriented. Runtime resolution is covered by the test suite so normal audits do not create `__pycache__` noise in the source tree.
+
+**Exit-code contract (CI gate):** `python audit.py` exits **0** on
+`AUDIT PASSED` and **1** on `AUDIT FAILED` (propagated via
+`raise SystemExit(main())`). Chain it with `&&` in release scripts — e.g.
+`python audit.py && python build_single_exe.py --skip-tests` — so a failed audit stops
+the pipeline loudly instead of silently shipping broken releases. The audit
+is findings-only: it never mutates the tree, so delete stray `__pycache__/`
+directories yourself before expecting a PASS (running the audit itself is
+safe — it sets `sys.dont_write_bytecode` internally).
+
+## Adding a tool
+
+1. Add metadata to the appropriate pack.
+2. Add the lazy operation mapping.
+3. Implement the actual operation.
+4. Add or update a smoke test.
+5. Regenerate the embedded bundle (`python -c "from core.bundle import build_bundle; build_bundle('.')"`) or simply run `python build_single_exe.py` which does this automatically.
+6. Regenerate the catalogues (`python generate_catalogs.py`) so
+   TOOL_CATALOG.md / EXPANSION_CATALOG.md match the registry.
+7. Run the audit again (`python audit.py`).
+
+audit.py enforces the current catalogue size (EXPECTED_TOOLS = 551 as of the 2026-10 misc-pack expansion). Bump that constant deliberately when adding or removing tools. The docs-freshness gate in audit.py fails the release if TOOL_CATALOG.md, EXPANSION_CATALOG.md, or the README overview no longer matches the live registry — fix by running `python generate_catalogs.py` and updating the README line, then re-running the audit.
+
+## Testing tiers - which one runs where
+
+There are three layers of testing in this repository, and they are
+**not interchangeable** - running the wrong one in the wrong place is
+exactly what previously broke the Windows CI build:
+
+1. **`audit.py`** - static, safe, fast. Checks catalogue integrity,
+   syntax, handler wiring, bundle integrity, and a couple of
+   packaging-regression guards (version-string drift, `build_onefile.spec`
+   accidentally reverting to a onedir/`plugins/` layout). Runs everywhere: locally, in
+   CI, on every platform. No side effects.
+
+2. **`tests/test_suite.py`** (`python -B -m tests.test_suite`) -
+   behavioral smoke tests against a disposable temp sandbox: config
+   merging, split/join round-trips, CSV tools, zip-slip/tar-slip
+   rejection, renamer. Deliberately scoped to tools with no real system
+   side effects. Runs everywhere, including CI, before every build.
+
+3. **`tests/test_all_tools.py`** - an exhaustive sweep that invokes
+   *every one* of the 551 registered tools in its own subprocess. This
+   is a **local/manual developer diagnostic only** - it is intentionally
+   **not** part of the CI build pipeline. The reason: on a Linux dev
+   machine, Windows-only tools (services, registry, event log, network
+   adapter reset, System Restore, driver export, scheduled tasks) are
+   correctly reported as "unavailable" and never actually execute. On a
+   real Windows machine - including a GitHub Actions `windows-latest`
+   runner - those same tools *are* available and the sweep will really
+   run them: creating scheduled tasks, querying/starting/stopping real
+   services, attempting a real System Restore checkpoint (often disabled
+   on ephemeral cloud VMs and slow or unresponsive when it is), and
+   `net-reset` in particular requests interactive UAC elevation, which
+   never resolves on a headless CI runner. Every affected tool now has
+   an explicit subprocess timeout so it can never hang the process
+   indefinitely, but you still should not point this sweep at a shared
+   or production Windows machine - run it only on a disposable VM/sandbox
+   where side effects are acceptable.
+
+If you want broader automated coverage in CI beyond `test_suite.py`
+without this risk, the safe path is to extend `test_all_tools.py` with
+an explicit allowlist/denylist by pack (skip `system_utils`,
+`windows_power`, `automation`'s `schedule`, and `network_tools`'
+`net-reset`) rather than running it unmodified in CI.

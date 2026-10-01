@@ -1,0 +1,105 @@
+name: Build Windows executable
+
+# Triggers:
+#   - every push to main (no tag needed) -> builds utility_suite.exe and
+#     uploads it as a downloadable run artifact, plus updates the floating
+#     "latest-build" pre-release so there is always a current .exe to grab.
+#   - a version tag (v*) -> additionally publishes a permanent GitHub Release.
+#   - manual Run workflow (Actions tab) for one-off builds.
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Keep only the newest run per ref; cancel-in-progress avoids two builds of
+# the same branch racing when commits are pushed rapidly.
+concurrency:
+  group: build-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 45          # increased from 25 — PyInstaller onefile builds can be slow
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install build dependencies
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install pyinstaller
+          if (Test-Path requirements.txt) {
+            python -m pip install -r requirements.txt
+          }
+
+      - name: Verify build script exists
+        shell: pwsh
+        run: |
+          if (-not (Test-Path build_single_exe.py)) {
+            Write-Error "ERROR: build_single_exe.py was not found in the repository root."
+            exit 1
+          }
+          Write-Host "build_single_exe.py found — proceeding."
+
+      - name: Automated single-file build
+        shell: pwsh
+        run: python build_single_exe.py
+
+      - name: List dist folder (debug)
+        if: always()
+        shell: pwsh
+        run: |
+          if (Test-Path dist) {
+            Get-ChildItem -Recurse dist
+          } else {
+            Write-Host "dist folder was not created."
+          }
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: utility_suite-single-file-${{ github.sha }}
+          path: |
+            dist/utility_suite.exe
+            dist/UtilitySuite-*-windows.zip
+          if-no-files-found: error
+
+      # Floating "latest" download: every main push overwrites this one
+      # pre-release, so users always find a current .exe at the same URL.
+      - name: Update latest-build pre-release (all pushes)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest-build
+          name: 'Latest Windows build (auto)'
+          prerelease: true
+          make_latest: false
+          generate_release_notes: false
+          body: |
+            Auto-updated by `build-windows-exe.yml` on every push to `main`.
+            This is the most recent successful Windows build of `utility_suite.exe`,
+            not an official release. Official releases are tagged `v*`.
+          files: |
+            dist/utility_suite.exe
+            dist/UtilitySuite-*-windows.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Attach to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/UtilitySuite-*-windows.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

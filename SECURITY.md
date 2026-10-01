@@ -1,0 +1,45 @@
+<div align="center">
+
+# 🛡️ Utility Suite — Security Policy
+
+![Scope](https://img.shields.io/badge/scope-system%20utilities-red?style=flat-square)
+![Response](https://img.shields.io/badge/triage%20SLA-7%20days-blue?style=flat-square)
+
+</div>
+
+## Supported Versions
+
+| Version | Supported          |
+| ------- | ------------------ |
+| 3.0.x   | :white_check_mark: |
+| < 3.0   | :x:                |
+
+## Reporting a Vulnerability
+
+Because Utility Suite is a system-utility workstation (file operations,
+registry tools, process management, network diagnostics), please report
+security vulnerabilities **privately** rather than in a public issue:
+
+- Open a private security advisory via GitHub:
+  *Security* tab → *Report a vulnerability*.
+- Or email the maintainer (see `AUTHORS.md`).
+
+Please include reproduction steps, affected version (`--version` output),
+and any relevant log excerpts from `logs/utility_suite.log`. **Do not**
+include files that may contain personal data.
+
+Expected triage: acknowledgement within 7 days; fix or disposition within
+30 days where feasible. Reports for unsupported versions may be closed
+without action.
+
+## Design Safeguards Already in Place
+
+- Command execution requires an argument list; shell strings are disabled
+  (`core/extended_ops.py::_run` raises on `str` commands, `shell=False`).
+- The static release audit (`audit.py`) fails the build if any source file
+  introduces `shell=True` or `os.system(` patterns.
+- Plugin packs ship **embedded inside the single `utility_suite.exe`**
+  (compiled into `bundle/tools.dat` at build time). If you extend the suite
+  from source, review third-party pack code before rebuilding the bundle —
+  pack modules execute Python code within the user account and therefore have
+  the same authority as the process running Utility Suite.

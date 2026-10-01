@@ -1,0 +1,86 @@
+"""Auto-generated expansion plugin pack. All handlers are lazy and delegate to core operations."""
+
+
+def register_tools():
+    return [
+        {
+            "name": "Registry Query",
+            "category": "Registry Tools",
+            "description": "Registry Query: registry query as structured JSON output.",
+            "handler": "operations.registry_query",
+            "cli_command": "registry-query",
+            "dependencies": ["reg"],
+        },
+        {
+            "name": "Registry Export",
+            "category": "Registry Tools",
+            "description": "Export registry data to a file.",
+            "handler": "operations.registry_export",
+            "cli_command": "registry-export",
+            "dependencies": ["reg"],
+        },
+        {
+            "name": "Registry Import",
+            "category": "Registry Tools",
+            "description": "Import registry data from a file.",
+            "handler": "operations.registry_import",
+            "cli_command": "registry-import",
+            "dependencies": ["reg"],
+        },
+        {
+            "name": "Registry Key Creator",
+            "category": "Registry Tools",
+            "description": "Registry Key Creator: registry key creator as structured JSON output.",
+            "handler": "operations.registry_key_creator",
+            "cli_command": "registry-key-creator",
+            "dependencies": ["reg"],
+        },
+        {
+            "name": "Registry Key Deleter",
+            "category": "Registry Tools",
+            "description": "Registry Key Deleter: registry key deleter as structured JSON output.",
+            "handler": "operations.registry_key_deleter",
+            "cli_command": "registry-key-deleter",
+            "dependencies": ["reg"],
+        },
+        {
+            "name": "Registry Value Setter",
+            "category": "Registry Tools",
+            "description": "Set/apply registry value configuration.",
+            "handler": "operations.registry_value_setter",
+            "cli_command": "registry-value-setter",
+            "dependencies": ["reg"],
+        },
+        {
+            "name": "Registry Value Deleter",
+            "category": "Registry Tools",
+            "description": "Registry Value Deleter: registry value deleter as structured JSON output.",
+            "handler": "operations.registry_value_deleter",
+            "cli_command": "registry-value-deleter",
+            "dependencies": ["reg"],
+        },
+        {
+            "name": "Registry Value Enumerator",
+            "category": "Registry Tools",
+            "description": "Registry Value Enumerator: registry value enumerator as structured JSON output.",
+            "handler": "operations.registry_value_enumerator",
+            "cli_command": "registry-value-enumerator",
+            "dependencies": ["reg"],
+        },
+        {
+            "name": "Registry Backup",
+            "category": "Registry Tools",
+            "description": "Back up registry targets.",
+            "handler": "operations.registry_backup",
+            "cli_command": "registry-backup",
+            "dependencies": ["reg"],
+        },
+        {
+            "name": "Registry Path Validator",
+            "category": "Registry Tools",
+            "description": "Validate registry path structure or content.",
+            "handler": "operations.registry_path_validator",
+            "cli_command": "registry-path-validator",
+            "dependencies": ["reg"],
+        },
+    ]

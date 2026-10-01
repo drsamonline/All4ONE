@@ -1,0 +1,77 @@
+name: CI (Linux validation)
+
+# Fast, dependency-free validation on every push / pull request:
+#   - ruff lint gate (advisory for now - warnings only, see step comment)
+#   - static release audit (audit.py) - HARD gate, blocks the build
+#   - behavioral smoke tests        - HARD gate, blocks the build
+# The Windows exe build lives in build-windows-exe.yml; this workflow
+# guarantees the tree stays valid on Linux too (where it is developed).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: {}
+
+# Least privilege: this workflow only reads the repo. Explicitly dropping
+# write scopes prevents a compromised dependency in a step from pushing
+# commits or creating releases.
+permissions:
+  contents: read
+
+# Cancel superseded runs on the same ref (e.g. rapid pushes to a PR).
+# Saves runner minutes and avoids stale results blocking a newer commit.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install ruff
+
+      - name: Ruff lint (advisory - non-blocking)
+        # Advisory until the codebase is fully ruff-clean; once
+        # `ruff check .` exits 0, remove continue-on-error to make this
+        # a hard gate.
+        continue-on-error: true
+        run: ruff check .
+
+      - name: No committed build/cache artifacts
+        # Regression guard: __pycache__/*.pyc and logs/*.log must never be
+        # tracked (a stray commit of these once failed every CI job via the
+        # audit gate below). Fails with the offending paths listed.
+        run: |
+          bad=$(git ls-files | grep -E '__pycache__|\.py[cod]$|^logs/.*\.log$' || true)
+          if [ -n "$bad" ]; then
+            echo "Tracked build/runtime artifacts found:"; echo "$bad"; exit 1
+          fi
+
+      - name: Catalogues are up to date
+        # TOOL_CATALOG.md / EXPANSION_CATALOG.md are generated from the live
+        # registry by generate_catalogs.py; fail if a tool change was merged
+        # without regenerating them (audit.py enforces header counts too, but
+        # this shows the exact diff that is missing).
+        run: |
+          python generate_catalogs.py
+          git diff --exit-code TOOL_CATALOG.md EXPANSION_CATALOG.md || {
+            echo "Catalogues are stale. Run 'python generate_catalogs.py' locally and commit."; exit 1; }
+
+      - name: Static release audit
+        run: python audit.py
+
+      - name: Behavioral smoke tests
+        run: python -B -m tests.test_suite

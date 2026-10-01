@@ -1,0 +1,6 @@
+# Runtime has no mandatory third-party dependencies.
+# Optional features:
+# pillow>=10.0
+# pywin32>=306
+# pyinstaller>=6.0
+# send2trash>=1.8

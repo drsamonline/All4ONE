@@ -1,0 +1,188 @@
+"""Command-line entry point."""
+
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+from . import __version__
+from .config import get_config_path, load_config
+from .plugin_loader import PluginLoader
+from .preview import open_with_default, preview_file
+from .tool_registry import ToolRegistry
+
+
+def build_registry() -> ToolRegistry:
+    """Build the tool registry.
+
+    Priority:
+      1. Embedded single-file bundle (``bundle/tools.dat``) — the layout used
+         by released builds, where everything ships inside one .exe.
+      2. Legacy external ``plugins/`` directory (ZIP packs) — dev/fallback.
+      3. Source-tree packages (dev checkout without any bundle/plugins built).
+    """
+    from .bundle import BundleLoader, get_bundle_path
+
+    config = load_config()
+    bundle = get_bundle_path()
+    if bundle is not None:
+        tools = BundleLoader(bundle).get_tools()
+        if tools:
+            return ToolRegistry(tools)
+
+    plugins_dir = Path(config.get("plugins_directory", "plugins"))
+    if not plugins_dir.is_absolute():
+        plugins_dir = get_config_path().parent / plugins_dir
+    loader = PluginLoader(plugins_dir)
+    tools = loader.get_tools()
+    if tools:
+        return ToolRegistry(tools)
+
+    # Final fallback: import packs straight from the source tree.
+    from pathlib import Path as _P
+
+    root = _P(__file__).resolve().parent.parent
+    src_tools: list[dict] = []
+    seen: set[str] = set()
+    for pack in sorted(
+        p.name
+        for p in root.iterdir()
+        if p.is_dir()
+        and (p / "__init__.py").exists()
+        and p.name not in {"core", "tests", "backup", "bundle", "dist", "build", "logs", "scripts", "plugins"}
+    ):
+        try:
+            module = __import__(pack)
+            entries = module.register_tools()
+        except Exception:
+            continue
+        for entry in entries:
+            cmd = str(entry.get("cli_command", "")).strip()
+            if cmd and cmd not in seen:
+                seen.add(cmd)
+                tool = dict(entry)
+                tool["pack"] = pack
+                src_tools.append(tool)
+    return ToolRegistry(src_tools)
+
+
+def _launch_gui(registry: ToolRegistry) -> int:
+    """Start the desktop GUI, degrading to a clear message instead of a raw
+    traceback if tkinter isn't installed or no display is available."""
+    try:
+        from .gui import UtilitySuiteGUI
+    except ImportError:
+        print("The GUI requires tkinter, which was not found in this Python installation.")
+        print("On Windows, tkinter is bundled with the official python.org installer.")
+        print("On Linux, install it via your package manager, e.g. 'sudo apt install python3-tk'.")
+        print("The CLI remains fully usable: try 'utility_suite list' or 'utility_suite run <tool>'.")
+        return 1
+    try:
+        UtilitySuiteGUI(registry, on_refresh=build_registry).mainloop()
+        return 0
+    except Exception as exc:  # e.g. tk.TclError: no display name (headless/SSH session)
+        print(f"Could not start the GUI: {exc}")
+        print("The CLI remains fully usable: try 'utility_suite list' or 'utility_suite run <tool>'.")
+        return 1
+
+
+def main(argv: list[str] | None = None) -> int:
+    # Everything from "run <tool>" onward belongs to the tool, including flags
+    # like --help/-h/--version — split it out before argparse sees it so those
+    # flags are forwarded to the tool instead of being consumed by the suite.
+    raw = list(sys.argv[1:] if argv is None else argv)
+    tool_remainder: list[str] = []
+    for i, tok in enumerate(raw):
+        if tok == "run" and i + 1 < len(raw) and not raw[i + 1].startswith("-"):
+            tool_name, tool_remainder = raw[i + 1], raw[i + 2:]
+            raw = raw[:i + 1] + [tool_name, "--"]
+            break
+
+    parser = argparse.ArgumentParser(
+        prog="utility_suite", description="Utility Suite — modular Windows utility workstation"
+    )
+    parser.add_argument("--version", action="version", version=__version__)
+    sub = parser.add_subparsers(dest="command")
+    p_list = sub.add_parser("list", help="List tools")
+    p_list.add_argument("--category")
+    p_search = sub.add_parser("search", help="Search tools")
+    p_search.add_argument("query")
+    p_run = sub.add_parser("run", help="Run a tool (remaining arguments go to the tool)")
+    p_run.add_argument("tool_name")
+    p_run.add_argument("tool_args", nargs=argparse.REMAINDER)
+    sub.add_parser("refresh", help="Rescan plugins")
+    p_preview = sub.add_parser("preview", help="Preview a text-like file")
+    p_preview.add_argument("file_path")
+    p_open = sub.add_parser("open", help="Open using the system default application")
+    p_open.add_argument("file_path")
+    sub.add_parser("gui", help="Launch desktop GUI")
+    sub.add_parser("deps", help="List missing dependencies and where to download them")
+    args = parser.parse_args(raw)
+
+    registry = build_registry()
+    if not args.command:
+        return _launch_gui(registry)
+    if args.command == "list":
+        groups = registry.list_categories()
+        for category, tools in groups.items():
+            if args.category and category.lower() != args.category.lower():
+                continue
+            print(f"\n[{category}]")
+            for tool in tools:
+                state = (
+                    "AVAILABLE"
+                    if tool["available"]
+                    else f"UNAVAILABLE: {', '.join(tool['missing_dependencies'])}"
+                )
+                print(f"  {tool['cli_command']:18} {tool['name']:<30} [{state}]")
+        print(f"\nTotal tools: {len(registry.tools)}")
+        return 0
+    if args.command == "search":
+        for tool in registry.search(args.query):
+            state = "AVAILABLE" if tool["available"] else "UNAVAILABLE"
+            print(f"{tool['cli_command']:18} {tool['name']:<30} [{state}]\n  {tool['description']}")
+        return 0
+    if args.command == "run":
+        # tool_remainder holds everything after "run <tool>" verbatim (flags
+        # like --help/-h/--version are forwarded to the tool, not consumed).
+        forwarded = [t for t in tool_remainder if t != "--"] or list(args.tool_args)
+        return registry.run_tool(args.tool_name, forwarded)
+    if args.command == "refresh":
+        refreshed = build_registry()
+        print(f"Loaded {len(refreshed.tools)} tools from plugins.")
+        return 0
+    if args.command == "preview":
+        try:
+            print(preview_file(args.file_path))
+            return 0
+        except Exception as exc:
+            print(f"Preview failed: {exc}")
+            return 1
+    if args.command == "open":
+        try:
+            open_with_default(args.file_path)
+            return 0
+        except Exception as exc:
+            print(f"Open failed: {exc}")
+            return 1
+    if args.command == "gui":
+        return _launch_gui(registry)
+    if args.command == "deps":
+        from .capability_checker import download_hint
+
+        missing: dict[str, int] = {}
+        for tool in registry.tools.values():
+            if not tool["available"]:
+                for dep in tool["missing_dependencies"]:
+                    missing[dep] = missing.get(dep, 0) + 1
+        if not missing:
+            print("Nothing is missing — every tool on this system is ready.")
+            return 0
+        print("Missing optional dependencies (install them, then tools unlock automatically):\n")
+        for dep, count in sorted(missing.items(), key=lambda kv: (-kv[1], kv[0].lower())):
+            print(f"  {dep}  ({count} tool{'s' if count != 1 else ''})")
+            print(f"      -> {download_hint(dep)}")
+        print("\nAfter installing a pip package restart Utility Suite; PATH tools are picked up by 'refresh'.")
+        return 0
+    return 0

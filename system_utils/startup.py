@@ -1,0 +1,35 @@
+from __future__ import annotations
+
+import argparse
+import shutil
+import subprocess
+import sys
+
+
+def run(args=None):
+    p = argparse.ArgumentParser(description="List Windows startup Run keys.")
+    p.add_argument("--machine", action="store_true")
+    a = p.parse_args(args or [])
+    if sys.platform != "win32":
+        print("Windows-only tool.")
+        return 3
+    exe = shutil.which("reg")
+    if not exe:
+        print("reg not found.")
+        return 3
+    roots = (
+        ["HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"]
+        if a.machine
+        else [
+            "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+            "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+        ]
+    )
+    rc = 0
+    for root in roots:
+        try:
+            rc = max(rc, subprocess.run([exe, "query", root], check=False, timeout=15).returncode)
+        except subprocess.TimeoutExpired:
+            print(f"reg query timed out for {root}")
+            rc = 1
+    return rc
