@@ -1,5 +1,5 @@
 # Author: Dr. Sohil Momin, BHMS
-# Utility Suite 3.0.0 — SINGLE-FILE build.
+# Utility Suite 3.0.3 — SINGLE-FILE build.
 #
 # Everything ships inside ONE utility_suite.exe:
 #   * the Python interpreter + core runtime (PyInstaller onefile),
