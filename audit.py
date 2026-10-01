@@ -31,7 +31,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 # Directories that are not plugin packs (skip entirely, incl. recursive scans)
-EXCLUDE_DIRS = {"core", "tests", "backup", "plugins", ".github", "scripts", "logs"}
+EXCLUDE_DIRS = {"core", "tests", "backup", "plugins", ".github", "scripts", "logs", "bundle"}
 
 
 def pack_names():
@@ -92,24 +92,36 @@ def main():
             problems.append(f"REGISTRATION {pack}: {e}")
             continue
         all_tools += [(pack, t) for t in tools]
-        zp = ROOT / "plugins" / f"{pack}.zip"
-        if not zp.exists():
-            problems.append(f"MISSING ZIP {zp}")
-            continue
+    # Single-file release layout: every pack lives inside ONE embedded bundle
+    # archive (bundle/tools.dat) that ships inside utility_suite.exe. Validate
+    # the bundle exists and contains every source file of every pack instead
+    # of the old per-pack plugins/<pack>.zip archives.
+    bundle_path = ROOT / "bundle" / "tools.dat"
+    bundle_names: set[str] = set()
+    if not bundle_path.exists():
+        problems.append(
+            f"MISSING BUNDLE {bundle_path} - run `python build_single_exe.py` "
+            "(or `from core.bundle import build_bundle; build_bundle(ROOT)`) to regenerate it"
+        )
+    else:
         try:
-            with zipfile.ZipFile(zp) as z:
-                names = set(z.namelist())
-                expected = {
-                    f"{pack}/{p.relative_to(ROOT/pack).as_posix()}"
-                    for p in (ROOT / pack).rglob("*.py")
-                    if "__pycache__" not in p.parts
-                }
-                if not expected <= names:
-                    problems.append(f"ZIP MISMATCH {pack}: missing {sorted(expected-names)}")
-                if any("__pycache__" in n or n.endswith(".pyc") for n in names):
-                    problems.append(f"ZIP CACHE {pack}")
+            with zipfile.ZipFile(bundle_path) as z:
+                bundle_names = set(z.namelist())
+                if "catalog.json" not in bundle_names:
+                    problems.append("BUNDLE INVALID: catalog.json missing from bundle/tools.dat")
+                if any("__pycache__" in n or n.endswith(".pyc") for n in bundle_names):
+                    problems.append("BUNDLE CACHE: __pycache__/.pyc entries inside tools.dat")
         except Exception as e:
-            problems.append(f"ZIP INVALID {pack}: {e}")
+            problems.append(f"BUNDLE INVALID: {e}")
+        for pack in packs:
+            expected = {
+                f"{pack}/{p.relative_to(ROOT/pack).as_posix()}"
+                for p in (ROOT / pack).rglob("*.py")
+                if "__pycache__" not in p.parts
+            }
+            missing = sorted(expected - bundle_names)
+            if missing:
+                problems.append(f"BUNDLE MISMATCH {pack}: missing {missing}")
     names = [t.get("name", "").strip().casefold() for _, t in all_tools]
     descs = [t.get("description", "").strip().casefold() for _, t in all_tools]
     if len(set(names)) != len(names):
@@ -204,8 +216,8 @@ def main():
             'config.json "application.version"': read_literal(
                 ROOT / "config.json", r'"version"\s*:\s*"([^"]+)"'
             ),
-            "build.spec header": read_literal(
-                ROOT / "build.spec", r"# Utility Suite (\d+\.\d+\.\d+)"
+            "build_onefile.spec header": read_literal(
+                ROOT / "build_onefile.spec", r"# Utility Suite (\d+\.\d+\.\d+)"
             ),
         }
         for label, actual in checked.items():
@@ -217,23 +229,28 @@ def main():
     else:
         problems.append("VERSION.txt is missing")
 
-    # build.spec packaging-layout guard: plugins/ and config.json must
-    # never be re-added to Analysis(datas=...) - PyInstaller places
-    # `datas` inside _internal/, not beside the executable, which
-    # previously caused a built exe to silently report "Total tools: 0"
-    # because the app looks for plugins/ as a sibling of the exe
-    # (see CHANGELOG.md [2.1.3] for the full story).
-    spec_file = ROOT / "build.spec"
+    # build_onefile.spec packaging-layout guard: the release must stay a
+    # SINGLE self-contained exe. The bundle is embedded via Analysis(datas=...)
+    # pointing at bundle/tools.dat, and there must be no COLLECT/onedir step
+    # and no plugins/ bundling (the old layout shipped an external plugins/
+    # folder beside the exe; 3.0 replaced it with the embedded bundle).
+    spec_file = ROOT / "build_onefile.spec"
     if spec_file.exists():
         spec_text = spec_file.read_text(encoding="utf-8")
+        if "COLLECT" in spec_text:
+            problems.append(
+                "build_onefile.spec produces a onedir COLLECT layout - the 3.0 release "
+                "must be a single-file EXE (onefile mode, no COLLECT target)."
+            )
         if re.search(r"datas\s*=\s*\[[^\]]*['\"]plugins['\"]", spec_text):
             problems.append(
-                "build.spec bundles 'plugins' via Analysis(datas=...) again - this buries it "
-                "inside _internal/ where the app can't find it. Copy plugins/ next to the built "
-                "exe as a post-build step instead (see BUILD_WINDOWS.ps1)."
+                "build_onefile.spec bundles the legacy 'plugins' folder again - releases "
+                "must embed bundle/tools.dat only."
             )
+        if "bundle/tools.dat" not in spec_text.replace("\\", "/"):
+            problems.append("build_onefile.spec does not embed bundle/tools.dat")
     else:
-        problems.append("build.spec is missing")
+        problems.append("build_onefile.spec is missing")
 
     # Documentation freshness gate: TOOL_CATALOG.md and EXPANSION_CATALOG.md
     # are generated from the live registry by generate_catalogs.py; this check

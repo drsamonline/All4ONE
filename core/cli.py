@@ -13,11 +13,57 @@ from .tool_registry import ToolRegistry
 
 
 def build_registry() -> ToolRegistry:
+    """Build the tool registry.
+
+    Priority:
+      1. Embedded single-file bundle (``bundle/tools.dat``) — the layout used
+         by released builds, where everything ships inside one .exe.
+      2. Legacy external ``plugins/`` directory (ZIP packs) — dev/fallback.
+      3. Source-tree packages (dev checkout without any bundle/plugins built).
+    """
+    from .bundle import BundleLoader, get_bundle_path
+
     config = load_config()
+    bundle = get_bundle_path()
+    if bundle is not None:
+        tools = BundleLoader(bundle).get_tools()
+        if tools:
+            return ToolRegistry(tools)
+
     plugins_dir = Path(config.get("plugins_directory", "plugins"))
     if not plugins_dir.is_absolute():
         plugins_dir = get_config_path().parent / plugins_dir
-    return ToolRegistry(PluginLoader(plugins_dir).get_tools())
+    loader = PluginLoader(plugins_dir)
+    tools = loader.get_tools()
+    if tools:
+        return ToolRegistry(tools)
+
+    # Final fallback: import packs straight from the source tree.
+    from pathlib import Path as _P
+
+    root = _P(__file__).resolve().parent.parent
+    src_tools: list[dict] = []
+    seen: set[str] = set()
+    for pack in sorted(
+        p.name
+        for p in root.iterdir()
+        if p.is_dir()
+        and (p / "__init__.py").exists()
+        and p.name not in {"core", "tests", "backup", "bundle", "dist", "build", "logs", "scripts", "plugins"}
+    ):
+        try:
+            module = __import__(pack)
+            entries = module.register_tools()
+        except Exception:
+            continue
+        for entry in entries:
+            cmd = str(entry.get("cli_command", "")).strip()
+            if cmd and cmd not in seen:
+                seen.add(cmd)
+                tool = dict(entry)
+                tool["pack"] = pack
+                src_tools.append(tool)
+    return ToolRegistry(src_tools)
 
 
 def _launch_gui(registry: ToolRegistry) -> int:
