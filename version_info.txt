@@ -26,7 +26,6 @@ VSVersionInfo(
         StringStruct('OriginalFilename', 'utility_suite.exe'),
         StringStruct('Author', 'Dr. Sohil Momin, BHMS'),
       ])
-    ]),
-    VarFileInfo([VarTranslation(0x0409, 1200)])
+    ])
   ]
 )
