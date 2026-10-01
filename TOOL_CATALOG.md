@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🗂️ Utility Suite 3.0.0 — Complete Tool Catalogue
+# 🗂️ Utility Suite 3.0.3 — Complete Tool Catalogue
 
 ![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square) ![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Status](https://img.shields.io/badge/registry%20verified-551%2F551%20%E2%9C%85-blue?style=flat-square)
 

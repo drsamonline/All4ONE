@@ -16,7 +16,7 @@ This repository includes `.github/workflows/build-windows-exe.yml`. Push
 the repository to GitHub and either:
 
 - go to the **Actions** tab → **Build Windows executable** → **Run workflow**, or
-- push a version tag (e.g. `git tag v3.0.0 && git push origin v3.0.0`) to also
+- push a version tag (e.g. `git tag v3.0.3 && git push origin v3.0.3`) to also
   attach the build to a GitHub Release.
 
 GitHub provides the Windows runner, so you don't need to own a Windows PC
@@ -83,7 +83,7 @@ The 3.0 release is a **single portable file**:
 dist\
 ├── utility_suite.exe                        # everything inside: runtime,
 │                                            # all tool packs, catalog metadata
-└── UtilitySuite-3.0.0-windows.zip           # release asset (exe only)
+└── UtilitySuite-<version>-windows.zip           # release asset (exe only)
 ```
 
 No `_internal\`, no `plugins\`, no sidecar `config.json` required — the exe

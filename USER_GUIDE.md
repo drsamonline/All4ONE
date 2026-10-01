@@ -2,7 +2,7 @@
 
 # 👤 Utility Suite — User Guide
 
-**Version 3.0.0** · 551 tools · 45 plugin packs · CLI + GUI · one portable EXE
+**Version 3.0.3** · 551 tools · 45 plugin packs · CLI + GUI · one portable EXE
 
 ![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![Level](https://img.shields.io/badge/level-beginner%20→%20power%20user-brightgreen?style=flat-square)

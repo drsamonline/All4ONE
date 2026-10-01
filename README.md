@@ -15,7 +15,7 @@ with everything embedded. No installer, no sidecar files, no registry pollution.
 
 [![CI](https://github.com/drsamonline/utility_suite/actions/workflows/ci.yml/badge.svg)](https://github.com/drsamonline/utility_suite/actions/workflows/ci.yml)
 [![Build Windows executable](https://github.com/drsamonline/utility_suite/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/drsamonline/utility_suite/actions/workflows/build-windows-exe.yml)
-![Version](https://img.shields.io/badge/version-3.0.0-blue?style=flat-square&logo=python&logoColor=white)
+![Version](https://img.shields.io/badge/version-3.0.3-blue?style=flat-square&logo=python&logoColor=white)
 ![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
 ![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
@@ -169,7 +169,7 @@ auto-generated GitHub Release:
 # 1. sync the version literal everywhere (audit.py enforces this)
 #    VERSION.txt, config.json, core/__init__.py, build_onefile.spec header
 # 2. tag and push
-git tag v3.0.0 && git push origin v3.0.0
+git tag v3.0.3 && git push origin v3.0.3
 ```
 
 Full details: [COMPILATION.md](COMPILATION.md).

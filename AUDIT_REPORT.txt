@@ -1,4 +1,4 @@
-Utility Suite 3.0.0 — Merged Audit Report
+Utility Suite 3.0.3 — Merged Audit Report
 (reflects the 3.0 single-file release; see CHANGELOG.md for what changed and why)
 (551 tools across 45 packs; refreshed after the 2026-10 misc-pack expansion)
 
@@ -41,7 +41,7 @@ Post-merge CI repair pass (2026-10-01):
     junk). Verified: tracked-artifact scan clean, `python audit.py` exits 0,
     smoke suite passes 551/551.
   - Reminder for maintainers: the Windows EXE is only produced when a v* tag
-    is pushed (git tag v3.0.0 && git push origin v3.0.0) or via a manual
+    is pushed (git tag v3.0.3 && git push origin v3.0.3) or via a manual
     workflow_dispatch run — a plain push to main runs ci.yml only.
 
 Repository cleanup pass (previous refresh):
