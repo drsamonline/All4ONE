@@ -2,13 +2,13 @@
 
 # 📦 Utility Suite — Plugin Pack Catalogue
 
-![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Tools](https://img.shields.io/badge/tools-543-brightgreen?style=flat-square)
+![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
 
 *Generated from the live registry by `generate_catalogs.py` — do not edit by hand.*
 
 </div>
 
-**45 packs / 543 tools**
+**45 packs / 551 tools**
 
 - `archive_tools` — 4 tools
 - `audio_tools` — 10 tools
@@ -31,7 +31,7 @@
 - `maintenance` — 7 tools
 - `media_metadata` — 12 tools
 - `media_tools` — 3 tools
-- `misc` — 7 tools
+- `misc` — 15 tools
 - `monitoring_tools` — 21 tools
 - `net_advanced` — 20 tools
 - `network_diagnostics` — 18 tools

@@ -12,7 +12,7 @@
 
 Utility Suite is a modular Windows utility workstation designed around a
 lightweight core and dynamically discovered plugin packs —
-**543 tools · 45 packs · one audited codebase**.
+**551 tools · 45 packs · one audited codebase**.
 
 ## 🏅 Attribution
 
@@ -22,7 +22,7 @@ implementation are authored by **Dr. Sohil Momin, BHMS**.
 | Role | Who |
 |---|---|
 | 🧱 Architecture & core runtime | Dr. Sohil Momin, BHMS |
-| 📦 All 45 plugin packs (543 tools) | Dr. Sohil Momin, BHMS |
+| 📦 All 45 plugin packs (551 tools) | Dr. Sohil Momin, BHMS |
 | 📚 Documentation set (README → AUDIT_REPORT) | Dr. Sohil Momin, BHMS |
 | ✅ Release auditing & CI gates | `audit.py` + GitHub Actions |
 

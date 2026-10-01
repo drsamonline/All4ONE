@@ -2,13 +2,13 @@
 
 # 🗂️ Utility Suite 3.0.0 — Complete Tool Catalogue
 
-![Tools](https://img.shields.io/badge/tools-543-brightgreen?style=flat-square) ![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Status](https://img.shields.io/badge/registry%20verified-543%2F543%20%E2%9C%85-blue?style=flat-square)
+![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square) ![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Status](https://img.shields.io/badge/registry%20verified-551%2F551%20%E2%9C%85-blue?style=flat-square)
 
-*543 tools · 45 plugin packs · generated from the live registry by `generate_catalogs.py` — do not edit by hand.*
+*551 tools · 45 plugin packs · generated from the live registry by `generate_catalogs.py` — do not edit by hand.*
 
 </div>
 
-Total tools: 543
+Total tools: 551
 Plugin packs: 45
 
 ## Advanced Developer Tools
@@ -349,12 +349,20 @@ Plugin packs: 45
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
 | Base64 Codec | `b64-codec` | `misc` | — | Strict Base64 encode/decode with URL-safe and no-padding modes. |
+| Byte Unit Converter | `bytes-units` | `misc` | — | Convert storage amounts across decimal (KB/MB) and binary (KiB/MiB) byte units. |
+| CSV Query | `csv-query` | `misc` | — | Filter, project and aggregate CSV rows with column stats; no external tools required. |
+| Directory Tree Viewer | `tree-print` | `misc` | — | ASCII directory tree with per-entry sizes, depth limits and directories-only mode. |
 | File Age Calculator | `file-age` | `misc` | — | File Age Calculator: file age calculator as structured JSON output. |
 | Hash Identifier | `hash-identify` | `misc` | — | Identify likely hash algorithm from a hash string; optionally verify against plaintext. |
+| INI Toolkit | `ini-tool` | `misc` | — | Read, query, update and JSON-export INI configuration files with configparser. |
+| IP Subnet Calculator | `ip-calc` | `misc` | — | IPv4 CIDR/netmask math: network, broadcast, wildcard, host range and count. |
 | JSON Schema Explorer | `json-schema` | `misc` | — | Print a leaf-path schema of a JSON document (diffing lives in dev_tools: json-diff). |
 | Password Entropy Calculator | `password-entropy` | `misc` | — | Estimate password entropy/strength, or generate strong random passwords. |
 | Path Length Checker | `path-length` | `misc` | — | Path Length Checker: path length checker as structured JSON output. |
+| Random File Generator | `rand-file` | `misc` | — | Create cryptographically-random test files of any size for benchmarking other tools. |
 | Random File Picker | `random-file` | `misc` | — | Random File Picker: random file picker as structured JSON output. |
+| Text Diff | `text-diff` | `misc` | — | Unified/context line diff between two text files via difflib, with change summary mode. |
+| UUID Toolkit | `uuid-tool` | `misc` | — | Generate v1/v3/v4/v5/nil/max UUIDs in bulk and validate any RFC 4122 string. |
 
 ## Monitoring & Telemetry
 

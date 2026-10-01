@@ -1,12 +1,12 @@
 Utility Suite 3.0.0 — Merged Audit Report
 (reflects the 3.0 single-file release; see CHANGELOG.md for what changed and why)
-(543 tools across 45 packs; refreshed after the 2026-10 misc-pack expansion)
+(551 tools across 45 packs; refreshed after the 2026-10 misc-pack expansion)
 
-Python files: 130
+Python files: 142
 Plugin packs: 45
-Tools: 543/543
-Unique commands: 543/543
-Runtime handler resolution: 543/543
+Tools: 551/551
+Unique commands: 551/551
+Runtime handler resolution: 551/551
 AST parse: PASS
 Safety-pattern scan (shell=True / os.system): PASS
 Embedded bundle integrity (bundle/tools.dat, deterministic rebuild): PASS
@@ -15,10 +15,20 @@ Archive traversal regressions (zip-slip / tar-slip): PASS
 Tracked-artifact hygiene (no committed __pycache__/*.pyc, no tracked logs except .gitkeep): PASS
 Documentation freshness (TOOL_CATALOG.md / EXPANSION_CATALOG.md / README vs live registry): PASS
 Version sync (VERSION.txt == core/__init__.py == config.json == build_onefile.spec header): PASS
-Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 543/543 tools
-  individually invoked with a hard timeout, run on Windows): 543 OK,
+Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 551/551 tools
+  individually invoked with a hard timeout, run on Windows): 551 OK,
   0 unexpected timeouts, 0 uncaught tracebacks, 0 crashes
 Source cache residue: NONE
+
+Stdlib-only expansion pass #2 (2026-10-01, CHANGELOG 3.0.3):
+  - Added 8 new misc-pack tools with ZERO external dependencies (audit +
+    import scan verify every handler uses only Python stdlib modules, so the
+    single-file Windows EXE cannot break on a missing third-party package):
+    csv-query, text-diff, ip-calc, ini-tool, uuid-tool, tree-print,
+    bytes-units, rand-file. Registry 543 -> 551; EXPECTED_TOOLS and the smoke
+    suite synced; bundle/tools.dat regenerated deterministically.
+  - The tracked-artifact gate caught three .pyc files that a housekeeping
+    commit had re-added under core/__pycache__/; untracked and deleted again.
 
 Post-merge CI repair pass (2026-10-01):
   - Root cause of "Linux CI green but no Windows build / stale artifacts":
@@ -29,7 +39,7 @@ Post-merge CI repair pass (2026-10-01):
     rejected. Restored the complete ignore set (bytecode caches, build/,
     dist/, logs/* except .gitkeep, venvs, ruff/pytest/mypy caches, OS/editor
     junk). Verified: tracked-artifact scan clean, `python audit.py` exits 0,
-    smoke suite passes 543/543.
+    smoke suite passes 551/551.
   - Reminder for maintainers: the Windows EXE is only produced when a v* tag
     is pushed (git tag v3.0.0 && git push origin v3.0.0) or via a manual
     workflow_dispatch run — a plain push to main runs ci.yml only.

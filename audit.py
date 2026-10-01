@@ -136,7 +136,7 @@ def main():
         if handler.startswith("operations.") and not (ROOT / pack / "operations.py").exists():
             problems.append(f"Missing shared operations module: {pack}")
     cmds = [t.get("cli_command") for _, t in all_tools]
-    EXPECTED_TOOLS = 543  # 539 (v3.0.0) + 4 new misc tools (hash-identify, password-entropy, b64-codec, json-schema)
+    EXPECTED_TOOLS = 551  # 539 (v3.0.0) + 4 misc tools (v3.0.2) + 8 stdlib-only misc tools (v3.0.3)
     if len(all_tools) > EXPECTED_TOOLS:
         problems.append(f"TOOL LIMIT EXCEEDED: {len(all_tools)} > {EXPECTED_TOOLS}")
     if len(all_tools) != EXPECTED_TOOLS:

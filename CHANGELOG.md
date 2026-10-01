@@ -6,6 +6,45 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 `core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
 `audit.py` fails the release audit if these drift apart.
 
+## [3.0.3] — 2026-10-01
+
+Second tool-expansion wave: eight more **stdlib-only** tools added to the
+`misc` pack (7 → 15 tools), registry grown from **543 → 551**. Per the
+project rule, nothing in this release introduces an external dependency that
+could break the single-EXE Windows build — every handler imports only Python
+standard-library modules (`csv`, `difflib`, `ipaddress`, `configparser`,
+`uuid`, `os`, `secrets`, `argparse`).
+
+### Added
+- `csv-query` (CSV Query) — filter rows (`--where COL=VALUE`, repeatable),
+  project columns, numeric aggregates (`--numeric col` → count/min/max/sum/avg),
+  stdin support and `--limit`. Complements the read-only `data_tools` CSV suite.
+- `text-diff` (Text Diff) — unified/context line diff between two files using
+  `difflib` (no external diff binary), plus `--summary` change counts.
+- `ip-calc` (IP Subnet Calculator) — IPv4 network math: netmask/CIDR/dotted
+  mask input, network/broadcast/wildcard/host-count/first-hosts listing.
+- `ini-tool` (INI Toolkit) — inspect, `--get SECTION.KEY`, `--set` (writes
+  back) and `--json` export of INI config files via `configparser`.
+- `uuid-tool` (UUID Toolkit) — bulk generation of v1/v3/v4/v5/nil/max UUIDs
+  and validation of any RFC 4122 string (`--validate`).
+- `tree-print` (Directory Tree Viewer) — classic `tree`-style ASCII output
+  with `--sizes`, `--depth`, `--dirs` and entry-limit safety.
+- `bytes-units` (Byte Unit Converter) — decimal vs binary storage units
+  (KB/KiB/MB/MiB/GiB/TiB…), accepts attached suffixes like `4.5GiB`.
+- `rand-file` (Random File Generator) — creates cryptographically-random
+  test files of any size (`secrets.token_bytes`, chunked) for benchmarking.
+
+### Changed
+- `audit.py`: EXPECTED_TOOLS raised 543 → 551; `tests/test_suite.py`
+  assertions synced.
+- `bundle/tools.dat` regenerated (deterministic); TOOL_CATALOG.md,
+  EXPANSION_CATALOG.md, README.md, USER_GUIDE.md, INSTALLATION.md,
+  DEVELOPER_GUIDE.md, AUTHORS.md and AUDIT_REPORT.txt re-synced to the live
+  551-tool registry.
+- Removed three `.pyc` files under `core/__pycache__/` that had been tracked
+  by a later housekeeping commit despite the restored `.gitignore`; the audit
+  clutter gate caught them immediately — the guard works as intended.
+
 ## [3.0.2] — 2026-10-01
 
 Tool expansion: four new dependency-free tools added to the `misc` pack
