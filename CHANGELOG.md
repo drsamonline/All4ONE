@@ -6,6 +6,33 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 `core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
 `audit.py` fails the release audit if these drift apart.
 
+## [3.0.2] — 2026-10-01
+
+Tool expansion: four new dependency-free tools added to the `misc` pack
+(3 → 7 tools), registry grown from **539 → 543** across the same 45 packs.
+
+### Added
+- `hash-identify` (Hash Identifier) — recognises likely hash algorithm from a
+  digest string (MD5/SHA-1/SHA-256/SHA-512/NTLM/bcrypt/argon2/MySQL/etc.) via
+  length + format heuristics, with optional `--verify <plaintext>` against all
+  common hashlib algorithms. Useful for security triage and CTF work.
+- `password-entropy` (Password Entropy Calculator) — estimates charset-based
+  and Shannon entropy of a password with a WEAK/MODERATE/STRONG/EXCELLENT
+  verdict, or generates strong `secrets`-based random passwords
+  (`--length/--count`). Complements `security_tools` and `security_audit`.
+- `b64-codec` (Base64 Codec) — strict Base64 encode/decode with `--urlsafe`
+  and `--no-pad` modes and file input; complements the existing loose base64
+  helpers in `data_tools`.
+- `json-schema` (JSON Schema Explorer) — prints a leaf-path schema
+  (`path<TAB>type<TAB>value`) of any JSON document with optional `--keys`
+  regex filter; pairs with the pre-existing `json-diff` in `dev_tools`.
+
+### Changed
+- `audit.py`: EXPECTED_TOOLS raised 539 → 543.
+- `bundle/tools.dat` regenerated (deterministic); TOOL_CATALOG.md,
+  EXPANSION_CATALOG.md, README.md, USER_GUIDE.md, INSTALLATION.md,
+  DEVELOPER_GUIDE.md and AUTHORS.md re-synced to the live 543-tool registry.
+
 ## [3.0.1] — 2026-10-01
 
 Post-release hygiene patch: the repository kept re-accumulating build clutter

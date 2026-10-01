@@ -20,7 +20,7 @@ Pick your path — ⏱️ **60 seconds** for the portable EXE, or 🧑‍💻 a 
 
 1. 📦 Download `UtilitySuite-<version>-windows.zip` from the GitHub Releases page.
 2. 📂 Extract it to any folder, e.g. `C:\Tools\UtilitySuite` — it contains exactly
-   **one file**: `utility_suite.exe`. All 539 tools, the catalog, and the runtime
+   **one file**: `utility_suite.exe`. All 543 tools, the catalog, and the runtime
    are embedded inside; there are no separate plugin folders or databases.
 3. 🚀 Double-click `utility_suite.exe` for the Windows 10-style GUI — or use it
    as a CLI. Settings (`config.json`) and `logs/` are created next to the exe

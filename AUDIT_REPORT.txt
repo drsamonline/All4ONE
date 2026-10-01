@@ -1,12 +1,12 @@
 Utility Suite 3.0.0 — Merged Audit Report
 (reflects the 3.0 single-file release; see CHANGELOG.md for what changed and why)
-(539 tools across 45 packs; refreshed after the repository-cleanup & docs-sync pass)
+(543 tools across 45 packs; refreshed after the 2026-10 misc-pack expansion)
 
 Python files: 130
 Plugin packs: 45
-Tools: 539/539
-Unique commands: 539/539
-Runtime handler resolution: 539/539
+Tools: 543/543
+Unique commands: 543/543
+Runtime handler resolution: 543/543
 AST parse: PASS
 Safety-pattern scan (shell=True / os.system): PASS
 Embedded bundle integrity (bundle/tools.dat, deterministic rebuild): PASS
@@ -15,8 +15,8 @@ Archive traversal regressions (zip-slip / tar-slip): PASS
 Tracked-artifact hygiene (no committed __pycache__/*.pyc, no tracked logs except .gitkeep): PASS
 Documentation freshness (TOOL_CATALOG.md / EXPANSION_CATALOG.md / README vs live registry): PASS
 Version sync (VERSION.txt == core/__init__.py == config.json == build_onefile.spec header): PASS
-Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 539/539 tools
-  individually invoked with a hard timeout, run on Windows): 539 OK,
+Exhaustive per-tool subprocess sweep (tests/test_all_tools.py, 543/543 tools
+  individually invoked with a hard timeout, run on Windows): 543 OK,
   0 unexpected timeouts, 0 uncaught tracebacks, 0 crashes
 Source cache residue: NONE
 
@@ -29,7 +29,7 @@ Post-merge CI repair pass (2026-10-01):
     rejected. Restored the complete ignore set (bytecode caches, build/,
     dist/, logs/* except .gitkeep, venvs, ruff/pytest/mypy caches, OS/editor
     junk). Verified: tracked-artifact scan clean, `python audit.py` exits 0,
-    smoke suite passes 539/539.
+    smoke suite passes 543/543.
   - Reminder for maintainers: the Windows EXE is only produced when a v* tag
     is pushed (git tag v3.0.0 && git push origin v3.0.0) or via a manual
     workflow_dispatch run — a plain push to main runs ci.yml only.

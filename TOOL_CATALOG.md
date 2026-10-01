@@ -2,13 +2,13 @@
 
 # 🗂️ Utility Suite 3.0.0 — Complete Tool Catalogue
 
-![Tools](https://img.shields.io/badge/tools-539-brightgreen?style=flat-square) ![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Status](https://img.shields.io/badge/registry%20verified-539%2F539%20%E2%9C%85-blue?style=flat-square)
+![Tools](https://img.shields.io/badge/tools-543-brightgreen?style=flat-square) ![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Status](https://img.shields.io/badge/registry%20verified-539%2F539%20%E2%9C%85-blue?style=flat-square)
 
-*539 tools · 45 plugin packs · generated from the live registry by `generate_catalogs.py` — do not edit by hand.*
+*543 tools · 45 plugin packs · generated from the live registry by `generate_catalogs.py` — do not edit by hand.*
 
 </div>
 
-Total tools: 539
+Total tools: 543
 Plugin packs: 45
 
 ## Advanced Developer Tools
@@ -348,7 +348,11 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
+| Base64 Codec | `b64-codec` | `misc` | — | Strict Base64 encode/decode with URL-safe and no-padding modes. |
 | File Age Calculator | `file-age` | `misc` | — | File Age Calculator: file age calculator as structured JSON output. |
+| Hash Identifier | `hash-identify` | `misc` | — | Identify likely hash algorithm from a hash string; optionally verify against plaintext. |
+| JSON Schema Explorer | `json-schema` | `misc` | — | Print a leaf-path schema of a JSON document (diffing lives in dev_tools: json-diff). |
+| Password Entropy Calculator | `password-entropy` | `misc` | — | Estimate password entropy/strength, or generate strong random passwords. |
 | Path Length Checker | `path-length` | `misc` | — | Path Length Checker: path length checker as structured JSON output. |
 | Random File Picker | `random-file` | `misc` | — | Random File Picker: random file picker as structured JSON output. |
 

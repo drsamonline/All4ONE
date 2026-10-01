@@ -14,8 +14,8 @@ from core.config import DEFAULT_CONFIG, _deep_merge
 
 def main():
     reg = build_registry()
-    assert len(reg.tools) == 539, len(reg.tools)
-    assert len({t["cli_command"] for t in reg.tools.values()}) == 539
+    assert len(reg.tools) == 543, len(reg.tools)
+    assert len({t["cli_command"] for t in reg.tools.values()}) == 543
     assert all(t.get("handler") and t.get("category") for t in reg.tools.values())
     assert (
         _deep_merge(DEFAULT_CONFIG, {"performance": {"multithreading": {"max_threads": 4}}})["performance"][
@@ -89,9 +89,9 @@ def main():
     from core.bundle import BundleLoader, build_bundle
 
     bundle_path, count = build_bundle(ROOT)
-    assert count == 539, count
+    assert count == 543, count
     bundle_tools = BundleLoader(bundle_path).get_tools()
-    assert len(bundle_tools) == 539
+    assert len(bundle_tools) == 543
     print("SMOKE TESTS PASSED")
     print(f"{len(reg.tools)} tools validated")
 
