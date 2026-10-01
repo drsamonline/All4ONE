@@ -3,7 +3,7 @@
 # ✍️ Utility Suite — Authorship & Credits
 
 ![Author](https://img.shields.io/badge/author-Dr.%20Sohil%20Momin%2C%20BHMS-blue?style=flat-square)
-![Version](https://img.shields.io/badge/version-3.0.4-brightgreen?style=flat-square)
+![Version](https://img.shields.io/badge/version-3.0.5-brightgreen?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)
 
 </div>

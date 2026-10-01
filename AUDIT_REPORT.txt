@@ -30,7 +30,7 @@ Stdlib-only expansion pass #2 (2026-10-01, CHANGELOG 3.0.3):
   - The tracked-artifact gate caught three .pyc files that a housekeeping
     commit had re-added under core/__pycache__/; untracked and deleted again.
 
-Documentation polish pass (2026-10-01, CHANGELOG 3.0.4):
+Documentation polish pass (2026-10-01, CHANGELOG 3.0.5):
   - USER_GUIDE.md gained a "New in 3.0.x - quick try" cheat-sheet block with
     verified runnable examples for all 12 tools added in 3.0.2/3.0.3; each
     example was executed against the live registry first, so documented flags

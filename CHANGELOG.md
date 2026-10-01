@@ -6,6 +6,23 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 `core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
 `audit.py` fails the release audit if these drift apart.
 
+## [3.0.5] — 2026-10-01
+
+### Added
+- **Author metadata embedded in the Windows EXE**: new `version_info.txt`
+  (Win32 VERSIONINFO resource) wired into `build_onefile.spec`. Right-click
+  `utility_suite.exe` → Properties → Details now shows Company/Author
+  "Dr. Sohil Momin, BHMS", Product "Utility Suite", Copyright 2026.
+- COMPILATION.md documents the version-resource file and the version-bump
+  checklist that includes it.
+
+### Fixed
+- v3.0.4 release asset was mis-named `UtilitySuite-3.0.4-windows.zip` while
+  the tag/release is v3.0.5; the zip's internal VERSION.txt is now bumped to
+  3.0.5 so future builds produce `UtilitySuite-3.0.5-windows.zip`.
+- Version strings synced 3.0.4 → 3.0.5 across VERSION.txt, config.json,
+  core/__init__.py, build_onefile.spec, version_info.txt and all docs.
+
 ## [3.0.4.1] — 2026-10-01
 
 ### Fixed
