@@ -87,6 +87,17 @@ def _launch_gui(registry: ToolRegistry) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # Everything from "run <tool>" onward belongs to the tool, including flags
+    # like --help/-h/--version — split it out before argparse sees it so those
+    # flags are forwarded to the tool instead of being consumed by the suite.
+    raw = list(sys.argv[1:] if argv is None else argv)
+    tool_remainder: list[str] = []
+    for i, tok in enumerate(raw):
+        if tok == "run" and i + 1 < len(raw) and not raw[i + 1].startswith("-"):
+            tool_name, tool_remainder = raw[i + 1], raw[i + 2:]
+            raw = raw[:i + 1] + [tool_name, "--"]
+            break
+
     parser = argparse.ArgumentParser(
         prog="utility_suite", description="Utility Suite — modular Windows utility workstation"
     )
@@ -96,7 +107,7 @@ def main(argv: list[str] | None = None) -> int:
     p_list.add_argument("--category")
     p_search = sub.add_parser("search", help="Search tools")
     p_search.add_argument("query")
-    p_run = sub.add_parser("run", help="Run a tool")
+    p_run = sub.add_parser("run", help="Run a tool (remaining arguments go to the tool)")
     p_run.add_argument("tool_name")
     p_run.add_argument("tool_args", nargs=argparse.REMAINDER)
     sub.add_parser("refresh", help="Rescan plugins")
@@ -105,7 +116,7 @@ def main(argv: list[str] | None = None) -> int:
     p_open = sub.add_parser("open", help="Open using the system default application")
     p_open.add_argument("file_path")
     sub.add_parser("gui", help="Launch desktop GUI")
-    args = parser.parse_args(argv)
+    args = parser.parse_args(raw)
 
     registry = build_registry()
     if not args.command:
@@ -131,7 +142,10 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{tool['cli_command']:18} {tool['name']:<30} [{state}]\n  {tool['description']}")
         return 0
     if args.command == "run":
-        return registry.run_tool(args.tool_name, args.tool_args)
+        # tool_remainder holds everything after "run <tool>" verbatim (flags
+        # like --help/-h/--version are forwarded to the tool, not consumed).
+        forwarded = [t for t in tool_remainder if t != "--"] or list(args.tool_args)
+        return registry.run_tool(args.tool_name, forwarded)
     if args.command == "refresh":
         refreshed = build_registry()
         print(f"Loaded {len(refreshed.tools)} tools from plugins.")

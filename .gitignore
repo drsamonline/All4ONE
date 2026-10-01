@@ -1,9 +1,1 @@
-# Compiled and build artifacts
-__pycache__/
-*.pyc
-build/
-dist/
-
-# Logs and temp files
-logs/
-*.log
+(empty)
