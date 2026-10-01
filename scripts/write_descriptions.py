@@ -9,7 +9,7 @@ script prints any commands that still used boilerplate so the map can be
 extended later.
 
 Run: python scripts/write_descriptions.py
-Then: python generate_catalogs.py && python create_plugin_zips.py && python audit.py
+Then: python generate_catalogs.py && python audit.py
 """
 from __future__ import annotations
 

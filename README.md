@@ -167,16 +167,15 @@ GitHub Actions do it on a Windows runner via `build-windows-exe.yml`.
 ```text
 utility_suite/
 ├── core/                 # runtime, registry, lazy handlers, CLI + GUI
-├── <pack>/               # 45 plugin-pack source directories
-├── plugins/              # generated compressed plugin ZIPs (deterministic)
+├── <pack>/               # 45 tool-pack source directories
+├── bundle/tools.dat      # deterministic single-archive bundle of all packs
 ├── tests/                # smoke + integration tests
 ├── run.py                # entry point (CLI / GUI)
 ├── audit.py              # static release audit + docs-freshness gate
 ├── generate_catalogs.py  # regenerates TOOL_CATALOG.md / EXPANSION_CATALOG.md
-├── create_plugin_zips.py # deterministic pack builder
-├── build.spec            # PyInstaller specification
-├── BUILD_WINDOWS.ps1     # Windows release build script
-├── .github/workflows/    # ci.yml (Linux+Windows) + build-windows-exe.yml
+├── build_onefile.spec    # PyInstaller SINGLE-FILE specification
+├── build_single_exe.py   # one-command automated release pipeline
+├── .github/workflows/    # ci.yml + build-windows-exe.yml (auto-release on tag)
 ├── VERSION.txt           # authoritative version; audit enforces sync
 ├── pyproject.toml        # ruff lint config
 ├── .editorconfig         # cross-editor formatting rules

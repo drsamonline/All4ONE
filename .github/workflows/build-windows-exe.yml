@@ -1,18 +1,24 @@
 name: Build Windows executable
 
-# Produces a real utility_suite.exe on an actual Windows runner - this
-# repository is normally developed/audited on Linux, and PyInstaller
-# cannot cross-compile a Windows binary from Linux or macOS, so the exe
-# build step must run on windows-latest.
+# Utility Suite 3.0 — SINGLE-FILE release pipeline.
 #
-# Trigger it from the GitHub UI: Actions tab -> "Build Windows executable"
-# -> Run workflow. It also runs automatically on every push to main and
-# on version tags (v*), and uploads the result as a downloadable artifact
-# (and as a GitHub Release asset for tags).
+# Everything ships inside ONE utility_suite.exe (runtime + all 45 tool
+# packs + catalog metadata embedded via bundle/tools.dat). No plugins/
+# folder, no sidecar files. PyInstaller cannot cross-compile a Windows
+# binary from Linux/macOS, so this must run on windows-latest.
+#
+# Triggers:
+#   * push of a version tag (v*)      -> build + GitHub Release (auto)
+#   * manual "Run workflow"           -> build + artifact only
+# A normal push to main does NOT produce a release; it is validated by
+# ci.yml. Tag a commit (git tag v3.0.0 && git push --tags) to publish.
+#
+# The whole local pipeline (audit -> bundle -> tests -> exe -> verify ->
+# zip) is driven by exactly one command: `python build_single_exe.py`,
+# so CI and local builds can never drift apart.
 
 on:
   push:
-    branches: [main]
     tags: ['v*']
   workflow_dispatch: {}
 
@@ -41,75 +47,35 @@ jobs:
           python -m pip install pyinstaller
           if (Test-Path requirements.txt) { python -m pip install -r requirements.txt }
 
-      - name: Static release audit
-        # Fail fast on tracked cache/log clutter BEFORE the heavyweight ZIP
-        # rebuild, so the error message points at the real cause.
-        run: python audit.py
-
-      - name: Rebuild plugin ZIPs (deterministic, matches source tree)
-        run: python create_plugin_zips.py
-
-      - name: Behavioral smoke tests
-        run: python -B -m tests.test_suite
-
-      # NOTE: tests/test_all_tools.py (the exhaustive per-tool sweep) is
-      # intentionally NOT run here. On a real Windows runner, tools that
-      # are dependency-gated as "unavailable" on the audit/dev machine
-      # (services, registry, event log, network adapter reset, System
-      # Restore, driver export, scheduled tasks) become genuinely
-      # available and would actually execute against the shared CI VM.
-      # Some require an interactive UAC elevation prompt that will never
-      # be answered in CI (net-reset), and others can legitimately take
-      # a long time or fail unpredictably in a locked-down runner
-      # (System Restore is commonly disabled on ephemeral cloud VMs).
-      # That combination previously stalled/broke this exact workflow.
-      # Run tests/test_all_tools.py locally on a disposable Windows VM
-      # instead, where side effects and hangs are acceptable - see
-      # DEVELOPER_GUIDE.md.
-
-      - name: Build with PyInstaller
-        run: python -m PyInstaller build.spec --clean --noconfirm
-
-      - name: Copy plugins/ next to the built executable
-        # plugins/ must sit BESIDE utility_suite.exe as a plain, editable
-        # folder - see build.spec for why it is intentionally not bundled
-        # via PyInstaller `datas` (which would bury it inside _internal/,
-        # where the app never looks - this previously caused a packaged
-        # build to silently report "Total tools: 0").
-        run: |
-          Copy-Item -Path plugins -Destination dist\utility_suite\plugins -Recurse -Force
-          New-Item -ItemType Directory -Force -Path dist\utility_suite\logs | Out-Null
-
-      - name: Smoke-test the built executable
-        run: |
-          $toolCount = & dist\utility_suite\utility_suite.exe list | Select-String -Pattern 'Total tools:'
-          Write-Host $toolCount
-          if ($toolCount -match 'Total tools: 0') {
-            Write-Error 'Packaged executable found 0 tools - plugins were not placed correctly.'
-            exit 1
-          }
-          & dist\utility_suite\utility_suite.exe --version
+      - name: Automated single-file build
+        # One command = the entire pipeline:
+        #   1. audit.py (static gate)
+        #   2. regenerate bundle/tools.dat from the source tree
+        #   3. behavioural smoke tests (tests/test_suite.py)
+        #   4. PyInstaller onefile build (build_onefile.spec)
+        #   5. self-check: dist/utility_suite.exe list must find >0 tools
+        #   6. dist/UtilitySuite-<version>-windows.zip (exe only)
+        # NOTE: tests/test_all_tools.py (exhaustive per-tool sweep) is
+        # intentionally NOT part of this pipeline — several tools have
+        # real system side effects / require UAC and are unsafe on a
+        # shared CI VM. Run it locally on a disposable Windows VM; see
+        # DEVELOPER_GUIDE.md.
+        run: python build_single_exe.py
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: utility_suite-windows
-          path: dist/utility_suite/
+          name: utility_suite-single-file
+          path: dist/utility_suite.exe
           if-no-files-found: error
-
-      - name: Zip the built app for release
-        if: startsWith(github.ref, 'refs/tags/v')
-        shell: pwsh
-        run: |
-          Compress-Archive -Path dist/utility_suite/* -DestinationPath dist/utility_suite-windows.zip -Force
 
       - name: Attach to GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          # `files` must point at actual files/globs, not a directory tree.
-          # A zip is the most reliable, portable asset for Windows users.
-          files: dist/utility_suite-windows.zip
+          # The release asset is a zip containing exactly ONE file:
+          # utility_suite.exe. Users download, unzip, double-click. Done.
+          files: dist/UtilitySuite-*-windows.zip
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

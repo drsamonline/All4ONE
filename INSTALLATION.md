@@ -18,19 +18,21 @@ Pick your path — ⏱️ **60 seconds** for the portable EXE, or 🧑‍💻 a 
 
 > ✅ No installer · no registry writes · no admin rights needed.
 
-1. 📦 Extract the release ZIP to a directory such as `C:\Tools\UtilitySuite`.
-2. 🗂️ Keep the `plugins` directory **beside** `utility_suite.exe`.
-3. ⚙️ Keep `config.json` beside the executable.
-4. 🚀 Launch `utility_suite.exe` for the GUI — or use it as a CLI.
+1. 📦 Download `UtilitySuite-<version>-windows.zip` from the GitHub Releases page.
+2. 📂 Extract it to any folder, e.g. `C:\Tools\UtilitySuite` — it contains exactly
+   **one file**: `utility_suite.exe`. All 539 tools, the catalog, and the runtime
+   are embedded inside; there are no separate plugin folders or databases.
+3. 🚀 Double-click `utility_suite.exe` for the Windows 10-style GUI — or use it
+   as a CLI. Settings (`config.json`) and `logs/` are created next to the exe
+   on first run.
 
 The portable layout is intentionally self-contained and can be copied to
 another Windows machine on a USB stick.
 
 ```text
 UtilitySuite/
-├── utility_suite.exe     # the workstation
-├── config.json           # settings (auto-merged on upgrade)
-├── plugins/              # 45 plugin-pack ZIPs
+├── utility_suite.exe     # everything: runtime + 45 tool packs + catalog
+├── config.json           # created on first run (auto-merged on upgrade)
 └── logs/                 # created/populated at runtime
 ```
 

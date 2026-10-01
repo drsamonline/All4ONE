@@ -217,7 +217,10 @@ def main():
                 ROOT / "config.json", r'"version"\s*:\s*"([^"]+)"'
             ),
             "build_onefile.spec header": read_literal(
-                ROOT / "build_onefile.spec", r"# Utility Suite (\d+\.\d+\.\d+)"
+                # The 3.0 header line reads e.g. "# Utility Suite 3.0 — SINGLE-FILE"
+                # (major.minor only, followed by prose), so match major.minor.patch
+                # loosely against the first two components of VERSION.txt below.
+                ROOT / "build_onefile.spec", r"# Utility Suite (\d+\.\d+(?:\.\d+)?)"
             ),
         }
         for label, actual in checked.items():

@@ -19,11 +19,13 @@ the repository to GitHub and either:
 - push a tag matching `v*` (e.g. `v2.1.3`) to also attach the build to a GitHub Release.
 
 GitHub provides the Windows runner, so you don't need to own a Windows PC
-to get a real `utility_suite.exe`. The workflow rebuilds the plugin ZIPs,
-runs the full audit and test suite, builds with PyInstaller, smoke-tests
-the resulting executable, and uploads `dist/utility_suite/` as a
-downloadable artifact. If any audit/test step fails, the build stops
-before producing an executable.
+to get a real `utility_suite.exe`. The workflow runs exactly one command —
+`python build_single_exe.py` — which performs the entire pipeline: static
+audit, bundle regeneration (`bundle/tools.dat`), smoke tests, PyInstaller
+onefile build, packaged-exe self-check, and release-zip creation. The
+single exe is uploaded as an artifact; tagged pushes (`v*`) additionally
+publish `UtilitySuite-<version>-windows.zip` as a GitHub Release asset.
+If any audit/test step fails, the build stops before producing an executable.
 
 ## 1. Build environment (manual/local build)
 
@@ -45,43 +47,46 @@ Optional runtime packages can also be installed on the build host when you want 
 
 ## 3. Run the release build
 
-From the repository root:
+From the repository root — one command, the whole pipeline:
 
 ```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\BUILD_WINDOWS.ps1
+python build_single_exe.py
 ```
 
 The script:
 
-1. validates Python
-2. rebuilds plugin ZIPs
-3. removes stale `build` and `dist` directories
-4. runs the release audit
-5. invokes PyInstaller with `build.spec`
-6. produces `dist\utility_suite\utility_suite.exe`
+1. runs the static release audit (`audit.py`)
+2. regenerates `bundle/tools.dat` from the source tree (all 45 packs + catalog)
+3. runs behavioural smoke tests (`tests/test_suite.py`)
+4. invokes PyInstaller with `build_onefile.spec` (**onefile** mode)
+5. verifies the built exe reports >0 tools (`utility_suite.exe list`)
+6. produces `dist\utility_suite.exe` and `dist\UtilitySuite-<version>-windows.zip`
 
-## 4. Manual build
+Use `--skip-audit` / `--skip-tests` only while iterating locally.
+
+## 4. Manual step-by-step build
 
 ```powershell
-python create_plugin_zips.py
 python generate_catalogs.py   # refresh TOOL_CATALOG.md / EXPANSION_CATALOG.md
 python audit.py               # fails if docs drifted from the registry
-python -m PyInstaller build.spec --clean --noconfirm
+python -c "from core.bundle import build_bundle; build_bundle('.')"  # regen tools.dat
+python -B -m tests.test_suite
+python -m PyInstaller build_onefile.spec --clean --noconfirm
 ```
 
 ## 5. Build output
 
-The recommended distribution is onedir:
+The 3.0 release is a **single portable file**:
 
 ```text
-dist\utility_suite\
-├── utility_suite.exe
-├── _internal\
-├── plugins\
-├── config.json
-└── logs\
+dist\
+├── utility_suite.exe                        # everything inside: runtime,
+│                                            # all tool packs, catalog metadata
+└── UtilitySuite-3.0.0-windows.zip           # release asset (exe only)
 ```
+
+No `_internal\`, no `plugins\`, no sidecar `config.json` required — the exe
+creates its own settings/logs next to itself on first run.
 
 ## 6. Release checklist
 
@@ -105,7 +110,7 @@ Get-ChildItem -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Fo
 Generate release hashes with PowerShell:
 
 ```powershell
-Get-FileHash .\dist\utility_suite\utility_suite.exe -Algorithm SHA256
+Get-FileHash .\dist\utility_suite.exe -Algorithm SHA256
 ```
 
 ## 7. Code-signing
@@ -114,8 +119,8 @@ For production distribution, sign the executable and installer with an organizat
 
 ## 8. Inno Setup
 
-The application is designed for portable onedir distribution. An installer can wrap the resulting `dist\utility_suite` directory with Inno Setup without changing the Python architecture.
+The application ships as a single portable `utility_suite.exe`. An installer (e.g. Inno Setup) can wrap that one file without changing the Python architecture.
 
 ## 9. Reproducibility
 
-Plugin archives are rebuilt from source by `create_plugin_zips.py`. Release audits verify pack membership, handler metadata, command uniqueness, and absence of cache files in plugin ZIPs.
+`bundle/tools.dat` is rebuilt deterministically from source by `core.bundle.build_bundle()` (fixed timestamps, sorted entries), so repeated builds produce byte-identical archives. Release audits verify pack membership, handler metadata, and command uniqueness.
