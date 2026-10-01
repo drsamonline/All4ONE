@@ -10,11 +10,12 @@
 ### ⚡ One workstation. **539 tools across 45 plugin packs.** Zero installer drama.
 
 A modular, portable Windows utility workstation — pure-Python core, lazily loaded
-plugin packs, CLI *and* desktop GUI, built to be compiled into a single `.exe`.
+plugin packs, CLI *and* desktop GUI, compiled into a **single `utility_suite.exe`**
+with everything embedded. No installer, no sidecar files, no registry pollution.
 
-[![CI](https://github.com/sohil-momin/utility_suite/actions/workflows/ci.yml/badge.svg)](https://github.com/sohil-momin/utility_suite/actions/workflows/ci.yml)
-[![Windows Build](https://github.com/sohil-momin/utility_suite/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/sohil-momin/utility_suite/actions/workflows/build-windows-exe.yml)
-![Version](https://img.shields.io/badge/version-2.1.3-blue?style=flat-square&logo=python&logoColor=white)
+[![CI](https://github.com/drsamonline/utility_suite/actions/workflows/ci.yml/badge.svg)](https://github.com/drsamonline/utility_suite/actions/workflows/ci.yml)
+[![Build Windows executable](https://github.com/drsamonline/utility_suite/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/drsamonline/utility_suite/actions/workflows/build-windows-exe.yml)
+![Version](https://img.shields.io/badge/version-3.0.0-blue?style=flat-square&logo=python&logoColor=white)
 ![Tools](https://img.shields.io/badge/tools-539-brightgreen?style=flat-square)
 ![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
@@ -48,8 +49,9 @@ tool — never the suite.
 <td width="50%">
 
 ### 🧩 Modular by design
-- **45 plugin packs** shipped as deterministic ZIP archives
-- Drop-in extensibility: add a pack, register metadata, done
+- **45 plugin packs** bundled into one deterministic archive (`bundle/tools.dat`)
+  that ships *inside* the exe
+- Drop-in extensibility: add a pack, register metadata, rebuild
 - Core stays tiny and stable; plugins never import each other
 
 ### 🪶 Portable & safe
@@ -61,13 +63,13 @@ tool — never the suite.
 <td width="50%">
 
 ### 🔍 Audit-grade quality
-- `audit.py` enforces **539/539 handler resolution**, unique commands,
-  ZIP integrity, version sync, and **documentation freshness** on every release
-- CI matrix (Linux + Windows) with smoke tests and catalogue drift gates
+- `audit.py` enforces **539/539 handler resolution**, unique commands, bundle
+  integrity, version sync, and **documentation freshness** on every release
+- CI: Linux validation on every push + automated Windows single-file EXE build
 - Full docs: user guide, tool catalogue, expansion map, dev guide
 
 ### 🖥️ Two frontends, one engine
-- Rich **CLI** (`python run.py …`) for scripting
+- Rich **CLI** (`python run.py …` / `utility_suite.exe …`) for scripting
 - Desktop **GUI** with search, categories, async execution, previews
 
 </td>
@@ -84,7 +86,8 @@ tool — never the suite.
 | 🔒 Mandatory third-party deps | **0** |
 | 🐍 Language | Python 3.10+ (stdlib-first) |
 | 🖱️ Frontends | CLI + Tkinter GUI |
-| 📄 Docs | 11 curated documents (~1,700 lines) |
+| 📄 Docs | 10 curated documents |
+| 📦 Release format | ONE file: `utility_suite.exe` |
 
 ## 🗺️ Tool category map
 
@@ -108,10 +111,26 @@ All 539 tools described → **[TOOL_CATALOG.md](TOOL_CATALOG.md)**
 
 ## 🚀 Quick start
 
+### Prebuilt portable EXE (recommended)
+
+1. Download `UtilitySuite-<version>-windows.zip` from the latest
+   [release](../../releases).
+2. Unzip — it contains **exactly one file**: `utility_suite.exe`.
+3. Double-click for the GUI, or use it as a CLI:
+
+```powershell
+.\utility_suite.exe list                        # browse all 539 tools
+.\utility_suite.exe search image                # find tools by keyword
+.\utility_suite.exe run checksum C:\f.txt --algorithm sha256
+```
+
+Releases are produced automatically by GitHub Actions whenever a version tag
+is pushed (see *Building & releasing* below).
+
 ### From source (any OS for development, Windows for full functionality)
 
 ```powershell
-git clone https://github.com/sohil-momin/utility_suite.git
+git clone https://github.com/drsamonline/utility_suite.git
 cd utility_suite
 
 python run.py list                    # browse all 539 tools
@@ -120,11 +139,27 @@ python run.py run checksum C:\f.txt --algorithm sha256   # run a tool
 python run.py gui                     # launch the desktop GUI
 ```
 
-### Prebuilt portable EXE
+Zero mandatory `pip install`s — the suite runs on the standard library alone.
 
-Grab `utility_suite.exe` from the latest [release](../../releases), unzip, run.
-Build your own from source with [`COMPILATION.md`](COMPILATION.md) or let
-GitHub Actions do it on a Windows runner via `build-windows-exe.yml`.
+## 🏗️ Building & releasing
+
+PyInstaller cannot cross-compile a Windows binary from Linux/macOS, so the
+real `.exe` is built on a **Windows GitHub Actions runner**. The entire local
+pipeline is one command:
+
+```powershell
+python build_single_exe.py    # audit → bundle → tests → exe → verify → zip
+```
+
+To publish a release, **push a version tag** — the tagged build attaches
+`UtilitySuite-<version>-windows.zip` to an auto-generated GitHub Release:
+
+```bash
+git tag v3.0.0 && git push origin v3.0.0
+```
+
+A normal push to `main` is validated by `ci.yml` but does not publish a
+release. Full details: [COMPILATION.md](COMPILATION.md).
 
 ## 📖 Documentation map
 
@@ -162,20 +197,22 @@ GitHub Actions do it on a Windows runner via `build-windows-exe.yml`.
 </tr>
 </table>
 
-## 🏗️ Architecture
+## 🏛️ Architecture
 
 ```text
 utility_suite/
 ├── core/                 # runtime, registry, lazy handlers, CLI + GUI
 ├── <pack>/               # 45 tool-pack source directories
 ├── bundle/tools.dat      # deterministic single-archive bundle of all packs
+│                         #   (regenerated by build_single_exe.py; committed
+│                         #    copy may lag behind source between builds)
 ├── tests/                # smoke + integration tests
 ├── run.py                # entry point (CLI / GUI)
 ├── audit.py              # static release audit + docs-freshness gate
 ├── generate_catalogs.py  # regenerates TOOL_CATALOG.md / EXPANSION_CATALOG.md
 ├── build_onefile.spec    # PyInstaller SINGLE-FILE specification
 ├── build_single_exe.py   # one-command automated release pipeline
-├── .github/workflows/    # ci.yml + build-windows-exe.yml (auto-release on tag)
+├── .github/workflows/    # ci.yml (Linux) + build-windows-exe.yml (tagged releases)
 ├── VERSION.txt           # authoritative version; audit enforces sync
 ├── pyproject.toml        # ruff lint config
 ├── .editorconfig         # cross-editor formatting rules
@@ -191,8 +228,9 @@ utility_suite/
 4. A missing optional dependency must **never crash the suite**.
 5. Prefer **streaming I/O** for large files.
 6. Never interpolate shell strings when an argument list suffices.
-7. Plugin ZIPs stay **deterministic**, free of `__pycache__`/`.pyc`.
+7. The tool bundle stays **deterministic**, free of `__pycache__`/`.pyc`.
 8. Add tools via **metadata + lazy handler** — never duplicate infrastructure.
+9. Ship **one file** — no sidecars, no external folders in a release.
 
 ## ✅ Validation & CI
 
@@ -203,11 +241,14 @@ The release process performs:
 - 📚 **Documentation freshness gate** — `TOOL_CATALOG.md`,
   `EXPANSION_CATALOG.md` and this README must match the live registry
   (regenerate anytime with `python generate_catalogs.py`)
-- 📦 Plugin ZIP integrity + no embedded bytecode caches
+- 📦 Bundle integrity + no embedded bytecode caches
 - 🧬 Handler & dependency metadata validation
 - 🏃 Runtime handler-resolution tests + functional smoke tests
-- 🖥️ GitHub Actions: Linux validation, Windows validation, and a real
-  `utility_suite.exe` build-and-test pipeline
+- 🖥️ GitHub Actions: **Linux validation on every push** (`ci.yml`) and a real
+  **Windows single-file EXE build** (`build-windows-exe.yml`) triggered by
+  version tags or a manual run
+- 🧾 Tracked-artifact guard: `__pycache__`, `.pyc` and runtime logs can never
+  be committed again (enforced by both `audit.py` and `ci.yml`)
 
 `audit.py` exits **0 only on `AUDIT PASSED`**, so CI can rely on
 `python audit.py && <next step>` failing loudly. Release hashes are generated

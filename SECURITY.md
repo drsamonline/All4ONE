@@ -11,8 +11,8 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 2.1.x   | :white_check_mark: |
-| < 2.1   | :x:                |
+| 3.0.x   | :white_check_mark: |
+| < 3.0   | :x:                |
 
 ## Reporting a Vulnerability
 
@@ -38,5 +38,8 @@ without action.
   (`core/extended_ops.py::_run` raises on `str` commands, `shell=False`).
 - The static release audit (`audit.py`) fails the build if any source file
   introduces `shell=True` or `os.system(` patterns.
-- Plugin packs are plain Python shipped beside the executable; review third
-  party plugins before adding them to `plugins/`.
+- Plugin packs ship **embedded inside the single `utility_suite.exe`**
+  (compiled into `bundle/tools.dat` at build time). If you extend the suite
+  from source, review third-party pack code before rebuilding the bundle —
+  pack modules execute Python code within the user account and therefore have
+  the same authority as the process running Utility Suite.

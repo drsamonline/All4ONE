@@ -2,7 +2,7 @@
 
 # 👤 Utility Suite — User Guide
 
-**Version 2.1.3** · 539 tools · 45 plugin packs · CLI + GUI
+**Version 3.0.0** · 539 tools · 45 plugin packs · CLI + GUI · one portable EXE
 
 ![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![Level](https://img.shields.io/badge/level-beginner%20→%20power%20user-brightgreen?style=flat-square)
@@ -17,13 +17,16 @@
 
 ## 📚 Table of contents
 
-| | Section | | Section |
-|---|---|---|---|
-| 1️⃣ | [Overview](#1️⃣-overview) | 6️⃣ | [Plugin packs](#6️⃣-plugin-packs-) |
-| 2️⃣ | [Starting the application](#2️⃣-starting-the-application-) | 7️⃣ | [Optional dependencies](#7️⃣-optional-dependencies-) |
-| 3️⃣ | [Tool availability](#3️⃣-tool-availability-) | 8️⃣ | [Configuration](#8️⃣-configuration-) |
-| 4️⃣ | [Paths & quoting](#4️⃣-paths--quoting-) | 9️⃣ | [Logs & troubleshooting](#9️⃣-logs--troubleshooting-) |
-| 5️⃣ | [Safety first](#5️⃣-safety-first-) | 🔟 | [Updating](#t%EF%B8%8F-updating) · [🚀 Cheat sheet](#-cheat-sheet) |
+1. [Overview](#1️⃣-overview)
+2. [Starting the application](#2%EF%B8%8F%E2%83%A3-starting-the-application-)
+3. [Tool availability](#3%EF%B8%8F%E2%83%A3-tool-availability-)
+4. [Paths & quoting](#4%EF%B8%8F%E2%83%A3-paths--quoting-)
+5. [Safety first](#5%EF%B8%8F%E2%83%A3-safety-first-)
+6. [Plugin packs](#6%EF%B8%8F%E2%83%A3-plugin-packs-)
+7. [Optional dependencies](#7%EF%B8%8F%E2%83%A3-optional-dependencies-)
+8. [Configuration](#8%EF%B8%8F%E2%83%A3-configuration-)
+9. [Logs & troubleshooting](#9%EF%B8%8F%E2%83%A3-logs--troubleshooting-)
+10. [Updating](#10%EF%B8%8F%E2%83%A3-updating-) · [🚀 Cheat sheet](#-cheat-sheet)
 
 ---
 
@@ -87,7 +90,7 @@ Every tool reports its state up front:
 - 🟢 **AVAILABLE** — all declared dependencies are present; run it immediately.
 - 🚫 **UNAVAILABLE** — one or more declared dependencies are missing; the tool
   stays visible so you know what the suite supports and what to install
-  (see [section 7](#7️⃣-optional-dependencies-)).
+  (see [section 7](#7%EF%B8%8F%E2%83%A3-optional-dependencies-)).
 
 💡 **Tip:** the CLI prints the missing dependency name for unavailable tools —
 install exactly that, run `refresh`, and the tool lights up green.
@@ -119,8 +122,11 @@ extract archives you trust into folders you control.
 
 ## 6️⃣ Plugin packs 📦
 
-A plugin pack is a ZIP placed in the `plugins` directory. Refresh the catalogue
-after adding a valid pack:
+In a release, all 45 packs are **embedded inside `utility_suite.exe`** — there
+is nothing to install and no `plugins/` folder to manage. The suite also
+supports loading pack ZIPs from a `plugins/` directory beside the exe (or the
+source tree when running from a checkout) for development builds; refresh the
+catalogue after adding a valid pack:
 
 ```powershell
 utility_suite.exe refresh
@@ -157,7 +163,7 @@ and UI behavior. New defaults are **merged recursively** with existing user
 configuration, so upgrading never erases unrelated settings.
 
 💡 **Tip:** keep a copy of your tuned `config.json` when replacing the app
-files during an update ([section 🔟](#t%EF%B8%8F-updating)).
+files during an update ([section 10](#10%EF%B8%8F%E2%83%A3-updating-)).
 
 ## 9️⃣ Logs & troubleshooting 🩺
 
@@ -181,9 +187,11 @@ entire application — check the log for the traceback.
 
 ## 🔟 Updating 🔄
 
-Replace the application files and plugin ZIPs with the newer release,
-preserving `config.json` if you need local settings. Run the audit/build
-validation (`python audit.py`) before distributing a customized release.
+Replace `utility_suite.exe` with the newer release zip — that single file *is*
+the application, including all 45 packs. Preserve `config.json` if you need
+local settings (new defaults are merged automatically on next run). When
+building a customized release from source, run the validation pipeline
+(`python build_single_exe.py`) before distributing.
 
 ---
 
