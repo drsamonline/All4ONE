@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Audio Duration",
             "category": "Audio Tools",
-            "description": "Audio Duration: audio duration as structured JSON output.",
+            "description": "Report the duration of an audio file (requires ffprobe).",
             "handler": "operations.audio_duration",
             "cli_command": "audio-duration",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Audio Trim",
             "category": "Audio Tools",
-            "description": "Audio Trim: audio trim as structured JSON output.",
+            "description": "Trim an audio file to a start/end range (requires ffmpeg).",
             "handler": "operations.audio_trim",
             "cli_command": "audio-trim",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Audio Concatenator",
             "category": "Audio Tools",
-            "description": "Audio Concatenator: audio concatenator as structured JSON output.",
+            "description": "Join multiple audio files into a single track in order (requires ffmpeg).",
             "handler": "operations.audio_concatenator",
             "cli_command": "audio-concatenator",
             "dependencies": ["ffprobe", "ffmpeg"],

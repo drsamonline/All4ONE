@@ -3,7 +3,7 @@ def register_tools():
         {
             "name": "Task Scheduler",
             "category": "Automation",
-            "description": "Task Scheduler: task scheduler as structured JSON output.",
+            "description": "Create a Windows Task Scheduler task to run a command on a daily or one-off schedule.",
             "handler": "scheduler.run",
             "cli_command": "schedule",
             "dependencies": ["schtasks"],
@@ -11,7 +11,7 @@ def register_tools():
         {
             "name": "Folder Watcher",
             "category": "Automation",
-            "description": "Folder Watcher: folder watcher as structured JSON output.",
+            "description": "Watch a directory and report files added, removed or changed.",
             "handler": "watcher.run",
             "cli_command": "watch",
             "dependencies": [],

@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Event Log Query",
             "category": "Event Tools",
-            "description": "Event Log Query: event log query as structured JSON output.",
+            "description": "Query the Windows event log by channel and filter (requires wevtutil).",
             "handler": "operations.event_log_query",
             "cli_command": "event-log-query",
             "dependencies": ["wevtutil"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Event Log Statistics",
             "category": "Event Tools",
-            "description": "Event Log Statistics: event log statistics as structured JSON output.",
+            "description": "Summarise event counts by level for a channel.",
             "handler": "operations.event_log_statistics",
             "cli_command": "event-log-statistics",
             "dependencies": ["wevtutil"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Event Log Recent Errors",
             "category": "Event Tools",
-            "description": "Event Log Recent Errors: event log recent errors as structured JSON output.",
+            "description": "Show the most recent error-level events.",
             "handler": "operations.event_log_recent_errors",
             "cli_command": "event-log-recent-errors",
             "dependencies": ["wevtutil"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Event Log Recent Warnings",
             "category": "Event Tools",
-            "description": "Event Log Recent Warnings: event log recent warnings as structured JSON output.",
+            "description": "Show the most recent warning-level events.",
             "handler": "operations.event_log_recent_warnings",
             "cli_command": "event-log-recent-warnings",
             "dependencies": ["wevtutil"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Event Log Channel Inventory",
             "category": "Event Tools",
-            "description": "Enumerate an inventory of event log channel inventory.",
+            "description": "List the available Windows event log channels.",
             "handler": "operations.event_log_channel_inventory",
             "cli_command": "event-log-channel-inventory",
             "dependencies": ["wevtutil"],

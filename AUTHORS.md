@@ -3,7 +3,9 @@
 # ✍️ Utility Suite — Authorship & Credits
 
 ![Author](https://img.shields.io/badge/author-Dr.%20Sohil%20Momin%2C%20BHMS-blue?style=flat-square)
-![Version](https://img.shields.io/badge/version-3.0.5-brightgreen?style=flat-square)
+![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
+![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
+![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)
 
 </div>
@@ -11,7 +13,7 @@
 **Author:** Dr. Sohil Momin, BHMS 🩺💻
 
 Utility Suite is a modular Windows utility workstation designed around a
-lightweight core and dynamically discovered plugin packs —
+lightweight core and a metadata-registered tool catalogue —
 **551 tools · 45 packs · one audited codebase**.
 
 ## 🏅 Attribution
@@ -22,7 +24,7 @@ implementation are authored by **Dr. Sohil Momin, BHMS**.
 | Role | Who |
 |---|---|
 | 🧱 Architecture & core runtime | Dr. Sohil Momin, BHMS |
-| 📦 All 45 plugin packs (551 tools) | Dr. Sohil Momin, BHMS |
+| 📦 All 45 tool packs (551 tools) | Dr. Sohil Momin, BHMS |
 | 📚 Documentation set (README → AUDIT_REPORT) | Dr. Sohil Momin, BHMS |
 | ✅ Release auditing & CI gates | `audit.py` + GitHub Actions |
 
@@ -36,7 +38,7 @@ implementation are authored by **Dr. Sohil Momin, BHMS**.
 
 ## 📜 Version
 
-Current release: **3.0.0** — full history in [CHANGELOG.md](CHANGELOG.md).
+Current release: **3.0.6** — full history in [CHANGELOG.md](CHANGELOG.md).
 
 <div align="center">
 

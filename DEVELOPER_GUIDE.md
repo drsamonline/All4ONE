@@ -5,6 +5,7 @@
 ![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square&logo=python&logoColor=black)
 ![Lint](https://img.shields.io/badge/lint-ruff-blueviolet?style=flat-square)
 ![CI](https://img.shields.io/badge/CI-Linux%20%2B%20Windows-brightgreen?style=flat-square)
+![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
 
 *Author: Dr. Sohil Momin, BHMS*
 
@@ -42,6 +43,31 @@ Expansion packs use a shared lazy adapter factory so the project does not copy 1
 ## Auditing
 
 `audit.py` is static and release-oriented. Runtime resolution is covered by the test suite so normal audits do not create `__pycache__` noise in the source tree.
+
+Current hard gates (all fail the audit when violated):
+
+- **Catalogue integrity** — 551 tools, unique names and CLI commands, every
+  handler function present and resolvable at runtime.
+- **Safety patterns** — no `shell=True` / `os.system(`; no trailing whitespace;
+  no stray `TODO`/`FIXME` notes.
+- **Descriptions** — unique *and* free of the known machine-generated templates
+  ("… as structured JSON output.", "… report report.", "… on disk or in scope.").
+- **Bundle integrity** — `bundle/tools.dat` exists, is a valid archive, has a
+  `catalog.json`, contains no `.pyc`/`__pycache__` entries, and lists every
+  source file of every pack.
+- **Tracked-artifact hygiene** — no committed `__pycache__`/`.pyc` and no
+  tracked `logs/*` except `.gitkeep`. This gate **requires git**: a missing or
+  failing `git ls-files` is a hard failure rather than a silent pass.
+- **`.gitignore` content** — the required ignore patterns (`__pycache__`,
+  `*.py[cod]`, `logs/`) must be present, so a truncated ignore file cannot let
+  build artifacts back into the tree.
+- **Version sync** — `VERSION.txt` must match `core/__init__.py`, `config.json`,
+  the `build_onefile.spec` header, `version_info.txt` (`prodvers`), the README
+  version badge, `AUTHORS.md`, `AUDIT_REPORT.txt` and `COMPILATION.md`.
+- **Packaging layout** — the spec must stay single-file (no `COLLECT`, no
+  bundled `plugins/`) and must embed `bundle/tools.dat`.
+- **Docs freshness** — `TOOL_CATALOG.md`, `EXPANSION_CATALOG.md` and the README
+  overview must match the live registry.
 
 **Exit-code contract (CI gate):** `python audit.py` exits **0** on
 `AUDIT PASSED` and **1** on `AUDIT FAILED` (propagated via

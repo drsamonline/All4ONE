@@ -3,7 +3,7 @@ def register_tools():
         {
             "name": "Empty Folder Cleaner",
             "category": "Directory Management",
-            "description": "Empty Folder Cleaner: empty folder cleaner as structured JSON output.",
+            "description": "Find and (optionally) delete empty directories.",
             "handler": "empty_cleaner.run",
             "cli_command": "empty-clean",
             "dependencies": [],
@@ -11,7 +11,7 @@ def register_tools():
         {
             "name": "Directory Synchronizer",
             "category": "Directory Management",
-            "description": "Directory Synchronizer: directory synchronizer as structured JSON output.",
+            "description": "Synchronise one directory tree to another, copying new and changed files.",
             "handler": "sync.run",
             "cli_command": "dir-sync",
             "dependencies": [],
@@ -19,7 +19,7 @@ def register_tools():
         {
             "name": "Disk Usage Analyzer",
             "category": "Directory Management",
-            "description": "Disk Usage Analyzer: disk usage analyzer as structured JSON output.",
+            "description": "Report how much space each entry in a directory consumes.",
             "handler": "disk_usage.run",
             "cli_command": "disk-usage",
             "dependencies": [],
@@ -27,7 +27,7 @@ def register_tools():
         {
             "name": "Hardlink Creator",
             "category": "Directory Management",
-            "description": "Hardlink Creator: hardlink creator as structured JSON output.",
+            "description": "Create a hard link to a file (same volume only).",
             "handler": "hardlink.run",
             "cli_command": "hardlink",
             "dependencies": [],

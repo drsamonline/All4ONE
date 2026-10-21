@@ -1,7 +1,10 @@
-"""Shared implementations for the 539 expansion tools (449 baseline + 90 new).
+"""Shared engine behind the generated plugin packs.
 
-The expansion packs remain thin plugin adapters; this module contains the actual,
-standard-library-first operations and dependency-aware command integrations.
+Most registered tools are thin metadata adapters that route here through
+``core.handler_factory.make_handler``; this module holds the actual
+standard-library-first implementations and dependency-aware command
+integrations. Bespoke packs (file_ops, misc, archive_tools, network_tools and
+friends) keep their own dedicated handler modules.
 """
 
 from __future__ import annotations

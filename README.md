@@ -1,31 +1,27 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://placehold.co/900x180/0d1117/58a6ff?text=%E2%9A%99%EF%B8%8F+Utility+Suite&font=segoe-ui">
-  <img alt="Utility Suite — 551 portable Windows tools in one EXE" src="https://placehold.co/900x180/f0f6fc/0969da?text=%E2%9A%99%EF%B8%8F+Utility+Suite&font=segoe-ui" width="720">
-</picture>
-
 # 🧰 Utility Suite
 
-### ⚡ **551 Windows tools. ONE portable `.exe`. Zero installs, zero bloat, zero telemetry.**
+### 551 Windows tools. One portable `.exe`. Zero installs, zero telemetry.
 
-Stop downloading sketchy utilities. **Utility Suite** is a free, open-source,
-portable Windows toolbox — file ops, hashing, PDF & Office batch tools, image
-editing, video/audio conversion, network diagnostics, registry helpers, disk
-cleaning, security audits and **hundreds more** — compiled into a single
-`utility_suite.exe` you can keep on a USB stick forever.
+A free, open-source, portable Windows toolbox — file operations, hashing,
+PDF & Office batch tools, image editing, audio/video conversion, network
+diagnostics, registry helpers, disk cleaning, security audits and hundreds
+more — compiled into a single `utility_suite.exe` you can keep on a USB stick.
 
 [![CI](https://github.com/drsamonline/All4ONE/actions/workflows/ci.yml/badge.svg)](https://github.com/drsamonline/All4ONE/actions/workflows/ci.yml)
 [![Build Windows executable](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml)
-![Release](https://img.shields.io/github/v/release/drsamonline/All4ONE?style=flat-square&color=brightgreen)
-![Downloads](https://img.shields.io/github/downloads/drsamonline/All4ONE/total?style=flat-square&label=downloads&color=blue)
+[![Release](https://img.shields.io/github/v/release/drsamonline/All4ONE?style=flat-square&color=brightgreen)](https://github.com/drsamonline/All4ONE/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/drsamonline/All4ONE/total?style=flat-square&label=downloads&color=blue)](https://github.com/drsamonline/All4ONE/releases)
+[![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)](LICENSE)
+
+![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
 ![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
 ![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
-![Dependencies](https://img.shields.io/badge/mandatory%20deps-0-orange?style=flat-square)
+![Mandatory deps](https://img.shields.io/badge/mandatory%20deps-0-orange?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square&logo=python&logoColor=black)
-![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)
-![Author](https://img.shields.io/badge/author-Dr.%20Sohil%20Momin%2C%20BHMS-fuchsia?style=flat-square)
+![Registry verified](https://img.shields.io/badge/registry%20verified-551%2F551%20%E2%9C%85-blue?style=flat-square)
 
 **📥 [Download the latest release →](https://github.com/drsamonline/All4ONE/releases/latest)**
 ·
@@ -39,21 +35,20 @@ cleaning, security audits and **hundreds more** — compiled into a single
 
 ---
 
-<!-- TABLE OF CONTENTS -->
 <details open>
 <summary><b>📑 Table of contents</b></summary>
 
 - [Why Utility Suite?](#-why-utility-suite)
 - [Quick start (60 seconds)](#-quick-start-60-seconds)
-- [What can it do? (feature map)](#-what-can-it-do-feature-map)
+- [What can it do?](#-what-can-it-do)
 - [GUI + CLI: two frontends, one engine](#-gui--cli-two-frontends-one-engine)
-- [Smart dependency handling (`deps`)](#-smart-dependency-handling-deps)
+- [Smart dependency handling](#-smart-dependency-handling-deps)
 - [Numbers at a glance](#-numbers-at-a-glance)
+- [Architecture](#-architecture)
 - [Building & releasing](#-building--releasing)
 - [Documentation map](#-documentation-map)
-- [Architecture](#-architecture)
-- [Contributing](#-contributing)
 - [FAQ](#-faq)
+- [Contributing](#-contributing)
 
 </details>
 
@@ -69,7 +64,7 @@ cleaning, security audits and **hundreds more** — compiled into a single
 
 Every tool is metadata-registered, **lazily loaded**, and declares its own
 optional dependencies. CI runs Linux validation on every push **and** builds
-the real Windows single-file EXE on version tags via GitHub Actions.
+the real Windows single-file EXE via GitHub Actions.
 
 ## 🚀 Quick start (60 seconds)
 
@@ -77,8 +72,8 @@ the real Windows single-file EXE on version tags via GitHub Actions.
 
 1. 📥 Grab `UtilitySuite-<version>-windows.zip` from the
    **[latest release](https://github.com/drsamonline/All4ONE/releases/latest)**.
-2. Unzip — it contains **exactly one file**: `utility_suite.exe`.
-3. Double-click for the GUI, or use it as a CLI:
+2. 📂 Unzip — it contains **exactly one file**: `utility_suite.exe`.
+3. 🚀 Double-click for the GUI, or use it as a CLI:
 
 ```powershell
 .\utility_suite.exe list                          # browse all 551 tools
@@ -101,7 +96,7 @@ python run.py gui                     # launch the desktop GUI
 
 **Zero mandatory `pip install`s** — the suite runs on the standard library alone.
 
-## 🗺️ What can it do? (feature map)
+## 🗺️ What can it do?
 
 <details open>
 <summary><b>🎯 45 packs · 551 tools — grouped by mission</b></summary>
@@ -124,9 +119,10 @@ Per-pack counts → **[EXPANSION_CATALOG.md](EXPANSION_CATALOG.md)**
 ## 🖥️ GUI + CLI: two frontends, one engine
 
 - **Desktop GUI** (Tkinter): instant search across 551 tools, scrollable
-  category chips, async execution, live previews, DPI-aware layout. Click the
-  **"X/551 tools ready"** status-bar label any time to open the built-in
-  install guide.
+  category chips, asynchronous execution with **live streaming output**,
+  DPI-aware layout, and a confirmation prompt before destructive tools run.
+  Click the **"X/551 tools ready"** status-bar label any time to open the
+  built-in install guide.
 - **CLI / scripting**: every GUI action has an identical command, so the same
   exe drops into PowerShell, batch files, or scheduled automation.
 
@@ -154,8 +150,45 @@ Python packages → exact `pip install …` lines. Nothing else to configure.
 | 🐍 Language | Python 3.10+ (stdlib-first) |
 | 🖱️ Frontends | CLI + Tkinter GUI |
 | 📄 Documentation | 10 curated documents |
-| 📦 Release format | ONE file: `utility_suite.exe` (~12 MB) |
-| 👤 Author | Dr. Sohil Momin, BHMS (embedded in the EXE's file properties) |
+| 📦 Release format | ONE file: `utility_suite.exe` |
+| 👤 Author | Dr. Sohil Momin, BHMS |
+
+## 🏛️ Architecture
+
+Most registered tools are thin metadata adapters: a pack's `__init__.py`
+declares each tool, and the handler routes through a small lazy factory into
+the shared engine (`core/extended_ops.py`). A dozen packs (`file_ops`,
+`misc`, `archive_tools`, `network_tools`, `media_tools`, `security_tools`,
+`windows_power`, …) keep their own dedicated handler modules. Either way, the
+tool is only imported when it is actually run.
+
+```text
+utility_suite/
+├── core/                 # runtime, registry, lazy handlers, CLI + GUI
+│   ├── cli.py            # argument parsing + command dispatch
+│   ├── tool_registry.py  # metadata, availability, lazy execution, streaming output
+│   ├── bundle.py         # embedded single-archive loader/builder
+│   ├── capability_checker.py
+│   ├── extended_ops.py   # shared engine for the generated packs
+│   ├── handler_factory.py
+│   └── gui.py            # Tkinter desktop front-end
+├── <pack>/               # 45 tool-pack source directories
+├── bundle/tools.dat      # deterministic single archive (ships inside the exe)
+├── tests/                # smoke + integration tests
+├── run.py                # entry point (CLI / GUI)
+├── audit.py              # static release audit + docs-freshness gate
+├── generate_catalogs.py  # regenerates TOOL_CATALOG.md / EXPANSION_CATALOG.md
+├── build_onefile.spec    # PyInstaller SINGLE-FILE specification
+├── build_single_exe.py   # one-command automated release pipeline
+├── .github/workflows/    # ci.yml (Linux) + build-windows-exe.yml (Windows)
+├── VERSION.txt           # authoritative version; audit enforces sync
+└── LICENSE · SECURITY.md · AUTHORS.md · *.md docs set
+```
+
+**Design principles:** small stable core · tools are metadata-registered and
+lazily imported · heavy deps imported only where needed · a missing optional
+dep must never crash the suite · streaming I/O for large files · deterministic
+pyc-free bundle · ship one file.
 
 ## 🏗️ Building & releasing
 
@@ -170,9 +203,6 @@ Python packages → exact `pip install …` lines. Nothing else to configure.
 > 2. **pushing a version tag** → all of the above *plus* a permanent GitHub
 >    Release with auto-generated notes, or
 > 3. a manual **Actions → Build Windows executable → Run workflow** for one-offs.
->
-> Tagging is now only needed when you want an *official numbered release*;
-> plain pushes still produce a working `.exe`. 👇
 
 PyInstaller cannot cross-compile a Windows binary from Linux/macOS, so the
 real `.exe` is built on a **Windows GitHub Actions runner**. The entire local
@@ -182,19 +212,13 @@ pipeline is one command:
 python build_single_exe.py    # audit → bundle → tests → exe → verify → zip
 ```
 
-To publish a release, **bump the version, then push a version tag** — the
-tagged build attaches `UtilitySuite-<version>-windows.zip` to an auto-generated
-GitHub Release (with author/version metadata embedded in the binary):
+To publish a release, **bump the version, then push a version tag**:
 
 ```bash
 # 1. sync the version everywhere (VERSION.txt is authoritative; audit.py enforces sync)
 # 2. tag and push
-git tag v3.0.5.1 && git push origin v3.0.5.1
+git tag v3.0.6 && git push origin v3.0.6
 ```
-
-If you just want the newest `.exe` without cutting a release, grab it from the
-floating [`latest-build` pre-release](https://github.com/drsamonline/All4ONE/releases/tag/latest-build)
-— it is overwritten automatically by every successful push to `main`.
 
 Full details: [COMPILATION.md](COMPILATION.md).
 
@@ -234,36 +258,6 @@ Full details: [COMPILATION.md](COMPILATION.md).
 </tr>
 </table>
 
-## 🏛️ Architecture
-
-```text
-utility_suite/
-├── core/                 # runtime, registry, lazy handlers, CLI + GUI
-├── <pack>/               # 45 tool-pack source directories
-├── bundle/tools.dat      # deterministic single-archive bundle (ships inside the exe)
-├── tests/                # smoke + integration tests
-├── run.py                # entry point (CLI / GUI)
-├── audit.py              # static release audit + docs-freshness gate
-├── generate_catalogs.py  # regenerates TOOL_CATALOG.md / EXPANSION_CATALOG.md
-├── build_onefile.spec    # PyInstaller SINGLE-FILE specification
-├── build_single_exe.py   # one-command automated release pipeline
-├── .github/workflows/    # ci.yml (Linux) + build-windows-exe.yml (main pushes + tagged releases)
-├── VERSION.txt           # authoritative version; audit enforces sync
-└── LICENSE · SECURITY.md · AUTHORS.md · *.md docs set
-```
-
-Design principles: small stable core · plugins never import each other · heavy
-deps imported only where needed · a missing optional dep must never crash the
-suite · streaming I/O for large files · deterministic pyc-free bundle · ship
-one file.
-
-## 🤝 Contributing
-
-Read [`DEVELOPER_GUIDE.md`](DEVELOPER_GUIDE.md) for the plugin contract and
-testing tiers, then open a PR — CI checks your catalogues are regenerated for
-you. Lint locally with `ruff check .` before pushing. Ideas welcome: new tools,
-new packs, docs, translations.
-
 ## ❓ FAQ
 
 **Is it really free?** Yes — MIT licensed, free for personal *and* commercial use.
@@ -272,6 +266,13 @@ new packs, docs, translations.
 **Why do some tools say "unavailable"?** They need an optional binary (FFmpeg etc.) —
 run `utility_suite.exe deps` for one-click instructions.
 **Can I script it?** Every GUI feature has an identical CLI command.
+
+## 🤝 Contributing
+
+Read [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) for the plugin contract and
+testing tiers, then open a PR — CI checks your catalogues are regenerated for
+you. Lint locally with `ruff check .` before pushing. Ideas welcome: new tools,
+new packs, docs, translations.
 
 ## 🙏 Acknowledgements
 
@@ -287,7 +288,7 @@ Released under the **[MIT License](LICENSE)** — free for personal and commerci
 
 <div align="center">
 
-### ⭐ If Utility Suite saved you fifty sketchy downloads, star this repo — it takes one second and keeps the project alive. ⭐
+### ⭐ If Utility Suite saved you fifty sketchy downloads, star this repo ⭐
 
 [![Star History Chart](https://api.star-history.com/svg?repos=drsamonline/All4ONE&type=Date)](https://star-history.com/#drsamonline/All4ONE&Date)
 

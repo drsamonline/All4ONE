@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Window Minimize All",
             "category": "Window Manager",
-            "description": "Window Minimize All: window minimize all as structured JSON output.",
+            "description": "Minimise all open windows (Windows).",
             "handler": "operations.window_minimize_all",
             "cli_command": "window-minimize-all",
             "dependencies": ["powershell"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Window Restore All",
             "category": "Window Manager",
-            "description": "Window Restore All: window restore all as structured JSON output.",
+            "description": "Restore all minimised windows (Windows).",
             "handler": "operations.window_restore_all",
             "cli_command": "window-restore-all",
             "dependencies": ["powershell"],

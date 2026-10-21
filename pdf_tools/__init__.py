@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "PDF Merge",
             "category": "PDF Tools",
-            "description": "PDF Merge: pdf merge as structured JSON output.",
+            "description": "Merge several PDFs into one (requires qpdf).",
             "handler": "operations.pdf_merge",
             "cli_command": "pdf-merge",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "PDF Split",
             "category": "PDF Tools",
-            "description": "PDF Split: pdf split as structured JSON output.",
+            "description": "Split a PDF into pages or ranges (requires qpdf).",
             "handler": "operations.pdf_split",
             "cli_command": "pdf-split",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "PDF Compress",
             "category": "PDF Tools",
-            "description": "PDF Compress: pdf compress as structured JSON output.",
+            "description": "Compress a PDF (requires qpdf).",
             "handler": "operations.pdf_compress",
             "cli_command": "pdf-compress",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "PDF Watermark",
             "category": "PDF Tools",
-            "description": "PDF Watermark: pdf watermark as structured JSON output.",
+            "description": "Stamp a watermark onto PDF pages.",
             "handler": "operations.pdf_watermark",
             "cli_command": "pdf-watermark",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],

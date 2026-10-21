@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "IPv4 Configuration",
             "category": "Network Diagnostics",
-            "description": "IPv4 Configuration: ipv4 configuration as structured JSON output.",
+            "description": "Show IPv4 addresses, masks and interfaces.",
             "handler": "operations.ipv4_configuration",
             "cli_command": "ipv4-configuration",
             "dependencies": ["powershell", "ipconfig"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "IPv6 Configuration",
             "category": "Network Diagnostics",
-            "description": "IPv6 Configuration: ipv6 configuration as structured JSON output.",
+            "description": "Show IPv6 addresses and interfaces.",
             "handler": "operations.ipv6_configuration",
             "cli_command": "ipv6-configuration",
             "dependencies": ["powershell", "ipconfig"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Default Gateway",
             "category": "Network Diagnostics",
-            "description": "Default Gateway: default gateway as structured JSON output.",
+            "description": "Report the default gateway.",
             "handler": "operations.default_gateway",
             "cli_command": "default-gateway",
             "dependencies": ["powershell", "ipconfig"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Internet Reachability",
             "category": "Network Diagnostics",
-            "description": "Internet Reachability: internet reachability as structured JSON output.",
+            "description": "Check whether the internet is reachable.",
             "handler": "operations.internet_reachability",
             "cli_command": "internet-reachability",
             "dependencies": ["powershell", "ipconfig"],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Proxy Configuration",
             "category": "Network Diagnostics",
-            "description": "Proxy Configuration: proxy configuration as structured JSON output.",
+            "description": "Show the configured system/web proxy.",
             "handler": "operations.proxy_configuration",
             "cli_command": "proxy-configuration",
             "dependencies": ["powershell", "ipconfig"],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Network Diagnostics Bundle",
             "category": "Network Diagnostics",
-            "description": "Network Diagnostics Bundle: network diagnostics bundle as structured JSON output.",
+            "description": "Run a bundle of network checks and summarise the results.",
             "handler": "operations.network_diagnostics_bundle",
             "cli_command": "network-diagnostics-bundle",
             "dependencies": ["powershell", "ipconfig"],

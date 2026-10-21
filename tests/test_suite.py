@@ -47,6 +47,13 @@ def main():
         assert (root / "joined.txt").read_text(encoding="utf-8") == "hello world\nhello suite\n"
     assert reg.run_tool("length-converter", ["1", "km", "m"]) == 0
     assert reg.run_tool("temperature-converter", ["32", "f", "c"]) == 0
+    with tempfile.TemporaryDirectory() as td_out:
+        f = Path(td_out) / "o.txt"
+        f.write_text("alpha beta gamma\n", encoding="utf-8")
+        captured: list[str] = []
+        assert reg.run_tool("count", [str(f)], output=captured.append) == 0
+        assert captured, "output callback received no lines"
+        assert all("\n" not in line for line in captured)
     with tempfile.TemporaryDirectory() as td2:
         root2 = Path(td2)
         (root2 / "data.csv").write_text("name,age\nAlice,30\nBob,40\nAlice,30\n", encoding="utf-8")

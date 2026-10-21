@@ -3,7 +3,7 @@ def register_tools():
         {
             "name": "Download Manager",
             "category": "Network Tools",
-            "description": "Download Manager: download manager as structured JSON output.",
+            "description": "Download a URL to a file using streaming I/O.",
             "handler": "download.run",
             "cli_command": "download",
             "dependencies": [],
@@ -11,7 +11,7 @@ def register_tools():
         {
             "name": "HTTP Server",
             "category": "Network Tools",
-            "description": "HTTP Server: http server as structured JSON output.",
+            "description": "Serve a local directory over HTTP on 127.0.0.1.",
             "handler": "http_server.run",
             "cli_command": "http-serve",
             "dependencies": [],
@@ -19,7 +19,7 @@ def register_tools():
         {
             "name": "FTP Client",
             "category": "Network Tools",
-            "description": "FTP Client: ftp client as structured JSON output.",
+            "description": "Upload or download a file over FTP.",
             "handler": "ftp_client.run",
             "cli_command": "ftp",
             "dependencies": [],

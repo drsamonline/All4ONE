@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "DOCX Metadata",
             "category": "Office Tools",
-            "description": "DOCX Metadata: docx metadata as structured JSON output.",
+            "description": "Read core properties (title, author, dates) from a DOCX file (requires python-docx).",
             "handler": "operations.docx_metadata",
             "cli_command": "docx-metadata",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "XLSX Metadata",
             "category": "Office Tools",
-            "description": "XLSX Metadata: xlsx metadata as structured JSON output.",
+            "description": "Read workbook properties and sheet names from an XLSX file (requires openpyxl).",
             "handler": "operations.xlsx_metadata",
             "cli_command": "xlsx-metadata",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "XLSX Sheet Lister",
             "category": "Office Tools",
-            "description": "XLSX Sheet Lister: xlsx sheet lister as structured JSON output.",
+            "description": "List the sheets in an XLSX workbook (requires openpyxl).",
             "handler": "operations.xlsx_sheet_lister",
             "cli_command": "xlsx-sheet-lister",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Office File Inventory",
             "category": "Office Tools",
-            "description": "Enumerate an inventory of office file inventory.",
+            "description": "List Office documents in a folder with basic properties.",
             "handler": "operations.office_file_inventory",
             "cli_command": "office-file-inventory",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],

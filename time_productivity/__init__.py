@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Stopwatch",
         "category": "Time & Productivity",
-        "description": "Stopwatch: stopwatch as structured JSON output.",
+        "description": "Run a simple stopwatch.",
         "handler": "operations.stopwatch",
         "cli_command": "stopwatch",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "Countdown",
         "category": "Time & Productivity",
-        "description": "Countdown: countdown as structured JSON output.",
+        "description": "Run a countdown timer.",
         "handler": "operations.countdown",
         "cli_command": "countdown",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Calendar Month",
         "category": "Time & Productivity",
-        "description": "Calendar Month: calendar month as structured JSON output.",
+        "description": "Print a calendar for a month.",
         "handler": "operations.calendar_month",
         "cli_command": "calendar-month",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "Calendar Year",
         "category": "Time & Productivity",
-        "description": "Calendar Year: calendar year as structured JSON output.",
+        "description": "Print a calendar for a year.",
         "handler": "operations.calendar_year",
         "cli_command": "calendar-year",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "Week Number",
         "category": "Time & Productivity",
-        "description": "Week Number: week number as structured JSON output.",
+        "description": "Report the ISO week number for a date.",
         "handler": "operations.week_number",
         "cli_command": "week-number",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Day Of Year",
         "category": "Time & Productivity",
-        "description": "Day Of Year: day of year as structured JSON output.",
+        "description": "Report the day-of-year number for a date.",
         "handler": "operations.day_of_year",
         "cli_command": "day-of-year",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "Pomodoro Timer",
         "category": "Time & Productivity",
-        "description": "Pomodoro Timer: pomodoro timer as structured JSON output.",
+        "description": "Run a Pomodoro work/break timer.",
         "handler": "operations.pomodoro_timer",
         "cli_command": "pomodoro-timer",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "Time Zone Offset",
         "category": "Time & Productivity",
-        "description": "Time Zone Offset: time zone offset as structured JSON output.",
+        "description": "Report the UTC offset for a time zone.",
         "handler": "operations.time_zone_offset",
         "cli_command": "time-zone-offset",
         "dependencies": []

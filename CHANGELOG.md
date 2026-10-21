@@ -6,6 +6,53 @@ lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 `core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
 `audit.py` fails the release audit if these drift apart.
 
+## [3.0.6] — 2026-10-21
+
+### Fixed
+- **Repository hygiene restored (again).** `.gitignore` had regressed to a
+  7-byte `(empty)` stub, letting `__pycache__/build_single_exe.cpython-312.pyc`
+  and a non-empty `logs/utility_suite.log` be force-added back into the tree —
+  the exact failure documented as fixed in earlier passes. Both artifacts are
+  removed, a complete `.gitignore` is restored, and `audit.py` now **fails** if
+  any required ignore pattern is missing, so the regression cannot recur
+  silently.
+- **`audit.py` tracked-artifact gate hardened.** It ran `git ls-files` without
+  checking the exit code, so on a machine without git the output was empty and
+  the gate passed vacuously. A missing or failing git is now a hard audit
+  failure, and `.gitignore`'s content is verified directly.
+- **Shell-injection surface removed** in `system_utils/net_reset.py`: the
+  adapter name is validated against a strict allow-list before it is used in an
+  elevated PowerShell command, matching the "no shell strings" guarantee.
+- **Dead code removed** from `core/capability_checker.py` (a `… or True`
+  tautology in the `python` dependency probe).
+- **`tests/test_all_tools.py`** now writes its sweep report to the system temp
+  directory instead of `logs/` inside the source tree.
+
+### Added
+- **Live output streaming in the GUI.** `core.tool_registry.run_tool()` now
+  forwards a tool's stdout/stderr to the output callback line-by-line as it is
+  produced, instead of buffering the whole run and replaying it on completion,
+  so long-running tools (servers, watchers, monitors) show output live. A
+  regression test covers the streaming path.
+- **New audit gates:** rejection of templated tool descriptions, a `.gitignore`
+  content check, and version-sync coverage for `version_info.txt` (prodvers
+  tuple), the README version badge, `AUTHORS.md`, `AUDIT_REPORT.txt` and
+  `COMPILATION.md`.
+- **Dependabot configuration** (`.github/dependabot.yml`) for GitHub Actions
+  and pip.
+
+### Changed
+- **All 551 tool descriptions rewritten.** 240 machine-generated placeholders
+  ("X: x as structured JSON output.", "Locate <thing> on disk or in scope.",
+  "Compile a readable … report report.") were replaced with unique,
+  human-written one-liners; `audit.py` now rejects the known templates.
+- **Version bumped to 3.0.6** across `VERSION.txt`, `config.json`,
+  `core/__init__.py`, `build_onefile.spec`, `version_info.txt`, the README
+  badge and all docs.
+- **Claims aligned with the code.** The README and DEVELOPER_GUIDE now describe
+  the shared-engine architecture honestly, and the stale "539 expansion tools"
+  docstring in `core/extended_ops.py` was corrected.
+
 ## [3.0.5.1] — 2026-10-01
 
 ### Fixed

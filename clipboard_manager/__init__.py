@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Clipboard Read",
         "category": "Clipboard Manager",
-        "description": "Clipboard Read: clipboard read as structured JSON output.",
+        "description": "Print the current clipboard text (requires pyperclip).",
         "handler": "operations.clipboard_read",
         "cli_command": "clipboard-read",
         "dependencies": [
@@ -16,7 +16,7 @@ def register_tools():
     {
         "name": "Clipboard Write",
         "category": "Clipboard Manager",
-        "description": "Clipboard Write: clipboard write as structured JSON output.",
+        "description": "Replace the clipboard contents with the supplied text.",
         "handler": "operations.clipboard_write",
         "cli_command": "clipboard-write",
         "dependencies": [
@@ -26,7 +26,7 @@ def register_tools():
     {
         "name": "Clipboard Clear",
         "category": "Clipboard Manager",
-        "description": "Clipboard Clear: clipboard clear as structured JSON output.",
+        "description": "Empty the clipboard.",
         "handler": "operations.clipboard_clear",
         "cli_command": "clipboard-clear",
         "dependencies": [
@@ -36,7 +36,7 @@ def register_tools():
     {
         "name": "Clipboard Append",
         "category": "Clipboard Manager",
-        "description": "Clipboard Append: clipboard append as structured JSON output.",
+        "description": "Append text to the existing clipboard contents.",
         "handler": "operations.clipboard_append",
         "cli_command": "clipboard-append",
         "dependencies": [
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Clipboard Text Length",
         "category": "Clipboard Manager",
-        "description": "Clipboard Text Length: clipboard text length as structured JSON output.",
+        "description": "Report character, word and line counts for the clipboard text.",
         "handler": "operations.clipboard_text_length",
         "cli_command": "clipboard-text-length",
         "dependencies": [
@@ -76,7 +76,7 @@ def register_tools():
     {
         "name": "Clipboard Save",
         "category": "Clipboard Manager",
-        "description": "Clipboard Save: clipboard save as structured JSON output.",
+        "description": "Save the clipboard text to a file.",
         "handler": "operations.clipboard_save",
         "cli_command": "clipboard-save",
         "dependencies": [
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Clipboard Load",
         "category": "Clipboard Manager",
-        "description": "Clipboard Load: clipboard load as structured JSON output.",
+        "description": "Load a file's contents into the clipboard.",
         "handler": "operations.clipboard_load",
         "cli_command": "clipboard-load",
         "dependencies": [
@@ -96,7 +96,7 @@ def register_tools():
     {
         "name": "Clipboard Normalize",
         "category": "Clipboard Manager",
-        "description": "Clipboard Normalize: clipboard normalize as structured JSON output.",
+        "description": "Normalise clipboard whitespace and line endings.",
         "handler": "operations.clipboard_normalize",
         "cli_command": "clipboard-normalize",
         "dependencies": [
@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "Clipboard Paste As Plain",
         "category": "Clipboard",
-        "description": "Clipboard Paste As Plain: clipboard paste as plain as structured JSON output.",
+        "description": "Strip formatting and paste the clipboard as plain text.",
         "handler": "operations.clipboard_paste_as_plain",
         "cli_command": "clipboard-paste-plain",
         "dependencies": [
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Clipboard Hash",
         "category": "Clipboard",
-        "description": "Clipboard Hash: clipboard hash as structured JSON output.",
+        "description": "Compute a hash of the current clipboard text.",
         "handler": "operations.clipboard_hash",
         "cli_command": "clipboard-hash",
         "dependencies": [

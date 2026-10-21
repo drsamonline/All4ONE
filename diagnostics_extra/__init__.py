@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "USB Device Inventory",
             "category": "Extended Diagnostics",
-            "description": "Enumerate an inventory of usb device inventory.",
+            "description": "List connected USB devices.",
             "handler": "operations.usb_device_inventory",
             "cli_command": "usb-device-inventory",
             "dependencies": ["powershell"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Bluetooth Device Inventory",
             "category": "Extended Diagnostics",
-            "description": "Enumerate an inventory of bluetooth device inventory.",
+            "description": "List Bluetooth devices known to the system.",
             "handler": "operations.bluetooth_device_inventory",
             "cli_command": "bluetooth-device-inventory",
             "dependencies": ["powershell"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Printer Inventory",
             "category": "Extended Diagnostics",
-            "description": "Enumerate an inventory of printer inventory.",
+            "description": "List installed printers.",
             "handler": "operations.printer_inventory",
             "cli_command": "printer-inventory",
             "dependencies": ["powershell"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Display Inventory",
             "category": "Extended Diagnostics",
-            "description": "Enumerate an inventory of display inventory.",
+            "description": "List display adapters and monitors.",
             "handler": "operations.display_inventory",
             "cli_command": "display-inventory",
             "dependencies": ["powershell"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Audio Device Inventory",
             "category": "Extended Diagnostics",
-            "description": "Enumerate an inventory of audio device inventory.",
+            "description": "List audio playback and recording devices.",
             "handler": "operations.audio_device_inventory",
             "cli_command": "audio-device-inventory",
             "dependencies": ["powershell"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "PATH Deduplication Report",
             "category": "Extended Diagnostics",
-            "description": "Compile a readable path deduplication report report.",
+            "description": "Report duplicate entries in the system PATH.",
             "handler": "operations.path_deduplication_report",
             "cli_command": "path-deduplication-report",
             "dependencies": ["powershell"],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Crash Dump Inventory",
             "category": "Extended Diagnostics",
-            "description": "Enumerate an inventory of crash dump inventory.",
+            "description": "List crash dump files on the system.",
             "handler": "operations.crash_dump_inventory",
             "cli_command": "crash-dump-inventory",
             "dependencies": ["powershell"],
@@ -150,7 +150,7 @@ def register_tools():
         {
             "name": "Log Directory Inventory",
             "category": "Extended Diagnostics",
-            "description": "Enumerate an inventory of log directory inventory.",
+            "description": "List log files and their sizes in a directory.",
             "handler": "operations.log_directory_inventory",
             "cli_command": "log-directory-inventory",
             "dependencies": ["powershell"],
@@ -158,7 +158,7 @@ def register_tools():
         {
             "name": "Utility Suite Diagnostics",
             "category": "Extended Diagnostics",
-            "description": "Utility Suite Diagnostics: utility suite diagnostics as structured JSON output.",
+            "description": "Summarise the Utility Suite environment: Python, platform, paths and tool counts.",
             "handler": "operations.utility_suite_diagnostics",
             "cli_command": "utility-suite-diagnostics",
             "dependencies": ["powershell"],

@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "File Permission Report",
         "category": "Security Auditing",
-        "description": "Compile a readable file permission report report.",
+        "description": "Report file permissions for files in a folder (requires PowerShell).",
         "handler": "operations.file_permission_report",
         "cli_command": "file-permission-report",
         "dependencies": [
@@ -16,7 +16,7 @@ def register_tools():
     {
         "name": "World Writable Finder",
         "category": "Security Auditing",
-        "description": "Locate world writable on disk or in scope.",
+        "description": "Find world-writable files and folders (requires PowerShell).",
         "handler": "operations.world_writable_finder",
         "cli_command": "world-writable-finder",
         "dependencies": [
@@ -26,7 +26,7 @@ def register_tools():
     {
         "name": "Executable Finder",
         "category": "Security Auditing",
-        "description": "Locate executable on disk or in scope.",
+        "description": "Find executable files in a folder tree (requires PowerShell).",
         "handler": "operations.executable_finder",
         "cli_command": "executable-finder",
         "dependencies": [
@@ -36,7 +36,7 @@ def register_tools():
     {
         "name": "Hidden File Finder",
         "category": "Security Auditing",
-        "description": "Locate hidden file on disk or in scope.",
+        "description": "Find hidden files in a folder tree (requires PowerShell).",
         "handler": "operations.hidden_file_finder",
         "cli_command": "hidden-file-finder",
         "dependencies": [
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Sensitive Filename Finder",
         "category": "Security Auditing",
-        "description": "Locate sensitive filename on disk or in scope.",
+        "description": "Find files whose names suggest secrets (password, token, credential).",
         "handler": "operations.sensitive_filename_finder",
         "cli_command": "sensitive-filename-finder",
         "dependencies": [
@@ -56,7 +56,7 @@ def register_tools():
     {
         "name": "Credential Filename Finder",
         "category": "Security Auditing",
-        "description": "Locate credential filename on disk or in scope.",
+        "description": "Find files whose names suggest stored credentials.",
         "handler": "operations.credential_filename_finder",
         "cli_command": "credential-filename-finder",
         "dependencies": [
@@ -66,7 +66,7 @@ def register_tools():
     {
         "name": "Private Key Filename Finder",
         "category": "Security Auditing",
-        "description": "Locate private key filename on disk or in scope.",
+        "description": "Find files that look like private keys.",
         "handler": "operations.private_key_filename_finder",
         "cli_command": "private-key-filename-finder",
         "dependencies": [
@@ -146,7 +146,7 @@ def register_tools():
     {
         "name": "Local Account Inventory",
         "category": "Security Auditing",
-        "description": "Enumerate an inventory of local account inventory.",
+        "description": "List local user accounts (requires PowerShell).",
         "handler": "operations.local_account_inventory",
         "cli_command": "local-account-inventory",
         "dependencies": [
@@ -156,7 +156,7 @@ def register_tools():
     {
         "name": "Administrator Group Inventory",
         "category": "Security Auditing",
-        "description": "Enumerate an inventory of administrator group inventory.",
+        "description": "List members of the local Administrators group (requires PowerShell).",
         "handler": "operations.administrator_group_inventory",
         "cli_command": "administrator-group-inventory",
         "dependencies": [
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "Service Security Report",
         "category": "Security Auditing",
-        "description": "Compile a readable service security report report.",
+        "description": "Report Windows services and their security-relevant settings.",
         "handler": "operations.service_security_report",
         "cli_command": "service-security-report",
         "dependencies": [
@@ -204,7 +204,7 @@ def register_tools():
     {
         "name": "Temp Integrity Baseline",
         "category": "Security Audit",
-        "description": "Temp Integrity Baseline: temp integrity baseline as structured JSON output.",
+        "description": "Record or verify SHA-256 baselines for files, stored in the temp directory.",
         "handler": "operations.file_integrity_baseline",
         "cli_command": "integrity-baseline-plus",
         "dependencies": []
@@ -212,7 +212,7 @@ def register_tools():
     {
         "name": "Recent Docs Privacy Report",
         "category": "Security Audit",
-        "description": "Compile a readable recent docs privacy report report.",
+        "description": "Report recently opened documents from the Windows Recent folder.",
         "handler": "operations.recent_docs_privacy_report",
         "cli_command": "recent-docs-report",
         "dependencies": []

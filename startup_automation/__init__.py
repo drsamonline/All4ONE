@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Startup Entry Inventory",
             "category": "Startup & Automation",
-            "description": "Enumerate an inventory of startup entry inventory.",
+            "description": "List programs configured to start with Windows.",
             "handler": "operations.startup_entry_inventory",
             "cli_command": "startup-entry-inventory",
             "dependencies": ["schtasks"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Scheduled Task Run",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Run: scheduled task run as structured JSON output.",
+            "description": "Run an existing Windows scheduled task (requires schtasks).",
             "handler": "operations.scheduled_task_run",
             "cli_command": "scheduled-task-run",
             "dependencies": ["schtasks"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Scheduled Task Disable",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Disable: scheduled task disable as structured JSON output.",
+            "description": "Disable a Windows scheduled task.",
             "handler": "operations.scheduled_task_disable",
             "cli_command": "scheduled-task-disable",
             "dependencies": ["schtasks"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Scheduled Task Enable",
             "category": "Startup & Automation",
-            "description": "Scheduled Task Enable: scheduled task enable as structured JSON output.",
+            "description": "Enable a Windows scheduled task.",
             "handler": "operations.scheduled_task_enable",
             "cli_command": "scheduled-task-enable",
             "dependencies": ["schtasks"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Automation Manifest",
             "category": "Startup & Automation",
-            "description": "Automation Manifest: automation manifest as structured JSON output.",
+            "description": "Emit a manifest of the automation entries Utility Suite can manage.",
             "handler": "operations.automation_manifest",
             "cli_command": "automation-manifest",
             "dependencies": ["schtasks"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Startup Report",
             "category": "Startup & Automation",
-            "description": "Compile a readable startup report report.",
+            "description": "Summarise Windows startup entries and their locations.",
             "handler": "operations.startup_report",
             "cli_command": "startup-report",
             "dependencies": ["schtasks"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Logon Task Report",
             "category": "Startup & Automation",
-            "description": "Compile a readable logon task report report.",
+            "description": "Report scheduled tasks that run at logon.",
             "handler": "operations.logon_task_report",
             "cli_command": "logon-task-report",
             "dependencies": ["schtasks"],

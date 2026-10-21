@@ -3,7 +3,7 @@ def register_tools():
         {
             "name": "Line/Word Counter",
             "category": "Document & Text",
-            "description": "Line/Word Counter: line/word counter as structured JSON output.",
+            "description": "Count lines, words and characters in a text file.",
             "handler": "counter.run",
             "cli_command": "count",
             "dependencies": [],
@@ -11,7 +11,7 @@ def register_tools():
         {
             "name": "PDF Text Extractor",
             "category": "Document & Text",
-            "description": "PDF Text Extractor: pdf text extractor as structured JSON output.",
+            "description": "Extract text from a PDF (requires pdftotext).",
             "handler": "pdf_extract.run",
             "cli_command": "pdf-text",
             "dependencies": ["pdftotext"],
@@ -19,7 +19,7 @@ def register_tools():
         {
             "name": "Encoding Converter",
             "category": "Document & Text",
-            "description": "Encoding Converter: encoding converter as structured JSON output.",
+            "description": "Convert a text file between encodings.",
             "handler": "encoding.run",
             "cli_command": "encoding",
             "dependencies": [],

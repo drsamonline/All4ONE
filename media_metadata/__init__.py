@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Media Size Report",
             "category": "Media Metadata",
-            "description": "Compile a readable media size report report.",
+            "description": "Report the size of media files in a folder.",
             "handler": "operations.media_size_report",
             "cli_command": "media-size-report",
             "dependencies": ["ffprobe"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Media Duration Inventory",
             "category": "Media Metadata",
-            "description": "Enumerate an inventory of media duration inventory.",
+            "description": "List media files with their durations (requires ffprobe).",
             "handler": "operations.media_duration_inventory",
             "cli_command": "media-duration-inventory",
             "dependencies": ["ffprobe"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Media Duplicate Finder",
             "category": "Media Metadata",
-            "description": "Locate media duplicate on disk or in scope.",
+            "description": "Find duplicate media files by hash.",
             "handler": "operations.media_duplicate_finder",
             "cli_command": "media-duplicate-finder",
             "dependencies": ["ffprobe"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Media Hash Inventory",
             "category": "Media Metadata",
-            "description": "Enumerate an inventory of media hash inventory.",
+            "description": "Hash the media files in a folder.",
             "handler": "operations.media_hash_inventory",
             "cli_command": "media-hash-inventory",
             "dependencies": ["ffprobe"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Media Folder Report",
             "category": "Media Metadata",
-            "description": "Compile a readable media folder report report.",
+            "description": "Summarise a folder of media files by type and size.",
             "handler": "operations.media_folder_report",
             "cli_command": "media-folder-report",
             "dependencies": ["ffprobe"],

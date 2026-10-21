@@ -14,6 +14,37 @@ from .capability_checker import CapabilityChecker
 logger = logging.getLogger(__name__)
 
 
+class _LineWriter(io.TextIOBase):
+    """Stream complete lines to a callback as they are written.
+
+    Used to redirect a tool's stdout/stderr to a live consumer (the GUI) so
+    long-running tools show output as it happens instead of buffering the whole
+    run in memory until the handler returns.
+    """
+
+    def __init__(self, emit: Callable[[str], None]) -> None:
+        self._emit = emit
+        self._buf = ""
+
+    def write(self, text: str) -> int:
+        self._buf += text
+        while "\n" in self._buf:
+            line, self._buf = self._buf.split("\n", 1)
+            self._emit(line)
+        return len(text)
+
+    def flush(self) -> None:
+        if self._buf:
+            self._emit(self._buf)
+            self._buf = ""
+
+    def writable(self) -> bool:
+        return True
+
+    def isatty(self) -> bool:
+        return False
+
+
 class ToolRegistry:
     def __init__(self, tools: list[dict[str, Any]]) -> None:
         self.tools: dict[str, dict[str, Any]] = {}
@@ -99,11 +130,10 @@ class ToolRegistry:
             if output is None:
                 result = handler(args or [])
             else:
-                buffer = io.StringIO()
-                with contextlib.redirect_stdout(buffer), contextlib.redirect_stderr(buffer):
+                writer = _LineWriter(output)
+                with contextlib.redirect_stdout(writer), contextlib.redirect_stderr(writer):
                     result = handler(args or [])
-                for line in buffer.getvalue().splitlines():
-                    output(line)
+                writer.flush()
             return int(result or 0)
         except SystemExit as exc:
             return int(exc.code or 0)

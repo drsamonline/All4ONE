@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "File Age Histogram",
             "category": "Storage Analytics",
-            "description": "File Age Histogram: file age histogram as structured JSON output.",
+            "description": "Bucket files by age and print a histogram.",
             "handler": "operations.file_age_histogram",
             "cli_command": "file-age-histogram",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Extension Statistics",
             "category": "Storage Analytics",
-            "description": "Extension Statistics: extension statistics as structured JSON output.",
+            "description": "Count files and total size per extension.",
             "handler": "operations.extension_statistics",
             "cli_command": "extension-statistics",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Duplicate Name Finder",
             "category": "Storage Analytics",
-            "description": "Locate duplicate name on disk or in scope.",
+            "description": "Find files that share the same name across a folder tree.",
             "handler": "operations.duplicate_name_finder",
             "cli_command": "duplicate-name-finder",
             "dependencies": [],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Zero Byte Finder",
             "category": "Storage Analytics",
-            "description": "Locate zero byte on disk or in scope.",
+            "description": "Find empty (zero-byte) files.",
             "handler": "operations.zero_byte_finder",
             "cli_command": "zero-byte-finder",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Read Only Finder",
             "category": "Storage Analytics",
-            "description": "Locate read only on disk or in scope.",
+            "description": "Find read-only files.",
             "handler": "operations.read_only_finder",
             "cli_command": "read-only-finder",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Hidden File Report",
             "category": "Storage Analytics",
-            "description": "Compile a readable hidden file report report.",
+            "description": "Report hidden files in a folder tree.",
             "handler": "operations.hidden_file_report",
             "cli_command": "hidden-file-report",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Symlink Finder",
             "category": "Storage Analytics",
-            "description": "Locate symlink on disk or in scope.",
+            "description": "Find symbolic links in a folder tree.",
             "handler": "operations.symlink_finder",
             "cli_command": "symlink-finder",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Junction Finder",
             "category": "Storage Analytics",
-            "description": "Locate junction on disk or in scope.",
+            "description": "Find directory junctions in a folder tree.",
             "handler": "operations.junction_finder",
             "cli_command": "junction-finder",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Long Path Finder",
             "category": "Storage Analytics",
-            "description": "Locate long path on disk or in scope.",
+            "description": "Find paths that exceed the Windows length limit.",
             "handler": "operations.long_path_finder",
             "cli_command": "long-path-finder",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Old File Finder",
             "category": "Storage Analytics",
-            "description": "Locate old file on disk or in scope.",
+            "description": "Find files older than a threshold.",
             "handler": "operations.old_file_finder",
             "cli_command": "old-file-finder",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Recent File Finder",
             "category": "Storage Analytics",
-            "description": "Locate recent file on disk or in scope.",
+            "description": "Find recently modified files.",
             "handler": "operations.recent_file_finder",
             "cli_command": "recent-file-finder",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "File Size Histogram",
             "category": "Storage Analytics",
-            "description": "File Size Histogram: file size histogram as structured JSON output.",
+            "description": "Bucket files by size and print a histogram.",
             "handler": "operations.file_size_histogram",
             "cli_command": "file-size-histogram",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Storage Health Report",
             "category": "Storage Analytics",
-            "description": "Compile a readable storage health report report.",
+            "description": "Summarise storage usage and health for a drive.",
             "handler": "operations.storage_health_report",
             "cli_command": "storage-health-report",
             "dependencies": [],

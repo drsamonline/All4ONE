@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Video Duration",
             "category": "Video Tools",
-            "description": "Video Duration: video duration as structured JSON output.",
+            "description": "Report the duration of a video file (requires ffprobe).",
             "handler": "operations.video_duration",
             "cli_command": "video-duration",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Video Screenshot",
             "category": "Video Tools",
-            "description": "Video Screenshot: video screenshot as structured JSON output.",
+            "description": "Extract a still frame from a video (requires ffmpeg).",
             "handler": "operations.video_screenshot",
             "cli_command": "video-screenshot",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Video Concatenator",
             "category": "Video Tools",
-            "description": "Video Concatenator: video concatenator as structured JSON output.",
+            "description": "Join video files into one (requires ffmpeg).",
             "handler": "operations.video_concatenator",
             "cli_command": "video-concatenator",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Video GIF Maker",
             "category": "Video Tools",
-            "description": "Video GIF Maker: video gif maker as structured JSON output.",
+            "description": "Convert a video clip to an animated GIF (requires ffmpeg).",
             "handler": "operations.video_gif_maker",
             "cli_command": "video-gif-maker",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Video Thumbnail Sheet",
             "category": "Video Tools",
-            "description": "Video Thumbnail Sheet: video thumbnail sheet as structured JSON output.",
+            "description": "Build a thumbnail sheet from a video (requires ffmpeg).",
             "handler": "operations.video_thumbnail_sheet",
             "cli_command": "video-thumbnail-sheet",
             "dependencies": ["ffprobe", "ffmpeg"],

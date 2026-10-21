@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Drive Information",
             "category": "Advanced Disk Tools",
-            "description": "Drive Information: drive information as structured JSON output.",
+            "description": "List mounted drives with filesystem, size and free space.",
             "handler": "operations.drive_information",
             "cli_command": "drive-information",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Partition Information",
             "category": "Advanced Disk Tools",
-            "description": "Partition Information: partition information as structured JSON output.",
+            "description": "Show disk partitions and their sizes.",
             "handler": "operations.partition_information",
             "cli_command": "partition-information",
             "dependencies": [],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Disk Free Space",
             "category": "Advanced Disk Tools",
-            "description": "Disk Free Space: disk free space as structured JSON output.",
+            "description": "Report free and total space for a drive or mount point.",
             "handler": "operations.disk_free_space",
             "cli_command": "disk-free-space",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Disk Usage Top Files",
             "category": "Advanced Disk Tools",
-            "description": "Disk Usage Top Files: disk usage top files as structured JSON output.",
+            "description": "List the largest files under a directory.",
             "handler": "operations.disk_usage_top_files",
             "cli_command": "disk-usage-top-files",
             "dependencies": [],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Directory Size Tree",
             "category": "Advanced Disk Tools",
-            "description": "Directory Size Tree: directory size tree as structured JSON output.",
+            "description": "Print a size-annotated directory tree.",
             "handler": "operations.directory_size_tree",
             "cli_command": "directory-size-tree",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "NTFS Alternate Stream Finder",
             "category": "Advanced Disk Tools",
-            "description": "Locate ntfs alternate stream on disk or in scope.",
+            "description": "Find NTFS alternate data streams in a folder tree.",
             "handler": "operations.ntfs_alternate_stream_finder",
             "cli_command": "ntfs-alternate-stream-finder",
             "dependencies": [],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Large File Finder",
             "category": "Advanced Disk Tools",
-            "description": "Locate large file on disk or in scope.",
+            "description": "Find files larger than a given size.",
             "handler": "operations.large_file_finder",
             "cli_command": "large-file-finder",
             "dependencies": [],

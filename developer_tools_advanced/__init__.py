@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "Diff Text Files",
         "category": "Advanced Developer Tools",
-        "description": "Diff Text Files: diff text files as structured JSON output.",
+        "description": "Show a unified diff between two text files.",
         "handler": "operations.diff_text_files",
         "cli_command": "diff-text-files",
         "dependencies": []
@@ -182,7 +182,7 @@ def register_tools():
     {
         "name": "Base64 File Codec",
         "category": "Advanced Developer Tools",
-        "description": "Base64 File Codec: base64 file codec as structured JSON output.",
+        "description": "Base64-encode or decode a file.",
         "handler": "operations.base64_file_codec",
         "cli_command": "b64-file",
         "dependencies": []
@@ -190,7 +190,7 @@ def register_tools():
     {
         "name": "Hex Codec",
         "category": "Advanced Developer Tools",
-        "description": "Hex Codec: hex codec as structured JSON output.",
+        "description": "Encode or decode hex strings and files.",
         "handler": "operations.hex_codec",
         "cli_command": "hex-codec",
         "dependencies": []

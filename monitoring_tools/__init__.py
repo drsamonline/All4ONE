@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "System Load Report",
         "category": "Monitoring & Telemetry",
-        "description": "Compile a readable system load report report.",
+        "description": "Report current CPU and memory load (requires psutil).",
         "handler": "operations.system_load_report",
         "cli_command": "system-load-report",
         "dependencies": [
@@ -96,7 +96,7 @@ def register_tools():
     {
         "name": "Resource Trend CSV",
         "category": "Monitoring & Telemetry",
-        "description": "Resource Trend CSV: resource trend csv as structured JSON output.",
+        "description": "Record CPU/memory samples to a CSV for trend analysis.",
         "handler": "operations.resource_trend_csv",
         "cli_command": "resource-trend-csv",
         "dependencies": [
@@ -196,7 +196,7 @@ def register_tools():
     {
         "name": "Long Running Process Finder",
         "category": "Monitoring",
-        "description": "Locate long running process on disk or in scope.",
+        "description": "Find processes running longer than a threshold (requires psutil).",
         "handler": "operations.long_running_process_finder",
         "cli_command": "long-running-procs",
         "dependencies": [
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "Open File Handle Report",
         "category": "Monitoring",
-        "description": "Compile a readable open file handle report report.",
+        "description": "Report open file handles for a process (requires psutil).",
         "handler": "operations.open_file_handle_report",
         "cli_command": "open-handles",
         "dependencies": [

@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Executable Locator",
             "category": "Shell & Command Tools",
-            "description": "Locate executable paths on disk.",
+            "description": "Locate the full path of an executable on PATH.",
             "handler": "operations.executable_locator",
             "cli_command": "executable-locator",
             "dependencies": [],
@@ -142,7 +142,7 @@ def register_tools():
         {
             "name": "Command Availability Scan",
             "category": "Shell & Command Tools",
-            "description": "Command Availability Scan: command availability scan as structured JSON output.",
+            "description": "Check which of the supplied commands are available on PATH.",
             "handler": "operations.command_availability_scan",
             "cli_command": "command-availability-scan",
             "dependencies": [],

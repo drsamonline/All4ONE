@@ -128,6 +128,17 @@ def main():
         problems.append("Duplicate tool names")
     if len(set(descs)) < len(descs) * 0.70:
         problems.append("Too many repeated descriptions; catalogue needs differentiation")
+    # Uniqueness alone is not enough: a catalogue of unique-but-machine-generated
+    # strings ("X: x as structured JSON output.") still reads as boilerplate to
+    # users, so reject the known templates explicitly.
+    _TEMPLATE = re.compile(
+        r"as structured JSON output\.$|report report\b|inventory of | on disk or in scope",
+        re.IGNORECASE,
+    )
+    for pack, t in all_tools:
+        desc = str(t.get("description", ""))
+        if _TEMPLATE.search(desc):
+            problems.append(f'TEMPLATED DESCRIPTION: {pack}/{t.get("name")}: {desc}')
     for pack, t in all_tools:
         deps = t.get("dependencies", []) or []
         if any(not isinstance(d, str) or not d.strip() for d in deps):
@@ -176,16 +187,51 @@ def main():
     # artifacts made this gate fail spuriously on every plain `python audit.py`
     # run (it could only ever pass under `python -B`). Tracked .pyc files are
     # still caught, and ZIP CACHE / release checks below remain unchanged.
-    tracked = subprocess.run(
-        ["git", "-C", str(ROOT), "ls-files"], capture_output=True, text=True
-    ).stdout.splitlines()
-    if any("__pycache__" in line or line.endswith(".pyc") for line in tracked):
-        problems.append("Build tree contains tracked __pycache__/.pyc files")
-    # Committed runtime logs are clutter too (an empty logs/utility_suite.log
-    # once got force-added and shipped in the release tree). logs/ must track
-    # only its .gitkeep placeholder.
-    if any(line.startswith("logs/") and not line.endswith(".gitkeep") for line in tracked):
-        problems.append("Tracked runtime log files under logs/ (only .gitkeep may be committed)")
+    #
+    # This gate REQUIRES git: without a working `git ls-files` it cannot tell
+    # tracked from untracked, and a silent empty result previously let a
+    # contaminated tree pass as clean. A missing/failing git is now a hard
+    # failure rather than a silent pass.
+    try:
+        git_proc = subprocess.run(
+            ["git", "-C", str(ROOT), "ls-files"], capture_output=True, text=True
+        )
+    except FileNotFoundError:
+        problems.append(
+            "GIT UNAVAILABLE: `git ls-files` could not run, so the tracked-artifact "
+            "gate cannot be evaluated. Install git and re-run the audit."
+        )
+        tracked = None
+    else:
+        if git_proc.returncode != 0:
+            problems.append(
+                "GIT ERROR: `git ls-files` exited "
+                f"{git_proc.returncode}: {git_proc.stderr.strip()}"
+            )
+            tracked = None
+        else:
+            tracked = git_proc.stdout.splitlines()
+    if tracked is not None:
+        if any("__pycache__" in line or line.endswith(".pyc") for line in tracked):
+            problems.append("Build tree contains tracked __pycache__/.pyc files")
+        # Committed runtime logs are clutter too (an empty logs/utility_suite.log
+        # once got force-added and shipped in the release tree). logs/ must track
+        # only its .gitkeep placeholder.
+        if any(line.startswith("logs/") and not line.endswith(".gitkeep") for line in tracked):
+            problems.append("Tracked runtime log files under logs/ (only .gitkeep may be committed)")
+
+    # .gitignore content gate: a present-but-empty or truncated .gitignore has
+    # twice let build/runtime artifacts be force-added back into the tree, so
+    # require the rules that keep the tree clean rather than merely checking
+    # that the file exists.
+    gitignore_path = ROOT / ".gitignore"
+    if not gitignore_path.exists():
+        problems.append(".gitignore is missing")
+    else:
+        gitignore_text = gitignore_path.read_text(encoding="utf-8")
+        for needed in ("__pycache__", "*.py[cod]", "logs/"):
+            if needed not in gitignore_text:
+                problems.append(f".gitignore is missing the required pattern '{needed}'")
 
     # Version-string consistency: VERSION.txt is the single source of
     # truth. This check exists because a stale hardcoded version in
@@ -223,6 +269,18 @@ def main():
                 # shared prefix instead of exact equality.
                 ROOT / "build_onefile.spec", r"# Utility Suite (\d+\.\d+(?:\.\d+)?)"
             ),
+            'AUTHORS.md "Current release"': read_literal(
+                ROOT / "AUTHORS.md", r"Current release:\s*\*\*([\d.]+)\*\*"
+            ),
+            "AUDIT_REPORT.txt title": read_literal(
+                ROOT / "AUDIT_REPORT.txt", r"^Utility Suite ([\d.]+)"
+            ),
+            "COMPILATION.md version line": read_literal(
+                ROOT / "COMPILATION.md", r"\*\*Version:\*\*\s*([\d.]+)"
+            ),
+            "README.md version badge": read_literal(
+                ROOT / "README.md", r"badge/version-([\d.]+)-"
+            ),
         }
         for label, actual in checked.items():
             if label == "build_onefile.spec header":
@@ -236,6 +294,17 @@ def main():
                 problems.append(
                     f"VERSION MISMATCH: VERSION.txt says '{expected_version}' but "
                     f"{label} is '{actual}'"
+                )
+        # version_info.txt is generated from VERSION.txt by build_single_exe.py;
+        # verify the committed copy agrees so a hand-edited or stale resource
+        # cannot ship a wrong FileVersion in the Windows exe.
+        vi_prodvers = read_literal(ROOT / "version_info.txt", r"prodvers=\(([\d, ]+)\)")
+        if vi_prodvers is not None:
+            want = tuple(([int(p) for p in expected_version.split(".")] + [0, 0, 0, 0])[:4])
+            got = tuple(int(x) for x in vi_prodvers.replace(" ", "").split(","))
+            if got != want:
+                problems.append(
+                    f"VERSION MISMATCH: version_info.txt prodvers is {got} but VERSION.txt implies {want}"
                 )
     else:
         problems.append("VERSION.txt is missing")

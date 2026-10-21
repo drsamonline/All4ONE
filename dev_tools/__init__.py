@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "JSON Formatter",
         "category": "Developer Tools",
-        "description": "JSON Formatter: json formatter as structured JSON output.",
+        "description": "Pretty-print and validate a JSON document.",
         "handler": "json_fmt.run",
         "cli_command": "json-format",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "Binary Hex Viewer",
         "category": "Developer Tools",
-        "description": "Binary Hex Viewer: binary hex viewer as structured JSON output.",
+        "description": "Show a file as a hex dump with ASCII alongside.",
         "handler": "hex_view.run",
         "cli_command": "hexview",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "File Type Detector",
         "category": "Developer Tools",
-        "description": "File Type Detector: file type detector as structured JSON output.",
+        "description": "Detect a file's type from its magic bytes rather than its extension.",
         "handler": "file_type.run",
         "cli_command": "filetype",
         "dependencies": []

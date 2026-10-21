@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Disk Cleanup",
         "category": "Maintenance",
-        "description": "Disk Cleanup: disk cleanup as structured JSON output.",
+        "description": "Launch the Windows Disk Cleanup utility.",
         "handler": "cleanup.run",
         "cli_command": "cleanmgr",
         "dependencies": [
@@ -16,7 +16,7 @@ def register_tools():
     {
         "name": "Temp File Cleaner",
         "category": "Maintenance",
-        "description": "Temp File Cleaner: temp file cleaner as structured JSON output.",
+        "description": "Find and remove temporary files.",
         "handler": "temp_clean.run",
         "cli_command": "temp-clean",
         "dependencies": []
@@ -24,7 +24,7 @@ def register_tools():
     {
         "name": "Junk File Finder",
         "category": "Maintenance",
-        "description": "Junk File Finder: junk file finder as structured JSON output.",
+        "description": "Locate common junk files and caches.",
         "handler": "junk_finder.run",
         "cli_command": "junk-find",
         "dependencies": []
@@ -40,7 +40,7 @@ def register_tools():
     {
         "name": "Broken Link Finder",
         "category": "Maintenance",
-        "description": "Locate broken link on disk or in scope.",
+        "description": "Find broken symlinks and shortcuts.",
         "handler": "operations.broken_link_finder",
         "cli_command": "broken-link-finder",
         "dependencies": []

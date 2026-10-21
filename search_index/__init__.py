@@ -3,7 +3,7 @@ def register_tools():
         {
             "name": "File Indexer",
             "category": "Search & Index",
-            "description": "File Indexer: file indexer as structured JSON output.",
+            "description": "Build a searchable index of a directory tree (SQLite-backed).",
             "handler": "indexer.run",
             "cli_command": "index",
             "dependencies": [],
@@ -11,7 +11,7 @@ def register_tools():
         {
             "name": "Fast Search",
             "category": "Search & Index",
-            "description": "Fast Search: fast search as structured JSON output.",
+            "description": "Search the index by filename.",
             "handler": "search.run",
             "cli_command": "search",
             "dependencies": [],
@@ -19,7 +19,7 @@ def register_tools():
         {
             "name": "Content Search",
             "category": "Search & Index",
-            "description": "Content Search: content search as structured JSON output.",
+            "description": "Search file contents for a pattern.",
             "handler": "content_search.run",
             "cli_command": "grep",
             "dependencies": [],

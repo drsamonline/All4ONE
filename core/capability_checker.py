@@ -122,7 +122,9 @@ class CapabilityChecker:
             else:
                 ok = False
         elif low == "python":
-            ok = shutil.which("python") is not None or shutil.which("python3") is not None or True
+            # The suite is itself running on a Python interpreter, so this
+            # dependency is always satisfied.
+            ok = True
         else:
             ok = shutil.which(raw) is not None
         self._cache[dependency] = ok

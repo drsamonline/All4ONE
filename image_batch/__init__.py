@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Image Batch Inventory",
             "category": "Batch Imaging",
-            "description": "Enumerate an inventory of image batch inventory.",
+            "description": "List the images in a folder with basic properties.",
             "handler": "operations.image_batch_inventory",
             "cli_command": "image-batch-inventory",
             "dependencies": ["Pillow"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Image Batch Dimensions",
             "category": "Batch Imaging",
-            "description": "Image Batch Dimensions: image batch dimensions as structured JSON output.",
+            "description": "Report the pixel dimensions of every image in a folder.",
             "handler": "operations.image_batch_dimensions",
             "cli_command": "image-batch-dimensions",
             "dependencies": ["Pillow"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Image Batch Extension Convert",
             "category": "Batch Imaging",
-            "description": "Image Batch Extension Convert: image batch extension convert as structured JSON output.",
+            "description": "Plan or perform a batch change of image file extensions.",
             "handler": "operations.image_batch_extension_convert",
             "cli_command": "image-batch-extension-convert",
             "dependencies": ["Pillow"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Image Batch Resize Plan",
             "category": "Batch Imaging",
-            "description": "Image Batch Resize Plan: image batch resize plan as structured JSON output.",
+            "description": "Produce a resize plan for a folder of images.",
             "handler": "operations.image_batch_resize_plan",
             "cli_command": "image-batch-resize-plan",
             "dependencies": ["Pillow"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Image Batch Rename Plan",
             "category": "Batch Imaging",
-            "description": "Image Batch Rename Plan: image batch rename plan as structured JSON output.",
+            "description": "Produce a consistent rename plan for a folder of images.",
             "handler": "operations.image_batch_rename_plan",
             "cli_command": "image-batch-rename-plan",
             "dependencies": ["Pillow"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Image Batch Hash",
             "category": "Batch Imaging",
-            "description": "Image Batch Hash: image batch hash as structured JSON output.",
+            "description": "Hash every image in a folder for deduplication or verification.",
             "handler": "operations.image_batch_hash",
             "cli_command": "image-batch-hash",
             "dependencies": ["Pillow"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Image Batch Duplicate Report",
             "category": "Batch Imaging",
-            "description": "Compile a readable image batch duplicate report report.",
+            "description": "Report duplicate images in a folder by hash.",
             "handler": "operations.image_batch_duplicate_report",
             "cli_command": "image-batch-duplicate-report",
             "dependencies": ["Pillow"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Image Batch Contact Sheet",
             "category": "Batch Imaging",
-            "description": "Image Batch Contact Sheet: image batch contact sheet as structured JSON output.",
+            "description": "Build a contact sheet from a folder of images.",
             "handler": "operations.image_batch_contact_sheet",
             "cli_command": "image-batch-contact-sheet",
             "dependencies": ["Pillow"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Image Batch Metadata Report",
             "category": "Batch Imaging",
-            "description": "Compile a readable image batch metadata report report.",
+            "description": "Report embedded metadata for images in a folder.",
             "handler": "operations.image_batch_metadata_report",
             "cli_command": "image-batch-metadata-report",
             "dependencies": ["Pillow"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Image Batch Orientation Report",
             "category": "Batch Imaging",
-            "description": "Compile a readable image batch orientation report report.",
+            "description": "Report the orientation (portrait/landscape) of images in a folder.",
             "handler": "operations.image_batch_orientation_report",
             "cli_command": "image-batch-orientation-report",
             "dependencies": ["Pillow"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Image Batch Cleanup Plan",
             "category": "Batch Imaging",
-            "description": "Image Batch Cleanup Plan: image batch cleanup plan as structured JSON output.",
+            "description": "Produce a cleanup plan for redundant or low-quality images.",
             "handler": "operations.image_batch_cleanup_plan",
             "cli_command": "image-batch-cleanup-plan",
             "dependencies": ["Pillow"],

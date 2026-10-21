@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Image Contact Sheet",
             "category": "Advanced Imaging",
-            "description": "Image Contact Sheet: image contact sheet as structured JSON output.",
+            "description": "Tile many images into a single contact sheet (requires Pillow).",
             "handler": "operations.image_contact_sheet",
             "cli_command": "image-contact-sheet",
             "dependencies": ["Pillow"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Image Montage Builder",
             "category": "Advanced Imaging",
-            "description": "Image Montage Builder: image montage builder as structured JSON output.",
+            "description": "Compose a montage from multiple images (requires Pillow).",
             "handler": "operations.image_montage_builder",
             "cli_command": "image-montage-builder",
             "dependencies": ["Pillow"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Image Border Adder",
             "category": "Advanced Imaging",
-            "description": "Image Border Adder: image border adder as structured JSON output.",
+            "description": "Add a uniform border around an image (requires Pillow).",
             "handler": "operations.image_border_adder",
             "cli_command": "image-border-adder",
             "dependencies": ["Pillow"],

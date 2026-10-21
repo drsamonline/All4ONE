@@ -118,8 +118,12 @@ def main():
         for cmd, detail in results["crash"]:
             print(f"  - {cmd}: {detail}")
 
-    with open(os.path.join(ROOT, "logs", "sweep_results.json"), "w") as f:
+    # Write the detailed results outside the source tree so running the sweep
+    # never leaves an artifact behind in the repository.
+    results_path = os.path.join(tempfile.gettempdir(), "us_sweep_results.json")
+    with open(results_path, "w") as f:
         json.dump(results, f, indent=2)
+    print(f"Detailed results written to {results_path}")
 
     return 1 if (results["timeout"] or results["traceback"] or results["crash"]) else 0
 

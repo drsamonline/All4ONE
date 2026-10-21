@@ -5,6 +5,9 @@
 ![PyInstaller](https://img.shields.io/badge/PyInstaller-6.x-orange?style=flat-square)
 ![Target](https://img.shields.io/badge/target-utility__suite.exe-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![CI build](https://img.shields.io/badge/GitHub%20Actions-Windows%20runner-brightgreen?style=flat-square&logo=githubactions&logoColor=white)
+![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
+
+**Version:** 3.0.6
 
 *Author: Dr. Sohil Momin, BHMS*
 
@@ -18,7 +21,7 @@ automatically — no manual action required — on:
 - **every push to `main`** → builds the exe, uploads it as a run artifact, and
   refreshes the floating `latest-build` pre-release (a stable download URL for
   the most recent build),
-- **a version tag** (e.g. `git tag v3.0.4 && git push origin v3.0.4`) → all of
+- **a version tag** (e.g. `git tag v3.0.6 && git push origin v3.0.6`) → all of
   the above *plus* an official GitHub Release with release notes, or
 - a manual **Actions** tab → **Build Windows executable** → **Run workflow**,
   if you ever want a one-off rebuild.
@@ -141,10 +144,12 @@ the exe -> Properties -> Details and you will see:
 | Company name / Author | Dr. Sohil Momin, BHMS |
 | Product name | Utility Suite |
 | File description | Utility Suite - 551 offline tools in one executable |
-| File/Product version | 3.0.4.0 / 3.0.4 |
+| File/Product version | 3.0.6.0 / 3.0.6 |
 | Legal copyright | Copyright (C) 2026 Dr. Sohil Momin, BHMS |
 
 When bumping the suite version, update the numbers in `version_info.txt`
 (both `filevers`/`prodvers` tuples and the string fields) alongside
-VERSION.txt, config.json and core/__init__.py — CI's version-sync gate checks
-the latter three; version_info.txt is checked by review.
+VERSION.txt, config.json and core/__init__.py. `build_single_exe.py`
+regenerates `version_info.txt` from VERSION.txt at the start of every build,
+and `audit.py` now verifies the committed `prodvers` tuple against VERSION.txt
+as well, so the embedded FileVersion can never drift from the release again.

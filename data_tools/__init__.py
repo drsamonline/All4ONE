@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "CSV Column Selector",
         "category": "Data & Structured Data",
-        "description": "CSV Column Selector: csv column selector as structured JSON output.",
+        "description": "Project selected columns from a CSV file.",
         "handler": "operations.csv_column_selector",
         "cli_command": "csv-column-selector",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "CSV Deduplicator",
         "category": "Data & Structured Data",
-        "description": "CSV Deduplicator: csv deduplicator as structured JSON output.",
+        "description": "Remove duplicate rows from a CSV file.",
         "handler": "operations.csv_deduplicator",
         "cli_command": "csv-deduplicator",
         "dependencies": []
@@ -54,7 +54,7 @@ def register_tools():
     {
         "name": "CSV Statistics",
         "category": "Data & Structured Data",
-        "description": "CSV Statistics: csv statistics as structured JSON output.",
+        "description": "Compute per-column statistics (count, min, max, mean) for a CSV file.",
         "handler": "operations.csv_statistics",
         "cli_command": "csv-statistics",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "CSV Transposer",
         "category": "Data & Structured Data",
-        "description": "CSV Transposer: csv transposer as structured JSON output.",
+        "description": "Transpose a CSV file, swapping rows and columns.",
         "handler": "operations.csv_transposer",
         "cli_command": "csv-transposer",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "JSON Minifier",
         "category": "Data & Structured Data",
-        "description": "JSON Minifier: json minifier as structured JSON output.",
+        "description": "Minify a JSON document by removing insignificant whitespace.",
         "handler": "operations.json_minifier",
         "cli_command": "json-minifier",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "JSON Key Flattener",
         "category": "Data & Structured Data",
-        "description": "JSON Key Flattener: json key flattener as structured JSON output.",
+        "description": "Flatten a nested JSON object into dotted key paths.",
         "handler": "operations.json_key_flattener",
         "cli_command": "json-key-flattener",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "JSON Unflattener",
         "category": "Data & Structured Data",
-        "description": "JSON Unflattener: json unflattener as structured JSON output.",
+        "description": "Rebuild a nested JSON object from dotted key paths.",
         "handler": "operations.json_unflattener",
         "cli_command": "json-unflattener",
         "dependencies": []

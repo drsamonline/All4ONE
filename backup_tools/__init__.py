@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Backup Verify",
             "category": "Backup & Restore",
-            "description": "Backup Verify: backup verify as structured JSON output.",
+            "description": "Verify a backup set against its manifest and report missing or altered files.",
             "handler": "operations.backup_verify",
             "cli_command": "backup-verify",
             "dependencies": [],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Backup Manifest",
             "category": "Backup & Restore",
-            "description": "Backup Manifest: backup manifest as structured JSON output.",
+            "description": "Generate a manifest (path, size, hash) describing every file in a folder tree.",
             "handler": "operations.backup_manifest",
             "cli_command": "backup-manifest",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Backup Cleanup",
             "category": "Backup & Restore",
-            "description": "Backup Cleanup: backup cleanup as structured JSON output.",
+            "description": "Remove outdated backup snapshots, keeping only the most recent N.",
             "handler": "operations.backup_cleanup",
             "cli_command": "backup-cleanup",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Backup Rotation",
             "category": "Backup & Restore",
-            "description": "Backup Rotation: backup rotation as structured JSON output.",
+            "description": "Rotate timestamped backups, pruning the oldest to stay within a retention count.",
             "handler": "operations.backup_rotation",
             "cli_command": "backup-rotation",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Backup Compression",
             "category": "Backup & Restore",
-            "description": "Backup Compression: backup compression as structured JSON output.",
+            "description": "Compress a folder into a single archive for storage or transfer.",
             "handler": "operations.backup_compression",
             "cli_command": "backup-compression",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Snapshot Inventory",
             "category": "Backup & Restore",
-            "description": "Enumerate an inventory of snapshot inventory.",
+            "description": "List backup snapshots found in a folder.",
             "handler": "operations.snapshot_inventory",
             "cli_command": "snapshot-inventory",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Backup Integrity Hash",
             "category": "Backup & Restore",
-            "description": "Backup Integrity Hash: backup integrity hash as structured JSON output.",
+            "description": "Hash every file in a backup and print a combined integrity digest.",
             "handler": "operations.backup_integrity_hash",
             "cli_command": "backup-integrity-hash",
             "dependencies": [],

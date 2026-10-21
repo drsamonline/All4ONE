@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Registry Query",
             "category": "Registry Tools",
-            "description": "Registry Query: registry query as structured JSON output.",
+            "description": "Read a value or key from the Windows registry (requires reg).",
             "handler": "operations.registry_query",
             "cli_command": "registry-query",
             "dependencies": ["reg"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Registry Key Creator",
             "category": "Registry Tools",
-            "description": "Registry Key Creator: registry key creator as structured JSON output.",
+            "description": "Create a Windows registry key.",
             "handler": "operations.registry_key_creator",
             "cli_command": "registry-key-creator",
             "dependencies": ["reg"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Registry Key Deleter",
             "category": "Registry Tools",
-            "description": "Registry Key Deleter: registry key deleter as structured JSON output.",
+            "description": "Delete a Windows registry key (destructive).",
             "handler": "operations.registry_key_deleter",
             "cli_command": "registry-key-deleter",
             "dependencies": ["reg"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Registry Value Deleter",
             "category": "Registry Tools",
-            "description": "Registry Value Deleter: registry value deleter as structured JSON output.",
+            "description": "Delete a Windows registry value (destructive).",
             "handler": "operations.registry_value_deleter",
             "cli_command": "registry-value-deleter",
             "dependencies": ["reg"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Registry Value Enumerator",
             "category": "Registry Tools",
-            "description": "Registry Value Enumerator: registry value enumerator as structured JSON output.",
+            "description": "List the values under a registry key.",
             "handler": "operations.registry_value_enumerator",
             "cli_command": "registry-value-enumerator",
             "dependencies": ["reg"],

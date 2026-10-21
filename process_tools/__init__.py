@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Process Tree",
             "category": "Process Tools",
-            "description": "Process Tree: process tree as structured JSON output.",
+            "description": "Show the process tree.",
             "handler": "operations.process_tree",
             "cli_command": "process-tree",
             "dependencies": [],
@@ -118,7 +118,7 @@ def register_tools():
         {
             "name": "Process Terminate",
             "category": "Process Tools",
-            "description": "Process Terminate: process terminate as structured JSON output.",
+            "description": "Terminate a process by PID (requires taskkill).",
             "handler": "operations.process_terminate",
             "cli_command": "process-terminate",
             "dependencies": [],
@@ -126,7 +126,7 @@ def register_tools():
         {
             "name": "Process Wait",
             "category": "Process Tools",
-            "description": "Process Wait: process wait as structured JSON output.",
+            "description": "Wait for a process to exit.",
             "handler": "operations.process_wait",
             "cli_command": "process-wait",
             "dependencies": [],
