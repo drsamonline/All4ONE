@@ -78,7 +78,7 @@ jobs:
       # Floating "latest" download: every main push overwrites this one
       # pre-release, so users always find a current .exe at the same URL.
       - name: Update latest-build pre-release (all pushes)
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: latest-build
           name: 'Latest Windows build (auto)'
@@ -97,7 +97,7 @@ jobs:
 
       - name: Attach to GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: dist/UtilitySuite-*-windows.zip
           generate_release_notes: true
