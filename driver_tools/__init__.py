@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Driver List",
             "category": "Driver Tools",
-            "description": "List driver entries.",
+            "description": "List the installed Windows drivers.",
             "handler": "operations.driver_list",
             "cli_command": "driver-list",
             "dependencies": ["pnputil"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Driver Details",
             "category": "Driver Tools",
-            "description": "Show detailed driver details.",
+            "description": "Show the details of a specific installed driver.",
             "handler": "operations.driver_details",
             "cli_command": "driver-details",
             "dependencies": ["pnputil"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Driver Device Status",
             "category": "Driver Tools",
-            "description": "Report current driver device status.",
+            "description": "Report the status of a driver's device.",
             "handler": "operations.driver_device_status",
             "cli_command": "driver-device-status",
             "dependencies": ["pnputil"],

@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Boot Time",
             "category": "System Information",
-            "description": "Compute boot time values.",
+            "description": "Report when the system last booted.",
             "handler": "operations.boot_time",
             "cli_command": "boot-time",
             "dependencies": [],

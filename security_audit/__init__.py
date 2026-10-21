@@ -106,7 +106,7 @@ def register_tools():
     {
         "name": "Open Share Guide",
         "category": "Security Auditing",
-        "description": "Show guidance for open share.",
+        "description": "Explain how to find and close open network shares.",
         "handler": "operations.open_share_guide",
         "cli_command": "open-share-guide",
         "dependencies": [
@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "Firewall Status",
         "category": "Security Auditing",
-        "description": "Report current firewall status.",
+        "description": "Report the Windows Firewall profile status.",
         "handler": "operations.firewall_status",
         "cli_command": "firewall-status",
         "dependencies": [
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Defender Status",
         "category": "Security Auditing",
-        "description": "Report current defender status.",
+        "description": "Report the Microsoft Defender protection status.",
         "handler": "operations.defender_status",
         "cli_command": "defender-status",
         "dependencies": [
@@ -136,7 +136,7 @@ def register_tools():
     {
         "name": "Windows Update Status",
         "category": "Security Auditing",
-        "description": "Report current windows update status.",
+        "description": "Report the pending and installed Windows updates.",
         "handler": "operations.windows_update_status",
         "cli_command": "windows-update-status",
         "dependencies": [
@@ -186,7 +186,7 @@ def register_tools():
     {
         "name": "Portable App Suspicion Scanner",
         "category": "Security Audit",
-        "description": "Scan for portable app suspicion and list hits.",
+        "description": "Scan a folder for signs of portable applications.",
         "handler": "operations.portable_app_suspicion_scanner",
         "cli_command": "portable-scan",
         "dependencies": []

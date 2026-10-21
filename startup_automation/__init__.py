@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Scheduled Task List",
             "category": "Startup & Automation",
-            "description": "List scheduled task entries.",
+            "description": "List the Windows scheduled tasks.",
             "handler": "operations.scheduled_task_list",
             "cli_command": "scheduled-task-list",
             "dependencies": ["schtasks"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Scheduled Task Details",
             "category": "Startup & Automation",
-            "description": "Show detailed scheduled task details.",
+            "description": "Show the details of a scheduled task.",
             "handler": "operations.scheduled_task_details",
             "cli_command": "scheduled-task-details",
             "dependencies": ["schtasks"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Task Trigger Guide",
             "category": "Startup & Automation",
-            "description": "Show guidance for task trigger.",
+            "description": "Explain scheduled-task triggers and how to edit them.",
             "handler": "operations.task_trigger_guide",
             "cli_command": "task-trigger-guide",
             "dependencies": ["schtasks"],

@@ -132,7 +132,37 @@ def main():
     # strings ("X: x as structured JSON output.") still reads as boilerplate to
     # users, so reject the known templates explicitly.
     _TEMPLATE = re.compile(
-        r"as structured JSON output\.$|report report\b|inventory of | on disk or in scope",
+        r"as structured JSON output\.$"
+        r"|report report\b"
+        r"|inventory of "
+        r"| on disk or in scope"
+        r"|input and return processed results\.$"
+        r"|structure or content\.$"
+        r"|^Show guidance for "
+        r"|^Show detailed .* details\.$"
+        r"|^List [\w ]*entries\.$"
+        r"|^Read and print "
+        r"|^Clean up .* metadata\.$"
+        r"|^Count occurrences within "
+        r"|^Extract data from "
+        r"|^Search .* targets for matches\.$"
+        r"|^Check and validate "
+        r"|^Detect and identify "
+        r"|^Compute .* values\.$"
+        r"|^Generate .* output\.$"
+        r"|^Report current .* status\.$"
+        r"|to a canonical form\.$"
+        r"|^Test connectivity/behavior of "
+        r"|^Encode (base64|url)\.$"
+        r"|^Decode (base64|url)\.$"
+        r"|^Validate \w+ structure or content\.$"
+        r"|^Rename \w+ \w+ in bulk\.$"
+        r"|^Scan for \w+ \w+ and list hits\.$"
+        r"|^Explain \w+ \w+ in human terms\.$"
+        r"|^Run \w+ \w+ commands and capture output\.$"
+        r"|^Print formatted \w+ pretty\.$"
+        r"|^Report window \w+ associations\.$"
+        ,
         re.IGNORECASE,
     )
     for pack, t in all_tools:

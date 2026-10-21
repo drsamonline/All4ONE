@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Network Adapter List",
             "category": "Network Diagnostics",
-            "description": "List network adapter entries.",
+            "description": "List the installed network adapters.",
             "handler": "operations.network_adapter_list",
             "cli_command": "network-adapter-list",
             "dependencies": ["powershell", "ipconfig"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Network Adapter Details",
             "category": "Network Diagnostics",
-            "description": "Show detailed network adapter details.",
+            "description": "Show the detailed configuration of a network adapter.",
             "handler": "operations.network_adapter_details",
             "cli_command": "network-adapter-details",
             "dependencies": ["powershell", "ipconfig"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "DNS Server List",
             "category": "Network Diagnostics",
-            "description": "List dns server entries.",
+            "description": "List the DNS servers currently configured.",
             "handler": "operations.dns_server_list",
             "cli_command": "dns-server-list",
             "dependencies": ["powershell", "ipconfig"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "DHCP Status",
             "category": "Network Diagnostics",
-            "description": "Report current dhcp status.",
+            "description": "Report whether an interface is using DHCP and its lease details.",
             "handler": "operations.dhcp_status",
             "cli_command": "dhcp-status",
             "dependencies": ["powershell", "ipconfig"],

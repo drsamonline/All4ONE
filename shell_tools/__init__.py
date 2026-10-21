@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Shell Command Runner",
             "category": "Shell & Command Tools",
-            "description": "Run shell command commands and capture output.",
+            "description": "Run a command given as an argument list and capture its output.",
             "handler": "operations.shell_command_runner",
             "cli_command": "shell-command-runner",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "PowerShell Command Runner",
             "category": "Shell & Command Tools",
-            "description": "Run powershell command commands and capture output.",
+            "description": "Run a PowerShell command and capture its output.",
             "handler": "operations.powershell_command_runner",
             "cli_command": "powershell-command-runner",
             "dependencies": ["powershell"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Command History Guide",
             "category": "Shell & Command Tools",
-            "description": "Show guidance for command history.",
+            "description": "Explain where the shell stores command history and how to search it.",
             "handler": "operations.command_history_guide",
             "cli_command": "command-history-guide",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Command Timeout Runner",
             "category": "Shell & Command Tools",
-            "description": "Run command timeout commands and capture output.",
+            "description": "Run a command with a time limit and capture its output.",
             "handler": "operations.command_timeout_runner",
             "cli_command": "command-timeout-runner",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Batch File Generator",
             "category": "Shell & Command Tools",
-            "description": "Generate batch file output.",
+            "description": "Generate a Windows batch (.bat) script from a template.",
             "handler": "operations.batch_file_generator",
             "cli_command": "batch-file-generator",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "PowerShell Script Generator",
             "category": "Shell & Command Tools",
-            "description": "Generate powershell script output.",
+            "description": "Generate a PowerShell (.ps1) script from a template.",
             "handler": "operations.powershell_script_generator",
             "cli_command": "powershell-script-generator",
             "dependencies": [],

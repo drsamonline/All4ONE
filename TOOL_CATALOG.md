@@ -15,39 +15,39 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| Base64 Decoder | `base64-decoder` | `developer_tools_advanced` | — | Decode base64. |
-| Base64 Encoder | `base64-encoder` | `developer_tools_advanced` | — | Encode base64. |
+| Base64 Decoder | `base64-decoder` | `developer_tools_advanced` | — | Base64-decode text or a file back to its original bytes. |
+| Base64 Encoder | `base64-encoder` | `developer_tools_advanced` | — | Base64-encode text or a file. |
 | Base64 File Codec | `b64-file` | `developer_tools_advanced` | — | Base64-encode or decode a file. |
-| BOM Handler | `bom-handler` | `developer_tools_advanced` | — | BOM Handler: handle bom input and return processed results. |
-| Charset Detector | `charset-detect` | `developer_tools_advanced` | — | Detect and identify charset. |
-| Checksum Verifier | `checksum-verify` | `developer_tools_advanced` | — | Verify checksum integrity. |
+| BOM Handler | `bom-handler` | `developer_tools_advanced` | — | Detect or strip a byte-order mark from a text file. |
+| Charset Detector | `charset-detect` | `developer_tools_advanced` | — | Detect the character set of a byte stream. |
+| Checksum Verifier | `checksum-verify` | `developer_tools_advanced` | — | Verify a file against an expected checksum. |
 | Diff Text Files | `diff-text-files` | `developer_tools_advanced` | — | Show a unified diff between two text files. |
-| Encoding Detector | `encoding-detector` | `developer_tools_advanced` | — | Detect and identify encoding. |
-| Hash Calculator | `hash-calculator` | `developer_tools_advanced` | — | Compute hash values. |
+| Encoding Detector | `encoding-detector` | `developer_tools_advanced` | — | Detect the likely character encoding of a file. |
+| Hash Calculator | `hash-calculator` | `developer_tools_advanced` | — | Compute MD5, SHA-1, SHA-256 or SHA-512 digests for text or files. |
 | Hex Codec | `hex-codec` | `developer_tools_advanced` | — | Encode or decode hex strings and files. |
-| HMAC Calculator | `hmac-calculator` | `developer_tools_advanced` | — | Compute hmac values. |
-| Indentation Analyzer | `indentation-analyzer` | `developer_tools_advanced` | — | Analyze indentation and summarize findings. |
-| JSON Schema-Lite Validator | `json-schema-lite-validator` | `developer_tools_advanced` | — | Validate json schema-lite structure or content. |
-| Line Ending Detector | `line-ending-detector` | `developer_tools_advanced` | — | Detect and identify line ending. |
-| Multi Algorithm Hasher | `multi-hash` | `developer_tools_advanced` | — | Hash multi algorithm files or text. |
-| Patch Preview | `patch-preview` | `developer_tools_advanced` | — | Preview the effect of patch before applying it. |
-| Python Import Checker | `python-import-checker` | `developer_tools_advanced` | — | Check and validate python import. |
-| Python Syntax Checker | `python-syntax-checker` | `developer_tools_advanced` | — | Check and validate python syntax. |
-| Regex Tester | `regex-tester` | `developer_tools_advanced` | — | Test connectivity/behavior of regex. |
+| HMAC Calculator | `hmac-calculator` | `developer_tools_advanced` | — | Compute an HMAC signature for a message with a given key. |
+| Indentation Analyzer | `indentation-analyzer` | `developer_tools_advanced` | — | Report a file's indentation style, tabs versus spaces, and consistency. |
+| JSON Schema-Lite Validator | `json-schema-lite-validator` | `developer_tools_advanced` | — | Validate a JSON document against a compact, dependency-free schema. |
+| Line Ending Detector | `line-ending-detector` | `developer_tools_advanced` | — | Detect whether a text file uses CRLF, LF or CR line endings. |
+| Multi Algorithm Hasher | `multi-hash` | `developer_tools_advanced` | — | Compute several hash algorithms at once for a file or text. |
+| Patch Preview | `patch-preview` | `developer_tools_advanced` | — | Show how a patch would change a file before you apply it. |
+| Python Import Checker | `python-import-checker` | `developer_tools_advanced` | — | Check that a Python file's imports resolve. |
+| Python Syntax Checker | `python-syntax-checker` | `developer_tools_advanced` | — | Compile a Python file to check it for syntax errors. |
+| Regex Tester | `regex-tester` | `developer_tools_advanced` | — | Test a regular expression against sample text and show the matches. |
 | Semantic Version Comparator | `semantic-version-comparator` | `developer_tools_advanced` | — | Compare semantic version inputs. |
-| TOML Structure Checker | `toml-structure-checker` | `developer_tools_advanced` | — | Check and validate toml structure. |
-| URL Decoder | `url-decoder` | `developer_tools_advanced` | — | Decode url. |
-| URL Encoder | `url-encoder` | `developer_tools_advanced` | — | Encode url. |
-| UUID Generator | `uuid-generator` | `developer_tools_advanced` | — | Generate uuid output. |
+| TOML Structure Checker | `toml-structure-checker` | `developer_tools_advanced` | — | Parse a TOML file and report its structure or any errors. |
+| URL Decoder | `url-decoder` | `developer_tools_advanced` | — | Decode percent-encoded characters in a URL back to plain text. |
+| URL Encoder | `url-encoder` | `developer_tools_advanced` | — | Percent-encode a string so it is safe inside a URL. |
+| UUID Generator | `uuid-generator` | `developer_tools_advanced` | — | Generate one or more RFC 4122 UUIDs. |
 | Version Bump Helper | `version-bump-helper` | `developer_tools_advanced` | — | Assist with version bump tasks. |
-| YAML Structure Checker | `yaml-structure-checker` | `developer_tools_advanced` | — | Check and validate yaml structure. |
+| YAML Structure Checker | `yaml-structure-checker` | `developer_tools_advanced` | — | Parse a YAML file and report its structure or any errors. |
 
 ## Advanced Disk Tools
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
 | Directory Size Tree | `directory-size-tree` | `disk_advanced` | — | Print a size-annotated directory tree. |
-| Disk Benchmark Reader | `disk-benchmark-reader` | `disk_advanced` | — | Read and print disk benchmark. |
+| Disk Benchmark Reader | `disk-benchmark-reader` | `disk_advanced` | — | Report the recorded disk performance metrics for a drive. |
 | Disk Free Space | `disk-free-space` | `disk_advanced` | — | Report free and total space for a drive or mount point. |
 | Disk Usage Top Files | `disk-usage-top-files` | `disk_advanced` | — | List the largest files under a directory. |
 | Drive Information | `drive-information` | `disk_advanced` | — | List mounted drives with filesystem, size and free space. |
@@ -56,22 +56,22 @@ Plugin packs: 45
 | Mount Point Viewer | `mount-point-viewer` | `disk_advanced` | — | Display the contents of mount point. |
 | NTFS Alternate Stream Finder | `ntfs-alternate-stream-finder` | `disk_advanced` | — | Find NTFS alternate data streams in a folder tree. |
 | Partition Information | `partition-information` | `disk_advanced` | — | Show disk partitions and their sizes. |
-| SMART Status | `smart-status` | `disk_advanced` | — | Report current smart status. |
+| SMART Status | `smart-status` | `disk_advanced` | — | Report the S.M.A.R.T. health status of a drive. |
 | Sparse File Inspector | `sparse-file-inspector` | `disk_advanced` | — | Inspect sparse file and report internals. |
-| Volume List | `volume-list` | `disk_advanced` | — | List volume entries. |
-| Volume Serial Reader | `volume-serial-reader` | `disk_advanced` | — | Read and print volume serial. |
+| Volume List | `volume-list` | `disk_advanced` | — | List the mounted volumes and their basic properties. |
+| Volume Serial Reader | `volume-serial-reader` | `disk_advanced` | — | Read a volume's serial number. |
 
 ## Advanced Imaging
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| Image Batch Renamer | `image-batch-renamer` | `imaging_advanced` | Pillow | Rename image batch in bulk. |
+| Image Batch Renamer | `image-batch-renamer` | `imaging_advanced` | Pillow | Rename a folder of images in bulk using a consistent pattern. |
 | Image Border Adder | `image-border-adder` | `imaging_advanced` | Pillow | Add a uniform border around an image (requires Pillow). |
 | Image Contact Sheet | `image-contact-sheet` | `imaging_advanced` | Pillow | Tile many images into a single contact sheet (requires Pillow). |
 | Image Converter | `image-converter` | `imaging_advanced` | Pillow | Convert an image file between formats (PNG/JPEG/WebP...). |
 | Image Cropper | `image-cropper` | `imaging_advanced` | Pillow | Crop image. |
 | Image Flipper | `image-flipper` | `imaging_advanced` | Pillow | Flip image. |
-| Image Metadata Cleaner | `image-metadata-cleaner` | `imaging_advanced` | Pillow | Clean up image metadata. |
+| Image Metadata Cleaner | `image-metadata-cleaner` | `imaging_advanced` | Pillow | Strip EXIF and other metadata from an image (requires Pillow). |
 | Image Montage Builder | `image-montage-builder` | `imaging_advanced` | Pillow | Compose a montage from multiple images (requires Pillow). |
 | Image Optimizer | `image-optimizer` | `imaging_advanced` | Pillow | Optimize image. |
 | Image Resizer | `image-resizer` | `imaging_advanced` | Pillow | Resize image. |
@@ -84,10 +84,10 @@ Plugin packs: 45
 |---|---|---|---|---|
 | ARP Table Viewer | `arp-table-viewer` | `net_advanced` | ping, nslookup | Display the contents of arp table. |
 | DNS Lookup | `dns-lookup` | `net_advanced` | ping, nslookup | Resolve a hostname to its addresses. |
-| Hosts File Entry Checker | `hosts-file-entry-checker` | `net_advanced` | ping, nslookup | Check and validate hosts file entry. |
+| Hosts File Entry Checker | `hosts-file-entry-checker` | `net_advanced` | ping, nslookup | Check whether a hostname is mapped in the hosts file. |
 | Hosts File Viewer | `hosts-file-viewer` | `net_advanced` | ping, nslookup | Display the contents of hosts file. |
 | HTTP Header Inspector | `http-header-inspector` | `net_advanced` | ping, nslookup | Inspect http header and report internals. |
-| IP Address Info | `ip-address-info` | `net_advanced` | ping, nslookup | Show ip address information. |
+| IP Address Info | `ip-address-info` | `net_advanced` | ping, nslookup | Show the local IP addresses and interface details. |
 | Local Listening Ports | `local-listening-ports` | `net_advanced` | ping, nslookup | List local listening TCP/UDP ports (requires netstat). |
 | MAC Vendor Lookup | `mac-vendor` | `net_advanced` | — | Look up the hardware vendor for a MAC address. |
 | Network Route Viewer | `network-route-viewer` | `net_advanced` | ping, nslookup | Display the contents of network route. |
@@ -96,11 +96,11 @@ Plugin packs: 45
 | Route Trace | `route-trace` | `net_advanced` | ping, nslookup | Trace the network route to a host. |
 | Speed Test Probe | `speed-probe` | `net_advanced` | — | Measure download throughput against a public endpoint. |
 | SSL Expiry Monitor | `ssl-expiry` | `net_advanced` | — | Monitor ssl expiry over time. |
-| Subnet Calculator | `subnet-calculator` | `net_advanced` | — | Compute subnet values. |
-| TCP Port Checker | `tcp-port-checker` | `net_advanced` | ping, nslookup | Check and validate tcp port. |
+| Subnet Calculator | `subnet-calculator` | `net_advanced` | — | Compute the network, broadcast, mask and host range for a CIDR block. |
+| TCP Port Checker | `tcp-port-checker` | `net_advanced` | ping, nslookup | Test whether a TCP port on a host is open. |
 | TLS Certificate Inspector | `tls-certificate-inspector` | `net_advanced` | ping, nslookup | Inspect tls certificate and report internals. |
 | UDP Port Probe | `udp-port-probe` | `net_advanced` | ping, nslookup | Probe whether a UDP port responds. |
-| URL Redirect Checker | `url-redirect-checker` | `net_advanced` | ping, nslookup | Check and validate url redirect. |
+| URL Redirect Checker | `url-redirect-checker` | `net_advanced` | ping, nslookup | Follow a URL and report the final destination after redirects. |
 | WHOIS Lookup | `whois-lookup` | `net_advanced` | ping, nslookup | Query WHOIS/RDAP registration data for a domain. |
 
 ## Archive & Compression
@@ -119,10 +119,10 @@ Plugin packs: 45
 | Audio Concatenator | `audio-concatenator` | `audio_tools` | ffprobe, ffmpeg | Join multiple audio files into a single track in order (requires ffmpeg). |
 | Audio Duration | `audio-duration` | `audio_tools` | ffprobe, ffmpeg | Report the duration of an audio file (requires ffprobe). |
 | Audio Format Converter | `audio-format-converter` | `audio_tools` | ffprobe, ffmpeg | Convert an audio file between formats using ffmpeg. |
-| Audio Metadata Cleaner | `audio-metadata-cleaner` | `audio_tools` | ffprobe, ffmpeg | Clean up audio metadata. |
-| Audio Metadata Reader | `audio-metadata-reader` | `audio_tools` | ffprobe, ffmpeg | Read and print audio metadata. |
-| Audio Normalizer | `audio-normalizer` | `audio_tools` | ffprobe, ffmpeg | Normalize audio to a canonical form. |
-| Audio Silence Detector | `audio-silence-detector` | `audio_tools` | ffprobe, ffmpeg | Detect and identify audio silence. |
+| Audio Metadata Cleaner | `audio-metadata-cleaner` | `audio_tools` | ffprobe, ffmpeg | Strip tags and metadata from an audio file (requires ffmpeg). |
+| Audio Metadata Reader | `audio-metadata-reader` | `audio_tools` | ffprobe, ffmpeg | Read and display the tags and stream metadata of an audio file (requires ffprobe). |
+| Audio Normalizer | `audio-normalizer` | `audio_tools` | ffprobe, ffmpeg | Normalise an audio file's loudness and format to a consistent baseline (requires ffmpeg). |
+| Audio Silence Detector | `audio-silence-detector` | `audio_tools` | ffprobe, ffmpeg | Detect silent stretches in an audio file (requires ffmpeg). |
 | Audio Stream Inspector | `audio-stream-inspector` | `audio_tools` | ffprobe, ffmpeg | Inspect audio stream and report internals. |
 | Audio Trim | `audio-trim` | `audio_tools` | ffprobe, ffmpeg | Trim an audio file to a start/end range (requires ffmpeg). |
 | Audio Waveform Exporter | `audio-waveform-exporter` | `audio_tools` | ffprobe, ffmpeg | Export audio waveform to a file. |
@@ -146,8 +146,8 @@ Plugin packs: 45
 | Backup Manifest | `backup-manifest` | `backup_tools` | — | Generate a manifest (path, size, hash) describing every file in a folder tree. |
 | Backup Restore | `backup-restore` | `backup_tools` | — | Restore previously backed-up backup data. |
 | Backup Rotation | `backup-rotation` | `backup_tools` | — | Rotate timestamped backups, pruning the oldest to stay within a retention count. |
-| Backup Schedule Generator | `backup-schedule-generator` | `backup_tools` | — | Generate backup schedule output. |
-| Backup Size Calculator | `backup-size-calculator` | `backup_tools` | — | Compute backup size values. |
+| Backup Schedule Generator | `backup-schedule-generator` | `backup_tools` | — | Generate a backup schedule for a folder, as cron or a Task Scheduler entry. |
+| Backup Size Calculator | `backup-size-calculator` | `backup_tools` | — | Estimate the storage a backup set will need. |
 | Backup Verify | `backup-verify` | `backup_tools` | — | Verify a backup set against its manifest and report missing or altered files. |
 | Folder Backup | `folder-backup` | `backup_tools` | — | Back up folder targets. |
 | Incremental Backup | `incremental-backup` | `backup_tools` | — | Back up incremental targets. |
@@ -195,11 +195,11 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| CSV Column Extractor | `csv-column-extractor` | `data_tools` | — | Extract data from csv column. |
+| CSV Column Extractor | `csv-column-extractor` | `data_tools` | — | Extract a single column from a CSV file. |
 | CSV Column Selector | `csv-column-selector` | `data_tools` | — | Project selected columns from a CSV file. |
 | CSV Deduplicator | `csv-deduplicator` | `data_tools` | — | Remove duplicate rows from a CSV file. |
 | CSV Inspector | `csv-inspector` | `data_tools` | — | Inspect csv and report internals. |
-| CSV Normalizer | `csv-normalizer` | `data_tools` | — | Normalize csv to a canonical form. |
+| CSV Normalizer | `csv-normalizer` | `data_tools` | — | Normalise a CSV file's columns and formatting to a consistent shape. |
 | CSV Row Filter | `csv-row-filter` | `data_tools` | — | Filter csv row by criteria. |
 | CSV Sorter | `csv-sorter` | `data_tools` | — | Sort csv records. |
 | CSV Statistics | `csv-statistics` | `data_tools` | — | Compute per-column statistics (count, min, max, mean) for a CSV file. |
@@ -207,14 +207,14 @@ Plugin packs: 45
 | JSON Inspector | `json-inspector` | `data_tools` | — | Inspect json and report internals. |
 | JSON Key Flattener | `json-key-flattener` | `data_tools` | — | Flatten a nested JSON object into dotted key paths. |
 | JSON Minifier | `json-minifier` | `data_tools` | — | Minify a JSON document by removing insignificant whitespace. |
-| JSON Path Extractor | `json-path-extractor` | `data_tools` | — | Extract data from json path. |
-| JSON Pretty Printer | `json-pretty-printer` | `data_tools` | — | Print formatted json pretty. |
+| JSON Path Extractor | `json-path-extractor` | `data_tools` | — | Extract values from a JSON document using a dotted key path. |
+| JSON Pretty Printer | `json-pretty-printer` | `data_tools` | — | Pretty-print a JSON document with consistent indentation. |
 | JSON Unflattener | `json-unflattener` | `data_tools` | — | Rebuild a nested JSON object from dotted key paths. |
 | NDJSON Filter | `ndjson-filter` | `data_tools` | — | Filter ndjson by criteria. |
 | NDJSON Inspector | `ndjson-inspector` | `data_tools` | — | Inspect ndjson and report internals. |
-| SQLite Query Runner | `sqlite-query-runner` | `data_tools` | — | Run sqlite query commands and capture output. |
+| SQLite Query Runner | `sqlite-query-runner` | `data_tools` | — | Run a SQL query against a SQLite database and print the rows. |
 | SQLite Schema Viewer | `sqlite-schema-viewer` | `data_tools` | — | Display the contents of sqlite schema. |
-| SQLite Table Counter | `sqlite-table-counter` | `data_tools` | — | Count occurrences within sqlite table. |
+| SQLite Table Counter | `sqlite-table-counter` | `data_tools` | — | Count the tables in a SQLite database file. |
 | SQLite Vacuum Helper | `sqlite-vacuum-helper` | `data_tools` | — | Assist with sqlite vacuum tasks. |
 
 ## Developer Tools
@@ -225,8 +225,8 @@ Plugin packs: 45
 | File Type Detector | `filetype` | `dev_tools` | — | Detect a file's type from its magic bytes rather than its extension. |
 | JSON Diff | `json-diff` | `dev_tools` | — | JSON Diff: show differences between two inputs. |
 | JSON Formatter | `json-format` | `dev_tools` | — | Pretty-print and validate a JSON document. |
-| JSON Schema Validator | `json-schema-validate` | `dev_tools` | — | Validate json schema structure or content. |
-| JSON YAML Converter | `json-yaml` | `dev_tools` | python:yaml | Convert content between JSON and YAML formats. |
+| JSON Schema Validator | `json-schema-validate` | `dev_tools` | — | Validate a JSON document against a JSON Schema. |
+| JSON YAML Converter | `json-yaml` | `dev_tools` | python:yaml | Convert a document between JSON and YAML. |
 
 ## Directory Management
 
@@ -250,9 +250,9 @@ Plugin packs: 45
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
 | Driver Class Report | `driver-class-report` | `driver_tools` | pnputil | Report drivers grouped by device class. |
-| Driver Details | `driver-details` | `driver_tools` | pnputil | Show detailed driver details. |
-| Driver Device Status | `driver-device-status` | `driver_tools` | pnputil | Report current driver device status. |
-| Driver List | `driver-list` | `driver_tools` | pnputil | List driver entries. |
+| Driver Details | `driver-details` | `driver_tools` | pnputil | Show the details of a specific installed driver. |
+| Driver Device Status | `driver-device-status` | `driver_tools` | pnputil | Report the status of a driver's device. |
+| Driver List | `driver-list` | `driver_tools` | pnputil | List the installed Windows drivers. |
 | Driver Package Inventory | `driver-package-inventory` | `driver_tools` | pnputil | List installed Windows driver packages (requires pnputil). |
 | Driver Provider Report | `driver-provider-report` | `driver_tools` | pnputil | Report drivers grouped by provider. |
 | Driver Signature Check | `driver-signature-check` | `driver_tools` | pnputil | Check driver signature and report pass/fail status. |
@@ -266,14 +266,14 @@ Plugin packs: 45
 |---|---|---|---|---|
 | Event Log Channel Inventory | `event-log-channel-inventory` | `event_tools` | wevtutil | List the available Windows event log channels. |
 | Event Log Export | `event-log-export` | `event_tools` | wevtutil | Export event log data to a file. |
-| Event Log Guide | `event-log-guide` | `event_tools` | wevtutil | Show guidance for event log. |
+| Event Log Guide | `event-log-guide` | `event_tools` | wevtutil | Explain how to read and filter Windows event logs. |
 | Event Log Keyword Filter | `event-log-keyword-filter` | `event_tools` | wevtutil | Filter event log keyword by criteria. |
 | Event Log Level Summary | `event-log-level-summary` | `event_tools` | wevtutil | Summarize event log level summary at a glance. |
-| Event Log List | `event-log-list` | `event_tools` | wevtutil | List event log entries. |
+| Event Log List | `event-log-list` | `event_tools` | wevtutil | List recent entries from a Windows event log channel. |
 | Event Log Query | `event-log-query` | `event_tools` | wevtutil | Query the Windows event log by channel and filter (requires wevtutil). |
 | Event Log Recent Errors | `event-log-recent-errors` | `event_tools` | wevtutil | Show the most recent error-level events. |
 | Event Log Recent Warnings | `event-log-recent-warnings` | `event_tools` | wevtutil | Show the most recent warning-level events. |
-| Event Log Source Search | `event-log-source-search` | `event_tools` | wevtutil | Search event log source targets for matches. |
+| Event Log Source Search | `event-log-source-search` | `event_tools` | wevtutil | Search the Windows event log for a given source name. |
 | Event Log Statistics | `event-log-statistics` | `event_tools` | wevtutil | Summarise event counts by level for a channel. |
 | Event Log Time Filter | `event-log-time-filter` | `event_tools` | wevtutil | Filter event log time by criteria. |
 
@@ -291,7 +291,7 @@ Plugin packs: 45
 | Installed Software Snapshot | `installed-software-snapshot` | `diagnostics_extra` | powershell | Take a point-in-time snapshot of installed software snapshot. |
 | Log Directory Inventory | `log-directory-inventory` | `diagnostics_extra` | powershell | List log files and their sizes in a directory. |
 | Network Connection Table | `network-connection-table` | `diagnostics_extra` | powershell | Lay out data as a network connection table table. |
-| Open File Guide | `open-file-guide` | `diagnostics_extra` | powershell | Show guidance for open file. |
+| Open File Guide | `open-file-guide` | `diagnostics_extra` | powershell | Explain which process holds a file open and how to release it. |
 | PATH Deduplication Report | `path-deduplication-report` | `diagnostics_extra` | powershell | Report duplicate entries in the system PATH. |
 | Printer Inventory | `printer-inventory` | `diagnostics_extra` | powershell | List installed printers. |
 | System Information JSON Export | `system-information-json-export` | `diagnostics_extra` | powershell | Export system information json data to a file. |
@@ -331,18 +331,18 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| Audio MIME Detector | `audio-mime-detector` | `media_metadata` | ffprobe | Detect and identify audio mime. |
-| EXIF Camera Reader | `exif-camera-reader` | `media_metadata` | ffprobe | Read and print exif camera. |
-| EXIF Date Reader | `exif-date-reader` | `media_metadata` | ffprobe | Read and print exif date. |
-| Image MIME Detector | `image-mime-detector` | `media_metadata` | ffprobe | Detect and identify image mime. |
+| Audio MIME Detector | `audio-mime-detector` | `media_metadata` | ffprobe | Detect the MIME type of an audio file. |
+| EXIF Camera Reader | `exif-camera-reader` | `media_metadata` | ffprobe | Read the camera make and model from an image's EXIF data (requires Pillow). |
+| EXIF Date Reader | `exif-date-reader` | `media_metadata` | ffprobe | Read the capture date recorded in an image's EXIF data (requires Pillow). |
+| Image MIME Detector | `image-mime-detector` | `media_metadata` | ffprobe | Detect the MIME type of an image file. |
 | Media Duplicate Finder | `media-duplicate-finder` | `media_metadata` | ffprobe | Find duplicate media files by hash. |
 | Media Duration Inventory | `media-duration-inventory` | `media_metadata` | ffprobe | List media files with their durations (requires ffprobe). |
 | Media Extension Summary | `media-extension-summary` | `media_metadata` | ffprobe | Summarize media extension summary at a glance. |
-| Media File Scanner | `media-file-scanner` | `media_metadata` | ffprobe | Scan for media file and list hits. |
+| Media File Scanner | `media-file-scanner` | `media_metadata` | ffprobe | Scan a folder for media files and list what it finds. |
 | Media Folder Report | `media-folder-report` | `media_metadata` | ffprobe | Summarise a folder of media files by type and size. |
 | Media Hash Inventory | `media-hash-inventory` | `media_metadata` | ffprobe | Hash the media files in a folder. |
 | Media Size Report | `media-size-report` | `media_metadata` | ffprobe | Report the size of media files in a folder. |
-| Video MIME Detector | `video-mime-detector` | `media_metadata` | ffprobe | Detect and identify video mime. |
+| Video MIME Detector | `video-mime-detector` | `media_metadata` | ffprobe | Detect the MIME type of a video file. |
 
 ## Miscellaneous
 
@@ -368,7 +368,7 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| Battery Status | `battery-status` | `monitoring_tools` | powershell | Report current battery status. |
+| Battery Status | `battery-status` | `monitoring_tools` | powershell | Report the battery charge level and state. |
 | CPU Monitor Snapshot | `cpu-monitor-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of cpu monitor snapshot. |
 | CPU Threshold Check | `cpu-threshold-check` | `monitoring_tools` | powershell | Check cpu threshold and report pass/fail status. |
 | Directory Change Snapshot | `directory-change-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of directory change snapshot. |
@@ -379,11 +379,11 @@ Plugin packs: 45
 | Long Running Process Finder | `long-running-procs` | `monitoring_tools` | python:psutil | Find processes running longer than a threshold (requires psutil). |
 | Memory Monitor Snapshot | `memory-monitor-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of memory monitor snapshot. |
 | Memory Threshold Check | `memory-threshold-check` | `monitoring_tools` | powershell | Check memory threshold and report pass/fail status. |
-| Monitor Threshold Calculator | `monitor-threshold-calculator` | `monitoring_tools` | powershell | Compute monitor threshold values. |
+| Monitor Threshold Calculator | `monitor-threshold-calculator` | `monitoring_tools` | powershell | Compute alert thresholds from a metric series. |
 | Network Adapter Snapshot | `network-adapter-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of network adapter snapshot. |
 | Network Monitor Snapshot | `network-monitor-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of network monitor snapshot. |
 | Open File Handle Report | `open-handles` | `monitoring_tools` | python:psutil | Report open file handles for a process (requires psutil). |
-| Power Source Status | `power-source-status` | `monitoring_tools` | powershell | Report current power source status. |
+| Power Source Status | `power-source-status` | `monitoring_tools` | powershell | Report whether the machine is on AC power or battery. |
 | Process Monitor Snapshot | `process-monitor-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of process monitor snapshot. |
 | Resource Log Viewer | `resource-log-viewer` | `monitoring_tools` | powershell | Display the contents of resource log. |
 | Resource Snapshot Diff | `resource-snapshot` | `monitoring_tools` | python:psutil | Resource Snapshot Diff: show differences between two inputs. |
@@ -404,9 +404,9 @@ Plugin packs: 45
 |---|---|---|---|---|
 | Connection Test | `connection-test` | `network_diagnostics` | powershell, ipconfig | Test connection reachability or behavior. |
 | Default Gateway | `default-gateway` | `network_diagnostics` | powershell, ipconfig | Report the default gateway. |
-| DHCP Status | `dhcp-status` | `network_diagnostics` | powershell, ipconfig | Report current dhcp status. |
+| DHCP Status | `dhcp-status` | `network_diagnostics` | powershell, ipconfig | Report whether an interface is using DHCP and its lease details. |
 | DNS Connectivity Test | `dns-connectivity-test` | `network_diagnostics` | powershell, ipconfig | Test dns connectivity reachability or behavior. |
-| DNS Server List | `dns-server-list` | `network_diagnostics` | powershell, ipconfig | List dns server entries. |
+| DNS Server List | `dns-server-list` | `network_diagnostics` | powershell, ipconfig | List the DNS servers currently configured. |
 | HTTP Connectivity Test | `http-connectivity-test` | `network_diagnostics` | powershell, ipconfig | Test http connectivity reachability or behavior. |
 | HTTPS Connectivity Test | `https-connectivity-test` | `network_diagnostics` | powershell, ipconfig | Test https connectivity reachability or behavior. |
 | Internet Reachability | `internet-reachability` | `network_diagnostics` | powershell, ipconfig | Check whether the internet is reachable. |
@@ -414,8 +414,8 @@ Plugin packs: 45
 | IPv6 Configuration | `ipv6-configuration` | `network_diagnostics` | powershell, ipconfig | Show IPv6 addresses and interfaces. |
 | Latency Test | `latency-test` | `network_diagnostics` | powershell, ipconfig | Test latency reachability or behavior. |
 | MAC Address Viewer | `mac-address-viewer` | `network_diagnostics` | powershell, ipconfig | Display the contents of mac address. |
-| Network Adapter Details | `network-adapter-details` | `network_diagnostics` | powershell, ipconfig | Show detailed network adapter details. |
-| Network Adapter List | `network-adapter-list` | `network_diagnostics` | powershell, ipconfig | List network adapter entries. |
+| Network Adapter Details | `network-adapter-details` | `network_diagnostics` | powershell, ipconfig | Show the detailed configuration of a network adapter. |
+| Network Adapter List | `network-adapter-list` | `network_diagnostics` | powershell, ipconfig | List the installed network adapters. |
 | Network Diagnostics Bundle | `network-diagnostics-bundle` | `network_diagnostics` | powershell, ipconfig | Run a bundle of network checks and summarise the results. |
 | Packet Loss Test | `packet-loss-test` | `network_diagnostics` | powershell, ipconfig | Test packet loss reachability or behavior. |
 | Proxy Configuration | `proxy-configuration` | `network_diagnostics` | powershell, ipconfig | Show the configured system/web proxy. |
@@ -433,16 +433,16 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| DOCX Heading Extractor | `docx-heading-extractor` | `office_tools` | python-docx, openpyxl, python-pptx | Extract data from docx heading. |
+| DOCX Heading Extractor | `docx-heading-extractor` | `office_tools` | python-docx, openpyxl, python-pptx | Extract the headings from a Word document (requires python-docx). |
 | DOCX Image Inspector | `docx-image-inspector` | `office_tools` | python-docx, openpyxl, python-pptx | Inspect docx image and report internals. |
 | DOCX Metadata | `docx-metadata` | `office_tools` | python-docx, openpyxl, python-pptx | Read core properties (title, author, dates) from a DOCX file (requires python-docx). |
-| DOCX Paragraph Counter | `docx-paragraph-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count occurrences within docx paragraph. |
+| DOCX Paragraph Counter | `docx-paragraph-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count the paragraphs in a Word document (requires python-docx). |
 | DOCX Structure Inspector | `docx-structure-inspector` | `office_tools` | python-docx, openpyxl, python-pptx | Inspect docx structure and report internals. |
-| DOCX Text Extractor | `docx-text-extractor` | `office_tools` | python-docx, openpyxl, python-pptx | Extract data from docx text. |
+| DOCX Text Extractor | `docx-text-extractor` | `office_tools` | python-docx, openpyxl, python-pptx | Extract the body text from a Word document (requires python-docx). |
 | Office File Inventory | `office-file-inventory` | `office_tools` | python-docx, openpyxl, python-pptx | List Office documents in a folder with basic properties. |
-| PPTX Slide Counter | `pptx-slide-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count occurrences within pptx slide. |
-| XLSX Cell Counter | `xlsx-cell-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count occurrences within xlsx cell. |
-| XLSX Formula Counter | `xlsx-formula-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count occurrences within xlsx formula. |
+| PPTX Slide Counter | `pptx-slide-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count the slides in a PowerPoint deck (requires python-pptx). |
+| XLSX Cell Counter | `xlsx-cell-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count the populated cells in a spreadsheet (requires openpyxl). |
+| XLSX Formula Counter | `xlsx-formula-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count the cells containing formulas in a spreadsheet (requires openpyxl). |
 | XLSX Metadata | `xlsx-metadata` | `office_tools` | python-docx, openpyxl, python-pptx | Read workbook properties and sheet names from an XLSX file (requires openpyxl). |
 | XLSX Sheet Lister | `xlsx-sheet-lister` | `office_tools` | python-docx, openpyxl, python-pptx | List the sheets in an XLSX workbook (requires openpyxl). |
 
@@ -452,12 +452,12 @@ Plugin packs: 45
 |---|---|---|---|---|
 | Executable Package Locator | `executable-package-locator` | `package_tools` | python | Locate the install path of an executable package. |
 | Import Package Test | `import-package-test` | `package_tools` | python | Test import package reachability or behavior. |
-| Package Cache Guide | `package-cache-guide` | `package_tools` | python | Show guidance for package cache. |
-| Pip Command Guide | `pip-command-guide` | `package_tools` | python | Show guidance for pip command. |
-| Python Package List | `python-package-list` | `package_tools` | python | List python package entries. |
+| Package Cache Guide | `package-cache-guide` | `package_tools` | python | Explain how to inspect and clear the pip download cache. |
+| Pip Command Guide | `pip-command-guide` | `package_tools` | python | Show the common pip commands for installing, listing and removing packages. |
+| Python Package List | `python-package-list` | `package_tools` | python | List the installed Python packages and their versions. |
 | Python Package Versions | `python-package-versions` | `package_tools` | python | List installed Python packages and their versions. |
 | Requirements Auditor | `requirements-auditor` | `package_tools` | python | Audit requirements for issues. |
-| Requirements Generator | `requirements-generator` | `package_tools` | python | Generate requirements output. |
+| Requirements Generator | `requirements-generator` | `package_tools` | python | Generate a requirements.txt from the installed packages. |
 | Venv Size Reporter | `venv-size` | `package_tools` | — | Produce a detailed report of venv size. |
 | Virtual Environment Finder | `virtual-environment-finder` | `package_tools` | python | Find Python virtual environments under a directory. |
 | Virtual Environment Report | `virtual-environment-report` | `package_tools` | python | Report Python virtual environments and their packages. |
@@ -469,34 +469,34 @@ Plugin packs: 45
 |---|---|---|---|---|
 | PDF Attachment Inspector | `pdf-attachment-inspector` | `pdf_tools` | pdftotext, qpdf, pdfunite | Inspect pdf attachment and report internals. |
 | PDF Compress | `pdf-compress` | `pdf_tools` | pdftotext, qpdf, pdfunite | Compress a PDF (requires qpdf). |
-| PDF Image Extractor | `pdf-image-extractor` | `pdf_tools` | pdftotext, qpdf, pdfunite | Extract data from pdf image. |
+| PDF Image Extractor | `pdf-image-extractor` | `pdf_tools` | pdftotext, qpdf, pdfunite | Extract the embedded images from a PDF (requires pdfimages). |
 | PDF Merge | `pdf-merge` | `pdf_tools` | pdftotext, qpdf, pdfunite | Merge several PDFs into one (requires qpdf). |
-| PDF Metadata Cleaner | `pdf-metadata-cleaner` | `pdf_tools` | pdftotext, qpdf, pdfunite | Clean up pdf metadata. |
-| PDF Metadata Reader | `pdf-metadata-reader` | `pdf_tools` | pdftotext, qpdf, pdfunite | Read and print pdf metadata. |
-| PDF Page Counter | `pdf-page-counter` | `pdf_tools` | pdftotext, qpdf, pdfunite | Count occurrences within pdf page. |
-| PDF Page Extractor | `pdf-page-extractor` | `pdf_tools` | pdftotext, qpdf, pdfunite | Extract data from pdf page. |
+| PDF Metadata Cleaner | `pdf-metadata-cleaner` | `pdf_tools` | pdftotext, qpdf, pdfunite | Strip metadata from a PDF (requires qpdf). |
+| PDF Metadata Reader | `pdf-metadata-reader` | `pdf_tools` | pdftotext, qpdf, pdfunite | Read the metadata fields from a PDF (requires pdfinfo). |
+| PDF Page Counter | `pdf-page-counter` | `pdf_tools` | pdftotext, qpdf, pdfunite | Count the pages in a PDF. |
+| PDF Page Extractor | `pdf-page-extractor` | `pdf_tools` | pdftotext, qpdf, pdfunite | Extract a page range from a PDF into a new file (requires qpdf). |
 | PDF Rotate | `pdf-rotate` | `pdf_tools` | pdftotext, qpdf, pdfunite | Rotate pdf logs or content. |
 | PDF Split | `pdf-split` | `pdf_tools` | pdftotext, qpdf, pdfunite | Split a PDF into pages or ranges (requires qpdf). |
-| PDF Text Search | `pdf-text-search` | `pdf_tools` | pdftotext, qpdf, pdfunite | Search pdf text targets for matches. |
+| PDF Text Search | `pdf-text-search` | `pdf_tools` | pdftotext, qpdf, pdfunite | Search a PDF's text for a pattern and report the matching pages (requires pdftotext). |
 | PDF Watermark | `pdf-watermark` | `pdf_tools` | pdftotext, qpdf, pdfunite | Stamp a watermark onto PDF pages. |
 
 ## Process Tools
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| Process Affinity Reader | `process-affinity-reader` | `process_tools` | — | Read and print process affinity. |
+| Process Affinity Reader | `process-affinity-reader` | `process_tools` | — | Read which CPUs a process is allowed to run on (requires psutil). |
 | Process Affinity Setter | `process-affinity-setter` | `process_tools` | — | Set/apply process affinity configuration. |
 | Process CPU Snapshot | `process-cpu-snapshot` | `process_tools` | — | Take a point-in-time snapshot of process cpu snapshot. |
-| Process Details | `process-details` | `process_tools` | — | Show detailed process details. |
+| Process Details | `process-details` | `process_tools` | — | Show the details of a single process by PID. |
 | Process Environment Summary | `process-environment-summary` | `process_tools` | — | Summarize process environment summary at a glance. |
 | Process Handle Summary | `process-handle-summary` | `process_tools` | — | Summarize process handle summary at a glance. |
-| Process List | `process-list` | `process_tools` | — | List process entries. |
+| Process List | `process-list` | `process_tools` | — | List the running processes with their PIDs and memory use. |
 | Process Memory Snapshot | `process-memory-snapshot` | `process_tools` | — | Take a point-in-time snapshot of process memory snapshot. |
 | Process Path Resolver | `process-path-resolver` | `process_tools` | — | Resolve process path names to concrete targets. |
-| Process Priority Reader | `process-priority-reader` | `process_tools` | — | Read and print process priority. |
+| Process Priority Reader | `process-priority-reader` | `process_tools` | — | Read a process's scheduling priority (requires psutil). |
 | Process Priority Setter | `process-priority-setter` | `process_tools` | — | Set/apply process priority configuration. |
-| Process Search | `process-search` | `process_tools` | — | Search process targets for matches. |
-| Process Start Time | `process-start-time` | `process_tools` | — | Compute process start time values. |
+| Process Search | `process-search` | `process_tools` | — | Find running processes whose name or command line matches a pattern. |
+| Process Start Time | `process-start-time` | `process_tools` | — | Report when a process started. |
 | Process Terminate | `process-terminate` | `process_tools` | — | Terminate a process by PID (requires taskkill). |
 | Process Tree | `process-tree` | `process_tools` | — | Show the process tree. |
 | Process Wait | `process-wait` | `process_tools` | — | Wait for a process to exit. |
@@ -510,7 +510,7 @@ Plugin packs: 45
 | Registry Import | `registry-import` | `registry_tools` | reg | Import registry data from a file. |
 | Registry Key Creator | `registry-key-creator` | `registry_tools` | reg | Create a Windows registry key. |
 | Registry Key Deleter | `registry-key-deleter` | `registry_tools` | reg | Delete a Windows registry key (destructive). |
-| Registry Path Validator | `registry-path-validator` | `registry_tools` | reg | Validate registry path structure or content. |
+| Registry Path Validator | `registry-path-validator` | `registry_tools` | reg | Check that a Windows registry path is well-formed. |
 | Registry Query | `registry-query` | `registry_tools` | reg | Read a value or key from the Windows registry (requires reg). |
 | Registry Value Deleter | `registry-value-deleter` | `registry_tools` | reg | Delete a Windows registry value (destructive). |
 | Registry Value Enumerator | `registry-value-enumerator` | `registry_tools` | reg | List the values under a registry key. |
@@ -540,15 +540,15 @@ Plugin packs: 45
 | Administrator Group Inventory | `administrator-group-inventory` | `security_audit` | powershell | List members of the local Administrators group (requires PowerShell). |
 | Autostart Registry Diff | `autostart-diff` | `security_audit` | reg | Autostart Registry Diff: show differences between two inputs. |
 | Credential Filename Finder | `credential-filename-finder` | `security_audit` | powershell | Find files whose names suggest stored credentials. |
-| Defender Status | `defender-status` | `security_audit` | powershell | Report current defender status. |
+| Defender Status | `defender-status` | `security_audit` | powershell | Report the Microsoft Defender protection status. |
 | Executable Finder | `executable-finder` | `security_audit` | powershell | Find executable files in a folder tree (requires PowerShell). |
 | File Permission Report | `file-permission-report` | `security_audit` | powershell | Report file permissions for files in a folder (requires PowerShell). |
-| Firewall Status | `firewall-status` | `security_audit` | powershell | Report current firewall status. |
+| Firewall Status | `firewall-status` | `security_audit` | powershell | Report the Windows Firewall profile status. |
 | Hidden File Finder | `hidden-file-finder` | `security_audit` | powershell | Find hidden files in a folder tree (requires PowerShell). |
 | Hosts File Audit | `hosts-file-audit` | `security_audit` | powershell | Audit hosts file for policy or safety issues. |
 | Local Account Inventory | `local-account-inventory` | `security_audit` | powershell | List local user accounts (requires PowerShell). |
-| Open Share Guide | `open-share-guide` | `security_audit` | powershell | Show guidance for open share. |
-| Portable App Suspicion Scanner | `portable-scan` | `security_audit` | — | Scan for portable app suspicion and list hits. |
+| Open Share Guide | `open-share-guide` | `security_audit` | powershell | Explain how to find and close open network shares. |
+| Portable App Suspicion Scanner | `portable-scan` | `security_audit` | — | Scan a folder for signs of portable applications. |
 | Private Key Filename Finder | `private-key-filename-finder` | `security_audit` | powershell | Find files that look like private keys. |
 | Recent Docs Privacy Report | `recent-docs-report` | `security_audit` | — | Report recently opened documents from the Windows Recent folder. |
 | Security Event Summary | `security-event-summary` | `security_audit` | powershell | Summarize security event summary at a glance. |
@@ -557,7 +557,7 @@ Plugin packs: 45
 | SSH Key Audit | `ssh-key-audit` | `security_audit` | powershell | Audit ssh key for policy or safety issues. |
 | Startup Security Audit | `startup-security-audit` | `security_audit` | powershell | Audit startup security for policy or safety issues. |
 | Temp Integrity Baseline | `integrity-baseline-plus` | `security_audit` | — | Record or verify SHA-256 baselines for files, stored in the temp directory. |
-| Windows Update Status | `windows-update-status` | `security_audit` | powershell | Report current windows update status. |
+| Windows Update Status | `windows-update-status` | `security_audit` | powershell | Report the pending and installed Windows updates. |
 | World Writable Finder | `world-writable-finder` | `security_audit` | powershell | Find world-writable files and folders (requires PowerShell). |
 
 ## Shell & Command Tools
@@ -565,18 +565,18 @@ Plugin packs: 45
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
 | Argument Escaper | `argument-escaper` | `shell_tools` | — | Escape argument strings for safe shell use. |
-| Batch File Generator | `batch-file-generator` | `shell_tools` | — | Generate batch file output. |
+| Batch File Generator | `batch-file-generator` | `shell_tools` | — | Generate a Windows batch (.bat) script from a template. |
 | Command Availability Scan | `command-availability-scan` | `shell_tools` | — | Check which of the supplied commands are available on PATH. |
-| Command History Guide | `command-history-guide` | `shell_tools` | — | Show guidance for command history. |
+| Command History Guide | `command-history-guide` | `shell_tools` | — | Explain where the shell stores command history and how to search it. |
 | Command Resolver | `command-resolver` | `shell_tools` | — | Resolve command names to concrete targets. |
-| Command Timeout Runner | `command-timeout-runner` | `shell_tools` | — | Run command timeout commands and capture output. |
+| Command Timeout Runner | `command-timeout-runner` | `shell_tools` | — | Run a command with a time limit and capture its output. |
 | Executable Locator | `executable-locator` | `shell_tools` | — | Locate the full path of an executable on PATH. |
 | Exit Code Decoder | `exit-code-decoder` | `shell_tools` | — | Decode exit code. |
 | PATH Inspector | `path-inspector` | `shell_tools` | — | Inspect path and report internals. |
-| PowerShell Command Runner | `powershell-command-runner` | `shell_tools` | powershell | Run powershell command commands and capture output. |
-| PowerShell Script Generator | `powershell-script-generator` | `shell_tools` | — | Generate powershell script output. |
+| PowerShell Command Runner | `powershell-command-runner` | `shell_tools` | powershell | Run a PowerShell command and capture its output. |
+| PowerShell Script Generator | `powershell-script-generator` | `shell_tools` | — | Generate a PowerShell (.ps1) script from a template. |
 | Process Pipe Helper | `process-pipe-helper` | `shell_tools` | — | Assist with process pipe tasks. |
-| Shell Command Runner | `shell-command-runner` | `shell_tools` | — | Run shell command commands and capture output. |
+| Shell Command Runner | `shell-command-runner` | `shell_tools` | — | Run a command given as an argument list and capture its output. |
 | Shell Environment Dump | `shell-environment-dump` | `shell_tools` | — | Dump shell environment contents in a readable format. |
 | Shell Quoting Helper | `shell-quoting-helper` | `shell_tools` | — | Assist with shell quoting tasks. |
 | STDERR Capture | `stderr-capture` | `shell_tools` | — | Capture stderr streams from child processes. |
@@ -590,16 +590,16 @@ Plugin packs: 45
 | Automation Manifest | `automation-manifest` | `startup_automation` | schtasks | Emit a manifest of the automation entries Utility Suite can manage. |
 | Folder Watch Snapshot | `folder-watch-snapshot` | `startup_automation` | schtasks | Take a point-in-time snapshot of folder watch snapshot. |
 | Logon Task Report | `logon-task-report` | `startup_automation` | schtasks | Report scheduled tasks that run at logon. |
-| Scheduled Task Details | `scheduled-task-details` | `startup_automation` | schtasks | Show detailed scheduled task details. |
+| Scheduled Task Details | `scheduled-task-details` | `startup_automation` | schtasks | Show the details of a scheduled task. |
 | Scheduled Task Disable | `scheduled-task-disable` | `startup_automation` | schtasks | Disable a Windows scheduled task. |
 | Scheduled Task Enable | `scheduled-task-enable` | `startup_automation` | schtasks | Enable a Windows scheduled task. |
-| Scheduled Task List | `scheduled-task-list` | `startup_automation` | schtasks | List scheduled task entries. |
+| Scheduled Task List | `scheduled-task-list` | `startup_automation` | schtasks | List the Windows scheduled tasks. |
 | Scheduled Task Run | `scheduled-task-run` | `startup_automation` | schtasks | Run an existing Windows scheduled task (requires schtasks). |
 | Startup Entry Inventory | `startup-entry-inventory` | `startup_automation` | schtasks | List programs configured to start with Windows. |
 | Startup Folder Cleaner | `startup-folder-cleaner` | `startup_automation` | schtasks | Clean up startup folder. |
 | Startup Folder Viewer | `startup-folder-viewer` | `startup_automation` | schtasks | Display the contents of startup folder. |
 | Startup Report | `startup-report` | `startup_automation` | schtasks | Summarise Windows startup entries and their locations. |
-| Task Trigger Guide | `task-trigger-guide` | `startup_automation` | schtasks | Show guidance for task trigger. |
+| Task Trigger Guide | `task-trigger-guide` | `startup_automation` | schtasks | Explain scheduled-task triggers and how to edit them. |
 | Task XML Export | `task-xml-export` | `startup_automation` | schtasks | Export task xml data to a file. |
 
 ## Storage Analytics
@@ -627,7 +627,7 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| Boot Time | `boot-time` | `system_info` | — | Compute boot time values. |
+| Boot Time | `boot-time` | `system_info` | — | Report when the system last booted. |
 | Computer Name | `computer-name` | `system_info` | — | Report the machine hostname. |
 | CPU Information | `cpu-information` | `system_info` | — | Report CPU model and core count. |
 | Current User | `current-user` | `system_info` | — | Report the current user and home directory. |
@@ -666,13 +666,13 @@ Plugin packs: 45
 | Camel Case Converter | `camel-case-converter` | `text_tools` | — | Convert text words into camelCase identifiers. |
 | Case Converter | `case-converter` | `text_tools` | — | Convert text to upper, lower, or swapped case. |
 | Character Frequency | `character-frequency` | `text_tools` | — | Count how often each character appears. |
-| Indentation Normalizer | `indentation-normalizer` | `text_tools` | — | Normalize indentation to a canonical form. |
+| Indentation Normalizer | `indentation-normalizer` | `text_tools` | — | Rewrite a file's indentation to a consistent style. |
 | Kebab Case Converter | `kebab-case-converter` | `text_tools` | — | Convert text words into kebab-case slugs. |
 | Line Number Prefixer | `line-number-prefixer` | `text_tools` | — | Prefix each line with its line number. |
 | Markdown Table Formatter | `markdown-table-formatter` | `text_tools` | — | Reformat markdown table to a clean layout. |
-| Ngram Counter | `ngram-counter` | `text_tools` | — | Count occurrences within ngram. |
+| Ngram Counter | `ngram-counter` | `text_tools` | — | Count the most frequent n-grams in a text. |
 | Regex Replacer | `regex-replacer` | `text_tools` | — | Find and replace using a regular expression. |
-| Sentence Counter | `sentence-counter` | `text_tools` | — | Count occurrences within sentence. |
+| Sentence Counter | `sentence-counter` | `text_tools` | — | Count the sentences in a text. |
 | Slugify Converter | `slugify-converter` | `text_tools` | — | Turn any title or sentence into a URL-safe lowercase slug. |
 | Snake Case Converter | `snake-case-converter` | `text_tools` | — | Convert text words into snake_case identifiers. |
 | Text Deduplicator | `text-deduplicator` | `text_tools` | — | Remove duplicate lines from a text file. |
@@ -682,7 +682,7 @@ Plugin packs: 45
 | Text Wrap | `text-wrap` | `text_tools` | — | Wrap long lines to a given width. |
 | Title Case Converter | `title-case-converter` | `text_tools` | — | Capitalize the first letter of every word (Title Case). |
 | Trailing Space Cleaner | `trailing-space-cleaner` | `text_tools` | — | Clean up trailing space. |
-| Unicode Normalizer | `unicode-normalizer` | `text_tools` | — | Normalize unicode to a canonical form. |
+| Unicode Normalizer | `unicode-normalizer` | `text_tools` | — | Normalise Unicode text to a canonical form (NFC/NFD/NFKC/NFKD). |
 | Whitespace Cleaner | `whitespace-cleaner` | `text_tools` | — | Clean up whitespace. |
 | Word Frequency | `word-frequency` | `text_tools` | — | Count how often each word appears. |
 
@@ -694,12 +694,12 @@ Plugin packs: 45
 | Calendar Month | `calendar-month` | `time_productivity` | — | Print a calendar for a month. |
 | Calendar Year | `calendar-year` | `time_productivity` | — | Print a calendar for a year. |
 | Countdown | `countdown` | `time_productivity` | — | Run a countdown timer. |
-| Cron Expression Explainer | `cron-explainer` | `time_productivity` | — | Explain cron expression in human terms. |
+| Cron Expression Explainer | `cron-explainer` | `time_productivity` | — | Translate a cron expression into plain English. |
 | Date Difference | `date-difference` | `time_productivity` | — | Compute the difference between date inputs. |
 | Date Range Expander | `date-range-expander` | `time_productivity` | — | Expand date range into enumerated items. |
 | Day Of Year | `day-of-year` | `time_productivity` | — | Report the day-of-year number for a date. |
 | Epoch Converter | `epoch-converter` | `time_productivity` | — | Convert a Unix epoch timestamp to a human-readable date and back. |
-| Habit Streak Counter | `habit-streak` | `time_productivity` | — | Count occurrences within habit streak. |
+| Habit Streak Counter | `habit-streak` | `time_productivity` | — | Track a habit and report the current and best streak. |
 | ISO Time Formatter | `iso-time-formatter` | `time_productivity` | — | Reformat iso time to a clean layout. |
 | Meeting Time Table | `meeting-time-table` | `time_productivity` | — | Lay out data as a meeting time table table. |
 | Pomodoro Timer | `pomodoro-timer` | `time_productivity` | — | Run a Pomodoro work/break timer. |
@@ -708,7 +708,7 @@ Plugin packs: 45
 | Time Zone Offset | `time-zone-offset` | `time_productivity` | — | Report the UTC offset for a time zone. |
 | Timestamp Converter | `timestamp-converter` | `time_productivity` | — | Convert between ISO-8601 timestamps and Unix epochs. |
 | Week Number | `week-number` | `time_productivity` | — | Report the ISO week number for a date. |
-| Working Hours Calculator | `working-hours-calculator` | `time_productivity` | — | Compute working hours values. |
+| Working Hours Calculator | `working-hours-calculator` | `time_productivity` | — | Compute the hours between two times, excluding breaks. |
 
 ## Unit Conversion
 
@@ -725,7 +725,7 @@ Plugin packs: 45
 | Power Converter | `power-converter` | `conversion_tools` | — | Convert power between units (W, kW, hp, BTU/h...). |
 | Pressure Converter | `pressure-converter` | `conversion_tools` | — | Convert pressure between units (Pa, bar, psi, atm...). |
 | Seconds Converter | `seconds-converter` | `conversion_tools` | — | Convert a duration in seconds into days/hours/minutes/seconds. |
-| Size Formatter | `size-formatter` | `conversion_tools` | — | Reformat size to a clean layout. |
+| Size Formatter | `size-formatter` | `conversion_tools` | — | Reformat a size value into a clean human-readable layout. |
 | Speed Converter | `speed-converter` | `conversion_tools` | — | Convert speed between units (km/h, mph, m/s, knots...). |
 | Temperature Converter | `temperature-converter` | `conversion_tools` | — | Convert temperature between c, f, k, and r scales. |
 | Volume Converter | `volume-converter` | `conversion_tools` | — | Convert volume between units (L, gal, mL, ft3, cup...). |
@@ -734,14 +734,14 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| Video Audio Extractor | `video-audio-extractor` | `video_tools` | ffprobe, ffmpeg | Extract data from video audio. |
+| Video Audio Extractor | `video-audio-extractor` | `video_tools` | ffprobe, ffmpeg | Extract the audio track from a video file (requires ffmpeg). |
 | Video Bitrate Inspector | `video-bitrate-inspector` | `video_tools` | ffprobe, ffmpeg | Inspect video bitrate and report internals. |
 | Video Clip Cutter | `video-clip-cutter` | `video_tools` | ffprobe, ffmpeg | Cut video clip segments. |
 | Video Concatenator | `video-concatenator` | `video_tools` | ffprobe, ffmpeg | Join video files into one (requires ffmpeg). |
 | Video Duration | `video-duration` | `video_tools` | ffprobe, ffmpeg | Report the duration of a video file (requires ffprobe). |
 | Video Frame Rate Inspector | `video-frame-rate-inspector` | `video_tools` | ffprobe, ffmpeg | Inspect video frame rate and report internals. |
 | Video GIF Maker | `video-gif-maker` | `video_tools` | ffprobe, ffmpeg | Convert a video clip to an animated GIF (requires ffmpeg). |
-| Video Metadata Cleaner | `video-metadata-cleaner` | `video_tools` | ffprobe, ffmpeg | Clean up video metadata. |
+| Video Metadata Cleaner | `video-metadata-cleaner` | `video_tools` | ffprobe, ffmpeg | Strip metadata from a video file (requires ffmpeg). |
 | Video Resolution Inspector | `video-resolution-inspector` | `video_tools` | ffprobe, ffmpeg | Inspect video resolution and report internals. |
 | Video Screenshot | `video-screenshot` | `video_tools` | ffprobe, ffmpeg | Extract a still frame from a video (requires ffmpeg). |
 | Video Stream Inspector | `video-stream-inspector` | `video_tools` | ffprobe, ffmpeg | Inspect video stream and report internals. |
@@ -751,12 +751,12 @@ Plugin packs: 45
 
 | Tool | Command | Pack | Dependencies | Description |
 |---|---|---|---|---|
-| Desktop Count Reader | `desktop-count-reader` | `virtual_desktop` | powershell | Read and print desktop count. |
-| Desktop Hotkey Guide | `desktop-hotkey-guide` | `virtual_desktop` | powershell | Show guidance for desktop hotkey. |
+| Desktop Count Reader | `desktop-count-reader` | `virtual_desktop` | powershell | Report how many virtual desktops are open. |
+| Desktop Hotkey Guide | `desktop-hotkey-guide` | `virtual_desktop` | powershell | Explain the keyboard shortcuts for switching virtual desktops. |
 | Desktop Launch Helper | `desktop-launch-helper` | `virtual_desktop` | powershell | Assist with desktop launch tasks. |
 | Desktop Process Summary | `desktop-process-summary` | `virtual_desktop` | powershell | Summarize desktop process summary at a glance. |
-| Virtual Desktop List | `virtual-desktop-list` | `virtual_desktop` | powershell | List virtual desktop entries. |
-| Virtual Desktop Settings | `virtual-desktop-settings` | `virtual_desktop` | powershell | Show or change virtual desktop settings. |
+| Virtual Desktop List | `virtual-desktop-list` | `virtual_desktop` | powershell | List the Windows virtual desktops. |
+| Virtual Desktop Settings | `virtual-desktop-settings` | `virtual_desktop` | powershell | Show or change virtual-desktop settings. |
 | Virtual Desktop Shortcut | `virtual-desktop-shortcut` | `virtual_desktop` | powershell | Virtual Desktop Shortcut: manage/create virtual desktop shortcuts. |
 | Window Desktop Mapper | `window-desktop-mapper` | `virtual_desktop` | powershell | Map relationships for window desktop mapper. |
 
@@ -766,18 +766,18 @@ Plugin packs: 45
 |---|---|---|---|---|
 | Always On Top Toggle | `always-on-top-toggle` | `window_manager` | powershell | Toggle always on top state on/off. |
 | Window Cascade Helper | `window-cascade-helper` | `window_manager` | powershell | Assist with window cascade tasks. |
-| Window Details | `window-details` | `window_manager` | powershell | Show detailed window details. |
+| Window Details | `window-details` | `window_manager` | powershell | Show the details of a window, such as its title and handle. |
 | Window Focus Helper | `window-focus-helper` | `window_manager` | powershell | Assist with window focus tasks. |
-| Window Geometry Reader | `window-geometry-reader` | `window_manager` | powershell | Read and print window geometry. |
+| Window Geometry Reader | `window-geometry-reader` | `window_manager` | powershell | Read a window's position and size. |
 | Window Geometry Setter | `window-geometry-setter` | `window_manager` | powershell | Set/apply window geometry configuration. |
-| Window Hotkey Guide | `window-hotkey-guide` | `window_manager` | powershell | Show guidance for window hotkey. |
-| Window List | `window-list` | `window_manager` | powershell | List window entries. |
+| Window Hotkey Guide | `window-hotkey-guide` | `window_manager` | powershell | Explain the built-in Windows window-management shortcuts. |
+| Window List | `window-list` | `window_manager` | powershell | List the open top-level windows. |
 | Window Minimize All | `window-minimize-all` | `window_manager` | powershell | Minimise all open windows (Windows). |
-| Window Process Mapping | `window-process-mapping` | `window_manager` | powershell | Report window process mapping associations. |
+| Window Process Mapping | `window-process-mapping` | `window_manager` | powershell | Map open windows to the processes that own them. |
 | Window Restore All | `window-restore-all` | `window_manager` | powershell | Restore all minimised windows (Windows). |
 | Window Tile Helper | `window-tile-helper` | `window_manager` | powershell | Assist with window tile tasks. |
-| Window Title Search | `window-title-search` | `window_manager` | powershell | Search window title targets for matches. |
-| Window Transparency Guide | `window-transparency-guide` | `window_manager` | powershell | Show guidance for window transparency. |
+| Window Title Search | `window-title-search` | `window_manager` | powershell | Find open windows whose title matches a pattern. |
+| Window Transparency Guide | `window-transparency-guide` | `window_manager` | powershell | Explain how to adjust window transparency on Windows. |
 
 ## Windows Power Tools
 

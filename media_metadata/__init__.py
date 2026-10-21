@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "EXIF Date Reader",
             "category": "Media Metadata",
-            "description": "Read and print exif date.",
+            "description": "Read the capture date recorded in an image's EXIF data (requires Pillow).",
             "handler": "operations.exif_date_reader",
             "cli_command": "exif-date-reader",
             "dependencies": ["ffprobe"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "EXIF Camera Reader",
             "category": "Media Metadata",
-            "description": "Read and print exif camera.",
+            "description": "Read the camera make and model from an image's EXIF data (requires Pillow).",
             "handler": "operations.exif_camera_reader",
             "cli_command": "exif-camera-reader",
             "dependencies": ["ffprobe"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Image MIME Detector",
             "category": "Media Metadata",
-            "description": "Detect and identify image mime.",
+            "description": "Detect the MIME type of an image file.",
             "handler": "operations.image_mime_detector",
             "cli_command": "image-mime-detector",
             "dependencies": ["ffprobe"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Audio MIME Detector",
             "category": "Media Metadata",
-            "description": "Detect and identify audio mime.",
+            "description": "Detect the MIME type of an audio file.",
             "handler": "operations.audio_mime_detector",
             "cli_command": "audio-mime-detector",
             "dependencies": ["ffprobe"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Video MIME Detector",
             "category": "Media Metadata",
-            "description": "Detect and identify video mime.",
+            "description": "Detect the MIME type of a video file.",
             "handler": "operations.video_mime_detector",
             "cli_command": "video-mime-detector",
             "dependencies": ["ffprobe"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Media File Scanner",
             "category": "Media Metadata",
-            "description": "Scan for media file and list hits.",
+            "description": "Scan a folder for media files and list what it finds.",
             "handler": "operations.media_file_scanner",
             "cli_command": "media-file-scanner",
             "dependencies": ["ffprobe"],

@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Audio Normalizer",
             "category": "Audio Tools",
-            "description": "Normalize audio to a canonical form.",
+            "description": "Normalise an audio file's loudness and format to a consistent baseline (requires ffmpeg).",
             "handler": "operations.audio_normalizer",
             "cli_command": "audio-normalizer",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Audio Silence Detector",
             "category": "Audio Tools",
-            "description": "Detect and identify audio silence.",
+            "description": "Detect silent stretches in an audio file (requires ffmpeg).",
             "handler": "operations.audio_silence_detector",
             "cli_command": "audio-silence-detector",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Audio Metadata Reader",
             "category": "Audio Tools",
-            "description": "Read and print audio metadata.",
+            "description": "Read and display the tags and stream metadata of an audio file (requires ffprobe).",
             "handler": "operations.audio_metadata_reader",
             "cli_command": "audio-metadata-reader",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Audio Metadata Cleaner",
             "category": "Audio Tools",
-            "description": "Clean up audio metadata.",
+            "description": "Strip tags and metadata from an audio file (requires ffmpeg).",
             "handler": "operations.audio_metadata_cleaner",
             "cli_command": "audio-metadata-cleaner",
             "dependencies": ["ffprobe", "ffmpeg"],

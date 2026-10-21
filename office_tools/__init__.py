@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "DOCX Text Extractor",
             "category": "Office Tools",
-            "description": "Extract data from docx text.",
+            "description": "Extract the body text from a Word document (requires python-docx).",
             "handler": "operations.docx_text_extractor",
             "cli_command": "docx-text-extractor",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "DOCX Paragraph Counter",
             "category": "Office Tools",
-            "description": "Count occurrences within docx paragraph.",
+            "description": "Count the paragraphs in a Word document (requires python-docx).",
             "handler": "operations.docx_paragraph_counter",
             "cli_command": "docx-paragraph-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "DOCX Heading Extractor",
             "category": "Office Tools",
-            "description": "Extract data from docx heading.",
+            "description": "Extract the headings from a Word document (requires python-docx).",
             "handler": "operations.docx_heading_extractor",
             "cli_command": "docx-heading-extractor",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "XLSX Cell Counter",
             "category": "Office Tools",
-            "description": "Count occurrences within xlsx cell.",
+            "description": "Count the populated cells in a spreadsheet (requires openpyxl).",
             "handler": "operations.xlsx_cell_counter",
             "cli_command": "xlsx-cell-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "XLSX Formula Counter",
             "category": "Office Tools",
-            "description": "Count occurrences within xlsx formula.",
+            "description": "Count the cells containing formulas in a spreadsheet (requires openpyxl).",
             "handler": "operations.xlsx_formula_counter",
             "cli_command": "xlsx-formula-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "PPTX Slide Counter",
             "category": "Office Tools",
-            "description": "Count occurrences within pptx slide.",
+            "description": "Count the slides in a PowerPoint deck (requires python-pptx).",
             "handler": "operations.pptx_slide_counter",
             "cli_command": "pptx-slide-counter",
             "dependencies": ["python-docx", "openpyxl", "python-pptx"],

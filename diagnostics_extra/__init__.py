@@ -134,7 +134,7 @@ def register_tools():
         {
             "name": "Open File Guide",
             "category": "Extended Diagnostics",
-            "description": "Show guidance for open file.",
+            "description": "Explain which process holds a file open and how to release it.",
             "handler": "operations.open_file_guide",
             "cli_command": "open-file-guide",
             "dependencies": ["powershell"],

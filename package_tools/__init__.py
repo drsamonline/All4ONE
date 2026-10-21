@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Python Package List",
         "category": "Package & Environment Tools",
-        "description": "List python package entries.",
+        "description": "List the installed Python packages and their versions.",
         "handler": "operations.python_package_list",
         "cli_command": "python-package-list",
         "dependencies": [
@@ -26,7 +26,7 @@ def register_tools():
     {
         "name": "Pip Command Guide",
         "category": "Package & Environment Tools",
-        "description": "Show guidance for pip command.",
+        "description": "Show the common pip commands for installing, listing and removing packages.",
         "handler": "operations.pip_command_guide",
         "cli_command": "pip-command-guide",
         "dependencies": [
@@ -56,7 +56,7 @@ def register_tools():
     {
         "name": "Requirements Generator",
         "category": "Package & Environment Tools",
-        "description": "Generate requirements output.",
+        "description": "Generate a requirements.txt from the installed packages.",
         "handler": "operations.requirements_generator",
         "cli_command": "requirements-generator",
         "dependencies": [
@@ -96,7 +96,7 @@ def register_tools():
     {
         "name": "Package Cache Guide",
         "category": "Package & Environment Tools",
-        "description": "Show guidance for package cache.",
+        "description": "Explain how to inspect and clear the pip download cache.",
         "handler": "operations.package_cache_guide",
         "cli_command": "package-cache-guide",
         "dependencies": [

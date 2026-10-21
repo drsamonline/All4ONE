@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Working Hours Calculator",
         "category": "Time & Productivity",
-        "description": "Compute working hours values.",
+        "description": "Compute the hours between two times, excluding breaks.",
         "handler": "operations.working_hours_calculator",
         "cli_command": "working-hours-calculator",
         "dependencies": []
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "Cron Expression Explainer",
         "category": "Time & Productivity",
-        "description": "Explain cron expression in human terms.",
+        "description": "Translate a cron expression into plain English.",
         "handler": "operations.cron_expression_explainer",
         "cli_command": "cron-explainer",
         "dependencies": []
@@ -150,7 +150,7 @@ def register_tools():
     {
         "name": "Habit Streak Counter",
         "category": "Time & Productivity",
-        "description": "Count occurrences within habit streak.",
+        "description": "Track a habit and report the current and best streak.",
         "handler": "operations.habit_streak_counter",
         "cli_command": "habit-streak",
         "dependencies": []

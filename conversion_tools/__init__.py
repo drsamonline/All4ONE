@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Size Formatter",
             "category": "Unit Conversion",
-            "description": "Reformat size to a clean layout.",
+            "description": "Reformat a size value into a clean human-readable layout.",
             "handler": "operations.size_formatter",
             "cli_command": "size-formatter",
             "dependencies": [],

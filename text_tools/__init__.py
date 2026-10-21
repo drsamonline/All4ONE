@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "Indentation Normalizer",
         "category": "Text Processing",
-        "description": "Normalize indentation to a canonical form.",
+        "description": "Rewrite a file's indentation to a consistent style.",
         "handler": "operations.indentation_normalizer",
         "cli_command": "indentation-normalizer",
         "dependencies": []
@@ -134,7 +134,7 @@ def register_tools():
     {
         "name": "Ngram Counter",
         "category": "Text Processing",
-        "description": "Count occurrences within ngram.",
+        "description": "Count the most frequent n-grams in a text.",
         "handler": "operations.ngram_counter",
         "cli_command": "ngram-counter",
         "dependencies": []
@@ -142,7 +142,7 @@ def register_tools():
     {
         "name": "Sentence Counter",
         "category": "Text Processing",
-        "description": "Count occurrences within sentence.",
+        "description": "Count the sentences in a text.",
         "handler": "operations.sentence_counter",
         "cli_command": "sentence-counter",
         "dependencies": []
@@ -182,7 +182,7 @@ def register_tools():
     {
         "name": "Unicode Normalizer",
         "category": "Text Processing",
-        "description": "Normalize unicode to a canonical form.",
+        "description": "Normalise Unicode text to a canonical form (NFC/NFD/NFKC/NFKD).",
         "handler": "operations.unicode_normalizer",
         "cli_command": "unicode-normalizer",
         "dependencies": []

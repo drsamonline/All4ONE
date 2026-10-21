@@ -116,7 +116,7 @@ def register_tools():
     {
         "name": "Monitor Threshold Calculator",
         "category": "Monitoring & Telemetry",
-        "description": "Compute monitor threshold values.",
+        "description": "Compute alert thresholds from a metric series.",
         "handler": "operations.monitor_threshold_calculator",
         "cli_command": "monitor-threshold-calculator",
         "dependencies": [
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "Battery Status",
         "category": "Monitoring & Telemetry",
-        "description": "Report current battery status.",
+        "description": "Report the battery charge level and state.",
         "handler": "operations.battery_status",
         "cli_command": "battery-status",
         "dependencies": [
@@ -176,7 +176,7 @@ def register_tools():
     {
         "name": "Power Source Status",
         "category": "Monitoring & Telemetry",
-        "description": "Report current power source status.",
+        "description": "Report whether the machine is on AC power or battery.",
         "handler": "operations.power_source_status",
         "cli_command": "power-source-status",
         "dependencies": [

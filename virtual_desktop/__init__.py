@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Virtual Desktop List",
             "category": "Virtual Desktops",
-            "description": "List virtual desktop entries.",
+            "description": "List the Windows virtual desktops.",
             "handler": "operations.virtual_desktop_list",
             "cli_command": "virtual-desktop-list",
             "dependencies": ["powershell"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Desktop Count Reader",
             "category": "Virtual Desktops",
-            "description": "Read and print desktop count.",
+            "description": "Report how many virtual desktops are open.",
             "handler": "operations.desktop_count_reader",
             "cli_command": "desktop-count-reader",
             "dependencies": ["powershell"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "Virtual Desktop Settings",
             "category": "Virtual Desktops",
-            "description": "Show or change virtual desktop settings.",
+            "description": "Show or change virtual-desktop settings.",
             "handler": "operations.virtual_desktop_settings",
             "cli_command": "virtual-desktop-settings",
             "dependencies": ["powershell"],
@@ -46,7 +46,7 @@ def register_tools():
         {
             "name": "Desktop Hotkey Guide",
             "category": "Virtual Desktops",
-            "description": "Show guidance for desktop hotkey.",
+            "description": "Explain the keyboard shortcuts for switching virtual desktops.",
             "handler": "operations.desktop_hotkey_guide",
             "cli_command": "desktop-hotkey-guide",
             "dependencies": ["powershell"],

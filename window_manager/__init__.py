@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Window List",
             "category": "Window Manager",
-            "description": "List window entries.",
+            "description": "List the open top-level windows.",
             "handler": "operations.window_list",
             "cli_command": "window-list",
             "dependencies": ["powershell"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Window Details",
             "category": "Window Manager",
-            "description": "Show detailed window details.",
+            "description": "Show the details of a window, such as its title and handle.",
             "handler": "operations.window_details",
             "cli_command": "window-details",
             "dependencies": ["powershell"],
@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Window Title Search",
             "category": "Window Manager",
-            "description": "Search window title targets for matches.",
+            "description": "Find open windows whose title matches a pattern.",
             "handler": "operations.window_title_search",
             "cli_command": "window-title-search",
             "dependencies": ["powershell"],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Window Process Mapping",
             "category": "Window Manager",
-            "description": "Report window process mapping associations.",
+            "description": "Map open windows to the processes that own them.",
             "handler": "operations.window_process_mapping",
             "cli_command": "window-process-mapping",
             "dependencies": ["powershell"],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Window Geometry Reader",
             "category": "Window Manager",
-            "description": "Read and print window geometry.",
+            "description": "Read a window's position and size.",
             "handler": "operations.window_geometry_reader",
             "cli_command": "window-geometry-reader",
             "dependencies": ["powershell"],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Window Transparency Guide",
             "category": "Window Manager",
-            "description": "Show guidance for window transparency.",
+            "description": "Explain how to adjust window transparency on Windows.",
             "handler": "operations.window_transparency_guide",
             "cli_command": "window-transparency-guide",
             "dependencies": ["powershell"],
@@ -110,7 +110,7 @@ def register_tools():
         {
             "name": "Window Hotkey Guide",
             "category": "Window Manager",
-            "description": "Show guidance for window hotkey.",
+            "description": "Explain the built-in Windows window-management shortcuts.",
             "handler": "operations.window_hotkey_guide",
             "cli_command": "window-hotkey-guide",
             "dependencies": ["powershell"],

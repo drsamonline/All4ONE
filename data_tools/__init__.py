@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "CSV Normalizer",
         "category": "Data & Structured Data",
-        "description": "Normalize csv to a canonical form.",
+        "description": "Normalise a CSV file's columns and formatting to a consistent shape.",
         "handler": "operations.csv_normalizer",
         "cli_command": "csv-normalizer",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "JSON Pretty Printer",
         "category": "Data & Structured Data",
-        "description": "Print formatted json pretty.",
+        "description": "Pretty-print a JSON document with consistent indentation.",
         "handler": "operations.json_pretty_printer",
         "cli_command": "json-pretty-printer",
         "dependencies": []
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "JSON Path Extractor",
         "category": "Data & Structured Data",
-        "description": "Extract data from json path.",
+        "description": "Extract values from a JSON document using a dotted key path.",
         "handler": "operations.json_path_extractor",
         "cli_command": "json-path-extractor",
         "dependencies": []
@@ -142,7 +142,7 @@ def register_tools():
     {
         "name": "SQLite Table Counter",
         "category": "Data & Structured Data",
-        "description": "Count occurrences within sqlite table.",
+        "description": "Count the tables in a SQLite database file.",
         "handler": "operations.sqlite_table_counter",
         "cli_command": "sqlite-table-counter",
         "dependencies": []
@@ -150,7 +150,7 @@ def register_tools():
     {
         "name": "SQLite Query Runner",
         "category": "Data & Structured Data",
-        "description": "Run sqlite query commands and capture output.",
+        "description": "Run a SQL query against a SQLite database and print the rows.",
         "handler": "operations.sqlite_query_runner",
         "cli_command": "sqlite-query-runner",
         "dependencies": []
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "CSV Column Extractor",
         "category": "Data Tools",
-        "description": "Extract data from csv column.",
+        "description": "Extract a single column from a CSV file.",
         "handler": "operations.csv_column_extractor",
         "cli_command": "csv-column-extractor",
         "dependencies": []

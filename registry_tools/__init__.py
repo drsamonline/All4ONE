@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "Registry Path Validator",
             "category": "Registry Tools",
-            "description": "Validate registry path structure or content.",
+            "description": "Check that a Windows registry path is well-formed.",
             "handler": "operations.registry_path_validator",
             "cli_command": "registry-path-validator",
             "dependencies": ["reg"],

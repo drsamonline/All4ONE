@@ -39,7 +39,7 @@ def register_tools():
     {
         "name": "IP Address Info",
         "category": "Advanced Networking",
-        "description": "Show ip address information.",
+        "description": "Show the local IP addresses and interface details.",
         "handler": "operations.ip_address_info",
         "cli_command": "ip-address-info",
         "dependencies": [
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Hosts File Entry Checker",
         "category": "Advanced Networking",
-        "description": "Check and validate hosts file entry.",
+        "description": "Check whether a hostname is mapped in the hosts file.",
         "handler": "operations.hosts_file_entry_checker",
         "cli_command": "hosts-file-entry-checker",
         "dependencies": [
@@ -105,7 +105,7 @@ def register_tools():
     {
         "name": "TCP Port Checker",
         "category": "Advanced Networking",
-        "description": "Check and validate tcp port.",
+        "description": "Test whether a TCP port on a host is open.",
         "handler": "operations.tcp_port_checker",
         "cli_command": "tcp-port-checker",
         "dependencies": [
@@ -149,7 +149,7 @@ def register_tools():
     {
         "name": "URL Redirect Checker",
         "category": "Advanced Networking",
-        "description": "Check and validate url redirect.",
+        "description": "Follow a URL and report the final destination after redirects.",
         "handler": "operations.url_redirect_checker",
         "cli_command": "url-redirect-checker",
         "dependencies": [
@@ -182,7 +182,7 @@ def register_tools():
     {
         "name": "Subnet Calculator",
         "category": "Networking",
-        "description": "Compute subnet values.",
+        "description": "Compute the network, broadcast, mask and host range for a CIDR block.",
         "handler": "operations.subnet_calculator",
         "cli_command": "subnet-calculator",
         "dependencies": []

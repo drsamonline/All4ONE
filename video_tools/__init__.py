@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Video Audio Extractor",
             "category": "Video Tools",
-            "description": "Extract data from video audio.",
+            "description": "Extract the audio track from a video file (requires ffmpeg).",
             "handler": "operations.video_audio_extractor",
             "cli_command": "video-audio-extractor",
             "dependencies": ["ffprobe", "ffmpeg"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Video Metadata Cleaner",
             "category": "Video Tools",
-            "description": "Clean up video metadata.",
+            "description": "Strip metadata from a video file (requires ffmpeg).",
             "handler": "operations.video_metadata_cleaner",
             "cli_command": "video-metadata-cleaner",
             "dependencies": ["ffprobe", "ffmpeg"],

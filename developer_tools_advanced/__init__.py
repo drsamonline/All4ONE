@@ -6,7 +6,7 @@ def register_tools():
     {
         "name": "Python Syntax Checker",
         "category": "Advanced Developer Tools",
-        "description": "Check and validate python syntax.",
+        "description": "Compile a Python file to check it for syntax errors.",
         "handler": "operations.python_syntax_checker",
         "cli_command": "python-syntax-checker",
         "dependencies": []
@@ -14,7 +14,7 @@ def register_tools():
     {
         "name": "Python Import Checker",
         "category": "Advanced Developer Tools",
-        "description": "Check and validate python import.",
+        "description": "Check that a Python file's imports resolve.",
         "handler": "operations.python_import_checker",
         "cli_command": "python-import-checker",
         "dependencies": []
@@ -22,7 +22,7 @@ def register_tools():
     {
         "name": "JSON Schema-Lite Validator",
         "category": "Advanced Developer Tools",
-        "description": "Validate json schema-lite structure or content.",
+        "description": "Validate a JSON document against a compact, dependency-free schema.",
         "handler": "operations.json_schema_lite_validator",
         "cli_command": "json-schema-lite-validator",
         "dependencies": []
@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "YAML Structure Checker",
         "category": "Advanced Developer Tools",
-        "description": "Check and validate yaml structure.",
+        "description": "Parse a YAML file and report its structure or any errors.",
         "handler": "operations.yaml_structure_checker",
         "cli_command": "yaml-structure-checker",
         "dependencies": []
@@ -38,7 +38,7 @@ def register_tools():
     {
         "name": "TOML Structure Checker",
         "category": "Advanced Developer Tools",
-        "description": "Check and validate toml structure.",
+        "description": "Parse a TOML file and report its structure or any errors.",
         "handler": "operations.toml_structure_checker",
         "cli_command": "toml-structure-checker",
         "dependencies": []
@@ -46,7 +46,7 @@ def register_tools():
     {
         "name": "Regex Tester",
         "category": "Advanced Developer Tools",
-        "description": "Test connectivity/behavior of regex.",
+        "description": "Test a regular expression against sample text and show the matches.",
         "handler": "operations.regex_tester",
         "cli_command": "regex-tester",
         "dependencies": []
@@ -62,7 +62,7 @@ def register_tools():
     {
         "name": "Patch Preview",
         "category": "Advanced Developer Tools",
-        "description": "Preview the effect of patch before applying it.",
+        "description": "Show how a patch would change a file before you apply it.",
         "handler": "operations.patch_preview",
         "cli_command": "patch-preview",
         "dependencies": []
@@ -70,7 +70,7 @@ def register_tools():
     {
         "name": "Line Ending Detector",
         "category": "Advanced Developer Tools",
-        "description": "Detect and identify line ending.",
+        "description": "Detect whether a text file uses CRLF, LF or CR line endings.",
         "handler": "operations.line_ending_detector",
         "cli_command": "line-ending-detector",
         "dependencies": []
@@ -78,7 +78,7 @@ def register_tools():
     {
         "name": "Indentation Analyzer",
         "category": "Advanced Developer Tools",
-        "description": "Analyze indentation and summarize findings.",
+        "description": "Report a file's indentation style, tabs versus spaces, and consistency.",
         "handler": "operations.indentation_analyzer",
         "cli_command": "indentation-analyzer",
         "dependencies": []
@@ -86,7 +86,7 @@ def register_tools():
     {
         "name": "Encoding Detector",
         "category": "Advanced Developer Tools",
-        "description": "Detect and identify encoding.",
+        "description": "Detect the likely character encoding of a file.",
         "handler": "operations.encoding_detector",
         "cli_command": "encoding-detector",
         "dependencies": []
@@ -94,7 +94,7 @@ def register_tools():
     {
         "name": "Base64 Encoder",
         "category": "Advanced Developer Tools",
-        "description": "Encode base64.",
+        "description": "Base64-encode text or a file.",
         "handler": "operations.base64_encoder",
         "cli_command": "base64-encoder",
         "dependencies": []
@@ -102,7 +102,7 @@ def register_tools():
     {
         "name": "Base64 Decoder",
         "category": "Advanced Developer Tools",
-        "description": "Decode base64.",
+        "description": "Base64-decode text or a file back to its original bytes.",
         "handler": "operations.base64_decoder",
         "cli_command": "base64-decoder",
         "dependencies": []
@@ -110,7 +110,7 @@ def register_tools():
     {
         "name": "URL Encoder",
         "category": "Advanced Developer Tools",
-        "description": "Encode url.",
+        "description": "Percent-encode a string so it is safe inside a URL.",
         "handler": "operations.url_encoder",
         "cli_command": "url-encoder",
         "dependencies": []
@@ -118,7 +118,7 @@ def register_tools():
     {
         "name": "URL Decoder",
         "category": "Advanced Developer Tools",
-        "description": "Decode url.",
+        "description": "Decode percent-encoded characters in a URL back to plain text.",
         "handler": "operations.url_decoder",
         "cli_command": "url-decoder",
         "dependencies": []
@@ -126,7 +126,7 @@ def register_tools():
     {
         "name": "UUID Generator",
         "category": "Advanced Developer Tools",
-        "description": "Generate uuid output.",
+        "description": "Generate one or more RFC 4122 UUIDs.",
         "handler": "operations.uuid_generator",
         "cli_command": "uuid-generator",
         "dependencies": []
@@ -134,7 +134,7 @@ def register_tools():
     {
         "name": "Hash Calculator",
         "category": "Advanced Developer Tools",
-        "description": "Compute hash values.",
+        "description": "Compute MD5, SHA-1, SHA-256 or SHA-512 digests for text or files.",
         "handler": "operations.hash_calculator",
         "cli_command": "hash-calculator",
         "dependencies": []
@@ -142,7 +142,7 @@ def register_tools():
     {
         "name": "HMAC Calculator",
         "category": "Advanced Developer Tools",
-        "description": "Compute hmac values.",
+        "description": "Compute an HMAC signature for a message with a given key.",
         "handler": "operations.hmac_calculator",
         "cli_command": "hmac-calculator",
         "dependencies": []
@@ -166,7 +166,7 @@ def register_tools():
     {
         "name": "Multi Algorithm Hasher",
         "category": "Advanced Developer Tools",
-        "description": "Hash multi algorithm files or text.",
+        "description": "Compute several hash algorithms at once for a file or text.",
         "handler": "operations.multi_algorithm_hasher",
         "cli_command": "multi-hash",
         "dependencies": []
@@ -174,7 +174,7 @@ def register_tools():
     {
         "name": "Checksum Verifier",
         "category": "Advanced Developer Tools",
-        "description": "Verify checksum integrity.",
+        "description": "Verify a file against an expected checksum.",
         "handler": "operations.checksum_verifier",
         "cli_command": "checksum-verify",
         "dependencies": []
@@ -198,7 +198,7 @@ def register_tools():
     {
         "name": "Charset Detector",
         "category": "Advanced Developer Tools",
-        "description": "Detect and identify charset.",
+        "description": "Detect the character set of a byte stream.",
         "handler": "operations.charset_detector",
         "cli_command": "charset-detect",
         "dependencies": []
@@ -206,7 +206,7 @@ def register_tools():
     {
         "name": "BOM Handler",
         "category": "Advanced Developer Tools",
-        "description": "BOM Handler: handle bom input and return processed results.",
+        "description": "Detect or strip a byte-order mark from a text file.",
         "handler": "operations.bom_handler",
         "cli_command": "bom-handler",
         "dependencies": []

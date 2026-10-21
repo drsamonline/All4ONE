@@ -54,7 +54,7 @@ def register_tools():
         {
             "name": "Image Metadata Cleaner",
             "category": "Advanced Imaging",
-            "description": "Clean up image metadata.",
+            "description": "Strip EXIF and other metadata from an image (requires Pillow).",
             "handler": "operations.image_metadata_cleaner",
             "cli_command": "image-metadata-cleaner",
             "dependencies": ["Pillow"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Image Batch Renamer",
             "category": "Advanced Imaging",
-            "description": "Rename image batch in bulk.",
+            "description": "Rename a folder of images in bulk using a consistent pattern.",
             "handler": "operations.image_batch_renamer",
             "cli_command": "image-batch-renamer",
             "dependencies": ["Pillow"],

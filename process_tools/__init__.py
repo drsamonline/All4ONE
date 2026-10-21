@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Process List",
             "category": "Process Tools",
-            "description": "List process entries.",
+            "description": "List the running processes with their PIDs and memory use.",
             "handler": "operations.process_list",
             "cli_command": "process-list",
             "dependencies": [],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Process Details",
             "category": "Process Tools",
-            "description": "Show detailed process details.",
+            "description": "Show the details of a single process by PID.",
             "handler": "operations.process_details",
             "cli_command": "process-details",
             "dependencies": [],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "Process Search",
             "category": "Process Tools",
-            "description": "Search process targets for matches.",
+            "description": "Find running processes whose name or command line matches a pattern.",
             "handler": "operations.process_search",
             "cli_command": "process-search",
             "dependencies": [],
@@ -62,7 +62,7 @@ def register_tools():
         {
             "name": "Process Start Time",
             "category": "Process Tools",
-            "description": "Compute process start time values.",
+            "description": "Report when a process started.",
             "handler": "operations.process_start_time",
             "cli_command": "process-start-time",
             "dependencies": [],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Process Priority Reader",
             "category": "Process Tools",
-            "description": "Read and print process priority.",
+            "description": "Read a process's scheduling priority (requires psutil).",
             "handler": "operations.process_priority_reader",
             "cli_command": "process-priority-reader",
             "dependencies": [],
@@ -102,7 +102,7 @@ def register_tools():
         {
             "name": "Process Affinity Reader",
             "category": "Process Tools",
-            "description": "Read and print process affinity.",
+            "description": "Read which CPUs a process is allowed to run on (requires psutil).",
             "handler": "operations.process_affinity_reader",
             "cli_command": "process-affinity-reader",
             "dependencies": [],

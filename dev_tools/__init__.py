@@ -30,7 +30,7 @@ def register_tools():
     {
         "name": "JSON YAML Converter",
         "category": "Developer Tools",
-        "description": "Convert content between JSON and YAML formats.",
+        "description": "Convert a document between JSON and YAML.",
         "handler": "operations.json_yaml_converter",
         "cli_command": "json-yaml",
         "dependencies": [
@@ -48,7 +48,7 @@ def register_tools():
     {
         "name": "JSON Schema Validator",
         "category": "Developer Tools",
-        "description": "Validate json schema structure or content.",
+        "description": "Validate a JSON document against a JSON Schema.",
         "handler": "operations.json_schema_validator",
         "cli_command": "json-schema-validate",
         "dependencies": []

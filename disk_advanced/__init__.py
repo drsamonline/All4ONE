@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "Volume List",
             "category": "Advanced Disk Tools",
-            "description": "List volume entries.",
+            "description": "List the mounted volumes and their basic properties.",
             "handler": "operations.volume_list",
             "cli_command": "volume-list",
             "dependencies": [],
@@ -70,7 +70,7 @@ def register_tools():
         {
             "name": "Disk Benchmark Reader",
             "category": "Advanced Disk Tools",
-            "description": "Read and print disk benchmark.",
+            "description": "Report the recorded disk performance metrics for a drive.",
             "handler": "operations.disk_benchmark_reader",
             "cli_command": "disk-benchmark-reader",
             "dependencies": [],
@@ -78,7 +78,7 @@ def register_tools():
         {
             "name": "SMART Status",
             "category": "Advanced Disk Tools",
-            "description": "Report current smart status.",
+            "description": "Report the S.M.A.R.T. health status of a drive.",
             "handler": "operations.smart_status",
             "cli_command": "smart-status",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Volume Serial Reader",
             "category": "Advanced Disk Tools",
-            "description": "Read and print volume serial.",
+            "description": "Read a volume's serial number.",
             "handler": "operations.volume_serial_reader",
             "cli_command": "volume-serial-reader",
             "dependencies": [],

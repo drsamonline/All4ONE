@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "PDF Metadata Reader",
             "category": "PDF Tools",
-            "description": "Read and print pdf metadata.",
+            "description": "Read the metadata fields from a PDF (requires pdfinfo).",
             "handler": "operations.pdf_metadata_reader",
             "cli_command": "pdf-metadata-reader",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -14,7 +14,7 @@ def register_tools():
         {
             "name": "PDF Metadata Cleaner",
             "category": "PDF Tools",
-            "description": "Clean up pdf metadata.",
+            "description": "Strip metadata from a PDF (requires qpdf).",
             "handler": "operations.pdf_metadata_cleaner",
             "cli_command": "pdf-metadata-cleaner",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -22,7 +22,7 @@ def register_tools():
         {
             "name": "PDF Page Counter",
             "category": "PDF Tools",
-            "description": "Count occurrences within pdf page.",
+            "description": "Count the pages in a PDF.",
             "handler": "operations.pdf_page_counter",
             "cli_command": "pdf-page-counter",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "PDF Text Search",
             "category": "PDF Tools",
-            "description": "Search pdf text targets for matches.",
+            "description": "Search a PDF's text for a pattern and report the matching pages (requires pdftotext).",
             "handler": "operations.pdf_text_search",
             "cli_command": "pdf-text-search",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -38,7 +38,7 @@ def register_tools():
         {
             "name": "PDF Page Extractor",
             "category": "PDF Tools",
-            "description": "Extract data from pdf page.",
+            "description": "Extract a page range from a PDF into a new file (requires qpdf).",
             "handler": "operations.pdf_page_extractor",
             "cli_command": "pdf-page-extractor",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],
@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "PDF Image Extractor",
             "category": "PDF Tools",
-            "description": "Extract data from pdf image.",
+            "description": "Extract the embedded images from a PDF (requires pdfimages).",
             "handler": "operations.pdf_image_extractor",
             "cli_command": "pdf-image-extractor",
             "dependencies": ["pdftotext", "qpdf", "pdfunite"],

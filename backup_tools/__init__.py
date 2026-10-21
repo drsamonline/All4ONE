@@ -86,7 +86,7 @@ def register_tools():
         {
             "name": "Backup Schedule Generator",
             "category": "Backup & Restore",
-            "description": "Generate backup schedule output.",
+            "description": "Generate a backup schedule for a folder, as cron or a Task Scheduler entry.",
             "handler": "operations.backup_schedule_generator",
             "cli_command": "backup-schedule-generator",
             "dependencies": [],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Backup Size Calculator",
             "category": "Backup & Restore",
-            "description": "Compute backup size values.",
+            "description": "Estimate the storage a backup set will need.",
             "handler": "operations.backup_size_calculator",
             "cli_command": "backup-size-calculator",
             "dependencies": [],

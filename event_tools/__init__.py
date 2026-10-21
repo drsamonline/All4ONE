@@ -6,7 +6,7 @@ def register_tools():
         {
             "name": "Event Log List",
             "category": "Event Tools",
-            "description": "List event log entries.",
+            "description": "List recent entries from a Windows event log channel.",
             "handler": "operations.event_log_list",
             "cli_command": "event-log-list",
             "dependencies": ["wevtutil"],
@@ -30,7 +30,7 @@ def register_tools():
         {
             "name": "Event Log Source Search",
             "category": "Event Tools",
-            "description": "Search event log source targets for matches.",
+            "description": "Search the Windows event log for a given source name.",
             "handler": "operations.event_log_source_search",
             "cli_command": "event-log-source-search",
             "dependencies": ["wevtutil"],
@@ -94,7 +94,7 @@ def register_tools():
         {
             "name": "Event Log Guide",
             "category": "Event Tools",
-            "description": "Show guidance for event log.",
+            "description": "Explain how to read and filter Windows event logs.",
             "handler": "operations.event_log_guide",
             "cli_command": "event-log-guide",
             "dependencies": ["wevtutil"],
