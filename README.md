@@ -74,9 +74,19 @@ the real Windows single-file EXE via GitHub Actions.
 
 ### Prebuilt portable EXE (recommended)
 
-1. 📥 Grab `UtilitySuite-<version>-windows.zip` from the
+Every release publishes **three downloads** — pick one (all include the same
+app; the difference is whether the plugin packs ship as separate files):
+
+| Download | Contains | Pick it if… |
+|---|---|---|
+| `UtilitySuite-<v>-windows-lite.zip` | `utility_suite.exe` only | You just want the app — all 45 packs are already inside the exe |
+| `UtilitySuite-<v>-windows-full.zip` | the exe **+** a `plugins/` folder with every pack zip | You want to add/remove packs without rebuilding |
+| `UtilitySuite-<v>-plugins-all.zip` | every pack zip + `plugins.json` (no exe) | You only want the packs |
+
+1. 📥 Grab one from the
    **[latest release](https://github.com/drsamonline/All4ONE/releases/latest)**.
-2. 📂 Unzip — it contains **exactly one file**: `utility_suite.exe`.
+2. 📂 Unzip — the *lite* archive contains **exactly one file**: `utility_suite.exe`;
+   the *full* archive also has a `plugins/` folder.
 3. 🚀 Double-click for the GUI, or use it as a CLI:
 
 ```powershell
@@ -153,8 +163,8 @@ Python packages → exact `pip install …` lines. Nothing else to configure.
 | 🔒 Mandatory third-party deps | **0** |
 | 🐍 Language | Python 3.10+ (stdlib-first) |
 | 🖱️ Frontends | CLI + Tkinter GUI |
-| 📄 Documentation | 10 curated documents |
-| 📦 Release format | ONE file: `utility_suite.exe` |
+| 📄 Documentation | 11 curated documents |
+| 📦 Release format | portable exe · lite / full / plugins-all downloads |
 | 👤 Author | Dr. Sohil Momin, BHMS |
 
 ## 🏛️ Architecture
@@ -178,6 +188,9 @@ utility_suite/
 │   └── gui.py            # Tkinter desktop front-end
 ├── <pack>/               # 45 tool-pack source directories
 ├── bundle/tools.dat      # deterministic single archive (ships inside the exe)
+├── plugins/              # optional external packs (from the full download)
+├── tools/
+│   └── make_plugin_zips.py  # builds dist/plugins/<pack>.zip + plugins.json
 ├── tests/                # smoke + integration tests
 ├── run.py                # entry point (CLI / GUI)
 ├── audit.py              # static release audit + docs-freshness gate
@@ -201,9 +214,10 @@ pyc-free bundle · ship one file.
 > no manual action required. The Linux validation workflow (`ci.yml`) gates
 > the tree, and `build-windows-exe.yml` fires on:
 >
-> 1. **any push to `main`** → builds `utility_suite.exe`, uploads it as a
->    run artifact, and refreshes the floating **`latest-build`** pre-release
->    so there is always a current download at the same URL,
+> 1. **any push to `main`** → builds `utility_suite.exe`, uploads the lite/full/
+>    plugins-all zips + `plugins.json` + every `plugins/<pack>.zip` as run
+>    artifacts, and refreshes the floating **`latest-build`** pre-release so
+>    there is always a current download at the same URL,
 > 2. **pushing a version tag** → all of the above *plus* a permanent GitHub
 >    Release with auto-generated notes, or
 > 3. a manual **Actions → Build Windows executable → Run workflow** for one-offs.
@@ -213,8 +227,20 @@ real `.exe` is built on a **Windows GitHub Actions runner**. The entire local
 pipeline is one command:
 
 ```powershell
-python build_single_exe.py    # audit → bundle → tests → exe → verify → zip
+python build_single_exe.py    # audit → bundle → tests → plugins → exe → verify → 3 zips
 ```
+
+It produces, in `dist/`:
+
+- `UtilitySuite-<v>-windows-lite.zip` — the exe only,
+- `UtilitySuite-<v>-windows-full.zip` — the exe + a `plugins/` folder + `README-FIRST.txt`,
+- `UtilitySuite-<v>-plugins-all.zip` — every pack zip + `plugins.json`,
+- `plugins.json` — the pack manifest, and `plugins/<pack>.zip` — the individual packs.
+
+Both the floating `latest-build` pre-release and every `v*` tag release attach
+all of these, so `…/releases/download/latest-build/plugins.json` and
+`…/releases/download/latest-build/<pack>.zip` always resolve. See
+[PLUGINS.md](PLUGINS.md).
 
 To publish a release, **bump the version, then push a version tag**:
 
@@ -246,6 +272,7 @@ Full details: [COMPILATION.md](COMPILATION.md).
 | Doc | For |
 |---|---|
 | 🧑‍💻 [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) | Plugin contract & testing |
+| 🧩 [PLUGINS.md](PLUGINS.md) | Plugin packs, downloads & manifest |
 | 🏗️ [COMPILATION.md](COMPILATION.md) | Release / EXE builds |
 | 🧾 [CHANGELOG.md](CHANGELOG.md) | Release history |
 
