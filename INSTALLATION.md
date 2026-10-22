@@ -2,9 +2,9 @@
 
 # 📥 Utility Suite — Installation Guide
 
-![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4
-![Install type](https://img.shields.io/badge/install-portable%20·%20no%20admin-brightgreen
-![Mandatory deps](https://img.shields.io/badge/mandatory%20deps-0-orange
+![Platform](https://img.shields.io/badge/platform-Windows_10%2F11-0078D4?style=flat-square)
+![Install type](https://img.shields.io/badge/install-portable%20·%20no%20admin-brightgreen?style=flat-square)
+![Mandatory deps](https://img.shields.io/badge/mandatory%20deps-0-orange?style=flat-square)
 
 *Author: Dr. Sohil Momin, BHMS*
 

@@ -2,10 +2,10 @@
 
 # 🏗️ Utility Suite — Compilation & Release Guide
 
-![PyInstaller](https://img.shields.io/badge/PyInstaller-6.x-orange
-![Target](https://img.shields.io/badge/target-utility__suite.exe-0078D4
-![CI build](https://img.shields.io/badge/GitHub%20Actions-Windows%20runner-brightgreen
-![Version](https://img.shields.io/badge/version-3.0.6-brightgreen
+![PyInstaller](https://img.shields.io/badge/PyInstaller-6.x-orange?style=flat-square)
+![Target](https://img.shields.io/badge/target-utility__suite.exe-0078D4?style=flat-square)
+![CI build](https://img.shields.io/badge/GitHub%20Actions-Windows%20runner-brightgreen?style=flat-square)
+![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
 
 **Version:** 3.0.6
 

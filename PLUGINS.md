@@ -2,9 +2,9 @@
 
 # 🧩 Utility Suite — Plugin Packs
 
-![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2
-![Tools](https://img.shields.io/badge/tools-551-brightgreen
-![Distribution](https://img.shields.io/badge/distribution-one%20exe-blue
+![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
+![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
+![Distribution](https://img.shields.io/badge/distribution-one%20exe-blue?style=flat-square)
 
 *Author: Dr. Sohil Momin, BHMS*
 
