@@ -93,6 +93,7 @@ class _Widget:
         self._bindings: dict = {}
         self._after: list = []
         self._gridded = False
+        self._packed = False
         if isinstance(master, _Widget):
             master._children.append(self)
 
@@ -115,6 +116,7 @@ class _Widget:
     # --- geometry ---
     def pack(self, **kw):
         self._kw["_pack"] = kw
+        self._packed = True
         return self
 
     def grid(self, **kw):
@@ -127,6 +129,7 @@ class _Widget:
         return None
 
     def pack_forget(self):
+        self._packed = False
         return None
 
     grid_forget = pack_forget
@@ -496,11 +499,13 @@ def main() -> int:
     app._apply_tool_controls(text_out_tool)
     assert app.control_state == expected_controls(text_out_tool)
     assert app.control_state["preview"] is False and app.control_state["open"] is False
-    assert app.preview_btn._gridded is False and app.open_btn._gridded is False
+    # output actions are pack-managed -> hidden with pack_forget, not grid_remove
+    assert app.preview_btn._packed is False and app.open_btn._packed is False
 
     app._apply_tool_controls(file_out_tool)
     assert app.control_state == expected_controls(file_out_tool)
     assert app.control_state["preview"] is True and app.control_state["open"] is True
+    assert app.preview_btn._packed is True and app.open_btn._packed is True
 
     # a tool with no metadata keeps today's behaviour: every control is shown
     app._apply_tool_controls(unset_tool)
