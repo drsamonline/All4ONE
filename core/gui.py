@@ -238,10 +238,21 @@ class UtilitySuiteGUI(tk.Tk):
         return btn
 
     @staticmethod
-    def _set_visible(widget, visible: bool) -> None:
-        """Show/hide a grid-managed widget without destroying it."""
+    def _set_visible(widget, visible: bool, pack_opts: dict | None = None) -> None:
+        """Show/hide a widget without destroying it.
+
+        ``pack_opts`` is given for pack-managed widgets (the output actions):
+        a widget must be shown/hidden with the geometry manager that owns it,
+        so grid-managed widgets use ``grid``/``grid_remove`` and pack-managed
+        ones are re-packed with their original options.
+        """
         try:
-            if visible:
+            if pack_opts is not None:
+                if visible:
+                    widget.pack(**pack_opts)
+                else:
+                    widget.pack_forget()
+            elif visible:
                 widget.grid()
             else:
                 widget.grid_remove()
@@ -392,12 +403,19 @@ class UtilitySuiteGUI(tk.Tk):
         tk.Label(out_bar, text="Output", bg=CARD, fg=SUBTLE, font=("Segoe UI", 9, "bold")).pack(
             side="left", padx=(10, 0), pady=6
         )
+        # The output actions are pack-managed; remember their pack options so
+        # they can be hidden and shown again by _set_visible.
+        self._output_pack_opts = {
+            "open_folder": {"side": "right", "padx": (4, 8), "pady": 3},
+            "open": {"side": "right", "padx": 4, "pady": 3},
+            "preview": {"side": "right", "padx": 4, "pady": 3},
+        }
         self.open_folder_btn = self._ghost_button(out_bar, "Open folder…", self._open_folder)
-        self.open_folder_btn.pack(side="right", padx=(4, 8), pady=3)
+        self.open_folder_btn.pack(**self._output_pack_opts["open_folder"])
         self.open_btn = self._ghost_button(out_bar, "Open…", self._open)
-        self.open_btn.pack(side="right", padx=4, pady=3)
+        self.open_btn.pack(**self._output_pack_opts["open"])
         self.preview_btn = self._ghost_button(out_bar, "Preview…", self._preview)
-        self.preview_btn.pack(side="right", padx=4, pady=3)
+        self.preview_btn.pack(**self._output_pack_opts["preview"])
         self.output = tk.Text(
             out_card, bg="#fbfbfb", fg=TEXT, insertbackground=TEXT, relief="flat", wrap="word",
             font=("Consolas", 10), height=8,
@@ -555,9 +573,10 @@ class UtilitySuiteGUI(tk.Tk):
         }
         self._set_visible(self.file_btn, show_file)
         self._set_visible(self.folder_btn, show_folder)
-        self._set_visible(self.preview_btn, show_output_actions)
-        self._set_visible(self.open_btn, show_output_actions)
-        self._set_visible(self.open_folder_btn, show_output_actions)
+        # Re-pack in the original order so the buttons keep their positions.
+        self._set_visible(self.open_folder_btn, show_output_actions, self._output_pack_opts["open_folder"])
+        self._set_visible(self.open_btn, show_output_actions, self._output_pack_opts["open"])
+        self._set_visible(self.preview_btn, show_output_actions, self._output_pack_opts["preview"])
 
     def _clear_filters(self, _event=None):
         self.search_var.set("")
