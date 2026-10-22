@@ -34,6 +34,9 @@
     }
   },
   "plugins_directory": "plugins",
+  "packs": {
+    "disabled": []
+  },
   "log_level": "INFO",
   "log_file": "logs/utility_suite.log",
   "max_log_size_mb": 5,
