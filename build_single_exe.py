@@ -1,16 +1,33 @@
-"""One-command automated build for Utility Suite 3.0.
+"""One-command automated build for Utility Suite.
 
 Pipeline (all local steps, CI runs exactly these):
   1. audit                -> python audit.py
   2. bundle generation    -> regenerates bundle/tools.dat from source packs
   3. smoke tests          -> python -B -m tests.test_suite
-  4. PyInstaller onefile  -> dist/utility_suite.exe  (single file!)
-  5. verification         -> exe must report >0 tools and correct version
-  6. release zip          -> dist/UtilitySuite-<version>-windows.zip
+  4. plugin packaging     -> dist/plugins/<pack>.zip + dist/plugins.json
+  5. PyInstaller onefile  -> dist/utility_suite.exe
+  6. verification         -> exe must report >0 tools and correct version
+  7. release packaging    -> three zips + manifest in dist/ (see below)
+
+Release artifacts produced in ``dist/``:
+
+    UtilitySuite-<v>-windows-lite.zip    the exe only (portable app, no sidecar)
+    UtilitySuite-<v>-windows-full.zip    the exe + a plugins/ folder with every
+                                         pack zip + README-FIRST.txt
+    UtilitySuite-<v>-plugins-all.zip     every pack zip + plugins.json
+    plugins.json                         machine-readable pack manifest
+    plugins/<pack>.zip                   individual packs, left on disk for CI
+
+All 45 built-in packs are also embedded inside the exe (bundle/tools.dat), so
+the lite download is a fully working app; the plugins/ folder is the *optional*
+external-pack mechanism (core/plugin_loader.py) that lets users add or remove
+packs without rebuilding the exe.
 
 Usage:
-    python build_single_exe.py            # full pipeline
+    python build_single_exe.py                    # full pipeline
     python build_single_exe.py --skip-tests
+    python build_single_exe.py --skip-plugin-zips # reuse existing dist/plugins
+    python build_single_exe.py --skip-pyinstaller # package from a prebuilt exe
 """
 
 from __future__ import annotations
@@ -22,6 +39,11 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
+
+# Fixed timestamp so repeated release zips are byte-identical (matches the
+# per-pack archives produced by tools/make_plugin_zips.py).
+_EPOCH = (1980, 1, 1, 0, 0, 0)
+_EXTERNAL_ATTR = 0o644 << 16
 
 
 def run(cmd: list[str]) -> None:
@@ -69,6 +91,47 @@ VSVersionInfo(
 """
 
 
+README_FIRST_TEMPLATE = """\
+Utility Suite {version} — READ ME FIRST
+=========================================
+
+This release ships as three downloads. Pick the one that fits:
+
+  1. UtilitySuite-{version}-windows-lite.zip
+     The application only: utility_suite.exe. All {packs} built-in tool packs
+     ({tools} tools) are already compiled inside the exe, so it runs standalone
+     with no sidecar files. Choose this if you just want the app.
+
+  2. UtilitySuite-{version}-windows-full.zip  (recommended)
+     The application PLUS a plugins/ folder holding every plugin pack as a
+     separate .zip. Extract the whole folder and run utility_suite.exe. The
+     plugins/ folder lets you add or remove packs without rebuilding the exe.
+
+  3. UtilitySuite-{version}-plugins-all.zip
+     Just the plugin packs (no exe). Use this to obtain packs separately, or to
+     add packs to an existing install.
+
+Installing a pack manually
+--------------------------
+Drop a pack .zip (or a single <pack>.py file) into the plugins/ folder that
+sits next to utility_suite.exe, then restart the app. Remove a pack by deleting
+its .zip from that folder and restarting. Pack modules run Python code with the
+same authority as the app, so only add packs you trust.
+
+Machine-readable pack list
+--------------------------
+https://github.com/drsamonline/All4ONE/releases/download/latest-build/plugins.json
+
+Each manifest entry lists the pack name, its tool count and the exact download
+file. The same assets are attached to tagged releases, so
+https://github.com/drsamonline/All4ONE/releases/latest/download/plugins.json
+also resolves.
+
+See PLUGINS.md in the repository for the full guide and the pack author
+contract (register_tools()).
+"""
+
+
 def write_version_info(version: str) -> None:
     """Regenerate version_info.txt so embedded exe metadata matches VERSION.txt."""
     parts = [(int(p) if p.isdigit() else 0) for p in version.split(".")]
@@ -82,10 +145,142 @@ def write_version_info(version: str) -> None:
     print(f"version_info.txt regenerated for {version} (filevers {filever})")
 
 
+def _add_bytes(zf: zipfile.ZipFile, arcname: str, data: bytes) -> None:
+    info = zipfile.ZipInfo(arcname, date_time=_EPOCH)
+    info.compress_type = zipfile.ZIP_DEFLATED
+    info.create_system = 3
+    info.external_attr = _EXTERNAL_ATTR
+    zf.writestr(info, data)
+
+
+def _add_file(zf: zipfile.ZipFile, path: Path, arcname: str) -> None:
+    _add_bytes(zf, arcname, path.read_bytes())
+
+
+def _new_zip(path: Path) -> zipfile.ZipFile:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        path.unlink()
+    return zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED, compresslevel=9)
+
+
+def make_lite_zip(root: Path, version: str, exe: Path, out_dir: Path) -> Path:
+    """The exe only — today's artifact, renamed."""
+    path = out_dir / f"UtilitySuite-{version}-windows-lite.zip"
+    with _new_zip(path) as zf:
+        _add_file(zf, exe, "utility_suite.exe")
+    return path
+
+
+def make_full_zip(
+    root: Path,
+    version: str,
+    exe: Path,
+    plugins_dir: Path,
+    readme_text: str,
+    out_dir: Path,
+) -> Path:
+    """The exe + a plugins/ folder with every pack zip + README-FIRST.txt."""
+    path = out_dir / f"UtilitySuite-{version}-windows-full.zip"
+    pack_zips = sorted(plugins_dir.glob("*.zip"))
+    with _new_zip(path) as zf:
+        _add_file(zf, exe, "utility_suite.exe")
+        _add_bytes(zf, "README-FIRST.txt", readme_text.encode("utf-8"))
+        for pack_zip in pack_zips:
+            _add_file(zf, pack_zip, f"plugins/{pack_zip.name}")
+    return path
+
+
+def make_plugins_all_zip(
+    root: Path,
+    version: str,
+    plugins_dir: Path,
+    manifest_path: Path,
+    readme_text: str,
+    out_dir: Path,
+) -> Path:
+    """Every pack zip (+ manifest + README) for manual download."""
+    path = out_dir / f"UtilitySuite-{version}-plugins-all.zip"
+    pack_zips = sorted(plugins_dir.glob("*.zip"))
+    with _new_zip(path) as zf:
+        _add_bytes(zf, "README-FIRST.txt", readme_text.encode("utf-8"))
+        if manifest_path.is_file():
+            _add_file(zf, manifest_path, "plugins.json")
+        for pack_zip in pack_zips:
+            _add_file(zf, pack_zip, pack_zip.name)
+    return path
+
+
+def package_artifacts(
+    root: Path,
+    version: str,
+    exe: Path,
+    plugins_dir: Path | None = None,
+    manifest_path: Path | None = None,
+    out_dir: Path | None = None,
+) -> dict[str, Path]:
+    """Build every release artifact. Returns {kind: path}.
+
+    Importable and callable without PyInstaller so the packaging steps can be
+    exercised against any ``exe`` (e.g. a prebuilt binary or a placeholder).
+    """
+    root = Path(root)
+    out_dir = Path(out_dir) if out_dir else root / "dist"
+    plugins_dir = Path(plugins_dir) if plugins_dir else out_dir / "plugins"
+    manifest_path = Path(manifest_path) if manifest_path else out_dir / "plugins.json"
+
+    pack_zips = sorted(plugins_dir.glob("*.zip"))
+    packs = len(pack_zips)
+    tools = 0
+    if manifest_path.is_file():
+        try:
+            import json
+
+            tools = sum(int(p.get("tools", 0)) for p in json.loads(
+                manifest_path.read_text(encoding="utf-8")).get("packs", []))
+        except (ValueError, OSError, TypeError):
+            tools = 0
+
+    readme_text = README_FIRST_TEMPLATE.format(version=version, packs=packs, tools=tools)
+
+    artifacts: dict[str, Path] = {}
+    artifacts["lite"] = make_lite_zip(root, version, exe, out_dir)
+    if pack_zips:
+        artifacts["full"] = make_full_zip(root, version, exe, plugins_dir, readme_text, out_dir)
+        artifacts["plugins_all"] = make_plugins_all_zip(
+            root, version, plugins_dir, manifest_path, readme_text, out_dir
+        )
+    return artifacts
+
+
+def generate_plugin_zips(root: Path) -> dict:
+    """Run tools/make_plugin_zips.py in-process; returns the manifest dict."""
+    sys.path.insert(0, str(root))
+    from tools import make_plugin_zips  # noqa: E402
+
+    manifest = make_plugin_zips.generate(root=root)
+    total = sum(p["tools"] for p in manifest["packs"])
+    print(
+        f"Plugin packs: {len(manifest['packs'])} zips "
+        f"({total} tools) -> dist/plugins/  ·  manifest dist/plugins.json"
+    )
+    return manifest
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Automated single-file build")
     parser.add_argument("--skip-audit", action="store_true")
     parser.add_argument("--skip-tests", action="store_true")
+    parser.add_argument(
+        "--skip-plugin-zips",
+        action="store_true",
+        help="reuse existing dist/plugins instead of regenerating pack archives",
+    )
+    parser.add_argument(
+        "--skip-pyinstaller",
+        action="store_true",
+        help="skip the PyInstaller step (package an already-built dist/utility_suite.exe)",
+    )
     args = parser.parse_args()
 
     version = (ROOT / "VERSION.txt").read_text(encoding="utf-8").strip()
@@ -110,28 +305,50 @@ def main() -> int:
     if not args.skip_tests:
         run([sys.executable, "-B", "-m", "tests.test_suite"])
 
-    # 4. PyInstaller one-file build.
-    run([sys.executable, "-m", "PyInstaller", "build_onefile.spec", "--clean", "--noconfirm"])
+    # 4. Per-pack plugin archives + manifest (independent of the exe build, so
+    #    they survive even if PyInstaller is unavailable).
+    plugins_dir = ROOT / "dist" / "plugins"
+    manifest_path = ROOT / "dist" / "plugins.json"
+    if args.skip_plugin_zips:
+        existing = sorted(plugins_dir.glob("*.zip"))
+        print(f"Plugin zips: skipped (reusing {len(existing)} existing in dist/plugins/)")
+        if not existing:
+            print("  WARNING: no pack zips present — full/plugins-all zips will be skipped.")
+    else:
+        generate_plugin_zips(ROOT)
 
+    # 5. PyInstaller one-file build.
     exe = ROOT / "dist" / "utility_suite.exe"
-    if not exe.is_file():
-        sys.exit(f"Expected single-file output missing: {exe}")
+    if not args.skip_pyinstaller:
+        run([sys.executable, "-m", "PyInstaller", "build_onefile.spec", "--clean", "--noconfirm"])
+        if not exe.is_file():
+            sys.exit(f"Expected single-file output missing: {exe}")
 
-    # 5. Verify the packaged exe actually finds its embedded tools.
-    out = subprocess.run([str(exe), "list"], capture_output=True, text=True, cwd=ROOT)
-    combined = out.stdout + out.stderr
-    if "Total tools: 0" in combined or out.returncode != 0:
-        sys.exit("Packaged exe found 0 tools — bundle was not embedded correctly.")
-    print("Exe self-check:", [ln for ln in combined.splitlines() if "Total tools" in ln])
+        # 6. Verify the packaged exe actually finds its embedded tools.
+        out = subprocess.run([str(exe), "list"], capture_output=True, text=True, cwd=ROOT)
+        combined = out.stdout + out.stderr
+        if "Total tools: 0" in combined or out.returncode != 0:
+            sys.exit("Packaged exe found 0 tools — bundle was not embedded correctly.")
+        print("Exe self-check:", [ln for ln in combined.splitlines() if "Total tools" in ln])
+    elif not exe.is_file():
+        sys.exit(f"--skip-pyinstaller given but {exe} does not exist")
 
-    # 6. Release zip containing ONLY the exe.
-    zip_path = ROOT / "dist" / f"UtilitySuite-{version}-windows.zip"
-    if zip_path.exists():
-        zip_path.unlink()
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
-        zf.write(exe, "utility_suite.exe")
-    print(f"Release artifact: {zip_path.name} ({zip_path.stat().st_size:,} bytes)")
-    print("\nBUILD OK — one executable, zero sidecar files.")
+    # 7. Release artifacts: lite / full / plugins-all + manifest.
+    artifacts = package_artifacts(ROOT, version, exe, plugins_dir, manifest_path)
+    if not manifest_path.is_file():
+        sys.exit("plugins.json manifest missing — plugin packaging did not run")
+
+    print("\nRelease artifacts:")
+    for kind in ("lite", "full", "plugins_all"):
+        path = artifacts.get(kind)
+        if path is not None:
+            print(f"  {path.name:<44} {path.stat().st_size:>12,} bytes")
+    print(f"  {'plugins.json':<44} {manifest_path.stat().st_size:>12,} bytes")
+    pack_zips = sorted(plugins_dir.glob("*.zip"))
+    print(f"  dist/plugins/*.zip{'':<26} {len(pack_zips)} files")
+
+    print(f"\nBUILD OK — lite/full/plugins-all zips + plugins.json + "
+          f"{len(pack_zips)} pack zips written to dist/")
     return 0
 
 
