@@ -4,9 +4,10 @@
 real GUI cannot be rendered or screenshotted.  This harness installs a *fake*
 ``tkinter`` (a stub that records construction and supports the widget API the
 GUI actually uses), then imports and fully constructs :class:`UtilitySuiteGUI`
-against it.  That proves the widget tree — including the new Plugins panel —
-builds without ``AttributeError`` / ``NameError`` / ``TypeError``, and lets us
-drive the panel's handlers with synthetic events.
+against it.  That proves the widget tree — including the new **Packs** view and
+the conditional argument/output controls — builds without ``AttributeError`` /
+``NameError`` / ``TypeError``, and lets us drive the handlers with synthetic
+events.
 
 When a *working* real tkinter is present the harness skips itself cleanly, so it
 never interferes with a developer running the app for real.
@@ -16,7 +17,9 @@ Run:  python -B -m tests.test_gui_headless
 
 from __future__ import annotations
 
+import os
 import sys
+import tempfile
 import types
 
 sys.dont_write_bytecode = True
@@ -26,6 +29,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+
+# Keep the harness from ever touching the real user profile.
+_TMP_CFG = tempfile.mkdtemp(prefix="us_gui_cfg_")
+os.environ["UTILITY_SUITE_CONFIG_DIR"] = _TMP_CFG
 
 
 # --------------------------------------------------------------------------- #
@@ -85,6 +92,7 @@ class _Widget:
         self._children: list = []
         self._bindings: dict = {}
         self._after: list = []
+        self._gridded = False
         if isinstance(master, _Widget):
             master._children.append(self)
 
@@ -111,7 +119,12 @@ class _Widget:
 
     def grid(self, **kw):
         self._kw["_grid"] = kw
+        self._gridded = True
         return self
+
+    def grid_remove(self):
+        self._gridded = False
+        return None
 
     def pack_forget(self):
         return None
@@ -211,10 +224,16 @@ class Entry(_Widget):
 
 
 class Text(_Widget):
+    def __init__(self, master=None, **kw):
+        super().__init__(master, **kw)
+        self._text = ""
+
     def insert(self, index, text, *_a):
+        self._text += text
         return None
 
     def delete(self, *_a):
+        self._text = ""
         return None
 
     def see(self, *_a):
@@ -222,6 +241,9 @@ class Text(_Widget):
 
     def yview(self, *_a):
         return None
+
+    def content(self):
+        return self._text
 
 
 class Canvas(_Widget):
@@ -409,25 +431,26 @@ def main() -> int:
 
     _install_fake_tkinter()
 
-    from core import plugin_installer as pi
     from core.cli import build_registry
     from core.gui import UtilitySuiteGUI
 
     registry = build_registry()
     app = UtilitySuiteGUI(registry, on_refresh=build_registry)
 
-    # --- widget tree built ---
+    # --- widget tree built: exactly a Tools tab and a Packs tab ---
     assert app.notebook is not None
-    assert len(app.notebook._tabs) == 2, "expected a Tools tab and a Plugins tab"
+    tab_texts = [text.strip() for _child, text in app.notebook._tabs]
+    assert len(app.notebook._tabs) == 2, f"expected a Tools tab and a Packs tab, got {tab_texts}"
     assert app.tools_tab in [child for child, _ in app.notebook._tabs]
-    assert app.plugins_tab in [child for child, _ in app.notebook._tabs]
+    assert app.packs_tab in [child for child, _ in app.notebook._tabs]
+    assert "Plugins" not in tab_texts, "the obsolete Plugins tab must be gone"
 
     # --- tool table populated without a click ---
     rows = app.tool_tree.get_children()
     assert rows, "tool table is empty"
     assert len(rows) == len(app._tools_by_iid)
     first_values = app.tool_tree.values(rows[0])
-    assert len(first_values) == 3, "rows must carry name + category + status"
+    assert len(first_values) == 3, "rows must carry name + category + state"
 
     # --- status header shows a readiness count ---
     assert "ready" in app.status_lbl.cget("text").lower()
@@ -441,60 +464,116 @@ def main() -> int:
     app._clear_filters()
     assert len(app.tool_tree.get_children()) == len(rows)
 
-    # --- Plugins panel: header, rows, states ---
-    app._available = [
-        pi.PackInfo(name="audio_tools", title="Audio Tools", tools=12, size=2048, file="audio_tools.zip"),
-        pi.PackInfo(name="video_tools", title="Video Tools", tools=8, size=4096, file="video_tools.zip"),
-    ]
-    fake_installed = pi.InstalledPack(name="audio_tools", path=ROOT / "plugins" / "audio_tools.zip", size=2048, kind="zip")
-    real_list_installed = pi.list_installed
-    pi.list_installed = lambda *_a, **_k: [fake_installed]  # type: ignore[assignment]
-    try:
-        app._render_plugins()
-    finally:
-        pi.list_installed = real_list_installed  # type: ignore[assignment]
+    # --- conditional controls: only what applies to the selected tool ---
+    def expected_controls(tool):
+        accepts = tool.get("accepts")
+        produces = tool.get("produces")
+        out = produces in (None, "file")
+        return {
+            "file": accepts in (None, "file"),
+            "folder": accepts in (None, "folder"),
+            "preview": out,
+            "open": out,
+            "open_folder": out,
+        }
 
-    assert app.plugins_count_lbl.cget("text") == "Installed 1 of 2 packs", app.plugins_count_lbl.cget("text")
-    assert len(app.plugins_holder.winfo_children()) == 2, "both catalogue rows should render"
+    tools = list(registry.enabled_tools())
+    none_tool = next(t for t in tools if t.get("accepts") == "none")
+    folder_tool = next(t for t in tools if t.get("accepts") == "folder")
+    text_out_tool = next(t for t in tools if t.get("produces") == "text")
+    file_out_tool = next(t for t in tools if t.get("produces") == "file")
+    unset_tool = next(t for t in tools if "accepts" not in t and "produces" not in t)
 
-    # state logic
-    assert app._pack_state(app._available[0], fake_installed)[2] == "remove"       # same size -> installed
-    assert app._pack_state(app._available[1], None)[2] == "download"               # absent -> download
-    assert app._pack_state(app._available[0], pi.InstalledPack("audio_tools", ROOT, 999, "zip"))[2] == "download"
+    app._apply_tool_controls(none_tool)
+    assert app.control_state == expected_controls(none_tool), app.control_state
+    assert app.control_state["file"] is False and app.control_state["folder"] is False
+    assert app.file_btn._gridded is False and app.folder_btn._gridded is False
 
-    # --- synthetic plugin events must not raise and must update the UI ---
-    app._handle_plugin_event(("progress", 50, 100))
-    assert "50%" in app.plugins_status.cget("text")
-    app._handle_plugin_event(("progress", 1024, 0))  # unknown total -> pulse branch
-    app._handle_plugin_event(("download_done", pi.DownloadResult(ok=False, name="x", error="network unavailable")))
-    assert "Download failed" in app.plugins_status.cget("text")
-    app._handle_plugin_event(("manifest", pi.ManifestResult(ok=False, error="network unavailable (offline)")))
-    assert "Offline" in app.plugins_status.cget("text"), app.plugins_status.cget("text")
+    app._apply_tool_controls(folder_tool)
+    assert app.control_state == expected_controls(folder_tool)
+    assert app.control_state["folder"] is True and app.control_state["file"] is False
 
-    # --- the catalogue loads lazily, only when the Plugins tab is shown ---
-    loads: list = []
-    app._load_manifest = lambda: loads.append(True)  # type: ignore[assignment]
-    app.notebook._selected = 0  # Tools tab
-    app._manifest_loaded = False
-    app._on_tab_changed()
-    assert loads == [], "Tools tab must not fetch the catalogue"
-    app.notebook._selected = 1  # Plugins tab
-    app._on_tab_changed()
-    assert loads == [True], "selecting the Plugins tab should fetch the catalogue once"
+    app._apply_tool_controls(text_out_tool)
+    assert app.control_state == expected_controls(text_out_tool)
+    assert app.control_state["preview"] is False and app.control_state["open"] is False
+    assert app.preview_btn._gridded is False and app.open_btn._gridded is False
 
-    # --- install-from-file with no file chosen degrades gracefully ---
-    app._install_pack_from_file()
-    # --- remove with the confirm dialog answering "no" must not delete anything ---
-    app._remove_pack("audio_tools")
-    # --- install guide dialog builds ---
+    app._apply_tool_controls(file_out_tool)
+    assert app.control_state == expected_controls(file_out_tool)
+    assert app.control_state["preview"] is True and app.control_state["open"] is True
+
+    # a tool with no metadata keeps today's behaviour: every control is shown
+    app._apply_tool_controls(unset_tool)
+    assert all(app.control_state.values()), app.control_state
+
+    # selecting a tool through the tree also refreshes the controls
+    app.search_var.set(none_tool["cli_command"])
+    assert app._selected is not None
+    assert app.control_state["file"] is False
+
+    # --- Packs view: rows, counts and states ---
+    app._clear_filters()
+    app._render_packs()
+    summaries = registry.pack_summaries()
+    assert len(summaries) == len(registry.all_packs())
+    assert len(app.packs_holder.winfo_children()) == len(summaries), "every pack needs a row"
+    enabled = sum(1 for s in summaries if s["enabled"])
+    assert app.packs_count_lbl.cget("text") == f"{enabled} of {len(summaries)} packs enabled"
+    for s in summaries:
+        assert {"name", "title", "tool_count", "enabled", "runnable"} <= set(s)
+
+    # --- toggling a pack takes effect through the single on_refresh path ---
+    victim = next(s for s in summaries if s["name"] == "file_ops")
+    assert victim["enabled"] is True
+    assert registry.get_tool("checksum") is not None
+
+    # Disabling: no prompt, and the pack's tools vanish from search + get_tool.
+    app._toggle_pack("file_ops", False)
+    assert app.registry.is_pack_enabled("file_ops") is False
+    assert app.registry.get_tool("checksum") is None
+    assert all(t["cli_command"] != "checksum" for t in app.registry.search("checksum"))
+
+    # Re-enabling restores them.
+    app._toggle_pack("file_ops", True)
+    assert app.registry.is_pack_enabled("file_ops") is True
+    assert app.registry.get_tool("checksum") is not None
+
+    # --- enabling a pack with missing deps prompts; "keep disabled" honours it ---
+    missing_pack = next((s for s in app.registry.pack_summaries() if s["runnable"] < s["tool_count"]), None)
+    if missing_pack is not None:
+        name = missing_pack["name"]
+        app.registry.set_pack_enabled(name, False)
+        app._refresh()
+        assert app.registry.is_pack_enabled(name) is False
+        prompts: list = []
+        app._prompt_enable_missing = lambda n, m: (prompts.append((n, m)), "keep_disabled")[1]  # type: ignore
+        app._toggle_pack(name, True)
+        assert prompts, "enabling a pack with missing deps must prompt"
+        assert app.registry.is_pack_enabled(name) is False, "'keep disabled' must not enable the pack"
+
+        # "download" -> guided instructions shown and the pack is enabled (its
+        # tools stay marked 'Needs: …' until the dependency is present).
+        app._prompt_enable_missing = lambda n, m: "download"  # type: ignore
+        app._toggle_pack(name, True)
+        assert app.registry.is_pack_enabled(name) is True
+        app._toggle_pack(name, False)
+        assert app.registry.is_pack_enabled(name) is False
+
+    # --- dependency dialogs build without error ---
     app._install_guide()
+    app._show_dependency_dialog("audio_tools", ["ffmpeg", "ffprobe"])
+    app._show_pack_deps("audio_tools")
+    app._enable_all_packs()
+    assert all(s["enabled"] for s in app.registry.pack_summaries())
+
     # --- keyboard helpers ---
     app._focus_search()
     app._clear_filters()
 
     print("GUI HARNESS PASSED")
-    print("  Tools tab + Plugins tab constructed; tool table and plugin rows rendered")
-    print("  search/selection, plugin states, progress/offline/download events all handled")
+    print("  Tools tab + Packs tab constructed; tool table and pack rows rendered")
+    print("  conditional File/Folder + Preview/Open controls follow tool metadata")
+    print("  pack enable/disable takes effect via on_refresh; missing-dep prompt honoured")
     return 0
 
 
