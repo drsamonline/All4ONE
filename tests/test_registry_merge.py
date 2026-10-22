@@ -34,7 +34,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 import core.bundle as bundle_mod
-import core.plugin_installer as installer_mod
+import core.cli as cli_mod
 from core.bundle import BundleLoader
 from core.cli import build_registry
 from core.plugin_loader import PluginLoader
@@ -138,9 +138,9 @@ def main() -> None:
         # real bundle/ or plugins/. Both lookups are module-level attributes
         # resolved at call time, so monkeypatching them is enough.
         real_get_bundle_path = bundle_mod.get_bundle_path
-        real_get_plugins_dir = installer_mod.get_plugins_dir
+        real_get_plugins_dir = cli_mod.get_plugins_dir
         bundle_mod.get_bundle_path = lambda: bundle_path
-        installer_mod.get_plugins_dir = lambda: plugins_dir
+        cli_mod.get_plugins_dir = lambda: plugins_dir
         try:
             reg = build_registry()
 
@@ -179,7 +179,7 @@ def main() -> None:
             assert len(old.tools) != len(reg.tools), "old and new registries must differ"
         finally:
             bundle_mod.get_bundle_path = real_get_bundle_path
-            installer_mod.get_plugins_dir = real_get_plugins_dir
+            cli_mod.get_plugins_dir = real_get_plugins_dir
 
     print("REGISTRY MERGE TESTS PASSED")
     print(
