@@ -7,6 +7,7 @@ import logging
 import sys
 
 from . import __version__
+from .config import get_plugins_dir
 from .plugin_loader import PluginLoader
 from .preview import open_with_default, preview_file
 from .tool_registry import ToolRegistry
@@ -18,25 +19,27 @@ def build_registry() -> ToolRegistry:
     """Build the tool registry by merging every tool source that is present.
 
     Precedence (highest first):
-      1. External ``plugins/`` directory — user-installed packs.  A pack placed
-         here OVERRIDES the embedded copy of the same pack, so downloading a
-         pack through the Plugins panel genuinely updates/replaces what shipped
-         inside the .exe.  It is loaded first so its tools win the
-         first-registration dedup below.
+      1. External ``plugins/`` directory — an optional override.  A pack placed
+         here replaces the built-in copy of the same pack (all 45 packs are
+         already embedded in the executable; this directory exists so a
+         developer or power user can drop in a replacement).  It is loaded
+         first so its tools win the first-registration dedup below.
       2. Embedded single-file bundle (``bundle/tools.dat``) — the baseline that
          ships inside released builds; only its commands that an external pack
          has not already provided are added.
       3. Source-tree packages (dev checkout) — fallback, used only when neither
          of the above produced any tools.
+
+    Which packs are *enabled* is a separate, durable user preference applied by
+    :class:`~core.tool_registry.ToolRegistry` (see :mod:`core.preferences`).
     """
     from .bundle import BundleLoader, get_bundle_path
-    from .plugin_installer import get_plugins_dir
 
     merged: list[dict] = []
     seen: set[str] = set()
 
-    # 1. External plugins/ first: a user-installed pack must win the dedup so
-    #    that installing a pack genuinely replaces the embedded copy.
+    # 1. External plugins/ first: a replacement pack must win the dedup so that
+    #    dropping one in genuinely replaces the built-in copy.
     plugins_dir = get_plugins_dir()
     loader = PluginLoader(plugins_dir)
     external_tools = loader.get_tools()
@@ -127,6 +130,109 @@ def _launch_gui(registry: ToolRegistry) -> int:
         return 1
 
 
+def _cmd_list(registry: ToolRegistry, category: str | None) -> int:
+    groups = registry.list_categories()
+    for name, tools in groups.items():
+        if category and name.lower() != category.lower():
+            continue
+        print(f"\n[{name}]")
+        for tool in tools:
+            state = "AVAILABLE" if tool["available"] else f"UNAVAILABLE: {', '.join(tool['missing_dependencies'])}"
+            print(f"  {tool['cli_command']:18} {tool['name']:<30} [{state}]")
+    total = len(registry.enabled_tools())
+    hidden = len(registry.tools) - total
+    print(f"\nTotal tools: {total}")
+    if hidden:
+        print(f"({hidden} hidden — their packs are disabled; see 'utility_suite packs')")
+    return 0
+
+
+def _cmd_search(registry: ToolRegistry, query: str) -> int:
+    for tool in registry.search(query):
+        state = "AVAILABLE" if tool["available"] else "UNAVAILABLE"
+        print(f"{tool['cli_command']:18} {tool['name']:<30} [{state}]\n  {tool['description']}")
+    return 0
+
+
+def _cmd_packs(registry: ToolRegistry, action: str, name: str | None) -> int:
+    if action == "list":
+        summaries = registry.pack_summaries()
+        if not summaries:
+            print("No packs found.")
+            return 0
+        for s in summaries:
+            mark = "enabled " if s["enabled"] else "disabled"
+            print(f"  [{mark}] {s['name']:<28} {s['title']:<28} {s['tool_count']:>3} tools, {s['runnable']:>3} runnable")
+        enabled = sum(1 for s in summaries if s["enabled"])
+        print(f"\n{enabled}/{len(summaries)} packs enabled.")
+        return 0
+    if action == "reset":
+        registry.preferences.reset()
+        print("All packs enabled.")
+        return 0
+    if action in {"enable", "disable"}:
+        if not name:
+            print(f"Usage: utility_suite packs {action} <pack>")
+            return 2
+        if name not in registry.all_packs():
+            print(f"Unknown pack '{name}'. Run 'utility_suite packs' to list them.")
+            return 2
+        enabled = action == "enable"
+        registry.set_pack_enabled(name, enabled)
+        print(f"Pack '{name}' {'enabled' if enabled else 'disabled'}.")
+        return 0
+    print(f"Unknown packs action '{action}'.")
+    return 2
+
+
+def _cmd_deps(registry: ToolRegistry, only: str | None) -> int:
+    from . import dependencies as deps
+
+    if only:
+        plan = deps.install_plan(only)
+        if not plan["known"]:
+            print(f"Unknown dependency '{only}'. Run 'utility_suite deps' to list them all.")
+            return 2
+        print(f"{plan['dependency']}  ({plan['kind']})")
+        print(f"  What it is : {plan['summary']}")
+        print(f"  Why needed : {plan['why']}")
+        used = deps.packs_using(only, registry.tools.values())
+        if used:
+            print(f"  Used by    : {', '.join(used)}")
+        print(f"  Installed  : {'yes' if plan['installed'] else 'no'}")
+        for step in plan["steps"]:
+            head = step["label"]
+            if step["command"] and step["command"] != head:
+                head = f"{head}    $ {step['command']}"
+            print(f"  - {head}")
+            if step["url"]:
+                print(f"      {step['url']}")
+            if step["note"]:
+                print(f"      {step['note']}")
+        return 0
+
+    missing = deps.missing_dependencies(registry.enabled_tools())
+    if not missing:
+        print("Nothing is missing — every tool in your enabled packs is ready.")
+        return 0
+    print("Missing dependencies (install them, then re-run; tools unlock automatically):\n")
+    for dep, count in sorted(missing.items(), key=lambda kv: (-kv[1], kv[0].lower())):
+        plan = deps.install_plan(dep)
+        packs = deps.packs_using(dep, registry.tools.values())
+        print(f"  {dep}  ({count} tool{'s' if count != 1 else ''}; packs: {', '.join(packs) or '—'})")
+        first = plan["steps"][0] if plan["steps"] else None
+        if first:
+            if first["command"]:
+                print(f"      -> {first['command']}")
+            elif first["url"]:
+                print(f"      -> {first['url']}")
+            else:
+                print(f"      -> {first['label']}")
+        print(f"      detail: utility_suite deps {dep}")
+    print("\nPrefer not to install? Disable that pack instead: utility_suite packs disable <pack>")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     # Everything from "run <tool>" onward belongs to the tool, including flags
     # like --help/-h/--version — split it out before argparse sees it so those
@@ -140,7 +246,7 @@ def main(argv: list[str] | None = None) -> int:
             break
 
     parser = argparse.ArgumentParser(
-        prog="utility_suite", description="Utility Suite — modular Windows utility workstation"
+        prog="utility_suite", description="Utility Suite — one Windows toolbox, 551 tools in 45 packs"
     )
     parser.add_argument("--version", action="version", version=__version__)
     sub = parser.add_subparsers(dest="command")
@@ -157,32 +263,20 @@ def main(argv: list[str] | None = None) -> int:
     p_open = sub.add_parser("open", help="Open using the system default application")
     p_open.add_argument("file_path")
     sub.add_parser("gui", help="Launch desktop GUI")
-    sub.add_parser("deps", help="List missing dependencies and where to download them")
+    p_deps = sub.add_parser("deps", help="List missing dependencies and how to install them")
+    p_deps.add_argument("dependency", nargs="?", help="Show the install plan for one dependency")
+    p_packs = sub.add_parser("packs", help="Enable/disable tool packs")
+    p_packs.add_argument("action", nargs="?", default="list", choices=["list", "enable", "disable", "reset"])
+    p_packs.add_argument("name", nargs="?", help="Pack name for enable/disable")
     args = parser.parse_args(raw)
 
     registry = build_registry()
     if not args.command:
         return _launch_gui(registry)
     if args.command == "list":
-        groups = registry.list_categories()
-        for category, tools in groups.items():
-            if args.category and category.lower() != args.category.lower():
-                continue
-            print(f"\n[{category}]")
-            for tool in tools:
-                state = (
-                    "AVAILABLE"
-                    if tool["available"]
-                    else f"UNAVAILABLE: {', '.join(tool['missing_dependencies'])}"
-                )
-                print(f"  {tool['cli_command']:18} {tool['name']:<30} [{state}]")
-        print(f"\nTotal tools: {len(registry.tools)}")
-        return 0
+        return _cmd_list(registry, args.category)
     if args.command == "search":
-        for tool in registry.search(args.query):
-            state = "AVAILABLE" if tool["available"] else "UNAVAILABLE"
-            print(f"{tool['cli_command']:18} {tool['name']:<30} [{state}]\n  {tool['description']}")
-        return 0
+        return _cmd_search(registry, args.query)
     if args.command == "run":
         # tool_remainder holds everything after "run <tool>" verbatim (flags
         # like --help/-h/--version are forwarded to the tool, not consumed).
@@ -190,7 +284,7 @@ def main(argv: list[str] | None = None) -> int:
         return registry.run_tool(args.tool_name, forwarded)
     if args.command == "refresh":
         refreshed = build_registry()
-        print(f"Loaded {len(refreshed.tools)} tools from plugins.")
+        print(f"Loaded {len(refreshed.enabled_tools())} enabled tools.")
         return 0
     if args.command == "preview":
         try:
@@ -209,20 +303,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "gui":
         return _launch_gui(registry)
     if args.command == "deps":
-        from .capability_checker import download_hint
-
-        missing: dict[str, int] = {}
-        for tool in registry.tools.values():
-            if not tool["available"]:
-                for dep in tool["missing_dependencies"]:
-                    missing[dep] = missing.get(dep, 0) + 1
-        if not missing:
-            print("Nothing is missing — every tool on this system is ready.")
-            return 0
-        print("Missing optional dependencies (install them, then tools unlock automatically):\n")
-        for dep, count in sorted(missing.items(), key=lambda kv: (-kv[1], kv[0].lower())):
-            print(f"  {dep}  ({count} tool{'s' if count != 1 else ''})")
-            print(f"      -> {download_hint(dep)}")
-        print("\nAfter installing a pip package restart Utility Suite; PATH tools are picked up by 'refresh'.")
-        return 0
+        return _cmd_deps(registry, args.dependency)
+    if args.command == "packs":
+        return _cmd_packs(registry, args.action, args.name)
     return 0
