@@ -23,6 +23,8 @@ more — compiled into a single `utility_suite.exe` you can keep on a USB stick.
 ![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square&logo=python&logoColor=black)
 ![Registry verified](https://img.shields.io/badge/registry%20verified-551%2F551%20%E2%9C%85-blue?style=flat-square)
 
+**🌐 [Landing page](https://drsamonline.github.io/All4ONE/)**
+·
 **📥 [Download the latest release →](https://github.com/drsamonline/All4ONE/releases/latest)**
 ·
 **🖥️ [GUI + CLI features](#-gui--cli-two-frontends-one-engine)**
