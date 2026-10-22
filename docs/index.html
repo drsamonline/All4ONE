@@ -275,7 +275,7 @@ footer{border-top:1px solid var(--border);padding:52px 0 40px}
     <div class="card reveal"><div class="fico"><svg><use href="#i-shield"/></svg></div><h3>Security Auditing</h3><p>World-writable and hidden-file finders, credential-name scans, permission reports, integrity baselines, GnuPG encrypt/decrypt.</p></div>
     <div class="card reveal"><div class="fico"><svg><use href="#i-broom"/></svg></div><h3>Cleanup &amp; Storage</h3><p>Temp and junk cleaning, empty-folder pruning, disk-usage trees, extension statistics, size and age histograms.</p></div>
     <div class="card reveal"><div class="fico"><svg><use href="#i-code"/></svg></div><h3>Developer Utilities</h3><p>JSON format/minify/flatten, hex viewer, file-type detection, text diff, Base64 and hex codecs, hash identification, UUIDs.</p></div>
-    <div class="card reveal"><div class="fico"><svg><use href="#i-box"/></svg></div><h3>Zero-Break Design</h3><p>A missing optional dependency disables <i>exactly one</i> tool — never the suite. Run <code>deps</code> for install hints.</p></div>
+    <div class="card reveal"><div class="fico"><svg><use href="#i-box"/></svg></div><h3>Everything Built In</h3><p>All 45 packs ship inside the one exe — no separate downloads. Toggle packs on or off in the app, and when a pack needs an external program it tells you exactly what to install.</p></div>
   </div>
 </div></section>
 
@@ -358,7 +358,7 @@ Missing optional dependencies:
 <section style="padding-top:0"><div class="wrap">
   <div class="sec-head reveal"><div class="sec-kicker">Up and running in a minute</div><h2>Download. Unzip. Double-click.</h2></div>
   <div class="steps">
-    <div class="step reveal"><h3>Download the release</h3><p>Grab the latest <code>UtilitySuite-*-windows.zip</code> from GitHub Releases. It contains exactly one file.</p></div>
+    <div class="step reveal"><h3>Download the release</h3><p>Grab the latest <code>UtilitySuite-*-windows.zip</code> from GitHub Releases. All 551 tools are built in — there are no separate pack downloads.</p></div>
     <div class="step reveal"><h3>Unzip anywhere</h3><p>Drop it on your desktop or a USB stick. No installer, no admin rights, nothing written to the registry.</p></div>
     <div class="step reveal"><h3>Run it</h3><p>Double-click for the GUI, or call <code>utility_suite.exe list</code> from PowerShell to script it.</p></div>
   </div>
@@ -368,7 +368,7 @@ Missing optional dependencies:
   <div class="dl reveal">
     <div class="ver"><svg><use href="#i-dl"/></svg><span id="relVer">Latest release</span></div>
     <h2>Get Utility Suite</h2>
-    <p style="color:var(--muted);max-width:600px;margin:0 auto">One portable executable. Windows 10/11. Free forever, MIT licensed. <span id="relMeta"></span></p>
+    <p style="color:var(--muted);max-width:600px;margin:0 auto">One portable executable. Windows 10/11. Free forever, MIT licensed. All 45 packs (551 tools) are built in — turn packs on or off inside the app, and it walks you through installing any missing dependency for the packs you enable. <span id="relMeta"></span></p>
     <div class="dl-cta">
       <a class="btn btn-primary btn-lg" id="dlBtn" href="https://github.com/drsamonline/All4ONE/releases/latest"><svg><use href="#i-dl"/></svg>Download for Windows</a>
       <a class="btn btn-ghost btn-lg" href="https://github.com/drsamonline/All4ONE" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Star the repo</a>
@@ -383,7 +383,7 @@ Missing optional dependencies:
     <details open><summary>Is it really free?</summary><p>Yes — MIT licensed, free for personal <i>and</i> commercial use. Every line is auditable Python.</p></details>
     <details><summary>Does it need admin rights?</summary><p>Not for most tools. A few system helpers prompt for elevation the normal Windows way, and destructive tools ask for explicit confirmation.</p></details>
     <details><summary>Will it slow my PC down?</summary><p>No. It is a portable executable — nothing runs in the background, nothing is installed, nothing starts with Windows.</p></details>
-    <details><summary>Why do some tools say “unavailable”?</summary><p>Heavy tools such as video conversion need optional binaries (FFmpeg, Poppler, Tesseract). Run <code style="font-family:var(--mono)">utility_suite.exe deps</code> and it lists every missing dependency, how many tools it unlocks, and a direct download link.</p></details>
+    <details><summary>Why do some tools say “unavailable”?</summary><p>Heavy tools such as video conversion need optional binaries (FFmpeg, Poppler, Tesseract). Run <code style="font-family:var(--mono)">utility_suite.exe deps</code> and it lists every missing dependency, how many tools it unlocks, and a direct download link — or simply disable that pack in the app.</p></details>
     <details><summary>Can I script it?</summary><p>Every GUI action has an identical CLI command, so it slots straight into PowerShell, batch files, or scheduled automation.</p></details>
     <details><summary>Is my data sent anywhere?</summary><p>No. There is no telemetry, no analytics and no network calls except the ones a tool you explicitly run makes.</p></details>
   </div>

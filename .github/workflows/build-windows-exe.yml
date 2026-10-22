@@ -8,12 +8,11 @@ name: Build Windows executable
 #   - a version tag (v*) -> additionally publishes a permanent GitHub Release.
 #   - manual Run workflow (Actions tab) for one-off builds.
 #
+# Utility Suite ships as ONE self-contained artifact. Every built-in pack is
+# compiled into the exe, so there are no separate plugin-pack downloads.
 # Artifacts produced by build_single_exe.py (all in dist/):
-#   UtilitySuite-<v>-windows-lite.zip   the exe only
-#   UtilitySuite-<v>-windows-full.zip   the exe + plugins/ folder + README-FIRST.txt
-#   UtilitySuite-<v>-plugins-all.zip    every pack zip + plugins.json
-#   plugins.json                        machine-readable pack manifest
-#   plugins/<pack>.zip                  the individual packs
+#   UtilitySuite-<v>-windows.zip   the exe (+ a short README-FIRST.txt)
+#   utility_suite.exe              the raw single-file executable
 on:
   push:
     branches: [main]
@@ -80,17 +79,11 @@ jobs:
           name: utility_suite-single-file-${{ github.sha }}
           path: |
             dist/utility_suite.exe
-            dist/UtilitySuite-*-windows-lite.zip
-            dist/UtilitySuite-*-windows-full.zip
-            dist/UtilitySuite-*-plugins-all.zip
-            dist/plugins.json
-            dist/plugins/*.zip
+            dist/UtilitySuite-*-windows.zip
           if-no-files-found: error
 
       # Floating "latest" download: every main push overwrites this one
-      # pre-release, so users always find current downloads at the same URLs
-      # (including the manifest at .../releases/download/latest-build/plugins.json
-      # and each pack at .../releases/download/latest-build/<pack>.zip).
+      # pre-release, so users always find the current download at the same URL.
       - name: Update latest-build pre-release (all pushes)
         uses: softprops/action-gh-release@v2
         with:
@@ -104,23 +97,16 @@ jobs:
             This is the most recent successful Windows build of `utility_suite.exe`,
             not an official release. Official releases are tagged `v*`.
 
-            Downloads:
-            - `UtilitySuite-<v>-windows-lite.zip` — the app only (all 45 packs are
-              already embedded inside the exe)
-            - `UtilitySuite-<v>-windows-full.zip` — the app plus a `plugins/` folder
-              with every pack zip (recommended)
-            - `UtilitySuite-<v>-plugins-all.zip` — every pack zip, no exe
-            - `plugins.json` — machine-readable pack manifest
-            - `plugins/<pack>.zip` — individual packs
+            Utility Suite is a single self-contained utility: all 45 packs
+            (551 tools) are built into the exe, so there are no separate
+            plugin-pack downloads. Turn packs on or off inside the app, and
+            follow the in-app guidance to install any missing external
+            dependency (FFmpeg, ffprobe, Poppler, …) for the packs you enable.
 
-            Manifest: https://github.com/drsamonline/All4ONE/releases/download/latest-build/plugins.json
-            Pack:     https://github.com/drsamonline/All4ONE/releases/download/latest-build/<pack>.zip
+            Download:
+            - `UtilitySuite-<v>-windows.zip` — the app (unzip and run; no installer)
           files: |
-            dist/UtilitySuite-*-windows-lite.zip
-            dist/UtilitySuite-*-windows-full.zip
-            dist/UtilitySuite-*-plugins-all.zip
-            dist/plugins.json
-            dist/plugins/*.zip
+            dist/UtilitySuite-*-windows.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -129,11 +115,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/UtilitySuite-*-windows-lite.zip
-            dist/UtilitySuite-*-windows-full.zip
-            dist/UtilitySuite-*-plugins-all.zip
-            dist/plugins.json
-            dist/plugins/*.zip
+            dist/UtilitySuite-*-windows.zip
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -4,23 +4,25 @@
 
 ![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2
 ![Tools](https://img.shields.io/badge/tools-551-brightgreen
-![Format](https://img.shields.io/badge/pack%20format-zip%20%C2%B7%20py-blue
+![Distribution](https://img.shields.io/badge/distribution-one%20exe-blue
 
 *Author: Dr. Sohil Momin, BHMS*
 
 </div>
 
-Utility Suite ships as a **portable application** plus an **optional set of
-plugin packs**. This document explains what a pack is, which download to pick,
-how to add or remove a pack, and how to author one.
+Utility Suite is **one self-contained application**. All **45 packs (551 tools)**
+are compiled into `utility_suite.exe` — there are **no separate pack downloads**
+and nothing to install alongside the app. This document explains what a pack is,
+how to turn one on or off inside the app, and what happens when a pack needs an
+external program that is not on your machine yet.
 
 ---
 
 ## What is a plugin pack?
 
-A *plugin pack* is a small, self-contained Python package that registers extra
-tools with the suite. Each pack is a directory (or a `.zip` of one) whose
-`__init__.py` exposes a single function:
+A *plugin pack* is a self-contained Python package that registers a group of
+related tools with the suite. Each pack's `__init__.py` exposes a single
+function:
 
 ```python
 def register_tools() -> list[dict]:
@@ -28,112 +30,91 @@ def register_tools() -> list[dict]:
 ```
 
 `register_tools()` returns one metadata dictionary per tool — its name,
-category, description, handler, CLI command and optional external
+category, description, handler, CLI command and any optional external
 dependencies. The suite reads that metadata and only imports a handler when the
 tool is actually run.
 
-There are two independent ways tools reach the suite:
-
-| Mechanism | Where it lives | Ships in |
-|---|---|---|
-| **Embedded bundle** | `bundle/tools.dat` compiled into `utility_suite.exe` | every download |
-| **External packs** | a `plugins/` folder beside the exe | the *full* and *plugins-all* downloads |
-
-The **embedded bundle already contains all 45 official packs (551 tools)**, so
-the app works with no `plugins/` folder at all. The external mechanism exists so
-you can **add, update or remove packs without rebuilding the exe** — and so
-packs can be distributed and downloaded separately.
+**Every official pack is already inside the exe.** At build time the pack
+sources and their metadata are compiled into a single archive,
+`bundle/tools.dat`, which is embedded inside `utility_suite.exe`. A released
+build therefore needs exactly one file to run and already contains every tool.
 
 ---
 
-## The three downloads — which one do I pick?
+## Enabling and disabling a pack
 
-| Download | Contains | Pick it if… |
-|---|---|---|
-| `UtilitySuite-<v>-windows-lite.zip` | `utility_suite.exe` only | You just want the app. All 45 packs are already inside the exe. |
-| `UtilitySuite-<v>-windows-full.zip` **(recommended)** | `utility_suite.exe` + `plugins/` (all 45 pack zips) + `README-FIRST.txt` | You want the app **and** the packs as removable files. |
-| `UtilitySuite-<v>-plugins-all.zip` | all 45 pack zips + `plugins.json` (no exe) | You only want the packs, or you're adding packs to an existing install. |
+Because everything is built in, "installing" a pack is not something you do —
+you simply choose which packs are active:
 
-Individual packs are also published one-per-file as `plugins/<pack>.zip` (and as
-top-level `<pack>.zip` assets on the release), so you can grab a single pack
-without the bundle.
+1. Open the app and go to the **Packs view** (the tab that lists the tool
+   packs and their tool counts).
+2. **Toggle a pack** to enable or disable it.
+3. Disabling a pack only **hides its tools** from the tool list and search — it
+   does not delete anything and does not change the exe. Re-enabling it brings
+   the tools straight back.
 
----
+That is the whole model: the exe is fixed, and the Packs view is a preference
+over which of the built-in packs you want to see. Use it to keep the tool list
+focused on the packs you actually use.
 
-## Installing a pack manually
-
-1. Find the folder that contains `utility_suite.exe`.
-2. Create a `plugins/` folder there if it does not already exist (the *full*
-   download already provides one).
-3. Drop the pack archive into it — either `plugins/<pack>.zip`, or a single
-   `plugins/<pack>.py` file.
-4. Restart `utility_suite.exe`. The pack's tools appear in the GUI search and in
-   `utility_suite.exe list`.
-
-```text
-UtilitySuite/
-├── utility_suite.exe
-├── plugins/
-│   ├── audio_tools.zip      ← each pack is one self-contained archive
-│   └── my_own_pack.zip
-├── config.json              (created on first run)
-└── logs/
-```
-
-**Removing a pack:** delete its `.zip` (or `.py`) from `plugins/` and restart.
-Nothing else is touched — the embedded bundle is unaffected.
-
-> ⚠️ **Security.** A pack is Python code and runs with the same authority as the
-> app. Only add packs you trust. See [SECURITY.md](SECURITY.md).
+> 💡 Packs that only use the Python standard library are always ready. Packs that
+> drive an external program may show some tools as unavailable until that
+> program is present — see the next section.
 
 ---
 
-## The manifest
+## When a pack's external dependency is missing
 
-Every release publishes a machine-readable list of the available packs:
+Some packs do their work through an external command-line program rather than
+pure Python — for example:
 
-```text
-https://github.com/drsamonline/All4ONE/releases/download/latest-build/plugins.json
+| Pack area | Typical external program |
+|---|---|
+| 🎬 Audio / video conversion | **FFmpeg** + **ffprobe** |
+| 📑 PDF structural operations | **qpdf** |
+| 📃 PDF text / metadata extraction | **Poppler** (`pdftotext`, `pdfinfo`) |
+| 🔎 OCR / image scanning | **Tesseract** |
+| 🖼️ Image operations | **Pillow** (Python package) |
+| 🪟 Advanced Windows / COM work | **pywin32** (Python package) |
+
+When you **enable** a pack whose external program is not available, the pack
+still loads — nothing crashes — but the affected tools are reported as
+**unavailable** instead of ready. A single missing program affects only the
+tools that need it; it never disables the whole suite.
+
+You then have two clean choices:
+
+- **Install the missing program** so those tools light up, or
+- **Disable the pack** if you do not need those tools (see above).
+
+---
+
+## Guided dependency install
+
+You are never left guessing what to install. For any tool that is unavailable,
+the suite reports the missing dependency by name and points you at where to get
+it:
+
+- In the app, an unavailable tool (and the pack it belongs to) shows the
+  **missing dependency** and a short install hint — the exact package name, a
+  `pip install …` line for Python packages, or the vendor download page for a
+  standalone program such as FFmpeg.
+- From the command line, ask the suite to list everything it is missing, how
+  many tools each item unlocks, and where to get it:
+
+```powershell
+utility_suite.exe deps
 ```
 
-The same file is attached to tagged releases, so the stable alias below also
-resolves to the newest official release:
+After you install the component, refresh the tool list (or restart the app) and
+the tools that depended on it become available. You only ever install the
+components for the packs you actually use — there are **zero mandatory
+third-party dependencies** to run the app itself.
 
-```text
-https://github.com/drsamonline/All4ONE/releases/latest/download/plugins.json
-```
-
-Each pack archive is downloadable at:
-
-```text
-https://github.com/drsamonline/All4ONE/releases/download/latest-build/<pack>.zip
-```
-
-### Manifest schema
-
-```json
-{
-  "version": "3.0.6",
-  "generated": "2026-10-22",
-  "packs": [
-    {
-      "name": "audio_tools",
-      "title": "Audio Tools",
-      "tools": 10,
-      "size": 37141,
-      "file": "audio_tools.zip",
-      "description": "10 tools: Audio Duration, Audio Stream Inspector, Audio Normalizer and 7 more."
-    }
-  ]
-}
-```
-
-- `name` — the pack's import name; `file` is the archive to download.
-- `tools` — the exact number of tools the pack's `register_tools()` returns.
-- `size` — the archive size in bytes.
-- `description` — a short line derived from the pack's own tool names.
-
-The manifest is regenerated by `tools/make_plugin_zips.py` on every build.
+> ⚠️ **Security.** Every pack is Python code and runs with the same authority as
+> the app. The official packs are reviewed and shipped inside the signed release
+> exe; treat any pack from outside this repository with the same caution you
+> would any other program. See [SECURITY.md](SECURITY.md).
 
 ---
 
@@ -164,27 +145,14 @@ Rules:
   integer status code; import heavy dependencies inside the handler.
 - Keep `__init__.py` import-light — it is executed at load time.
 
-**Packaging a pack for the `plugins/` folder.** Zip the package so the archive
-holds the pack directory at its **top level**, with `<pack>/__init__.py` as an
-entry. The archive's file stem must equal the package name:
-
-```text
-my_pack.zip
-└── my_pack/
-    ├── __init__.py     # defines register_tools()
-    └── operations.py
-```
-
-The loader imports `<pack>/__init__.py` from the archive with `zipimport`, so a
-top-level `__init__.py` **not** nested inside a `<pack>/` folder will not load.
-If your pack's handlers import shared engine modules from `core/`
-(`core.handler_factory`, `core.extended_ops`), include those modules in the
-archive so it is self-contained.
-
-To build the official packs into `dist/plugins/` and refresh the manifest:
+A new pack joins the built-in set by living in the repository as a top-level
+package and being picked up by the bundle build, so it ships inside the exe like
+every other pack. Regenerate the embedded bundle and the catalogues with the
+normal build/validation pipeline:
 
 ```powershell
-python tools/make_plugin_zips.py
+python generate_catalogs.py     # refresh TOOL_CATALOG.md / EXPANSION_CATALOG.md
+python build_single_exe.py      # audit → bundle → tests → exe → verify → zip
 ```
 
 See [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) for the full tool contract and

@@ -18,21 +18,20 @@ Pick your path — ⏱️ **60 seconds** for the portable EXE, or 🧑‍💻 a 
 
 > ✅ No installer · no registry writes · no admin rights needed.
 
-Every release offers **three downloads** from the GitHub Releases page — pick
-one:
+Every release offers **one download** from the GitHub Releases page:
 
-| Download | Contains | Pick it if… |
-|---|---|---|
-| `UtilitySuite-<v>-windows-lite.zip` | `utility_suite.exe` only | You just want the app — all 551 tools are already embedded inside the exe |
-| `UtilitySuite-<v>-windows-full.zip` | the exe **+** a `plugins/` folder with every pack zip + `README-FIRST.txt` | You want to add or remove packs without rebuilding |
-| `UtilitySuite-<v>-plugins-all.zip` | every pack zip + `plugins.json` (no exe) | You only want the packs |
+| Download | Contains |
+|---|---|
+| `UtilitySuite-<v>-windows.zip` | `utility_suite.exe` (+ a short `README-FIRST.txt`) |
 
-1. 📦 Download one of the three from the
+All 551 tools across the 45 built-in packs are already embedded inside the exe
+— there are no separate plugin-pack downloads.
+
+1. 📦 Download it from the
    [GitHub Releases page](https://github.com/drsamonline/All4ONE/releases/latest).
-2. 📂 Extract it to any folder, e.g. `C:\Tools\UtilitySuite`. The *lite* archive
-   contains exactly **one file** — `utility_suite.exe` — with all 551 tools, the
-   catalog and the runtime embedded inside. The *full* archive adds a `plugins/`
-   folder holding every pack as a separate `.zip`.
+2. 📂 Extract it to any folder, e.g. `C:\Tools\UtilitySuite`. The archive
+   contains exactly **one program file** — `utility_suite.exe` — with all 551
+   tools, the catalogue and the runtime embedded inside.
 3. 🚀 Double-click `utility_suite.exe` for the Windows 10-style GUI — or use it
    as a CLI. Settings (`config.json`) and `logs/` are created next to the exe
    on first run.
@@ -41,22 +40,15 @@ The portable layout is intentionally self-contained and can be copied to
 another Windows machine on a USB stick.
 
 ```text
-UtilitySuite/                 # lite download
-├── utility_suite.exe     # runtime + 45 tool packs + catalog, all embedded
+UtilitySuite/
+├── utility_suite.exe     # runtime + 45 tool packs + catalogue, all embedded
 ├── config.json           # created on first run (auto-merged on upgrade)
 └── logs/                 # created/populated at runtime
-
-UtilitySuite/                 # full download — adds removable packs
-├── utility_suite.exe
-├── README-FIRST.txt      # explains the three downloads
-├── plugins/              # one .zip per pack; drop in / delete to add / remove
-├── config.json
-└── logs/
 ```
 
-🧩 **Adding or removing packs?** Drop a pack `.zip` into the `plugins/` folder
-beside the exe (or delete one) and restart. Full guide and the manifest URL:
-[PLUGINS.md](PLUGINS.md).
+🧩 **Turning packs on or off?** All packs are built in — open the Packs view in
+the app and toggle the packs you want. See [PLUGINS.md](PLUGINS.md) for how to
+enable/disable a pack and how the guided dependency install works.
 
 🧹 **Uninstall?** Delete the folder. Preserve `config.json` or `logs/` first if
 you want to keep them.
@@ -112,12 +104,12 @@ utility_suite.exe run checksum f.bin       # python run.py run checksum f.bin
 
 ## 🔐 Security note
 
-> ⚠️ Only add plugin packs from sources you trust. Pack modules execute Python
-> code within the user account and therefore have the same authority as the
-> process running Utility Suite. In official releases all 45 packs are already
-> embedded inside `utility_suite.exe`; review third-party pack source before
-> dropping it into `plugins/` or rebuilding the bundle from a modified checkout.
-> See [PLUGINS.md](PLUGINS.md) and [SECURITY.md](SECURITY.md).
+> ⚠️ Pack modules execute Python code within the user account and therefore have
+> the same authority as the process running Utility Suite. In official releases
+> all 45 packs are already embedded inside `utility_suite.exe`, so there is
+> nothing to add — treat any pack from outside this repository with the same
+> caution you would any other program. See [PLUGINS.md](PLUGINS.md) and
+> [SECURITY.md](SECURITY.md).
 
 ---
 

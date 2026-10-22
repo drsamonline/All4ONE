@@ -74,19 +74,20 @@ the real Windows single-file EXE via GitHub Actions.
 
 ### Prebuilt portable EXE (recommended)
 
-Every release publishes **three downloads** — pick one (all include the same
-app; the difference is whether the plugin packs ship as separate files):
+Every release publishes **one download** — the whole utility in a single file:
 
-| Download | Contains | Pick it if… |
-|---|---|---|
-| `UtilitySuite-<v>-windows-lite.zip` | `utility_suite.exe` only | You just want the app — all 45 packs are already inside the exe |
-| `UtilitySuite-<v>-windows-full.zip` | the exe **+** a `plugins/` folder with every pack zip | You want to add/remove packs without rebuilding |
-| `UtilitySuite-<v>-plugins-all.zip` | every pack zip + `plugins.json` (no exe) | You only want the packs |
+| Download | Contains |
+|---|---|
+| `UtilitySuite-<v>-windows.zip` | `utility_suite.exe` (+ a short `README-FIRST.txt`) |
 
-1. 📥 Grab one from the
+All **45 packs (551 tools)** are already built into the exe, so there are no
+separate plugin-pack downloads to collect. Turn packs on or off inside the app,
+and let the built-in `deps` guide tell you what to install for the packs you
+enable.
+
+1. 📥 Grab the zip from the
    **[latest release](https://github.com/drsamonline/All4ONE/releases/latest)**.
-2. 📂 Unzip — the *lite* archive contains **exactly one file**: `utility_suite.exe`;
-   the *full* archive also has a `plugins/` folder.
+2. 📂 Unzip — it contains **exactly one program file**: `utility_suite.exe`.
 3. 🚀 Double-click for the GUI, or use it as a CLI:
 
 ```powershell
@@ -164,7 +165,7 @@ Python packages → exact `pip install …` lines. Nothing else to configure.
 | 🐍 Language | Python 3.10+ (stdlib-first) |
 | 🖱️ Frontends | CLI + Tkinter GUI |
 | 📄 Documentation | 11 curated documents |
-| 📦 Release format | portable exe · lite / full / plugins-all downloads |
+| 📦 Release format | one portable exe · single download |
 | 👤 Author | Dr. Sohil Momin, BHMS |
 
 ## 🏛️ Architecture
@@ -188,9 +189,6 @@ utility_suite/
 │   └── gui.py            # Tkinter desktop front-end
 ├── <pack>/               # 45 tool-pack source directories
 ├── bundle/tools.dat      # deterministic single archive (ships inside the exe)
-├── plugins/              # optional external packs (from the full download)
-├── tools/
-│   └── make_plugin_zips.py  # builds dist/plugins/<pack>.zip + plugins.json
 ├── tests/                # smoke + integration tests
 ├── run.py                # entry point (CLI / GUI)
 ├── audit.py              # static release audit + docs-freshness gate
@@ -214,10 +212,9 @@ pyc-free bundle · ship one file.
 > no manual action required. The Linux validation workflow (`ci.yml`) gates
 > the tree, and `build-windows-exe.yml` fires on:
 >
-> 1. **any push to `main`** → builds `utility_suite.exe`, uploads the lite/full/
->    plugins-all zips + `plugins.json` + every `plugins/<pack>.zip` as run
->    artifacts, and refreshes the floating **`latest-build`** pre-release so
->    there is always a current download at the same URL,
+> 1. **any push to `main`** → builds `utility_suite.exe`, uploads the single
+>    release zip as a run artifact, and refreshes the floating **`latest-build`**
+>    pre-release so there is always a current download at the same URL,
 > 2. **pushing a version tag** → all of the above *plus* a permanent GitHub
 >    Release with auto-generated notes, or
 > 3. a manual **Actions → Build Windows executable → Run workflow** for one-offs.
@@ -227,19 +224,17 @@ real `.exe` is built on a **Windows GitHub Actions runner**. The entire local
 pipeline is one command:
 
 ```powershell
-python build_single_exe.py    # audit → bundle → tests → plugins → exe → verify → 3 zips
+python build_single_exe.py    # audit → bundle → tests → exe → verify → one zip
 ```
 
 It produces, in `dist/`:
 
-- `UtilitySuite-<v>-windows-lite.zip` — the exe only,
-- `UtilitySuite-<v>-windows-full.zip` — the exe + a `plugins/` folder + `README-FIRST.txt`,
-- `UtilitySuite-<v>-plugins-all.zip` — every pack zip + `plugins.json`,
-- `plugins.json` — the pack manifest, and `plugins/<pack>.zip` — the individual packs.
+- `UtilitySuite-<v>-windows.zip` — the one release artifact: the exe plus a
+  short `README-FIRST.txt`, and
+- `utility_suite.exe` — the raw single-file executable.
 
 Both the floating `latest-build` pre-release and every `v*` tag release attach
-all of these, so `…/releases/download/latest-build/plugins.json` and
-`…/releases/download/latest-build/<pack>.zip` always resolve. See
+the zip, so the latest download always lives at the same URL. See
 [PLUGINS.md](PLUGINS.md).
 
 To publish a release, **bump the version, then push a version tag**:
@@ -272,7 +267,7 @@ Full details: [COMPILATION.md](COMPILATION.md).
 | Doc | For |
 |---|---|
 | 🧑‍💻 [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) | Plugin contract & testing |
-| 🧩 [PLUGINS.md](PLUGINS.md) | Plugin packs, downloads & manifest |
+| 🧩 [PLUGINS.md](PLUGINS.md) | Built-in packs: enable/disable & deps |
 | 🏗️ [COMPILATION.md](COMPILATION.md) | Release / EXE builds |
 | 🧾 [CHANGELOG.md](CHANGELOG.md) | Release history |
 

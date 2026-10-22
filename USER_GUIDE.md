@@ -123,19 +123,22 @@ extract archives you trust into folders you control.
 ## 6️⃣ Plugin packs 📦
 
 In a release, all 45 packs are **embedded inside `utility_suite.exe`** — there
-is nothing to install and no `plugins/` folder to manage. The suite also
-supports loading pack ZIPs from a `plugins/` directory beside the exe (or the
-source tree when running from a checkout) for development builds; refresh the
-catalogue after adding a valid pack:
+is nothing to install and no pack files to manage. To choose which packs you
+see, open the **Packs view** in the app and **toggle a pack** on or off:
+disabling a pack simply hides its tools from the list and search, and
+re-enabling it brings them straight back. Nothing is downloaded or deleted.
+
+If a pack drives an external program that is not installed yet, its tools show
+as 🚫 **Unavailable** until you add it (see
+[section 7](#7%EF%B8%8F%E2%83%A3-optional-dependencies-)); you can also just
+disable that pack. Full details, including the guided dependency install, are
+in [PLUGINS.md](PLUGINS.md).
+
+After changing the dependencies you have installed, reload the catalogue with:
 
 ```powershell
 utility_suite.exe refresh
 ```
-
-The loader expects:
-
-1. the package name to match the archive stem, and
-2. the archive to contain a Python package exposing `register_tools()` metadata.
 
 Developing your own pack? Follow the contract in
 [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
