@@ -2,10 +2,10 @@
 
 # 🏗️ Utility Suite — Compilation & Release Guide
 
-![PyInstaller](https://img.shields.io/badge/PyInstaller-6.x-orange?style=flat-square)
-![Target](https://img.shields.io/badge/target-utility__suite.exe-0078D4?style=flat-square&logo=windows&logoColor=white)
-![CI build](https://img.shields.io/badge/GitHub%20Actions-Windows%20runner-brightgreen?style=flat-square&logo=githubactions&logoColor=white)
-![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
+![PyInstaller](https://img.shields.io/badge/PyInstaller-6.x-orange
+![Target](https://img.shields.io/badge/target-utility__suite.exe-0078D4
+![CI build](https://img.shields.io/badge/GitHub%20Actions-Windows%20runner-brightgreen
+![Version](https://img.shields.io/badge/version-3.0.6-brightgreen
 
 **Version:** 3.0.6
 
@@ -29,11 +29,12 @@ automatically — no manual action required — on:
 GitHub provides the Windows runner, so you don't need to own a Windows PC
 to get a real `utility_suite.exe`. The workflow runs exactly one command —
 `python build_single_exe.py` — which performs the entire pipeline: static
-audit, bundle regeneration (`bundle/tools.dat`), smoke tests, PyInstaller
-onefile build, packaged-exe self-check, and release-zip creation. The
-single exe is uploaded as an artifact; tagged pushes (`v*`) additionally
-publish `UtilitySuite-<version>-windows.zip` as a GitHub Release asset.
-If any audit/test step fails, the build stops before producing an executable.
+audit, bundle regeneration (`bundle/tools.dat`), smoke tests, plugin-pack
+archives + manifest, PyInstaller onefile build, packaged-exe self-check, and
+release-zip creation. The exe, the three release zips, `plugins.json` and every
+`plugins/<pack>.zip` are uploaded as artifacts; tagged pushes (`v*`)
+additionally publish all of them as GitHub Release assets. If any audit/test
+step fails, the build stops before producing an executable.
 
 ## 1. Build environment (manual/local build)
 
@@ -66,11 +67,15 @@ The script:
 1. runs the static release audit (`audit.py`)
 2. regenerates `bundle/tools.dat` from the source tree (all 45 packs + catalog)
 3. runs behavioural smoke tests (`tests/test_suite.py`)
-4. invokes PyInstaller with `build_onefile.spec` (**onefile** mode)
-5. verifies the built exe reports >0 tools (`utility_suite.exe list`)
-6. produces `dist\utility_suite.exe` and `dist\UtilitySuite-<version>-windows.zip`
+4. writes `dist\plugins\<pack>.zip` for every pack + `dist\plugins.json`
+   (via `tools/make_plugin_zips.py`)
+5. invokes PyInstaller with `build_onefile.spec` (**onefile** mode)
+6. verifies the built exe reports >0 tools (`utility_suite.exe list`)
+7. produces `dist\utility_suite.exe` plus the lite / full / plugins-all zips
 
-Use `--skip-audit` / `--skip-tests` only while iterating locally.
+Use `--skip-audit` / `--skip-tests` only while iterating locally;
+`--skip-plugin-zips` reuses an existing `dist\plugins\` and `--skip-pyinstaller`
+packages an already-built exe (useful when PyInstaller is unavailable).
 
 ## 4. Manual step-by-step build
 
@@ -84,17 +89,24 @@ python -m PyInstaller build_onefile.spec --clean --noconfirm
 
 ## 5. Build output
 
-The 3.0 release is a **single portable file**:
+The release is a **portable exe** with the plugin packs available either
+embedded or as separate downloads:
 
 ```text
 dist\
-├── utility_suite.exe                        # everything inside: runtime,
-│                                            # all tool packs, catalog metadata
-└── UtilitySuite-<version>-windows.zip           # release asset (exe only)
+├── utility_suite.exe                        # runtime + all 45 packs + catalog
+├── UtilitySuite-<version>-windows-lite.zip      # the exe only
+├── UtilitySuite-<version>-windows-full.zip      # the exe + plugins\ + README-FIRST.txt
+├── UtilitySuite-<version>-plugins-all.zip       # every pack zip + plugins.json
+├── plugins.json                                 # machine-readable pack manifest
+└── plugins\
+    └── <pack>.zip                               # one archive per pack (45)
 ```
 
-No `_internal\`, no `plugins\`, no sidecar `config.json` required — the exe
-creates its own settings/logs next to itself on first run.
+The exe itself needs no `_internal\`, no `plugins\` and no sidecar `config.json`
+— it creates its own settings/logs next to itself on first run. The optional
+`plugins\` folder (shipped in the *full* zip) is what lets users add or remove
+packs without rebuilding. See [PLUGINS.md](PLUGINS.md).
 
 ## 6. Release checklist
 
