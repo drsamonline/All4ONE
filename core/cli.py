@@ -3,43 +3,83 @@
 from __future__ import annotations
 
 import argparse
+import logging
 import sys
-from pathlib import Path
 
 from . import __version__
-from .config import get_config_path, load_config
 from .plugin_loader import PluginLoader
 from .preview import open_with_default, preview_file
 from .tool_registry import ToolRegistry
 
+logger = logging.getLogger(__name__)
+
 
 def build_registry() -> ToolRegistry:
-    """Build the tool registry.
+    """Build the tool registry by merging every tool source that is present.
 
-    Priority:
-      1. Embedded single-file bundle (``bundle/tools.dat``) — the layout used
-         by released builds, where everything ships inside one .exe.
-      2. Legacy external ``plugins/`` directory (ZIP packs) — dev/fallback.
-      3. Source-tree packages (dev checkout without any bundle/plugins built).
+    Precedence (highest first):
+      1. External ``plugins/`` directory — user-installed packs.  A pack placed
+         here OVERRIDES the embedded copy of the same pack, so downloading a
+         pack through the Plugins panel genuinely updates/replaces what shipped
+         inside the .exe.  It is loaded first so its tools win the
+         first-registration dedup below.
+      2. Embedded single-file bundle (``bundle/tools.dat``) — the baseline that
+         ships inside released builds; only its commands that an external pack
+         has not already provided are added.
+      3. Source-tree packages (dev checkout) — fallback, used only when neither
+         of the above produced any tools.
     """
     from .bundle import BundleLoader, get_bundle_path
+    from .plugin_installer import get_plugins_dir
 
-    config = load_config()
-    bundle = get_bundle_path()
-    if bundle is not None:
-        tools = BundleLoader(bundle).get_tools()
-        if tools:
-            return ToolRegistry(tools)
+    merged: list[dict] = []
+    seen: set[str] = set()
 
-    plugins_dir = Path(config.get("plugins_directory", "plugins"))
-    if not plugins_dir.is_absolute():
-        plugins_dir = get_config_path().parent / plugins_dir
+    # 1. External plugins/ first: a user-installed pack must win the dedup so
+    #    that installing a pack genuinely replaces the embedded copy.
+    plugins_dir = get_plugins_dir()
     loader = PluginLoader(plugins_dir)
-    tools = loader.get_tools()
-    if tools:
-        return ToolRegistry(tools)
+    external_tools = loader.get_tools()
+    if loader.errors:
+        logger.warning(
+            "Plugin load failed for %d pack(s) in %s: %s",
+            len(loader.errors),
+            plugins_dir,
+            "; ".join(loader.errors),
+        )
+    external_added = 0
+    for tool in external_tools:
+        cmd = str(tool.get("cli_command", "")).strip()
+        if cmd and cmd not in seen:
+            seen.add(cmd)
+            merged.append(tool)
+            external_added += 1
 
-    # Final fallback: import packs straight from the source tree.
+    # 2. Embedded bundle is the baseline: add only the commands not already
+    #    registered by an external pack (first registration wins).
+    bundle = get_bundle_path()
+    bundle_added = 0
+    if bundle is not None:
+        for tool in BundleLoader(bundle).get_tools():
+            cmd = str(tool.get("cli_command", "")).strip()
+            if cmd and cmd not in seen:
+                seen.add(cmd)
+                merged.append(tool)
+                bundle_added += 1
+
+    # Observable merge: say nothing when there was nothing to merge.
+    if external_added or bundle_added:
+        logger.info(
+            "Registry merge: %d tool(s) from plugins/ (%s), %d tool(s) from embedded bundle",
+            external_added,
+            plugins_dir,
+            bundle_added,
+        )
+
+    if merged:
+        return ToolRegistry(merged)
+
+    # 3. Final fallback: import packs straight from the source tree (dev only).
     from pathlib import Path as _P
 
     root = _P(__file__).resolve().parent.parent
