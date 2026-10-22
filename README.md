@@ -28,6 +28,8 @@ more — compiled into a single `utility_suite.exe` you can keep on a USB stick.
 **🖥️ [GUI + CLI features](#-gui--cli-two-frontends-one-engine)**
 ·
 **📚 [Full tool catalogue (551)](TOOL_CATALOG.md)**
+·
+**🧭 [All projects](https://drsamonline.github.io/)**
 
 *No installer · No registry pollution · No background services · Unplug it and walk away.*
 
