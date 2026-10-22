@@ -1,11 +1,19 @@
 name: Build Windows executable
 
 # Triggers:
-#   - every push to main (no tag needed) -> builds utility_suite.exe and
-#     uploads it as a downloadable run artifact, plus updates the floating
-#     "latest-build" pre-release so there is always a current .exe to grab.
+#   - every push to main (no tag needed) -> builds utility_suite.exe, uploads
+#     the release artifacts as a downloadable run artifact, and refreshes the
+#     floating "latest-build" pre-release so there is always a current set of
+#     downloads at the same URLs.
 #   - a version tag (v*) -> additionally publishes a permanent GitHub Release.
 #   - manual Run workflow (Actions tab) for one-off builds.
+#
+# Artifacts produced by build_single_exe.py (all in dist/):
+#   UtilitySuite-<v>-windows-lite.zip   the exe only
+#   UtilitySuite-<v>-windows-full.zip   the exe + plugins/ folder + README-FIRST.txt
+#   UtilitySuite-<v>-plugins-all.zip    every pack zip + plugins.json
+#   plugins.json                        machine-readable pack manifest
+#   plugins/<pack>.zip                  the individual packs
 on:
   push:
     branches: [main]
@@ -72,11 +80,17 @@ jobs:
           name: utility_suite-single-file-${{ github.sha }}
           path: |
             dist/utility_suite.exe
-            dist/UtilitySuite-*-windows.zip
+            dist/UtilitySuite-*-windows-lite.zip
+            dist/UtilitySuite-*-windows-full.zip
+            dist/UtilitySuite-*-plugins-all.zip
+            dist/plugins.json
+            dist/plugins/*.zip
           if-no-files-found: error
 
       # Floating "latest" download: every main push overwrites this one
-      # pre-release, so users always find a current .exe at the same URL.
+      # pre-release, so users always find current downloads at the same URLs
+      # (including the manifest at .../releases/download/latest-build/plugins.json
+      # and each pack at .../releases/download/latest-build/<pack>.zip).
       - name: Update latest-build pre-release (all pushes)
         uses: softprops/action-gh-release@v2
         with:
@@ -89,9 +103,24 @@ jobs:
             Auto-updated by `build-windows-exe.yml` on every push to `main`.
             This is the most recent successful Windows build of `utility_suite.exe`,
             not an official release. Official releases are tagged `v*`.
+
+            Downloads:
+            - `UtilitySuite-<v>-windows-lite.zip` — the app only (all 45 packs are
+              already embedded inside the exe)
+            - `UtilitySuite-<v>-windows-full.zip` — the app plus a `plugins/` folder
+              with every pack zip (recommended)
+            - `UtilitySuite-<v>-plugins-all.zip` — every pack zip, no exe
+            - `plugins.json` — machine-readable pack manifest
+            - `plugins/<pack>.zip` — individual packs
+
+            Manifest: https://github.com/drsamonline/All4ONE/releases/download/latest-build/plugins.json
+            Pack:     https://github.com/drsamonline/All4ONE/releases/download/latest-build/<pack>.zip
           files: |
-            dist/utility_suite.exe
-            dist/UtilitySuite-*-windows.zip
+            dist/UtilitySuite-*-windows-lite.zip
+            dist/UtilitySuite-*-windows-full.zip
+            dist/UtilitySuite-*-plugins-all.zip
+            dist/plugins.json
+            dist/plugins/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -99,7 +128,12 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/UtilitySuite-*-windows.zip
+          files: |
+            dist/UtilitySuite-*-windows-lite.zip
+            dist/UtilitySuite-*-windows-full.zip
+            dist/UtilitySuite-*-plugins-all.zip
+            dist/plugins.json
+            dist/plugins/*.zip
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
