@@ -13,7 +13,7 @@ more — compiled into a single `utility_suite.exe` you can keep on a USB stick.
 [![Build Windows executable](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml)
 [![Release](https://img.shields.io/github/v/release/drsamonline/All4ONE?style=flat-square&color=brightgreen)](https://github.com/drsamonline/All4ONE/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/drsamonline/All4ONE/total?style=flat-square&label=downloads&color=blue)](https://github.com/drsamonline/All4ONE/releases)
-[![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/license-PolyForm Noncommercial-informational?style=flat-square)](LICENSE)
 
 ![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
 ![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
@@ -60,7 +60,7 @@ more — compiled into a single `utility_suite.exe` you can keep on a USB stick.
 
 | ❌ Typical freeware toolkits | ✅ Utility Suite |
 |---|---|
-| Bundlers, adware, "optional" toolbars | **Zero ads, zero telemetry, MIT-licensed, fully auditable source** |
+| Bundlers, adware, "optional" toolbars | **Zero ads, zero telemetry, PolyForm Noncommercial-licensed, fully auditable source** |
 | Installers that litter the registry | **One portable `.exe` — run from any folder or USB drive** |
 | Closed binaries you can't inspect | Every line is Python; `audit.py` verifies **551/551 handlers** on every release |
 | One job per download (50 downloads for 50 jobs) | **551 tools across 45 plugin packs** in a single file |
@@ -278,7 +278,7 @@ Full details: [COMPILATION.md](COMPILATION.md).
 |---|---|
 | 🔍 [AUDIT_REPORT.txt](AUDIT_REPORT.txt) | Latest audit verdict |
 | 🛡️ [SECURITY.md](SECURITY.md) | Vulnerability reporting |
-| ⚖️ [LICENSE](LICENSE) | MIT license |
+| ⚖️ [LICENSE](LICENSE) | PolyForm Noncommercial license |
 
 </td>
 </tr>
@@ -286,7 +286,7 @@ Full details: [COMPILATION.md](COMPILATION.md).
 
 ## ❓ FAQ
 
-**Is it really free?** Yes — MIT licensed, free for personal *and* commercial use.
+**Is it really free?** Yes — PolyForm Noncommercial licensed, free for personal *and* commercial use.
 **Does it need admin rights?** Not for most tools; a few system helpers prompt normally.
 **Will it slow my PC down?** It's a portable exe — nothing runs in the background.
 **Why do some tools say "unavailable"?** They need an optional binary (FFmpeg etc.) —
@@ -308,7 +308,7 @@ tester who ran a pack on a machine that shouldn't have worked.
 
 ## 📄 License & author
 
-Released under the **[MIT License](LICENSE)** — free for personal and commercial use.
+Released under the **[PolyForm Noncommercial License 1.0.0](LICENSE)** — free for personal and commercial use.
 
 **Author:** Dr. Sohil Momin, BHMS · Found a vulnerability? See [SECURITY.md](SECURITY.md); otherwise open an issue.
 
