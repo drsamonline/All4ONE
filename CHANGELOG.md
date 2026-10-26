@@ -321,7 +321,7 @@ embedded via `bundle/tools.dat`. No `plugins/` folder, no sidecar files.
   headers or the README overview disagree with the registry counts, and
   `ci.yml` gained a "Catalogues are up to date" step that regenerates them
   and diffs against the commit.
-- `LICENSE` (MIT): the repository previously shipped no license at all,
+- `LICENSE` (PolyForm Noncommercial): the repository previously shipped no license at all,
   which legally defaults to "all rights reserved" and blocked any
   publication or downstream use. Copyright (c) 2026 Dr. Sohil Momin —
   matching the author credit in README.md and AUTHORS.md.
