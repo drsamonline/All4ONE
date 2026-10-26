@@ -42,6 +42,6 @@ Current release: **3.0.6** — full history in [CHANGELOG.md](CHANGELOG.md).
 
 <div align="center">
 
-⚖️ Released under the [MIT License](LICENSE) · 🛡️ Security reports: [SECURITY.md](SECURITY.md)
+⚖️ Released under the [PolyForm Noncommercial License 1.0.0](LICENSE) · 🛡️ Security reports: [SECURITY.md](SECURITY.md)
 
 </div>
