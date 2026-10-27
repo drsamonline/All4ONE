@@ -55,6 +55,8 @@ jobs:
         # tracked (a stray commit of these once failed every CI job via the
         # audit gate below). Fails with the offending paths listed.
         run: |
+          # F-34: `|| true` here is correct and load-bearing - grep exits 1 when it finds NOTHING,
+          # which is the pass case. An empty $bad is success, not a swallowed error.
           bad=$(git ls-files | grep -E '__pycache__|\.py[cod]$|^logs/.*\.log$' || true)
           if [ -n "$bad" ]; then
             echo "Tracked build/runtime artifacts found:"; echo "$bad"; exit 1
