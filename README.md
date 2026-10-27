@@ -13,7 +13,7 @@ more — compiled into a single `utility_suite.exe` you can keep on a USB stick.
 [![Build Windows executable](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml)
 [![Release](https://img.shields.io/github/v/release/drsamonline/All4ONE?style=flat-square&color=brightgreen)](https://github.com/drsamonline/All4ONE/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/drsamonline/All4ONE/total?style=flat-square&label=downloads&color=blue)](https://github.com/drsamonline/All4ONE/releases)
-[![License](https://img.shields.io/badge/license-PolyForm Noncommercial-informational?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)](LICENSE)
 
 ![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
 ![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
@@ -60,7 +60,7 @@ more — compiled into a single `utility_suite.exe` you can keep on a USB stick.
 
 | ❌ Typical freeware toolkits | ✅ Utility Suite |
 |---|---|
-| Bundlers, adware, "optional" toolbars | **Zero ads, zero telemetry, PolyForm Noncommercial-licensed, fully auditable source** |
+| Bundlers, adware, "optional" toolbars | **Zero ads, zero telemetry, MIT-licensed, fully auditable source** |
 | Installers that litter the registry | **One portable `.exe` — run from any folder or USB drive** |
 | Closed binaries you can't inspect | Every line is Python; `audit.py` verifies **551/551 handlers** on every release |
 | One job per download (50 downloads for 50 jobs) | **551 tools across 45 plugin packs** in a single file |
