@@ -6,8 +6,7 @@ from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (human_size, iter_files, need_dir, need_file, out_path,
-                    report_table, require)
+from ._util import human_size, iter_files, need_dir, need_file, out_path, report_table, require
 
 IMAGE_FILTER = "Images (*.png *.jpg *.jpeg *.webp *.bmp *.gif *.tif *.tiff)"
 FORMATS = ["PNG", "JPEG", "WEBP", "BMP", "TIFF", "GIF"]
@@ -675,7 +674,6 @@ def image_stitch(v, ctx):
       fields=[F.file("file", "Image (square works best)", filters=IMAGE_FILTER),
               F.save("output", "Save as", required=True, filters="Icon (*.ico)")])
 def image_to_ico(v, ctx):
-    from PIL import Image
     path = need_file(v["file"], "Image")
     image = _open(path).convert("RGBA")
     side = min(image.size)

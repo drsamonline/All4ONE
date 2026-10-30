@@ -4,13 +4,11 @@ from __future__ import annotations
 
 import difflib
 import json
-import re
 from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (hash_file, human_size, iter_files, need_dir, need_file,
-                    report_table, require, write_csv)
+from ._util import hash_file, human_size, iter_files, need_dir, need_file, report_table, write_csv
 
 
 @tool(id="image-compare", name="Compare Two Images", category="Images",

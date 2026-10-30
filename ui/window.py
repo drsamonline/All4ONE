@@ -4,19 +4,29 @@ from __future__ import annotations
 
 from typing import Any
 
-from PySide6.QtCore import QSize, Qt, QTimer, Signal
-from PySide6.QtGui import QCursor, QGuiApplication, QIcon, QKeySequence, QShortcut
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel, QLineEdit,
-                               QMainWindow, QPushButton, QScrollArea, QSizePolicy,
-                               QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtCore import QSize, Qt, QTimer
+from PySide6.QtGui import QCursor, QIcon, QKeySequence, QShortcut
+from PySide6.QtWidgets import (
+    QApplication,
+    QFrame,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QMainWindow,
+    QPushButton,
+    QScrollArea,
+    QStackedWidget,
+    QVBoxLayout,
+    QWidget,
+)
 
 from core import APP_NAME, APP_TAGLINE, __version__, registry
 from core.settings import Settings
 
 from . import icons
-from .pages import (DependenciesPage, HomePage, SettingsPage, ToolListPage, ToolPage)
+from .pages import DependenciesPage, HomePage, SettingsPage, ToolListPage, ToolPage
 from .theme import icon_colour, palette, stylesheet
-from .widgets import Divider, heading, icon_button, icon_label
+from .widgets import Divider, icon_button, icon_label
 
 
 class Sidebar(QWidget):

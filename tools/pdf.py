@@ -382,7 +382,7 @@ def pdf_metadata(v, ctx):
               F.flag("remove_metadata", "Also drop metadata", True),
               F.save("output", "Save as", required=True, filters=PDF_FILTER)])
 def pdf_compress(v, ctx):
-    from pypdf import PdfReader, PdfWriter
+    from pypdf import PdfWriter
     reader, path = _reader(v["file"])
     writer = PdfWriter()
     for page in reader.pages:
@@ -413,7 +413,6 @@ def pdf_compress(v, ctx):
               F.flag("sort_by_name", "Order by filename", True),
               F.integer("quality", "JPEG quality", 88, minimum=30, maximum=100)])
 def pdf_from_images(v, ctx):
-    from PIL import Image
     from ._util import iter_files, need_dir
     from .images import _open
     root = need_dir(v["folder"])

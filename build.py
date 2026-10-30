@@ -160,7 +160,6 @@ def main() -> int:
     listing = subprocess.run([str(binary), "list"], capture_output=True, text=True, timeout=180)
     if listing.returncode != 0 or "tools" not in listing.stdout.lower():
         raise SystemExit(f"the built binary did not respond to 'list':\n{listing.stderr[:600]}")
-    tool_count = listing.stdout.count("  ")
     print(f"binary responds to 'list' ({len(listing.stdout.splitlines())} lines, "
           f"{binary.stat().st_size / 1_048_576:.0f} MB)")
 

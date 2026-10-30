@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import bz2
 import gzip
-import os
 import shutil
 import tarfile
 import zipfile
@@ -12,8 +11,16 @@ from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (human_size, iter_files, need_dir, need_file, need_path,
-                    out_path, report_table, run_command, stamp)
+from ._util import (
+    human_size,
+    iter_files,
+    need_dir,
+    need_file,
+    out_path,
+    report_table,
+    run_command,
+    stamp,
+)
 
 
 def _safe_member(name: str, target: Path) -> Path:

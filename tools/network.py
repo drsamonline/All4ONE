@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-import http.client
 import ipaddress
 import json
-import os
 import platform
 import re
 import socket
 import ssl
-import subprocess
 import time
 import urllib.error
 import urllib.request
@@ -522,7 +519,8 @@ def http_headers(v, ctx):
         "referrer-policy": "referrer policy",
         "permissions-policy": "permissions policy",
     }
-    present = {label: ("yes" if any(key.lower() == header for header in headers) else "no")
+    lower_headers = {name.lower() for name in headers}
+    present = {label: ("yes" if header in lower_headers else "no")
                for header, label in security.items()}
     ctx.log("")
     ctx.log(report_table([{"security header": k, "present": val} for k, val in present.items()]))

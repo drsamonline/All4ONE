@@ -10,8 +10,16 @@ from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (human_size, iter_files, need_dir, need_file, out_path,
-                    read_text, report_table, write_text)
+from ._util import (
+    human_size,
+    iter_files,
+    need_dir,
+    need_file,
+    out_path,
+    read_text,
+    report_table,
+    write_text,
+)
 
 
 def _input_fields(label="Text", rows=10):

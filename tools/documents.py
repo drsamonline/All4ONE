@@ -2,13 +2,21 @@
 
 from __future__ import annotations
 
-import re
 from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (human_size, need_dir, need_file, out_path, report_table,
-                    require, run_command, write_csv, write_text, which)
+from ._util import (
+    human_size,
+    need_file,
+    out_path,
+    report_table,
+    require,
+    run_command,
+    which,
+    write_csv,
+    write_text,
+)
 
 DOCX_FILTER = "Word document (*.docx)"
 XLSX_FILTER = "Excel workbook (*.xlsx *.xlsm)"
@@ -95,6 +103,7 @@ def csv_to_xlsx(v, ctx):
     from openpyxl import Workbook
     from openpyxl.styles import Font
     from openpyxl.utils import get_column_letter
+
     from .data import _csv_read
     files = v["files"] if isinstance(v["files"], list) else [f for f in v["files"].split("|") if f]
     if not files:
@@ -222,6 +231,7 @@ def docx_info(v, ctx):
 def text_to_docx(v, ctx):
     require("docx", "docx")
     import docx as docx_module
+
     from ._util import read_text
     path = str(v["file"] or "").strip()
     text = read_text(need_file(path)) if path else v["text"]

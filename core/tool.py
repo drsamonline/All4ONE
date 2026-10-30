@@ -13,7 +13,7 @@ Nothing here imports a GUI toolkit, so the engine stays usable headless.
 from __future__ import annotations
 
 import inspect
-from dataclasses import dataclass, field as dc_field
+from dataclasses import dataclass
 from typing import Any, Callable, Iterable, Sequence
 
 # --------------------------------------------------------------------------

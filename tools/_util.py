@@ -220,6 +220,7 @@ def write_csv(path: Path, rows: list[dict], columns: list[str] | None = None) ->
 def require(module: str, dep_key: str):
     """Import an optional dependency or explain how to get it."""
     import importlib
+
     from core import deps as deps_mod
     try:
         return importlib.import_module(module)

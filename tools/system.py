@@ -5,8 +5,6 @@ from __future__ import annotations
 import json as jsonlib
 import os
 import platform
-import shutil
-import subprocess
 import sys
 import time
 from pathlib import Path
@@ -32,15 +30,25 @@ def _json_list(text: str) -> list:
     return data if isinstance(data, list) else []
 
 
-def _powershell(script: str, ctx=None, timeout: int = 120) -> str:
+def _powershell(script: str, ctx=None, timeout: int = 120, lenient: bool = False) -> str:
     exe = which("powershell") or which("powershell.exe") or which("pwsh")
     if not exe:
         raise ToolError("PowerShell was not found — this tool needs Windows PowerShell")
     code, out, err = run_command([exe, "-NoProfile", "-NonInteractive", "-Command", script],
                                  ctx=ctx, timeout=timeout)
-    if code != 0 and not out.strip():
+    if code != 0 and not out.strip() and not lenient:
         raise ToolError(f"PowerShell failed: {err.strip()[:300]}")
     return out
+
+
+def _ps_json(script: str, ctx=None, timeout: int = 180) -> list:
+    """Run a ConvertTo-Json query. Finding nothing is an empty list, not an error.
+
+    A machine with no USB devices, no printers or no matching event log entries
+    makes several of these cmdlets write to the error stream and exit non-zero.
+    That is a valid answer, so the query is run leniently and the output parsed.
+    """
+    return _json_list(_powershell(script, ctx=ctx, timeout=timeout, lenient=True))
 
 
 # --------------------------------------------------------------------------
@@ -82,7 +90,8 @@ def uptime(v, ctx):
         # rendering of LastBootUpTime is culture-formatted and unparseable.
         out = _powershell(
             "$b=(Get-CimInstance Win32_OperatingSystem).LastBootUpTime; "
-            "[math]::Round(((Get-Date)-$b).TotalSeconds); $b.ToString('yyyy-MM-ddTHH:mm:ss')")
+            "[math]::Round(((Get-Date)-$b).TotalSeconds); $b.ToString('yyyy-MM-ddTHH:mm:ss')",
+            lenient=True)
         lines = [line.strip() for line in out.splitlines() if line.strip()]
         try:
             seconds = float(lines[0])
@@ -181,10 +190,8 @@ def process_list(v, ctx):
                 continue
     except ImportError:
         if IS_WINDOWS:
-            out = _powershell("Get-Process | Select-Object Id,ProcessName,"
-                              "@{n='WS';e={[math]::Round($_.WS/1MB,1)}} | ConvertTo-Json")
-            import json as jsonlib
-            data = _json_list(out)
+            data = _ps_json("Get-Process | Select-Object Id,ProcessName,"
+                            "@{n='WS';e={[math]::Round($_.WS/1MB,1)}} | ConvertTo-Json")
             rows = [{"pid": item.get("Id"), "name": item.get("ProcessName", ""),
                      "memory_mb": item.get("WS", 0), "user": ""} for item in data]
         else:
@@ -224,12 +231,8 @@ def process_find(v, ctx):
                 continue
     except ImportError:
         if IS_WINDOWS:
-            out = _powershell(f"Get-Process -Name '*{needle}*' | "
-                              "Select-Object Id,ProcessName,Path | ConvertTo-Json")
-            import json as jsonlib
-            data = _json_list(out)
-            if isinstance(data, dict):
-                data = [data]
+            data = _ps_json(f"Get-Process -Name '*{needle}*' | "
+                            "Select-Object Id,ProcessName,Path | ConvertTo-Json")
             hits = [{"pid": item.get("Id"), "name": item.get("ProcessName"),
                      "exe": item.get("Path", ""), "started": ""} for item in data]
         else:
@@ -280,7 +283,6 @@ def process_kill(v, ctx):
       platforms=WIN,
       fields=[F.flag("details", "Include the command line", True)])
 def startup_items(v, ctx):
-    import json as jsonlib
     script = ("$paths='HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run',"
               "'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run',"
               "'HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run';"
@@ -289,8 +291,7 @@ def startup_items(v, ctx):
               "Where-Object {$_.Name -notlike 'PS*'} | ForEach-Object { "
               "$out += [pscustomobject]@{Name=$_.Name; Command=(Get-ItemProperty $p).($_.Name); "
               "Source=$p} } } }; $out | ConvertTo-Json -Depth 3")
-    out = _powershell(script, ctx=ctx)
-    data = _json_list(out)
+    data = _ps_json(script, ctx=ctx)
     rows = [{"name": item.get("Name", ""),
              "command": item.get("Command", "") if v["details"] else "",
              "source": "HKCU" if "HKCU" in str(item.get("Source", "")) else "HKLM"} for item in data]
@@ -308,12 +309,8 @@ def startup_items(v, ctx):
       fields=[F.text("filter", "Only names containing"),
               F.choice("state", "Show", ["All", "Running", "Stopped"], "All")])
 def services_list(v, ctx):
-    import json as jsonlib
-    out = _powershell("Get-Service | Select-Object Name,DisplayName,Status,StartType | "
-                      "ConvertTo-Json -Depth 2", ctx=ctx)
-    data = _json_list(out)
-    if isinstance(data, dict):
-        data = [data]
+    data = _ps_json("Get-Service | Select-Object Name,DisplayName,Status,StartType | "
+                    "ConvertTo-Json -Depth 2", ctx=ctx)
     needle = v["filter"].strip().lower()
     rows = []
     for item in data:
@@ -350,12 +347,8 @@ def service_control(v, ctx):
       fields=[F.text("filter", "Only names containing"),
               F.flag("ready_only", "Only enabled tasks", False)])
 def scheduled_tasks(v, ctx):
-    import json as jsonlib
-    out = _powershell("Get-ScheduledTask | Select-Object TaskName,TaskPath,State | "
-                      "ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = _json_list(out)
-    if isinstance(data, dict):
-        data = [data]
+    data = _ps_json("Get-ScheduledTask | Select-Object TaskName,TaskPath,State | "
+                    "ConvertTo-Json -Depth 2", ctx=ctx)
     needle = v["filter"].strip().lower()
     rows = []
     for item in data:
@@ -392,7 +385,7 @@ def registry_read(v, ctx):
               "$i=Get-ItemProperty $p; $i | Get-Member -MemberType NoteProperty | "
               "Where-Object {$_.Name -notlike 'PS*'} | ForEach-Object { "
               "'{0} = {1}' -f $_.Name, $i.($_.Name) }")
-    out = _powershell(script, ctx=ctx)
+    out = _powershell(script, ctx=ctx, lenient=True)
     if "KEY NOT FOUND" in out:
         raise ToolError(f"The key {key} does not exist")
     lines = [line.strip() for line in out.splitlines() if line.strip()]
@@ -495,7 +488,6 @@ def registry_search(v, ctx):
       fields=[F.text("filter", "Only names containing"),
               F.save("report", "Save CSV to", required=False)])
 def installed_programs(v, ctx):
-    import json as jsonlib
     from ._util import write_csv
     script = ("$paths='HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*',"
               "'HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*',"
@@ -504,7 +496,7 @@ def installed_programs(v, ctx):
               "Where-Object {$_.DisplayName} | "
               "Select-Object DisplayName,DisplayVersion,Publisher,InstallDate | "
               "Sort-Object DisplayName | ConvertTo-Json -Depth 2")
-    data = _json_list(_powershell(script, ctx=ctx, timeout=180))
+    data = _ps_json(script, ctx=ctx)
     if isinstance(data, dict):
         data = [data]
     needle = v["filter"].strip().lower()
@@ -526,13 +518,9 @@ def installed_programs(v, ctx):
       platforms=WIN,
       fields=[F.integer("limit", "Show", 40, minimum=1, maximum=500)])
 def windows_updates(v, ctx):
-    import json as jsonlib
-    out = _powershell("Get-HotFix | Select-Object HotFixID,Description,InstalledOn | "
-                      "Sort-Object InstalledOn -Descending | ConvertTo-Json -Depth 2",
-                      ctx=ctx, timeout=180)
-    data = _json_list(out)
-    if isinstance(data, dict):
-        data = [data]
+    data = _ps_json("Get-HotFix | Select-Object HotFixID,Description,InstalledOn | "
+                    "Sort-Object InstalledOn -Descending | ConvertTo-Json -Depth 2",
+                    ctx=ctx)
     rows = [{"hotfix": str(item.get("HotFixID", "")),
              "description": str(item.get("Description", "")),
              "installed": str(item.get("InstalledOn", ""))[:10]} for item in data[:v["limit"]]]
@@ -546,13 +534,9 @@ def windows_updates(v, ctx):
       fields=[F.text("filter", "Only names containing"),
               F.integer("limit", "Show", 60, minimum=1, maximum=500)])
 def drivers_list(v, ctx):
-    import json as jsonlib
-    out = _powershell("Get-CimInstance Win32_SystemDriver | "
-                      "Select-Object Name,DisplayName,State,StartMode | "
-                      "ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = _json_list(out)
-    if isinstance(data, dict):
-        data = [data]
+    data = _ps_json("Get-CimInstance Win32_SystemDriver | "
+                    "Select-Object Name,DisplayName,State,StartMode | "
+                    "ConvertTo-Json -Depth 2", ctx=ctx)
     needle = v["filter"].strip().lower()
     rows = [{"name": str(item.get("Name", "")),
              "display": str(item.get("DisplayName", ""))[:40],
@@ -571,13 +555,11 @@ def drivers_list(v, ctx):
               F.choice("level", "Level", ["Error and Warning", "Error only", "All"], "Error and Warning"),
               F.integer("count", "Entries", 20, minimum=1, maximum=200)])
 def event_log(v, ctx):
-    import json as jsonlib
     levels = {"Error and Warning": "@(1,2,3)", "Error only": "@(1,2)", "All": "@(0,1,2,3,4,5)"}
-    out = _powershell(f"Get-WinEvent -LogName {v['log']} -MaxEvents {v['count']} "
+    data = _ps_json(f"Get-WinEvent -LogName {v['log']} -MaxEvents {v['count']} "
                       f"-ErrorAction SilentlyContinue | Where-Object {{ {levels[v['level']]} -contains $_.Level }} | "
                       "Select-Object TimeCreated,Id,LevelDisplayName,ProviderName,Message | "
                       "ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     rows = [{"time": str(item.get("TimeCreated", ""))[:19],
@@ -631,14 +613,10 @@ def firewall_status(v, ctx):
               F.choice("direction", "Direction", ["Inbound", "Outbound", "Both"], "Inbound"),
               F.integer("limit", "Show", 40, minimum=1, maximum=300)])
 def firewall_rules(v, ctx):
-    import json as jsonlib
     direction = "" if v["direction"] == "Both" else f"-Direction {v['direction']}"
-    out = _powershell(f"Get-NetFirewallRule -Enabled True {direction} | "
-                      "Select-Object DisplayName,Direction,Action,Profile | "
-                      "ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = _json_list(out)
-    if isinstance(data, dict):
-        data = [data]
+    data = _ps_json(f"Get-NetFirewallRule -Enabled True {direction} | "
+                    "Select-Object DisplayName,Direction,Action,Profile | "
+                    "ConvertTo-Json -Depth 2", ctx=ctx)
     needle = v["filter"].strip().lower()
     rows = [{"name": str(item.get("DisplayName", ""))[:50],
              "direction": str(item.get("Direction", "")),
@@ -657,7 +635,7 @@ def bitlocker_status(v, ctx):
     out = _powershell("try { Get-BitLockerVolume | Select-Object MountPoint,VolumeStatus,"
                       "ProtectionStatus,EncryptionPercentage | Format-Table -AutoSize | "
                       "Out-String -Width 120 } catch { 'BitLocker cmdlets unavailable: ' + "
-                      "$_.Exception.Message }", ctx=ctx, timeout=120)
+                      "$_.Exception.Message }", ctx=ctx, timeout=120, lenient=True)
     ctx.log(out.strip())
     return "BitLocker volumes listed above"
 
@@ -667,12 +645,8 @@ def bitlocker_status(v, ctx):
       platforms=WIN,
       fields=[])
 def users_list(v, ctx):
-    import json as jsonlib
-    out = _powershell("Get-LocalUser | Select-Object Name,Enabled,LastLogon,Description | "
-                      "ConvertTo-Json -Depth 2", ctx=ctx, timeout=120)
-    data = _json_list(out)
-    if isinstance(data, dict):
-        data = [data]
+    data = _ps_json("Get-LocalUser | Select-Object Name,Enabled,LastLogon,Description | "
+                    "ConvertTo-Json -Depth 2", ctx=ctx)
     rows = [{"name": item.get("Name", ""), "enabled": item.get("Enabled", ""),
              "last_logon": str(item.get("LastLogon", ""))[:19],
              "description": str(item.get("Description", ""))[:30]} for item in data]
@@ -804,10 +778,8 @@ def fonts_list(v, ctx):
       platforms=WIN,
       fields=[])
 def printers_list(v, ctx):
-    import json as jsonlib
-    out = _powershell("Get-Printer | Select-Object Name,DriverName,PortName,PrinterStatus | "
+    data = _ps_json("Get-Printer | Select-Object Name,DriverName,PortName,PrinterStatus | "
                       "ConvertTo-Json -Depth 2", ctx=ctx, timeout=120)
-    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     rows = [{"name": str(item.get("Name", ""))[:40],

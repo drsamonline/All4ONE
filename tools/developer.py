@@ -3,16 +3,22 @@
 from __future__ import annotations
 
 import difflib
-import json
-import os
 import re
-import shutil
 from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (human_size, iter_files, need_dir, need_file, out_path,
-                    read_text, report_table, run_command, write_text, which)
+from ._util import (
+    human_size,
+    iter_files,
+    need_dir,
+    need_file,
+    out_path,
+    read_text,
+    report_table,
+    run_command,
+    write_text,
+)
 
 CODE_EXTENSIONS = {
     ".py": "Python", ".js": "JavaScript", ".ts": "TypeScript", ".jsx": "React",

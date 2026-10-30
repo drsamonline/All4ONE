@@ -34,7 +34,6 @@ def category_cards() -> str:
 def build() -> str:
     stats = registry.stats()
     tools = stats["tools"]
-    ready = stats["ready"]
     stdlib_only = sum(1 for tool in registry.all_tools() if not tool.needs
                       and not tool.is_windows_only)
     categories = stats["categories"]

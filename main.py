@@ -14,7 +14,6 @@ command it behaves like a normal command-line tool.
 
 from __future__ import annotations
 
-import os
 import sys
 from pathlib import Path
 

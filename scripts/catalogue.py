@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from core import APP_NAME, __version__, deps, registry  # noqa: E402
+from core import __version__, deps, registry  # noqa: E402
 
 KIND_LABEL = {
     "text": "text", "password": "secret", "multiline": "multiline", "int": "number",

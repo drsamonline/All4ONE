@@ -7,16 +7,22 @@ import hashlib
 import hmac
 import os
 import re
-import secrets
-import shutil
 import struct
 import time
 from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (human_size, iter_files, need_dir, need_file, out_path,
-                    report_table, require, run_command, which)
+from ._util import (
+    human_size,
+    iter_files,
+    need_dir,
+    need_file,
+    out_path,
+    report_table,
+    require,
+    run_command,
+)
 
 COMMON_PASSWORDS = {
     "password", "123456", "123456789", "qwerty", "abc123", "password1", "111111",

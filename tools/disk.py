@@ -10,8 +10,17 @@ from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (IS_WINDOWS, human_size, iter_files, need_dir, need_file,
-                    out_path, report_table, run_command, stamp, which)
+from ._util import (
+    IS_WINDOWS,
+    human_size,
+    iter_files,
+    need_dir,
+    out_path,
+    report_table,
+    run_command,
+    stamp,
+    which,
+)
 
 
 def _powershell(script: str, ctx=None, timeout: int = 180) -> str:

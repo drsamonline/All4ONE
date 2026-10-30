@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import os
 import sys
 
 from PySide6.QtCore import Qt
@@ -12,7 +11,7 @@ from PySide6.QtWidgets import QApplication
 from core import APP_NAME, __version__
 from core.settings import Settings
 
-from .theme import palette, stylesheet
+from .theme import stylesheet
 from .window import MainWindow
 
 
@@ -23,7 +22,6 @@ def _configure(app: QApplication, theme: str) -> None:
     app.setOrganizationName("drsamonline")
     app.setStyle("Fusion")
 
-    colours = palette(theme)
     palette_obj = QPalette()
     palette_obj.setColor(QPalette.Window, Qt.transparent)
     palette_obj.setColor(QPalette.Base, Qt.transparent)

@@ -8,7 +8,7 @@ from datetime import date, datetime, timedelta, timezone
 
 from core.tool import F, ToolError, tool
 
-from ._util import human_size, report_table
+from ._util import report_table
 
 UNITS = {
     "Length": {"mm": 0.001, "cm": 0.01, "m": 1.0, "km": 1000.0, "inch": 0.0254,

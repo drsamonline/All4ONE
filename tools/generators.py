@@ -8,11 +8,10 @@ import secrets
 import string
 import uuid
 from datetime import date, datetime, timedelta
-from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import human_size, out_path, report_table, write_csv, write_text
+from ._util import human_size, out_path, write_csv, write_text
 
 WORDS = (
     "amber anchor apple arrow atlas autumn badge bamboo basket beacon berry birch "

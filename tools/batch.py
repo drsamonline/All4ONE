@@ -9,8 +9,17 @@ from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (hash_file, human_size, iter_files, need_dir, need_file,
-                    out_path, report_table, require, write_csv, write_text)
+from ._util import (
+    hash_file,
+    human_size,
+    iter_files,
+    need_dir,
+    need_file,
+    out_path,
+    report_table,
+    write_csv,
+    write_text,
+)
 
 
 @tool(id="hash-folder", name="Hash Every File", category="Encoding",
@@ -48,6 +57,7 @@ def hash_folder(v, ctx):
               F.folder("output", "Save into", required=False)])
 def batch_watermark(v, ctx):
     from PIL import Image, ImageDraw, ImageFont
+
     from .images import _open, _save
     root = need_dir(v["folder"])
     out_dir = Path(v["output"]) if v["output"].strip() else root / "watermarked"
@@ -210,6 +220,7 @@ def batch_pdf_merge(v, ctx):
               F.flag("recursive", "Include subfolders", True)])
 def batch_compress_images(v, ctx):
     from PIL import Image
+
     from .images import _open, _save
     root = need_dir(v["folder"])
     out_dir = Path(v["output"]) if v["output"].strip() else root / "compressed"
@@ -484,6 +495,7 @@ def batch_json_to_csv(v, ctx):
               F.folder("output", "Save thumbnails into", required=False)])
 def batch_thumbnails_folder(v, ctx):
     from PIL import Image
+
     from .images import _open, _save
     root = need_dir(v["folder"])
     out_dir = Path(v["output"]) if v["output"].strip() else root / "thumbnails"

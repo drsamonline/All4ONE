@@ -12,9 +12,18 @@ from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (hash_file, human_size, iter_files, need_dir, need_file,
-                    need_path, out_path, report_table, safe_name, stamp,
-                    write_csv, write_text)
+from ._util import (
+    hash_file,
+    human_size,
+    iter_files,
+    need_dir,
+    need_file,
+    out_path,
+    report_table,
+    safe_name,
+    stamp,
+    write_csv,
+)
 
 
 # --------------------------------------------------------------------------

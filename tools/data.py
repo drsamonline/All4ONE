@@ -11,8 +11,7 @@ from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import (human_size, need_file, out_path, read_text, report_table,
-                    write_csv, write_text)
+from ._util import human_size, need_file, out_path, read_text, report_table, write_csv, write_text
 
 
 def _json_input(v) -> object:
@@ -892,7 +891,8 @@ def json_to_sqlite(v, ctx):
     connection = sqlite3.connect(target)
     try:
         connection.execute(f'DROP TABLE IF EXISTS "{table}"')
-        connection.execute(f'CREATE TABLE "{table}" ({", ".join(f"""\"{c}\" TEXT""" for c in columns)})')
+        column_sql = ", ".join('"' + str(column) + '" TEXT' for column in columns)
+        connection.execute(f'CREATE TABLE "{table}" ({column_sql})')
         connection.executemany(
             f'INSERT INTO "{table}" VALUES ({", ".join("?" for _ in columns)})',
             [[json.dumps(item.get(c), ensure_ascii=False) if isinstance(item.get(c), (dict, list))

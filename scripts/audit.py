@@ -105,6 +105,7 @@ def audit_repository() -> None:
 
 def audit_imports() -> None:
     import pkgutil
+
     import tools as tools_package
 
     modules = [info.name for info in pkgutil.iter_modules(tools_package.__path__)
@@ -167,6 +168,27 @@ def audit_optional_imports() -> None:
           + ("" if not problems else ": " + "; ".join(problems[:5])))
 
 
+def audit_lint() -> None:
+    """Static correctness: undefined names, unused imports, dead locals.
+
+    The Windows-only tools cannot be executed on a Linux build machine, so this
+    is the check that catches a NameError in a path the sweep never reaches.
+    """
+    import shutil
+    import subprocess
+
+    ruff = shutil.which("ruff")
+    if not ruff:
+        NOTES.append("SKIP  ruff is not installed, static analysis not run")
+        return
+    result = subprocess.run([ruff, "check", ".", "--select", "F821,F811,F401,F841",
+                             "--quiet"], cwd=ROOT, capture_output=True, text=True, timeout=180)
+    check(result.returncode == 0,
+          "no undefined names, unused imports or dead locals"
+          + ("" if result.returncode == 0
+             else ": " + result.stdout.strip().splitlines()[-1][:160]))
+
+
 def audit_docs() -> None:
     from core import registry
 
@@ -207,6 +229,7 @@ def main() -> int:
     audit_version()
     audit_imports()
     audit_optional_imports()
+    audit_lint()
     audit_docs()
 
     for note in NOTES:

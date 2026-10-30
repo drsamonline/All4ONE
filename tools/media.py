@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import re
 from pathlib import Path
 
 from core.tool import F, ToolError, tool
@@ -265,7 +264,6 @@ def frames_to_video(v, ctx):
     if not images:
         raise ToolError("No images found in that folder")
     target = out_path(v["output"], "video.mp4").with_suffix(".mp4")
-    pattern = str(root / ("%04d" + images[0].suffix.lower()))
     import shutil
     staging = root / ".all4one-frames"
     staging.mkdir(exist_ok=True)

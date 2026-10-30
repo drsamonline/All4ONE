@@ -2,21 +2,48 @@
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from PySide6.QtCore import QSize, Qt, Signal
-from PySide6.QtGui import QCursor, QFont, QGuiApplication
-from PySide6.QtWidgets import (QCheckBox, QColorDialog, QComboBox, QDoubleSpinBox,
-                               QFileDialog, QFrame, QGridLayout, QHBoxLayout, QLabel,
-                               QLineEdit, QPlainTextEdit, QPushButton, QSizePolicy,
-                               QSlider, QSpinBox, QVBoxLayout, QWidget)
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import (
+    QCheckBox,
+    QColorDialog,
+    QComboBox,
+    QDoubleSpinBox,
+    QFileDialog,
+    QFrame,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QPlainTextEdit,
+    QPushButton,
+    QSizePolicy,
+    QSlider,
+    QSpinBox,
+    QVBoxLayout,
+    QWidget,
+)
 
-from core.tool import (BOOL, CHOICE, COLOR, DIR, FILE, FILES, FLOAT, INT, MULTI,
-                       PASSWORD, SAVE, SLIDER, TEXT, Field)
+from core.tool import (
+    BOOL,
+    CHOICE,
+    COLOR,
+    DIR,
+    FILE,
+    FILES,
+    FLOAT,
+    INT,
+    MULTI,
+    PASSWORD,
+    SAVE,
+    SLIDER,
+    Field,
+)
+
 from . import icons
-from .theme import icon_colour, palette
+from .theme import icon_colour
 
 
 # --------------------------------------------------------------------------

@@ -9,7 +9,7 @@ from pathlib import Path
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from PySide6.QtCore import QSize, Qt  # noqa: E402
+from PySide6.QtCore import QSize  # noqa: E402
 from PySide6.QtWidgets import QApplication  # noqa: E402
 
 from core import registry  # noqa: E402

@@ -6,20 +6,31 @@ import threading
 from pathlib import Path
 from typing import Any
 
-from PySide6.QtCore import QObject, QSize, Qt, QThread, QTimer, Signal
+from PySide6.QtCore import QObject, Qt, QThread, Signal
 from PySide6.QtGui import QCursor, QGuiApplication, QKeySequence, QShortcut
-from PySide6.QtWidgets import (QCheckBox, QFrame, QGridLayout, QHBoxLayout, QLabel,
-                               QLineEdit, QMessageBox, QProgressBar, QPushButton,
-                               QScrollArea, QSizePolicy, QSplitter, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (
+    QCheckBox,
+    QFrame,
+    QGridLayout,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QMessageBox,
+    QProgressBar,
+    QPushButton,
+    QScrollArea,
+    QSplitter,
+    QVBoxLayout,
+    QWidget,
+)
 
-from core import APP_NAME, APP_TAGLINE, __version__, deps, registry
+from core import APP_TAGLINE, deps, registry
 from core.runner import RunResult, execute
-from core.tool import BOOL, MULTI, Tool
+from core.tool import BOOL, Tool
 
 from . import icons
 from .theme import icon_colour, palette
-from .widgets import (Card, Chip, Console, Divider, FieldEditor, heading,
-                      icon_button, icon_label)
+from .widgets import Card, Chip, Console, Divider, FieldEditor, heading, icon_button, icon_label
 
 
 # --------------------------------------------------------------------------
