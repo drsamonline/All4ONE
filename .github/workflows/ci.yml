@@ -32,11 +32,13 @@ jobs:
       - name: Run every runnable tool against fixtures
         run: python tests/sweep.py
 
-      - name: Catalogue is up to date
+      - name: Generated docs are up to date
         run: |
           python scripts/catalogue.py
-          git diff --exit-code TOOL_CATALOG.md || {
-            echo "TOOL_CATALOG.md is stale — run python scripts/catalogue.py and commit it."
+          python scripts/landing.py
+          git diff --exit-code TOOL_CATALOG.md docs/index.html || {
+            echo "TOOL_CATALOG.md or docs/index.html is stale."
+            echo "Run python scripts/catalogue.py and python scripts/landing.py, then commit."
             exit 1
           }
 

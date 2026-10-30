@@ -123,8 +123,9 @@ def main() -> int:
         step("Behavioural sweep")
         run([sys.executable, "tests/sweep.py"])
 
-    step("Catalogue")
+    step("Catalogue and landing page")
     run([sys.executable, "scripts/catalogue.py"])
+    run([sys.executable, "scripts/landing.py"])
 
     step("Icon and version resource")
     icon = make_icon()

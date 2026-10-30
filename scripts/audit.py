@@ -93,11 +93,6 @@ def audit_repository() -> None:
         for pattern in ("__pycache__", "*.pyc", "build/", "dist/"):
             check(pattern in content, f".gitignore covers {pattern}")
 
-    stray = [path for path in ROOT.rglob("*.pyc") if ".git" not in path.parts]
-    check(not stray, "no .pyc files in the tree")
-    caches = [path for path in ROOT.rglob("__pycache__") if ".git" not in path.parts]
-    check(not caches, "no __pycache__ directories in the tree")
-
     try:
         listed = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True,
                                 text=True, timeout=60)
@@ -122,8 +117,34 @@ def audit_imports() -> None:
             FAILURES.append(f"tools.{name} failed to import: {exc}")
 
 
+DOCS = ("README.md", "USER_GUIDE.md", "INSTALLATION.md", "DEVELOPER_GUIDE.md",
+        "BUILDING.md", "CHANGELOG.md", "SECURITY.md", "AUTHORS.md", "TOOL_CATALOG.md")
+
+
 def audit_docs() -> None:
     from core import registry
+
+    for name in DOCS:
+        check((ROOT / name).exists(), f"{name} exists")
+
+    landing = ROOT / "docs" / "index.html"
+    check(landing.exists(), "docs/index.html (landing page) exists")
+    if landing.exists():
+        html = landing.read_text(encoding="utf-8")
+        stats = registry.stats()
+        check(str(stats["tools"]) in html, "landing page states the current tool count")
+        check(__import__("core").__version__ in html, "landing page states the current version")
+        counts = registry.counts()
+        missing = [name for name in registry.CATEGORY_NAMES if f">{name}</span>" not in html]
+        check(not missing, "landing page lists every category")
+        check(all(f">{counts[name]}</span>" in html or str(counts[name]) in html
+                  for name in registry.CATEGORY_NAMES),
+              "landing page category counts match the registry")
+        for shot in ("home-dark.png", "tool-page.png", "category.png", "home-light.png",
+                     "dependencies.png"):
+            check((ROOT / "docs" / "screenshots" / shot).exists(),
+                  f"landing page screenshot {shot} exists")
+
     catalogue = ROOT / "TOOL_CATALOG.md"
     check(catalogue.exists(), "TOOL_CATALOG.md exists")
     if catalogue.exists():

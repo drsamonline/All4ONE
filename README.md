@@ -13,7 +13,7 @@ Every tool gets its own page with its own options — search it, open it, set wh
 ![Python](https://img.shields.io/badge/python-3.10%2B-f7c948?style=flat-square)
 ![Licence](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue?style=flat-square)
 
-**🖼️ [Screenshots](#-what-it-looks-like)** · **📚 [All 403 tools](TOOL_CATALOG.md)** · **⬇️ [Download](https://github.com/drsamonline/All4ONE/releases/latest)**
+**🌐 [Landing page](https://drsamonline.github.io/All4ONE/)** · **🖼️ [Screenshots](#-what-it-looks-like)** · **📚 [All 403 tools](TOOL_CATALOG.md)** · **⬇️ [Download](https://github.com/drsamonline/All4ONE/releases/latest)**
 
 </div>
 
@@ -151,8 +151,9 @@ ui/
   pages.py               home, category, search, tool page, settings, dependencies
   window.py              sidebar shell, navigation history, search
 tools/                   16 modules; a tool is ~15 lines plus its options
-scripts/                 catalogue generator + release audit
+scripts/                 catalogue + landing-page generators, release audit
 tests/sweep.py           runs every runnable tool against fixtures
+docs/index.html          the landing page, generated from the registry
 ```
 
 A tool looks like this, and that is all it takes to appear in the app with a page:
@@ -194,6 +195,23 @@ python tests/sweep.py      # executes every runnable tool against real fixtures
 Both are wired into CI and must pass before a build is published. The audit rejects
 duplicate ids, duplicate summaries, unknown dependency keys, undocumented tools and
 version drift; the sweep is what stops a tool from quietly becoming decoration.
+
+## Documentation
+
+| Document | For |
+|---|---|
+| [USER_GUIDE.md](USER_GUIDE.md) | Using the app: search, tool pages, options, output, shortcuts |
+| [INSTALLATION.md](INSTALLATION.md) | Portable build, from source, optional dependencies, troubleshooting |
+| [TOOL_CATALOG.md](TOOL_CATALOG.md) | Every tool, its options and what it needs — generated from the registry |
+| [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) | The tool contract, adding a tool or a category, testing |
+| [BUILDING.md](BUILDING.md) | The build pipeline, CI workflows, releasing |
+| [CHANGELOG.md](CHANGELOG.md) | What changed in 4.0 and why |
+| [SECURITY.md](SECURITY.md) | Reporting, and the safety design |
+| [docs/index.html](docs/index.html) | The landing page served at drsamonline.github.io/All4ONE |
+
+The catalogue and the landing page are generated from the live registry
+(`scripts/catalogue.py`, `scripts/landing.py`), and the audit fails if either
+drifts from the code — so the numbers in these pages are the numbers in the app.
 
 ## Licence
 
