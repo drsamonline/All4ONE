@@ -5,7 +5,7 @@
 ![Scope](https://img.shields.io/badge/scope-system%20utilities-red?style=flat-square)
 ![Triage SLA](https://img.shields.io/badge/triage%20SLA-7%20days-blue?style=flat-square)
 ![Supported](https://img.shields.io/badge/supported-3.0.x-brightgreen?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)
+![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-informational?style=flat-square)
 
 *Author: Dr. Sohil Momin, BHMS*
 

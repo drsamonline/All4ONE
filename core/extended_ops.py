@@ -50,6 +50,24 @@ def _path(args, index=0, default=".") -> Path:
     raw = args[index] if len(args) > index else default
     return Path(os.path.expandvars(os.path.expanduser(raw)))
 
+def _read_stdin() -> str:
+    """Read piped stdin, but never block on an interactive console.
+
+    Several text tools fall back to stdin when no text argument is supplied
+    (``echo hi | run.py run regex-replacer a b``).  When the tool is invoked
+    from a terminal with no pipe, ``sys.stdin.read()`` blocks forever waiting
+    for EOF, so the process appears hung.  Returning "" for a TTY keeps the
+    tool responsive and lets it report a normal "no input" result instead.
+    """
+    try:
+        if sys.stdin is None or sys.stdin.isatty():
+            return ""
+    except (AttributeError, ValueError):
+        # Detached/closed stdin (e.g. a service or a killed pipe) - treat as
+        # empty rather than raising.
+        return ""
+    return sys.stdin.read()
+
 
 def _run(cmd, timeout=30, cwd=None):
     if isinstance(cmd, str):
@@ -2687,7 +2705,7 @@ def run_extended(args: list[str], operation: str) -> int:
         if op == "regex replacer":
             pattern = a[0] if a else ""
             repl = a[1] if len(a) > 1 else ""
-            text = sys.stdin.read() if len(a) <= 2 else " ".join(a[2:])
+            text = _read_stdin() if len(a) <= 2 else " ".join(a[2:])
             try:
                 return _emit(re.sub(pattern, repl, text))
             except re.error as exc:
@@ -2719,7 +2737,7 @@ def run_extended(args: list[str], operation: str) -> int:
             import unicodedata
 
             form = (a[0] if a else "NFC").upper()
-            s = " ".join(a[1:]) if len(a) > 1 else sys.stdin.read()
+            s = " ".join(a[1:]) if len(a) > 1 else _read_stdin()
             try:
                 return _emit(unicodedata.normalize(form, s))
             except ValueError as exc:

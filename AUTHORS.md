@@ -6,7 +6,7 @@
 ![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
 ![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
 ![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-informational?style=flat-square)
+![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-informational?style=flat-square)
 
 </div>
 

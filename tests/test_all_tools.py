@@ -42,6 +42,33 @@ EXPECTED_LONG_RUNNING = {
 
 TIMEOUT_S = 6
 
+# Tools that shell out to WMI / PowerShell / pip and legitimately need longer
+# than the default budget on a cold start.  These are not hangs - measured
+# 5-10s on a warm machine and considerably longer on a cold one - so they get
+# their own budget instead of being reported as unexpected timeouts.
+SLOW_TOOLS = {
+    "bluetooth-device-inventory",
+    "driver-backup",
+    "firewall-status",
+    "folder-backup",
+    "image-batch-hash",
+    "incremental-backup",
+    "installed-software-snapshot",
+    "media-duration-inventory",
+    "media-hash-inventory",
+    "mirror-backup",
+    "network-connection-table",
+    "printer-inventory",
+    "python-package-list",
+    "python-package-versions",
+    "scheduled-task-list",
+    "security-event-summary",
+    "service-security-report",
+    "virtual-environment-finder",
+    "virtual-environment-report",
+}
+SLOW_TIMEOUT_S = 60
+
 
 def main():
     registry = build_registry()
@@ -55,7 +82,8 @@ def main():
 
     results = {"ok": [], "timeout": [], "traceback": [], "crash": []}
     commands = sorted(registry.tools.keys())
-    print(f"Sweeping {len(commands)} tools with a {TIMEOUT_S}s budget each...\n")
+    print(f"Sweeping {len(commands)} tools with a {TIMEOUT_S}s budget each "
+          f"({SLOW_TIMEOUT_S}s for the {len(SLOW_TOOLS)} WMI/PowerShell tools)...\n")
 
     for i, cmd in enumerate(commands, 1):
         tool = registry.get_tool(cmd)
@@ -73,8 +101,12 @@ def main():
                 [sys.executable, os.path.join(ROOT, "run.py"), "run", cmd] + args,
                 capture_output=True,
                 text=True,
-                timeout=TIMEOUT_S,
+                timeout=SLOW_TIMEOUT_S if cmd in SLOW_TOOLS else TIMEOUT_S,
                 cwd=sandbox,
+                # Close stdin: several text tools fall back to reading stdin
+                # when no text argument is given, and inheriting the terminal
+                # made them block forever waiting for EOF.
+                stdin=subprocess.DEVNULL,
             )
         except subprocess.TimeoutExpired:
             if cmd in EXPECTED_LONG_RUNNING:

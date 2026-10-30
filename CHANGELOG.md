@@ -1,19 +1,58 @@
 # Changelog
 
-## 1.0.0 — 2026-10-25
-
-- **Licence: PolyForm Noncommercial 1.0.0.** Every repository now carries the canonical text
-  from polyformproject.org with the Required Notice line, and the four places a repo states
-  its licence agree: LICENSE, the SPDX headers, the README and package.json.
-- **The public demo is the app.** A build now fails if `docs/play/index.html` is not the app,
-  because a demo running older code is two code paths for one program.
-
-
 All notable changes to **Utility Suite** are documented in this file.
 This project follows semantic versioning; the authoritative version string
 lives in `VERSION.txt` and is mirrored by `config.json` (`"version"` field),
 `core/__init__.py`, and the `build_onefile.spec` header. A regression guard in
 `audit.py` fails the release audit if these drift apart.
+
+## [Unreleased]
+
+### Fixed
+- **`bundle/tools.dat` rebuilt byte-identically on every platform.** The
+  "deterministic rebuild" guarantee held only on LF checkouts: on a Windows
+  tree with `core.autocrlf=true`, `build_bundle()` embedded the working-tree
+  sources verbatim, so all 142 pack entries carried `\r\n` instead of `\n`.
+  `catalog.json` was unaffected, so the drift was invisible to the audit while
+  leaving the tracked bundle permanently dirty after any local test run.
+  Sources are now normalized to LF (`_source_bytes`) before being written.
+- **Bundle entry metadata pinned.** `zipfile` stamped entries with the build
+  host's `create_system` (0 on Windows, 3 on Linux) and `external_attr`, which
+  changed archive bytes even when every entry's content matched. Entries now
+  use a fixed `ZipInfo` (fixed epoch, `create_system` 3, `external_attr`
+  `0o600 << 16`, stored) so the archive is byte-identical across hosts.
+- **`.gitattributes` added** (`* text=auto eol=lf`, binary markers for
+  `*.dat`/`*.exe`/archives) so a fresh checkout cannot reintroduce CRLF sources
+  or line-ending conversion of the bundle.
+- **Regression test** `tests/test_bundle_determinism.py` builds the same tiny
+  pack from an LF tree and a CRLF tree and asserts byte-identical archives; it
+  fails against the pre-fix code. Wired into `ci.yml`.
+- **Stray `## 1.0.0 — 2026-10-25` CHANGELOG block removed.** It claimed a
+  `docs/play/index.html` build gate that does not exist (the Pages workflow
+  deploys `path: docs`), and it sat above the real header.
+- **Licence unified on PolyForm Noncommercial 1.0.0.** `LICENSE` had been
+  switched to MIT in `cea79a5` without propagating the change, leaving the
+  README, AUTHORS, SECURITY badges, the landing page and the workflow SPDX
+  header disagreeing. All of them now state PolyForm Noncommercial 1.0.0, and
+  the "free for personal *and* commercial use" claim — false under PolyForm,
+  which forbids commercial use — is corrected to "free for personal and other
+  noncommercial use; commercial use requires a separate licence". "Open source"
+  wording is replaced with "source available", since PolyForm Noncommercial is
+  not an OSI-approved licence.
+- **Licence drift gate added to `audit.py`.** The MIT switch survived because
+  nothing checked the licence surfaces against `LICENSE`. The audit now fails
+  if `LICENSE` is not the PolyForm Noncommercial text, if `README.md`,
+  `AUTHORS.md`, `SECURITY.md`, `docs/index.html` or the Pages workflow still
+  mention MIT, or if any of them advertises free commercial use.
+
+### Changed
+- **Five existing test modules wired into CI.** `tests/test_registry_merge.py`,
+  `test_packs.py`, `test_tool_metadata.py`, `test_dependencies.py` and
+  `test_gui_headless.py` all existed and passed locally but were never run by
+  `ci.yml`, which only executed `test_suite` and `test_bundle_determinism`.
+  Each is now its own named step, so a regression in registry merge
+  precedence, pack enable/disable, tool metadata, the dependency catalogue or
+  headless GUI construction fails the build instead of shipping.
 
 ## [3.0.6] — 2026-10-21
 

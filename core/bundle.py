@@ -38,6 +38,27 @@ logger = logging.getLogger(__name__)
 BUNDLE_NAME = "tools.dat"
 # Fixed timestamp so repeated builds produce byte-identical archives.
 _EPOCH = (1980, 1, 1, 0, 0, 0)
+# Fixed "version made by" host so the archive is byte-identical whether it is
+# built on Windows (create_system 0) or Linux/macOS (create_system 3).
+_CREATE_SYSTEM = 3
+# Fixed external attributes (mode 0600, no file-type bits) so the archive does
+# not depend on the build host's umask or filesystem.
+_EXTERNAL_ATTR = 0o600 << 16
+
+
+def _zipinfo(name: str) -> zipfile.ZipInfo:
+    """Return a fully deterministic ``ZipInfo`` for ``name``.
+
+    ``zipfile`` otherwise stamps the archive with host-specific metadata
+    (``create_system``, ``external_attr``), which made the committed bundle
+    differ from a Windows rebuild even when every entry's bytes matched.
+    Entries are stored uncompressed, matching the committed archive.
+    """
+    info = zipfile.ZipInfo(name, date_time=_EPOCH)
+    info.create_system = _CREATE_SYSTEM
+    info.external_attr = _EXTERNAL_ATTR
+    info.compress_type = zipfile.ZIP_STORED
+    return info
 
 
 def get_bundle_path() -> Path | None:
@@ -122,6 +143,19 @@ class BundleLoader:
             return None
 
 
+def _source_bytes(path: Path) -> bytes:
+    """Return source bytes with line endings normalized to LF.
+
+    The archive must be byte-identical regardless of the checkout's line
+    endings (``core.autocrlf=true`` on Windows rewrites files to CRLF), so
+    normalizing here keeps the deterministic-rebuild guarantee portable.
+    """
+    data = path.read_bytes()
+    if b"\r\n" in data:
+        data = data.replace(b"\r\n", b"\n")
+    return data
+
+
 def build_bundle(root: Path, out_path: Path | None = None) -> tuple[Path, int]:
     """Generate the bundle archive from the source tree. Returns (path, tool_count).
 
@@ -176,21 +210,21 @@ def build_bundle(root: Path, out_path: Path | None = None) -> tuple[Path, int]:
 
     tmp = out_path.with_suffix(".tmp")
     with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
-        zf.writestr(zipfile.ZipInfo("catalog.json", date_time=_EPOCH), catalog_json)
+        zf.writestr(_zipinfo("catalog.json"), catalog_json)
         for pack in pack_dirs:
             for f in sorted((root / pack).rglob("*.py")):
                 if "__pycache__" in f.parts:
                     continue
                 arc = f.relative_to(root).as_posix()
-                zf.writestr(zipfile.ZipInfo(arc, date_time=_EPOCH), f.read_bytes())
+                zf.writestr(_zipinfo(arc), _source_bytes(f))
         # Shared engine modules referenced by handler_factory adapters.
         for name in ("extended_ops.py", "handler_factory.py", "capability_checker.py"):
             src = root / "core" / name
             if src.is_file():
-                zf.writestr(zipfile.ZipInfo(f"core/{name}", date_time=_EPOCH), src.read_bytes())
+                zf.writestr(_zipinfo(f"core/{name}"), _source_bytes(src))
         zf.writestr(
-            zipfile.ZipInfo("core/__init__.py", date_time=_EPOCH),
-            (root / "core" / "__init__.py").read_bytes(),
+            _zipinfo("core/__init__.py"),
+            _source_bytes(root / "core" / "__init__.py"),
         )
     tmp.replace(out_path)
     return out_path, len(catalog_tools)

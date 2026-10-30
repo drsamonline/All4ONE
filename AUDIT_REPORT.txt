@@ -69,7 +69,7 @@ Earlier passes (retained for the record):
     drift from the release tag.
   - Post-merge CI repair: .gitignore restored and tracked-artifact hygiene gates
     added to both audit.py and ci.yml.
-  - Project hardening: LICENSE (MIT), SECURITY.md, .editorconfig, pyproject.toml
+  - Project hardening: LICENSE (PolyForm Noncommercial 1.0.0), SECURITY.md, .editorconfig, pyproject.toml
     (ruff config only — not a pip package), and the ci.yml Linux validation job
     (advisory ruff + hard audit/smoke gates).
   - 2026-09/10 tool expansion: catalogue grown to 551 tools across the same 45

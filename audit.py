@@ -412,6 +412,50 @@ def main():
                 f"{len(packs)} plugin packs - update it to match the registry"
             )
 
+    # Licence consistency gate: LICENSE is the single source of truth for the
+    # project's licence. It was switched to MIT in commits that never updated
+    # the README/AUTHORS/SECURITY badges, the landing page or the workflow
+    # SPDX header, so the repository advertised two different licences at once.
+    # This check pins every surface to whatever LICENSE actually says.
+    licence_file = ROOT / "LICENSE"
+    if not licence_file.exists():
+        problems.append("LICENSE is missing")
+    else:
+        licence_text = licence_file.read_text(encoding="utf-8", errors="replace")
+        if "PolyForm Noncommercial License 1.0.0" not in licence_text:
+            problems.append(
+                "LICENCE MISMATCH: LICENSE is not the PolyForm Noncommercial 1.0.0 text "
+                "that the docs, landing page and workflow SPDX headers all reference"
+            )
+        # Files that must not still claim a different licence.
+        licence_surfaces = [
+            "README.md",
+            "AUTHORS.md",
+            "SECURITY.md",
+            "docs/index.html",
+            ".github/workflows/deploy-demo.yml",
+        ]
+        for rel in licence_surfaces:
+            path = ROOT / rel
+            if not path.exists():
+                continue
+            text = path.read_text(encoding="utf-8", errors="replace")
+            for line_no, line in enumerate(text.splitlines(), 1):
+                if re.search(r"\bMIT\b(?!\s*License\s+for)", line):
+                    problems.append(
+                        f"LICENCE DRIFT {rel}:{line_no} still mentions MIT - "
+                        f"LICENSE is PolyForm Noncommercial 1.0.0"
+                    )
+                # PolyForm Noncommercial forbids commercial use, so any promise
+                # of free commercial use is a false claim.
+                if re.search(r"free[^.\n]*commercial use", line, re.I) and not re.search(
+                    r"noncommercial|non-commercial|requires a separate", line, re.I
+                ):
+                    problems.append(
+                        f"FALSE LICENCE CLAIM {rel}:{line_no} advertises free commercial use, "
+                        f"which PolyForm Noncommercial 1.0.0 forbids"
+                    )
+
     print(f"Packs: {len(packs)}")
     print(f"Tools: {len(all_tools)}/{EXPECTED_TOOLS}")
     print(f"Unique commands: {len(set(cmds))}/{len(cmds)}")

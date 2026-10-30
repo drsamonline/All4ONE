@@ -77,3 +77,35 @@ jobs:
 
       - name: Behavioral smoke tests
         run: python -B -m tests.test_suite
+
+      - name: Bundle determinism (line endings)
+        # build_bundle() must produce byte-identical archives from LF and CRLF
+        # checkouts; a Windows contributor with core.autocrlf=true would
+        # otherwise leave the tracked bundle permanently dirty.
+        run: python -B -m tests.test_bundle_determinism
+
+      - name: Registry merge precedence
+        # A released exe always carries bundle/tools.dat, so build_registry()
+        # must MERGE external plugins/ over the embedded bundle instead of
+        # returning early on the bundle. Regression guard for that defect.
+        run: python -B -m tests.test_registry_merge
+
+      - name: Per-pack enable/disable
+        # Disabled packs must vanish from listing/search and be refused by
+        # get_tool/run_tool, and the choice must persist across a reload.
+        run: python -B -m tests.test_packs
+
+      - name: Tool metadata
+        # Optional accepts/produces/destructive fields drive the conditional
+        # GUI; a pack's own values must win over the curated table.
+        run: python -B -m tests.test_tool_metadata
+
+      - name: Dependency catalogue honesty
+        # The catalogue must list exactly the dependencies the packs declare,
+        # and nothing here may download or execute a binary.
+        run: python -B -m tests.test_dependencies
+
+      - name: Headless GUI construction
+        # Builds the whole widget tree against a fake tkinter so a NameError /
+        # AttributeError in the GUI is caught without a display.
+        run: python -B -m tests.test_gui_headless
