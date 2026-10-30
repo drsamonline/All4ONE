@@ -557,28 +557,20 @@ Every tool below is a working implementation with its own options and its own pa
 
 ## Optional dependencies
 
-| Dependency | Type | Unlocks | Status here |
+| Dependency | Type | Unlocks | Install |
 |---|---|---|---|
-| 7-Zip (7z / rar archives) | binary | 1 tools | not installed |
-| FFmpeg (audio & video) | binary | 19 tools | not installed |
-| ffprobe (media metadata) | binary | 1 tools | not installed |
-| Git | binary | 4 tools | present |
-| LibreOffice (Office conversion) | binary | 1 tools | present |
-| Pandoc (document conversion) | binary | 0 tools | not installed |
-| Poppler (pdftoppm — PDF to images) | binary | 2 tools | present |
-| Poppler (pdftotext / pdfinfo) | binary | 0 tools | present |
-| qpdf (PDF structure repair) | binary | 0 tools | not installed |
-| Tesseract (OCR engine) | binary | 2 tools | not installed |
-| cryptography (strong encryption) | python | 2 tools | present |
-| NumPy (numeric arrays) | python | 0 tools | present |
-| openpyxl (Excel files) | python | 6 tools | present |
-| Pillow (image library) | python | 28 tools | present |
-| psutil (process & system metrics) | python | 0 tools | not installed |
-| pypdf (PDF library) | python | 22 tools | present |
-| pyperclip (system clipboard) | python | 0 tools | not installed |
-| python-docx (Word files) | python | 6 tools | present |
-| pywin32 (Windows APIs) | python | 0 tools | not installed |
-| PyYAML (YAML parsing) | python | 1 tools | present |
-| Send2Trash (recycle bin) | python | 0 tools | not installed |
+| 7-Zip (7z / rar archives) | binary | 1 tools | `Install 7-Zip and add 7z.exe to PATH` |
+| cryptography (strong encryption) | python | 2 tools | `pip install cryptography` |
+| python-docx (Word files) | python | 6 tools | `pip install python-docx` |
+| FFmpeg (audio & video) | binary | 19 tools | `Download FFmpeg from gyan.dev and put ffmpeg.exe on your PATH` |
+| ffprobe (media metadata) | binary | 1 tools | `Ships with FFmpeg — put it next to ffmpeg.exe on your PATH` |
+| Git | binary | 4 tools | `Install Git for Windows` |
+| LibreOffice (Office conversion) | binary | 1 tools | `Install LibreOffice` |
+| openpyxl (Excel files) | python | 6 tools | `pip install openpyxl` |
+| Poppler (pdftoppm — PDF to images) | binary | 2 tools | `Download poppler for Windows and add its bin folder to PATH` |
+| Pillow (image library) | python | 28 tools | `pip install pillow` |
+| pypdf (PDF library) | python | 22 tools | `pip install pypdf` |
+| PyYAML (YAML parsing) | python | 1 tools | `pip install pyyaml` |
+| Tesseract (OCR engine) | binary | 2 tools | `Install Tesseract-OCR, then add its folder to PATH` |
 
 Nothing in this table is required: the app and 309 tools run on the standard library alone.

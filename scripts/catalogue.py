@@ -60,13 +60,17 @@ def main() -> int:
                          f"{escape(needs)} | {escape(tool.summary)} |")
         lines.append("")
 
+    # Machine-independent by design: whether a dependency happens to be
+    # installed on the machine that ran the generator must not change the file.
     lines.append("\n## Optional dependencies\n")
-    lines.append("| Dependency | Type | Unlocks | Status here |")
+    lines.append("| Dependency | Type | Unlocks | Install |")
     lines.append("|---|---|---|---|")
-    for row in deps.status():
-        count = sum(1 for tool in tools if row["key"] in tool.needs)
-        lines.append(f"| {row['label']} | {row['kind']} | {count} tools | "
-                     f"{'present' if row['available'] else 'not installed'} |")
+    for key in sorted(deps.DEPS):
+        dep = deps.DEPS[key]
+        count = sum(1 for tool in tools if key in tool.needs)
+        if not count:
+            continue
+        lines.append(f"| {dep.label} | {dep.kind} | {count} tools | `{dep.hint}` |")
     lines.append("\nNothing in this table is required: the app and "
                  f"{sum(1 for t in tools if not t.needs)} tools run on the standard library "
                  "alone.\n")

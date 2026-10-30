@@ -66,7 +66,10 @@ page and uploads the screenshots.
 
 1. Bump the version in `VERSION` and `core/__init__.py` — the audit fails if they
    disagree, or if the README badge drifts.
-2. Regenerate the catalogue: `python scripts/catalogue.py`.
+2. Regenerate the catalogue and the landing page:
+   `python scripts/catalogue.py && python scripts/landing.py`. Both must be
+   machine-independent — never let "is this installed here?" leak into a
+   generated file, or CI's freshness check will fail on the next push.
 3. Commit, then tag and push:
 
 ```bash
