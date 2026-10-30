@@ -56,6 +56,9 @@ DEPS: dict[str, Dependency] = {
     "cryptography": Dependency(
         "cryptography", "cryptography (strong encryption)", "python", "cryptography",
         "pip install cryptography", "https://pypi.org/project/cryptography/"),
+    "pyyaml": Dependency(
+        "pyyaml", "PyYAML (YAML parsing)", "python", "yaml",
+        "pip install pyyaml", "https://pypi.org/project/PyYAML/"),
     "numpy": Dependency(
         "numpy", "NumPy (numeric arrays)", "python", "numpy",
         "pip install numpy", "https://pypi.org/project/numpy/"),

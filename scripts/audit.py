@@ -121,6 +121,52 @@ DOCS = ("README.md", "USER_GUIDE.md", "INSTALLATION.md", "DEVELOPER_GUIDE.md",
         "BUILDING.md", "CHANGELOG.md", "SECURITY.md", "AUTHORS.md", "TOOL_CATALOG.md")
 
 
+# Modules that only exist when an optional dependency is installed. A tool that
+# imports one of these must declare it, or it fails on a clean machine instead of
+# showing "needs setup".
+OPTIONAL_MODULES = {"PIL": "pillow", "pypdf": "pypdf", "openpyxl": "openpyxl",
+                    "docx": "docx", "cryptography": "cryptography", "yaml": "pyyaml",
+                    "psutil": "psutil", "numpy": "numpy"}
+
+
+def audit_optional_imports() -> None:
+    """Catch a tool that imports an optional package without declaring it."""
+    import ast
+    import inspect
+    import textwrap
+
+    from core import registry
+
+    problems: list[str] = []
+    for tool in registry.all_tools():
+        try:
+            tree = ast.parse(textwrap.dedent(inspect.getsource(tool.run)))
+        except (OSError, TypeError, SyntaxError):
+            continue
+        guarded = set()
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Try):
+                for statement in node.body:
+                    for inner in ast.walk(statement):
+                        if isinstance(inner, (ast.Import, ast.ImportFrom)):
+                            guarded.add(id(inner))
+        for node in ast.walk(tree):
+            if id(node) in guarded:
+                continue
+            names: list[str] = []
+            if isinstance(node, ast.Import):
+                names = [alias.name.split(".")[0] for alias in node.names]
+            elif isinstance(node, ast.ImportFrom) and node.module and node.level == 0:
+                names = [node.module.split(".")[0]]
+            for name in names:
+                key = OPTIONAL_MODULES.get(name)
+                if key and key not in tool.needs:
+                    problems.append(f"{tool.id} imports {name} without needs=({key!r})")
+    check(not problems,
+          "optional imports are declared in needs"
+          + ("" if not problems else ": " + "; ".join(problems[:5])))
+
+
 def audit_docs() -> None:
     from core import registry
 
@@ -160,6 +206,7 @@ def main() -> int:
     audit_catalogue()
     audit_version()
     audit_imports()
+    audit_optional_imports()
     audit_docs()
 
     for note in NOTES:

@@ -22,6 +22,17 @@ from core.tool import DIR, FILE, FILES, SAVE, Tool  # noqa: E402
 
 FIX = Path(__file__).resolve().parent / "fixtures"
 SKIP_CATEGORIES = {"Network"}
+# Read-only Windows tools that are safe to execute on a CI runner. They are
+# skipped elsewhere because they cannot run, not because they are untested.
+SAFE_WINDOWS_TOOLS = {
+    "system-info", "uptime", "temp-path", "services-list", "scheduled-tasks",
+    "installed-programs", "windows-updates", "drivers-list", "users-list",
+    "fonts-list", "printers-list", "power-plans", "firewall-status", "firewall-rules",
+    "defender-status", "bitlocker-status", "disk-health", "partition-list",
+    "volume-info", "usb-devices", "startup-items", "wifi-networks", "event-log",
+    "disk-space", "free-space-alert",
+}
+
 SKIP_TOOLS = {
     # need a real repository, an encrypted file, a token or a live service
     "git-status", "git-log", "git-branches", "git-diff", "file-decrypt",
@@ -36,12 +47,25 @@ SKIP_TOOLS = {
 }
 
 
+HAS_ALARM = hasattr(signal, "SIGALRM")   # Windows has no SIGALRM
+
+
 class Timeout(Exception):
     pass
 
 
 def _alarm(_signum, _frame):
     raise Timeout()
+
+
+def start_timer(seconds: int) -> None:
+    if HAS_ALARM:
+        signal.alarm(seconds)
+
+
+def stop_timer() -> None:
+    if HAS_ALARM:
+        signal.alarm(0)
 
 
 def make_fixtures() -> None:
@@ -350,21 +374,25 @@ def main() -> int:
              if t.category not in SKIP_CATEGORIES
              and t.id not in SKIP_TOOLS
              and not t.destructive
-             and not t.is_windows_only
-             and not deps.missing(t.needs)]
+             and not deps.missing(t.needs)
+             and (not t.is_windows_only
+                  or (deps.IS_WINDOWS and t.id in SAFE_WINDOWS_TOOLS))]
     print(f"running {len(tools)} tools\n")
     failures: list[tuple[str, str]] = []
-    signal.signal(signal.SIGALRM, _alarm)
+    if HAS_ALARM:
+        signal.signal(signal.SIGALRM, _alarm)
+    else:
+        print("note: per-tool timeouts are unavailable on this platform\n")
 
     for tool in tools:
-        signal.alarm(25)
+        start_timer(25)
         try:
             result = execute(tool, values_for(tool), sink=lambda line: None)
         except Timeout:
             failures.append((tool.id, "timed out after 25s"))
             continue
         finally:
-            signal.alarm(0)
+            stop_timer()
         if not result.ok:
             failures.append((tool.id, result.error or "unknown"))
 

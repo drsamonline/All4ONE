@@ -683,6 +683,7 @@ def yaml_validate(v, ctx):
 @tool(id="yaml-to-json", name="YAML to JSON", category="Data",
       summary="Convert a YAML document to JSON, or JSON back to YAML.",
       keywords="yaml json convert transform",
+      needs=("pyyaml",),
       fields=[F.file("file", "File"),
               F.choice("direction", "Convert", ["YAML → JSON", "JSON → YAML"], "YAML → JSON"),
               F.save("output", "Save result to", required=True)])

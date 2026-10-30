@@ -168,6 +168,12 @@ Tools that cannot be swept here are listed in `SKIP_TOOLS` with a reason: they
 need a live network, a real git repository, admin rights, or a Windows kernel.
 Keep that list short and keep the reason honest.
 
+Windows-only tools are skipped on Linux and macOS because they cannot run, not
+because they are untested: on a Windows runner the sweep also executes the
+read-only ones listed in `SAFE_WINDOWS_TOOLS` (services, event log, disks,
+firewall state, installed programs and so on). Destructive Windows tools are
+never swept — the `destructive` flag keeps them out.
+
 ### UI check
 
 ```bash
