@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json as jsonlib
 import os
 import platform
 import shutil
@@ -15,6 +16,20 @@ from core.tool import F, ToolError, tool
 from ._util import IS_WINDOWS, human_size, out_path, report_table, run_command, which
 
 WIN = ("win",)
+
+
+def _json_list(text: str) -> list:
+    """PowerShell ConvertTo-Json output -> list, tolerating an empty result."""
+    stripped = (text or "").strip()
+    if not stripped:
+        return []
+    try:
+        data = jsonlib.loads(stripped)
+    except ValueError as exc:
+        raise ToolError(f"Could not read the PowerShell output: {exc}") from exc
+    if isinstance(data, dict):
+        return [data]
+    return data if isinstance(data, list) else []
 
 
 def _powershell(script: str, ctx=None, timeout: int = 120) -> str:
@@ -63,23 +78,21 @@ def system_info(v, ctx):
       fields=[])
 def uptime(v, ctx):
     if IS_WINDOWS:
-        out = _powershell("(Get-CimInstance Win32_OperatingSystem).LastBootUpTime")
-        stamp_text = out.strip()
-        boot = None
+        # Ask PowerShell for elapsed seconds and the ISO stamp: the default
+        # rendering of LastBootUpTime is culture-formatted and unparseable.
+        out = _powershell(
+            "$b=(Get-CimInstance Win32_OperatingSystem).LastBootUpTime; "
+            "[math]::Round(((Get-Date)-$b).TotalSeconds); $b.ToString('yyyy-MM-ddTHH:mm:ss')")
+        lines = [line.strip() for line in out.splitlines() if line.strip()]
         try:
-            from datetime import datetime
-            boot = datetime.strptime(stamp_text[:19], "%Y/%m/%d %H:%M:%S")
-        except ValueError:
-            try:
-                boot = datetime.fromisoformat(stamp_text[:19])
-            except ValueError:
-                boot = None
-        if boot:
-            delta = time.time() - boot.timestamp()
-            return {"last_boot": boot.strftime("%Y-%m-%d %H:%M:%S"),
-                    "uptime": f"{int(delta // 86400)}d {int(delta % 86400 // 3600)}h "
-                              f"{int(delta % 3600 // 60)}m"}
-        raise ToolError(f"Could not read the boot time: {stamp_text[:80]}")
+            seconds = float(lines[0])
+        except (IndexError, ValueError) as exc:
+            raise ToolError(f"Could not read the boot time: {out.strip()[:80]}") from exc
+        boot_stamp = lines[1] if len(lines) > 1 else ""
+        return {"last_boot": boot_stamp,
+                "uptime": f"{int(seconds // 86400)}d {int(seconds % 86400 // 3600)}h "
+                          f"{int(seconds % 3600 // 60)}m",
+                "seconds": int(seconds)}
     with open("/proc/uptime", encoding="utf-8") as handle:
         seconds = float(handle.read().split()[0])
     return {"uptime": f"{int(seconds // 86400)}d {int(seconds % 86400 // 3600)}h "
@@ -171,7 +184,7 @@ def process_list(v, ctx):
             out = _powershell("Get-Process | Select-Object Id,ProcessName,"
                               "@{n='WS';e={[math]::Round($_.WS/1MB,1)}} | ConvertTo-Json")
             import json as jsonlib
-            data = jsonlib.loads(out or "[]")
+            data = _json_list(out)
             rows = [{"pid": item.get("Id"), "name": item.get("ProcessName", ""),
                      "memory_mb": item.get("WS", 0), "user": ""} for item in data]
         else:
@@ -214,7 +227,7 @@ def process_find(v, ctx):
             out = _powershell(f"Get-Process -Name '*{needle}*' | "
                               "Select-Object Id,ProcessName,Path | ConvertTo-Json")
             import json as jsonlib
-            data = jsonlib.loads(out or "[]")
+            data = _json_list(out)
             if isinstance(data, dict):
                 data = [data]
             hits = [{"pid": item.get("Id"), "name": item.get("ProcessName"),
@@ -277,12 +290,7 @@ def startup_items(v, ctx):
               "$out += [pscustomobject]@{Name=$_.Name; Command=(Get-ItemProperty $p).($_.Name); "
               "Source=$p} } } }; $out | ConvertTo-Json -Depth 3")
     out = _powershell(script, ctx=ctx)
-    try:
-        data = jsonlib.loads(out or "[]")
-    except ValueError as exc:
-        raise ToolError(f"Could not read the registry: {exc}") from exc
-    if isinstance(data, dict):
-        data = [data]
+    data = _json_list(out)
     rows = [{"name": item.get("Name", ""),
              "command": item.get("Command", "") if v["details"] else "",
              "source": "HKCU" if "HKCU" in str(item.get("Source", "")) else "HKLM"} for item in data]
@@ -303,7 +311,7 @@ def services_list(v, ctx):
     import json as jsonlib
     out = _powershell("Get-Service | Select-Object Name,DisplayName,Status,StartType | "
                       "ConvertTo-Json -Depth 2", ctx=ctx)
-    data = jsonlib.loads(out or "[]")
+    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     needle = v["filter"].strip().lower()
@@ -345,7 +353,7 @@ def scheduled_tasks(v, ctx):
     import json as jsonlib
     out = _powershell("Get-ScheduledTask | Select-Object TaskName,TaskPath,State | "
                       "ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = jsonlib.loads(out or "[]")
+    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     needle = v["filter"].strip().lower()
@@ -496,7 +504,7 @@ def installed_programs(v, ctx):
               "Where-Object {$_.DisplayName} | "
               "Select-Object DisplayName,DisplayVersion,Publisher,InstallDate | "
               "Sort-Object DisplayName | ConvertTo-Json -Depth 2")
-    data = jsonlib.loads(_powershell(script, ctx=ctx, timeout=180) or "[]")
+    data = _json_list(_powershell(script, ctx=ctx, timeout=180))
     if isinstance(data, dict):
         data = [data]
     needle = v["filter"].strip().lower()
@@ -522,7 +530,7 @@ def windows_updates(v, ctx):
     out = _powershell("Get-HotFix | Select-Object HotFixID,Description,InstalledOn | "
                       "Sort-Object InstalledOn -Descending | ConvertTo-Json -Depth 2",
                       ctx=ctx, timeout=180)
-    data = jsonlib.loads(out or "[]")
+    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     rows = [{"hotfix": str(item.get("HotFixID", "")),
@@ -542,7 +550,7 @@ def drivers_list(v, ctx):
     out = _powershell("Get-CimInstance Win32_SystemDriver | "
                       "Select-Object Name,DisplayName,State,StartMode | "
                       "ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = jsonlib.loads(out or "[]")
+    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     needle = v["filter"].strip().lower()
@@ -569,7 +577,7 @@ def event_log(v, ctx):
                       f"-ErrorAction SilentlyContinue | Where-Object {{ {levels[v['level']]} -contains $_.Level }} | "
                       "Select-Object TimeCreated,Id,LevelDisplayName,ProviderName,Message | "
                       "ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = jsonlib.loads(out or "[]")
+    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     rows = [{"time": str(item.get("TimeCreated", ""))[:19],
@@ -628,7 +636,7 @@ def firewall_rules(v, ctx):
     out = _powershell(f"Get-NetFirewallRule -Enabled True {direction} | "
                       "Select-Object DisplayName,Direction,Action,Profile | "
                       "ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = jsonlib.loads(out or "[]")
+    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     needle = v["filter"].strip().lower()
@@ -662,7 +670,7 @@ def users_list(v, ctx):
     import json as jsonlib
     out = _powershell("Get-LocalUser | Select-Object Name,Enabled,LastLogon,Description | "
                       "ConvertTo-Json -Depth 2", ctx=ctx, timeout=120)
-    data = jsonlib.loads(out or "[]")
+    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     rows = [{"name": item.get("Name", ""), "enabled": item.get("Enabled", ""),
@@ -799,7 +807,7 @@ def printers_list(v, ctx):
     import json as jsonlib
     out = _powershell("Get-Printer | Select-Object Name,DriverName,PortName,PrinterStatus | "
                       "ConvertTo-Json -Depth 2", ctx=ctx, timeout=120)
-    data = jsonlib.loads(out or "[]")
+    data = _json_list(out)
     if isinstance(data, dict):
         data = [data]
     rows = [{"name": str(item.get("Name", ""))[:40],

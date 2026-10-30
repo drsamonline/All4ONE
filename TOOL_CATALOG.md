@@ -274,7 +274,7 @@ Every tool below is a working implementation with its own options and its own pa
 | **PDF Form Fields** | `pdf-form-fields` | `file` (file, required), `values` (text), `output` (save as) | pypdf | List a PDF's fillable form fields, or fill them from key=value pairs. |
 | **PDF Info** | `pdf-info` | `file` (file, required), `password` (secret) | pypdf | Page count, page sizes, version, metadata and encryption status. |
 | **PDF Page Report** | `pdf-page-report` | `file` (file, required), `report` (save as) | pypdf | Per-page size, rotation and text length — spot the odd page in a scan. |
-| **PDF Pages to Images** | `pdf-to-images` | `file` (file, required), `dpi` (number), `output` (folder) | poppler | Render each PDF page as a PNG using Poppler's pdftoppm. |
+| **PDF Pages to Images** | `pdf-to-images` | `file` (file, required), `dpi` (number), `output` (folder) | pdftoppm | Render each PDF page as a PNG using Poppler's pdftoppm. |
 | **Remove PDF Password** | `pdf-decrypt` | `file` (file, required), `password` (secret, required), `output` (save as, required) | pypdf | Save an unlocked copy of a PDF you already have the password for. |
 | **Reorder Pages** | `pdf-reorder` | `file` (file, required), `order` (text, required), `reverse` (toggle), `output` (save as, required) | pypdf | Rebuild a PDF in any page order you type — duplicates allowed. |
 | **Rotate Pages** | `pdf-rotate` | `file` (file, required), `angle` (choice), `pages` (text), `output` (save as, required) | pypdf | Turn pages 90, 180 or 270 degrees — fixes sideways scans. |
@@ -324,7 +324,7 @@ Every tool below is a working implementation with its own options and its own pa
 | **Excel Workbook Info** | `xlsx-info` | `file` (file, required) | openpyxl | Sheets, used ranges, row counts and whether formulas or macros are present. |
 | **Extract Images From Word** | `docx-images` | `file` (file, required), `output` (folder) | docx | Pull every image embedded in a .docx out into a folder. |
 | **Merge Excel Workbooks** | `xlsx-merge` | `files` (files, required), `output` (save as, required) | openpyxl | Combine several workbooks into one file, keeping every sheet. |
-| **OCR a Scanned PDF** | `ocr-pdf` | `file` (file, required), `language` (text), `dpi` (number), `output` (save as) | tesseract, poppler | Turn a scanned PDF into searchable text, page by page. |
+| **OCR a Scanned PDF** | `ocr-pdf` | `file` (file, required), `language` (text), `dpi` (number), `output` (save as) | tesseract, pdftoppm | Turn a scanned PDF into searchable text, page by page. |
 | **OCR an Image** | `ocr-image` | `file` (file, required), `language` (text), `output` (save as) | tesseract | Read the text out of a photo or screenshot with Tesseract. |
 | **Search a Workbook** | `xlsx-search` | `file` (file, required), `needle` (text, required), `case_sensitive` (toggle) | openpyxl | Find a value anywhere in an Excel file and report the exact cell. |
 | **Text to Word** | `text-to-docx` | `text` (multiline), `file` (file), `title` (text), `output` (save as, required), `markdown` (toggle) | docx | Turn plain text or Markdown-ish text into a formatted .docx. |
@@ -565,7 +565,8 @@ Every tool below is a working implementation with its own options and its own pa
 | Git | binary | 4 tools | present |
 | LibreOffice (Office conversion) | binary | 1 tools | present |
 | Pandoc (document conversion) | binary | 0 tools | not installed |
-| Poppler (pdftotext / pdfinfo) | binary | 2 tools | present |
+| Poppler (pdftoppm — PDF to images) | binary | 2 tools | present |
+| Poppler (pdftotext / pdfinfo) | binary | 0 tools | present |
 | qpdf (PDF structure repair) | binary | 0 tools | not installed |
 | Tesseract (OCR engine) | binary | 2 tools | not installed |
 | cryptography (strong encryption) | python | 2 tools | present |

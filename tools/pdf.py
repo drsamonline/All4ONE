@@ -621,7 +621,7 @@ def pdf_page_report(v, ctx):
 @tool(id="pdf-to-images", name="PDF Pages to Images", category="PDF",
       summary="Render each PDF page as a PNG using Poppler's pdftoppm.",
       keywords="pdf render images png pages screenshot poppler",
-      needs=("poppler",),
+      needs=("pdftoppm",),
       fields=[F.file("file", "PDF file", filters=PDF_FILTER),
               F.integer("dpi", "Resolution (DPI)", 150, minimum=50, maximum=600),
               F.folder("output", "Save into", required=False)])

@@ -350,7 +350,7 @@ def read_file_text(path: Path) -> str:
 @tool(id="ocr-pdf", name="OCR a Scanned PDF", category="Documents",
       summary="Turn a scanned PDF into searchable text, page by page.",
       keywords="ocr pdf scan searchable text tesseract poppler",
-      needs=("tesseract", "poppler"),
+      needs=("tesseract", "pdftoppm"),
       fields=[F.file("file", "PDF file", filters="PDF (*.pdf)"),
               F.text("language", "Language code", "eng"),
               F.integer("dpi", "Render resolution", 300, minimum=100, maximum=600),

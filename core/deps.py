@@ -83,6 +83,11 @@ DEPS: dict[str, Dependency] = {
         "Download poppler for Windows and add its bin folder to PATH",
         "https://github.com/oschwartz10612/poppler-windows/releases",
         alt=("pdftotext.exe",)),
+    "pdftoppm": Dependency(
+        "pdftoppm", "Poppler (pdftoppm — PDF to images)", "binary", "pdftoppm",
+        "Download poppler for Windows and add its bin folder to PATH",
+        "https://github.com/oschwartz10612/poppler-windows/releases",
+        alt=("pdftoppm.exe",)),
     "qpdf": Dependency(
         "qpdf", "qpdf (PDF structure repair)", "binary", "qpdf",
         "Download qpdf and add it to PATH",
