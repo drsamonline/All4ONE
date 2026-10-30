@@ -1,0 +1,9 @@
+# Optional: each one unlocks the tools that use it. Nothing here is required.
+pillow>=10.0
+pypdf>=4.0
+openpyxl>=3.1
+python-docx>=1.1
+cryptography>=42
+psutil>=5.9
+send2trash>=1.8
+pywin32>=306 ; sys_platform == "win32"

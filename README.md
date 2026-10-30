@@ -1,326 +1,203 @@
 <div align="center">
 
-# 🧰 Utility Suite
+# All4one
 
-### 551 Windows tools. One portable `.exe`. Zero installs, zero telemetry.
+### 403 working tools. One portable binary. No plugins, no packs, no filler.
 
-A free-for-noncommercial-use, source-available, portable Windows toolbox — file operations, hashing,
-PDF & Office batch tools, image editing, audio/video conversion, network
-diagnostics, registry helpers, disk cleaning, security audits and hundreds
-more — compiled into a single `utility_suite.exe` you can keep on a USB stick.
+Every tool gets its own page with its own options — search it, open it, set what you need, run it.
 
-[![CI](https://github.com/drsamonline/All4ONE/actions/workflows/ci.yml/badge.svg)](https://github.com/drsamonline/All4ONE/actions/workflows/ci.yml)
-[![Build Windows executable](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml/badge.svg)](https://github.com/drsamonline/All4ONE/actions/workflows/build-windows-exe.yml)
-[![Release](https://img.shields.io/github/v/release/drsamonline/All4ONE?style=flat-square&color=brightgreen)](https://github.com/drsamonline/All4ONE/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/drsamonline/All4ONE/total?style=flat-square&label=downloads&color=blue)](https://github.com/drsamonline/All4ONE/releases)
-[![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-informational?style=flat-square)](LICENSE)
+![Version](https://img.shields.io/badge/version-4.0.0-6d8cff?style=flat-square)
+![Tools](https://img.shields.io/badge/tools-403-3fb950?style=flat-square)
+![Plugins](https://img.shields.io/badge/plugins-0-f85149?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D4?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.10%2B-f7c948?style=flat-square)
+![Licence](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue?style=flat-square)
 
-![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
-![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
-![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
-![Mandatory deps](https://img.shields.io/badge/mandatory%20deps-0-orange?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
-![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square&logo=python&logoColor=black)
-![Registry verified](https://img.shields.io/badge/registry%20verified-551%2F551%20%E2%9C%85-blue?style=flat-square)
-
-**🌐 [Landing page](https://drsamonline.github.io/All4ONE/)**
-·
-**📥 [Download the latest release →](https://github.com/drsamonline/All4ONE/releases/latest)**
-·
-**🖥️ [GUI + CLI features](#-gui--cli-two-frontends-one-engine)**
-·
-**📚 [Full tool catalogue (551)](TOOL_CATALOG.md)**
-·
-**🧭 [All projects](https://drsamonline.github.io/)**
-
-*No installer · No registry pollution · No background services · Unplug it and walk away.*
+**🖼️ [Screenshots](#-what-it-looks-like)** · **📚 [All 403 tools](TOOL_CATALOG.md)** · **⬇️ [Download](https://github.com/drsamonline/All4ONE/releases/latest)**
 
 </div>
 
 ---
 
-<details open>
-<summary><b>📑 Table of contents</b></summary>
+## What this is
 
-- [Why Utility Suite?](#-why-utility-suite)
-- [Quick start (60 seconds)](#-quick-start-60-seconds)
-- [What can it do?](#-what-can-it-do)
-- [GUI + CLI: two frontends, one engine](#-gui--cli-two-frontends-one-engine)
-- [Smart dependency handling](#-smart-dependency-handling-deps)
-- [Numbers at a glance](#-numbers-at-a-glance)
-- [Architecture](#-architecture)
-- [Building & releasing](#-building--releasing)
-- [Documentation map](#-documentation-map)
-- [FAQ](#-faq)
-- [Contributing](#-contributing)
+A rebuilt utility suite for Windows: file and folder work, text and data, encoding and
+hashing, images, PDFs, media, documents, network diagnostics, system and disk
+maintenance, developer helpers, security checks, calculators and generators — in a
+single executable that needs no installer, writes nothing to the registry, and runs
+off a USB stick.
 
-</details>
+It is a rewrite, not a reskin. The previous version registered 551 tools across 45
+plugin packs behind one dense table; a large share of those were thin adapters with
+near-duplicate behaviour ("Image Cropper — Crop image.", "Sparse File Inspector —
+report internals"). That architecture is gone:
 
-## 🔥 Why Utility Suite?
+| | Before (3.x) | Now (4.0) |
+|---|---|---|
+| Structure | 45 plugin packs, a Packs tab, enable/disable toggles | One flat catalogue — nothing to enable, nothing to install |
+| Tools | 551 registered, many trivial or duplicated | 403, each with a real implementation and its own options |
+| UI | Tkinter, one table + details pane for everything | Qt (PySide6), sidebar navigation, one page per tool |
+| Options | Free-text argument box | Typed controls generated from each tool's own schema |
+| Verification | Registry smoke test only | Every runnable tool executed against fixtures on every build |
 
-| ❌ Typical freeware toolkits | ✅ Utility Suite |
+Nothing was kept just to keep the count up. Every tool listed in
+[TOOL_CATALOG.md](TOOL_CATALOG.md) runs, and the sweep that proves it ships with the
+repository.
+
+## What it looks like
+
+| Home | A tool page |
 |---|---|
-| Bundlers, adware, "optional" toolbars | **Zero ads, zero telemetry, fully auditable source, no bundlers** |
-| Installers that litter the registry | **One portable `.exe` — run from any folder or USB drive** |
-| Closed binaries you can't inspect | Every line is Python; `audit.py` verifies **551/551 handlers** on every release |
-| One job per download (50 downloads for 50 jobs) | **551 tools across 45 plugin packs** in a single file |
-| Breaks when a dependency is missing | A missing optional dep disables *exactly one* tool — never the suite |
+| ![Home](docs/screenshots/home-dark.png) | ![Tool page](docs/screenshots/tool-page.png) |
 
-Every tool is metadata-registered, **lazily loaded**, and declares its own
-optional dependencies. CI runs Linux validation on every push **and** builds
-the real Windows single-file EXE via GitHub Actions.
-
-## 🚀 Quick start (60 seconds)
-
-### Prebuilt portable EXE (recommended)
-
-Every release publishes **one download** — the whole utility in a single file:
-
-| Download | Contains |
+| Category listing | Light theme |
 |---|---|
-| `UtilitySuite-<v>-windows.zip` | `utility_suite.exe` (+ a short `README-FIRST.txt`) |
+| ![Category](docs/screenshots/category.png) | ![Light](docs/screenshots/home-light.png) |
 
-All **45 packs (551 tools)** are already built into the exe, so there are no
-separate plugin-pack downloads to collect. Turn packs on or off inside the app,
-and let the built-in `deps` guide tell you what to install for the packs you
-enable.
+## How it works
 
-1. 📥 Grab the zip from the
-   **[latest release](https://github.com/drsamonline/All4ONE/releases/latest)**.
-2. 📂 Unzip — it contains **exactly one program file**: `utility_suite.exe`.
-3. 🚀 Double-click for the GUI, or use it as a CLI:
+**Sidebar.** Home, Favourites, Recently used, then every category with a live count.
+Dependencies and Settings sit at the bottom; the sun/moon button switches theme.
 
-```powershell
-.\utility_suite.exe list                          # browse all 551 tools
-.\utility_suite.exe search image                  # find tools by keyword
-.\utility_suite.exe run checksum C:\f.txt --algorithm sha256
-.\utility_suite.exe run ip-calc 192.168.1.10/24   # subnet math in one line
-.\utility_suite.exe deps                          # what's missing + where to download it
-```
+**Search.** `Ctrl+K` from anywhere. Results are ranked on name, category, summary and
+keywords — typing "split" finds PDF splitting, file splitting and text splitting.
 
-### From source (any OS for development, Windows for full functionality)
+**A tool page.** The header carries the tool's name, category, readiness and a
+star for favourites. On the left, the options: text boxes, dropdowns, numbers,
+colour pickers, toggles, and file/folder pickers that accept drag-and-drop. On the
+right, the output console: streaming lines as the tool works, a progress bar when the
+tool reports progress, and buttons to copy, save or open whatever the tool produced.
 
-```powershell
-git clone https://github.com/drsamonline/All4ONE.git
-cd All4ONE
+**Running.** `Ctrl+Enter` runs. Long jobs stream and can be stopped. Tools that change
+or delete data ask first, and show a red badge on their page.
 
-python run.py list                    # browse all 551 tools
-python run.py run csv-query staff.csv --numeric salary --stats
-python run.py gui                     # launch the desktop GUI
-```
+**Readiness, not gatekeeping.** A tool that needs FFmpeg, Tesseract or a Python
+package is still listed; it says what is missing and how to get it. Nothing is hidden
+and nothing silently fails.
 
-**Zero mandatory `pip install`s** — the suite runs on the standard library alone.
+## Quick start
 
-## 🗺️ What can it do?
+### The portable build
 
-<details open>
-<summary><b>🎯 45 packs · 551 tools — grouped by mission</b></summary>
+Download `All4one-4.0.0-windows.zip` from
+[Releases](https://github.com/drsamonline/All4ONE/releases/latest), unzip, run
+`All4one.exe`. That is the whole installation.
 
-| Category | Packs | Tools | Try this |
-|---|---|---|---|
-| 📁 **Files & Archives** | `file_ops` · `archive_tools` · `directory_tools` · `search_index` · `imaging_advanced` | 31 | `run tree-print .` |
-| 🔤 **Text, Docs & Data** | `text_tools` · `data_tools` · `conversion_tools` · `dev_tools` · `office_tools` · `pdf_tools` · `document_tools` | 92 | `run json-schema data.json` |
-| 💻 **Developer** | `developer_tools_advanced` · `shell_tools` · `package_tools` · `automation` · `misc` | 73 | `run hash-identify <digest>` |
-| 🌐 **Network** | `network_tools` · `network_diagnostics` · `net_advanced` | 41 | `run ip-calc 10.0.0.5/28` |
-| 🖥️ **Windows System** | `system_info` · `system_utils` · `windows_power` · `process_tools` · `window_manager` · `virtual_desktop` · `registry_tools` · `startup_automation` · `driver_tools` · `event_tools` · `security_tools` · `security_audit` | 138 | `run password-entropy --password hunter2` |
-| 🎨 **Media** | `audio_tools` · `media_tools` · `media_metadata` · `video_tools` · `image_batch` | 51 | `run b64-codec --encode hello` |
-| 🧹 **Maintenance & Storage** | `maintenance` · `disk_advanced` · `storage_tools` · `backup_tools` · `clipboard_manager` · `time_productivity` · `monitoring_tools` · `diagnostics_extra` | 125 | `run bytes-units 4.5GiB --to MiB` |
-
-All 551 tools described one-by-one → **[TOOL_CATALOG.md](TOOL_CATALOG.md)** ·
-Per-pack counts → **[EXPANSION_CATALOG.md](EXPANSION_CATALOG.md)**
-
-</details>
-
-## 🖥️ GUI + CLI: two frontends, one engine
-
-- **Desktop GUI** (Tkinter): instant search across 551 tools, scrollable
-  category chips, asynchronous execution with **live streaming output**,
-  DPI-aware layout, and a confirmation prompt before destructive tools run.
-  Click the **"X/551 tools ready"** status-bar label any time to open the
-  built-in install guide.
-- **CLI / scripting**: every GUI action has an identical command, so the same
-  exe drops into PowerShell, batch files, or scheduled automation.
-
-## 🩹 Smart dependency handling (`deps`)
-
-Heavy tools (FFmpeg video conversion, Poppler PDF extraction, Tesseract OCR…)
-need external binaries — but they can **never break the suite**. Run:
-
-```powershell
-.\utility_suite.exe deps
-```
-
-…and you get every missing dependency, how many tools it unlocks, and a direct
-download link: FFmpeg → gyan.dev, pdftotext → poppler-windows releases,
-Python packages → exact `pip install …` lines. Nothing else to configure.
-
-## 📊 Numbers at a glance
-
-| Metric | Value |
-|---|---|
-| 🛠️ Registered tools | **551** |
-| 📦 Plugin packs | **45** |
-| 🧪 Smoke-tested handlers | 551 / 551 ✅ |
-| 🔒 Mandatory third-party deps | **0** |
-| 🐍 Language | Python 3.10+ (stdlib-first) |
-| 🖱️ Frontends | CLI + Tkinter GUI |
-| 📄 Documentation | 11 curated documents |
-| 📦 Release format | one portable exe · single download |
-| 👤 Author | Dr. Sohil Momin, BHMS |
-
-## 🏛️ Architecture
-
-Most registered tools are thin metadata adapters: a pack's `__init__.py`
-declares each tool, and the handler routes through a small lazy factory into
-the shared engine (`core/extended_ops.py`). A dozen packs (`file_ops`,
-`misc`, `archive_tools`, `network_tools`, `media_tools`, `security_tools`,
-`windows_power`, …) keep their own dedicated handler modules. Either way, the
-tool is only imported when it is actually run.
-
-```text
-utility_suite/
-├── core/                 # runtime, registry, lazy handlers, CLI + GUI
-│   ├── cli.py            # argument parsing + command dispatch
-│   ├── tool_registry.py  # metadata, availability, lazy execution, streaming output
-│   ├── bundle.py         # embedded single-archive loader/builder
-│   ├── capability_checker.py
-│   ├── extended_ops.py   # shared engine for the generated packs
-│   ├── handler_factory.py
-│   └── gui.py            # Tkinter desktop front-end
-├── <pack>/               # 45 tool-pack source directories
-├── bundle/tools.dat      # deterministic single archive (ships inside the exe)
-├── tests/                # smoke + integration tests
-├── run.py                # entry point (CLI / GUI)
-├── audit.py              # static release audit + docs-freshness gate
-├── generate_catalogs.py  # regenerates TOOL_CATALOG.md / EXPANSION_CATALOG.md
-├── build_onefile.spec    # PyInstaller SINGLE-FILE specification
-├── build_single_exe.py   # one-command automated release pipeline
-├── .github/workflows/    # ci.yml (Linux) + build-windows-exe.yml (Windows)
-├── VERSION.txt           # authoritative version; audit enforces sync
-└── LICENSE · SECURITY.md · AUTHORS.md · *.md docs set
-```
-
-**Design principles:** small stable core · tools are metadata-registered and
-lazily imported · heavy deps imported only where needed · a missing optional
-dep must never crash the suite · streaming I/O for large files · deterministic
-pyc-free bundle · ship one file.
-
-## 🏗️ Building & releasing
-
-> [!IMPORTANT]
-> **Every push to `main` automatically builds the Windows EXE** — no tag and
-> no manual action required. The Linux validation workflow (`ci.yml`) gates
-> the tree, and `build-windows-exe.yml` fires on:
->
-> 1. **any push to `main`** → builds `utility_suite.exe`, uploads the single
->    release zip as a run artifact, and refreshes the floating **`latest-build`**
->    pre-release so there is always a current download at the same URL,
-> 2. **pushing a version tag** → all of the above *plus* a permanent GitHub
->    Release with auto-generated notes, or
-> 3. a manual **Actions → Build Windows executable → Run workflow** for one-offs.
-
-PyInstaller cannot cross-compile a Windows binary from Linux/macOS, so the
-real `.exe` is built on a **Windows GitHub Actions runner**. The entire local
-pipeline is one command:
-
-```powershell
-python build_single_exe.py    # audit → bundle → tests → exe → verify → one zip
-```
-
-It produces, in `dist/`:
-
-- `UtilitySuite-<v>-windows.zip` — the one release artifact: the exe plus a
-  short `README-FIRST.txt`, and
-- `utility_suite.exe` — the raw single-file executable.
-
-Both the floating `latest-build` pre-release and every `v*` tag release attach
-the zip, so the latest download always lives at the same URL. See
-[PLUGINS.md](PLUGINS.md).
-
-To publish a release, **bump the version, then push a version tag**:
+### From source
 
 ```bash
-# 1. sync the version everywhere (VERSION.txt is authoritative; audit.py enforces sync)
-# 2. tag and push
-git tag v3.0.6 && git push origin v3.0.6
+git clone https://github.com/drsamonline/All4ONE.git
+cd All4ONE
+pip install PySide6          # only needed for the desktop UI
+python main.py               # desktop app
+python main.py list          # every tool, by category
 ```
 
-Full details: [COMPILATION.md](COMPILATION.md).
+The engine and every standard-library tool run on bare Python — PySide6 is only for
+the window.
 
-## 📖 Documentation map
+## Command line
 
-<table>
-<tr><th width="33%">📘 Read me first</th><th width="33%">🔧 Build & extend</th><th width="33%">✅ Verify & trust</th></tr>
-<tr>
-<td valign="top">
+The same binary is a proper CLI, and every GUI option has an identical flag:
 
-| Doc | For |
+```powershell
+all4one list                                  # all 403 tools, grouped
+all4one list --category PDF                   # one category
+all4one search hash                           # ranked search
+all4one show pdf-merge                        # options, defaults, readiness
+all4one run hash-file --file report.pdf --algorithm sha256
+all4one run gst-calc --amount 10000 --rate 18
+all4one run pdf-extract-pages --file book.pdf --pages "1-3,7" --output ch1.pdf
+all4one deps                                  # what optional extras are installed
+```
+
+Options come from the tool's own field definitions, so the CLI can never drift from
+the UI. Boolean options are `--flag` / `--no-flag`.
+
+## Optional dependencies
+
+The app and 380 of the tools run on the Python standard library alone. The rest
+declare what they need and light up when it is present:
+
+| Needs | Unlocks |
 |---|---|
-| 👤 [USER_GUIDE.md](USER_GUIDE.md) | End-user manual |
-| 📥 [INSTALLATION.md](INSTALLATION.md) | Setup & portable use |
-| 🗂️ [TOOL_CATALOG.md](TOOL_CATALOG.md) | All 551 tools |
-| 📦 [EXPANSION_CATALOG.md](EXPANSION_CATALOG.md) | Per-pack counts |
+| Pillow | 26 image tools |
+| pypdf | 24 PDF tools |
+| FFmpeg / ffprobe | 20 media tools |
+| openpyxl · python-docx | 15 document tools |
+| Tesseract · Poppler | OCR and PDF-to-image |
+| 7-Zip · LibreOffice · git | archive, office conversion, git tools |
+| cryptography | file encryption |
+| pywin32 | the Windows API tools |
 
-</td>
-<td valign="top">
+Run `all4one deps` — or open **Dependencies** in the app — for the exact install
+line for each one.
 
-| Doc | For |
-|---|---|
-| 🧑‍💻 [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) | Plugin contract & testing |
-| 🧩 [PLUGINS.md](PLUGINS.md) | Built-in packs: enable/disable & deps |
-| 🏗️ [COMPILATION.md](COMPILATION.md) | Release / EXE builds |
-| 🧾 [CHANGELOG.md](CHANGELOG.md) | Release history |
+## Architecture
 
-</td>
-<td valign="top">
+```text
+main.py                  entry point: no arguments opens the UI, else the CLI
+core/
+  tool.py                the contract — a tool is a function + a field schema
+  registry.py            discovery, validation, ranking, readiness
+  runner.py              one execution path for UI and CLI, streaming + cancel
+  deps.py                optional dependency probes and install hints
+  cli.py                 argparse front-end built from the same schemas
+  settings.py            one small JSON file: theme, favourites, recents
+ui/
+  theme.py               design tokens + the whole stylesheet (dark and light)
+  icons.py               line icons as inline SVG — no image files to ship
+  widgets.py             cards, chips, option editors, the output console
+  pages.py               home, category, search, tool page, settings, dependencies
+  window.py              sidebar shell, navigation history, search
+tools/                   16 modules; a tool is ~15 lines plus its options
+scripts/                 catalogue generator + release audit
+tests/sweep.py           runs every runnable tool against fixtures
+```
 
-| Doc | For |
-|---|---|
-| 🔍 [AUDIT_REPORT.txt](AUDIT_REPORT.txt) | Latest audit verdict |
-| 🛡️ [SECURITY.md](SECURITY.md) | Vulnerability reporting |
-| ⚖️ [LICENSE](LICENSE) | PolyForm Noncommercial license |
+A tool looks like this, and that is all it takes to appear in the app with a page:
 
-</td>
-</tr>
-</table>
+```python
+@tool(id="gst-calc", name="GST Calculator", category="Numbers",
+      summary="Add or remove GST at any rate, and split CGST/SGST or IGST correctly.",
+      fields=[F.number("amount", "Amount (₹)", 10000.0, minimum=0.0),
+              F.choice("rate", "GST rate", ["5", "12", "18", "28"], "18")])
+def gst_calc(v, ctx):
+    ...
+```
 
-## ❓ FAQ
+The UI renders the fields, the CLI turns them into flags, and the catalogue is
+generated from the same metadata. There is no registration step and no plugin
+manifest.
 
-**Is it really free?** Yes — PolyForm Noncommercial licensed, free for personal and other noncommercial use; commercial use requires a separate licence.
-**Does it need admin rights?** Not for most tools; a few system helpers prompt normally.
-**Will it slow my PC down?** It's a portable exe — nothing runs in the background.
-**Why do some tools say "unavailable"?** They need an optional binary (FFmpeg etc.) —
-run `utility_suite.exe deps` for one-click instructions.
-**Can I script it?** Every GUI feature has an identical CLI command.
+## Building the binary
 
-## 🤝 Contributing
+```powershell
+pip install -r requirements-build.txt
+python build.py            # audit → tests → PyInstaller onefile → zip
+```
 
-Read [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) for the plugin contract and
-testing tiers, then open a PR — CI checks your catalogues are regenerated for
-you. Lint locally with `ruff check .` before pushing. Ideas welcome: new tools,
-new packs, docs, translations.
+Output in `dist/`: `All4one.exe` and `All4one-<version>-windows.zip`.
 
-## 🙏 Acknowledgements
+PyInstaller cannot cross-compile a Windows binary, so the real `.exe` is produced by
+GitHub Actions on a `windows-latest` runner — every push to `main` builds one, and a
+`v*` tag publishes it as a release. The Linux job runs the audit and the full tool
+sweep on every push.
 
-Built entirely with the Python standard library plus optional integrations
-(Pillow, pywin32, FFmpeg/ffprobe, qpdf/pdftotext, Tesseract). Thanks to every
-tester who ran a pack on a machine that shouldn't have worked.
+## Verification
 
-## 📄 License & author
+```bash
+python scripts/audit.py    # catalogue integrity, versions, hygiene, imports
+python tests/sweep.py      # executes every runnable tool against real fixtures
+```
 
-Released under the **[PolyForm Noncommercial License 1.0.0](LICENSE)** — free for personal and other noncommercial use; commercial use requires a separate licence from the author.
+Both are wired into CI and must pass before a build is published. The audit rejects
+duplicate ids, duplicate summaries, unknown dependency keys, undocumented tools and
+version drift; the sweep is what stops a tool from quietly becoming decoration.
 
-**Author:** Dr. Sohil Momin, BHMS · Found a vulnerability? See [SECURITY.md](SECURITY.md); otherwise open an issue.
+## Licence
 
-<div align="center">
+Released under the **PolyForm Noncommercial License 1.0.0** — free for personal and
+other noncommercial use; commercial use needs a separate licence. See [LICENSE](LICENSE).
 
-### ⭐ If Utility Suite saved you fifty sketchy downloads, star this repo ⭐
-
-[![Star History Chart](https://api.star-history.com/svg?repos=drsamonline/All4ONE&type=Date)](https://star-history.com/#drsamonline/All4ONE&Date)
-
-</div>
-
-<!-- SEO keywords (harmless, helps repo search): windows portable tools, single exe toolkit,
-python utilities suite, offline tools, ffmpeg frontend, pdf tools windows, image batch resize,
-network diagnostics, registry editor cli, disk cleaner portable, hashing tools,
-source available windows toolbox, utility belt alternative, sysinternals-like -->
+**Author:** Dr. Sohil Momin, BHMS. Security issues: see [SECURITY.md](SECURITY.md).

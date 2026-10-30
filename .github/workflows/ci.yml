@@ -1,111 +1,82 @@
-name: CI (Linux validation)
-
-# Fast, dependency-free validation on every push / pull request:
-#   - ruff lint gate (advisory for now - warnings only, see step comment)
-#   - static release audit (audit.py) - HARD gate, blocks the build
-#   - behavioral smoke tests        - HARD gate, blocks the build
-# The Windows exe build lives in build-windows-exe.yml; this workflow
-# guarantees the tree stays valid on Linux too (where it is developed).
+name: Validate
 
 on:
   push:
     branches: [main]
   pull_request:
-  workflow_dispatch: {}
+  workflow_dispatch:
 
-# Least privilege: this workflow only reads the repo. Explicitly dropping
-# write scopes prevents a compromised dependency in a step from pushing
-# commits or creating releases.
-permissions:
-  contents: read
-
-# Cancel superseded runs on the same ref (e.g. rapid pushes to a PR).
-# Saves runner minutes and avoids stale results blocking a newer commit.
 concurrency:
-  group: ci-${{ github.ref }}
+  group: validate-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  validate:
+  audit-and-sweep:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262   # was @v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065   # was @v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
-      - name: Install tooling
+      - name: Install optional dependencies used by the sweep
         run: |
           python -m pip install --upgrade pip
-          python -m pip install ruff
+          python -m pip install pillow pypdf openpyxl python-docx cryptography psutil ruff
 
-      - name: Ruff lint (advisory - non-blocking)
-        # Advisory until the codebase is fully ruff-clean; once
-        # `ruff check .` exits 0, remove continue-on-error to make this
-        # a hard gate.
+      - name: Repository and catalogue audit
+        run: python scripts/audit.py
+
+      - name: Run every runnable tool against fixtures
+        run: python tests/sweep.py
+
+      - name: Catalogue is up to date
+        run: |
+          python scripts/catalogue.py
+          git diff --exit-code TOOL_CATALOG.md || {
+            echo "TOOL_CATALOG.md is stale — run python scripts/catalogue.py and commit it."
+            exit 1
+          }
+
+      - name: Lint (advisory)
         continue-on-error: true
         run: ruff check .
 
-      - name: No committed build/cache artifacts
-        # Regression guard: __pycache__/*.pyc and logs/*.log must never be
-        # tracked (a stray commit of these once failed every CI job via the
-        # audit gate below). Fails with the offending paths listed.
+      - name: CLI smoke test
         run: |
-          # F-34: `|| true` here is correct and load-bearing - grep exits 1 when it finds NOTHING,
-          # which is the pass case. An empty $bad is success, not a swallowed error.
-          bad=$(git ls-files | grep -E '__pycache__|\.py[cod]$|^logs/.*\.log$' || true)
-          if [ -n "$bad" ]; then
-            echo "Tracked build/runtime artifacts found:"; echo "$bad"; exit 1
-          fi
+          python main.py list | head -20
+          python main.py search pdf | head -5
+          python main.py show pdf-merge
+          echo "hello" > /tmp/sample.txt
+          python main.py run hash-file --file /tmp/sample.txt --algorithm sha256
 
-      - name: Catalogues are up to date
-        # TOOL_CATALOG.md / EXPANSION_CATALOG.md are generated from the live
-        # registry by generate_catalogs.py; fail if a tool change was merged
-        # without regenerating them (audit.py enforces header counts too, but
-        # this shows the exact diff that is missing).
+  desktop-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Qt runtime libraries
         run: |
-          python generate_catalogs.py
-          git diff --exit-code TOOL_CATALOG.md EXPANSION_CATALOG.md || {
-            echo "Catalogues are stale. Run 'python generate_catalogs.py' locally and commit."; exit 1; }
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libegl1 libxkbcommon0 libdbus-1-3 libgl1 \
+            libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-shape0 libxcb-xinerama0
+          python -m pip install --upgrade pip
+          python -m pip install PySide6-Essentials pillow pypdf
 
-      - name: Static release audit
-        run: python audit.py
+      - name: Build the window headlessly and walk every page
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python smoke_ui.py
 
-      - name: Behavioral smoke tests
-        run: python -B -m tests.test_suite
-
-      - name: Bundle determinism (line endings)
-        # build_bundle() must produce byte-identical archives from LF and CRLF
-        # checkouts; a Windows contributor with core.autocrlf=true would
-        # otherwise leave the tracked bundle permanently dirty.
-        run: python -B -m tests.test_bundle_determinism
-
-      - name: Registry merge precedence
-        # A released exe always carries bundle/tools.dat, so build_registry()
-        # must MERGE external plugins/ over the embedded bundle instead of
-        # returning early on the bundle. Regression guard for that defect.
-        run: python -B -m tests.test_registry_merge
-
-      - name: Per-pack enable/disable
-        # Disabled packs must vanish from listing/search and be refused by
-        # get_tool/run_tool, and the choice must persist across a reload.
-        run: python -B -m tests.test_packs
-
-      - name: Tool metadata
-        # Optional accepts/produces/destructive fields drive the conditional
-        # GUI; a pack's own values must win over the curated table.
-        run: python -B -m tests.test_tool_metadata
-
-      - name: Dependency catalogue honesty
-        # The catalogue must list exactly the dependencies the packs declare,
-        # and nothing here may download or execute a binary.
-        run: python -B -m tests.test_dependencies
-
-      - name: Headless GUI construction
-        # Builds the whole widget tree against a fake tkinter so a NameError /
-        # AttributeError in the GUI is caught without a display.
-        run: python -B -m tests.test_gui_headless
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-screenshots
+          path: shots/

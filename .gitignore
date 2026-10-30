@@ -1,45 +1,27 @@
-# ---------------------------------------------------------------------------
-# Utility Suite — repository ignore rules
-#
-# Keep this file intact. A truncated or empty .gitignore has twice allowed
-# build/runtime artifacts (__pycache__/*.pyc, logs/*.log) to be force-added
-# back into the release tree, which then failed CI. audit.py now verifies the
-# required patterns below are present, so do not delete them.
-# ---------------------------------------------------------------------------
-
-# ---- Python bytecode / caches ----
+# Python
 __pycache__/
+*.pyc
 *.py[cod]
-*.pyo
-*$py.class
-.pytest_cache/
-.ruff_cache/
-.mypy_cache/
-.hypothesis/
-
-# ---- Build output ----
-build/
-dist/
 *.egg-info/
-.eggs/
-bundle/*.tmp
-
-# ---- Runtime logs (logs/.gitkeep is the only tracked entry) ----
-logs/*
-!logs/.gitkeep
-
-# ---- Virtual environments ----
 .venv/
 venv/
-env/
-ENV/
 
-# ---- OS / editor junk ----
+# Build output
+build/
+dist/
+*.spec.bak
+release/
+
+# Test artefacts
+tests/fixtures/
+shots/
+.pytest_cache/
+
+# Editors & OS
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
-desktop.ini
-*.swp
-*.swo
-*~
-.idea/
-.vscode/
+
+# Local settings
+*.log

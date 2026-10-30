@@ -1,47 +1,6 @@
-<div align="center">
+# Authors
 
-# ✍️ Utility Suite — Authorship & Credits
+**Dr. Sohil Momin, BHMS** — design, tool catalogue and implementation.
 
-![Author](https://img.shields.io/badge/author-Dr.%20Sohil%20Momin%2C%20BHMS-blue?style=flat-square)
-![Version](https://img.shields.io/badge/version-3.0.6-brightgreen?style=flat-square)
-![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square)
-![Packs](https://img.shields.io/badge/plugin%20packs-45-8A2BE2?style=flat-square)
-![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-informational?style=flat-square)
-
-</div>
-
-**Author:** Dr. Sohil Momin, BHMS 🩺💻
-
-Utility Suite is a modular Windows utility workstation designed around a
-lightweight core and a metadata-registered tool catalogue —
-**551 tools · 45 packs · one audited codebase**.
-
-## 🏅 Attribution
-
-This release and its accompanying architecture, catalogue, documentation, and
-implementation are authored by **Dr. Sohil Momin, BHMS**.
-
-| Role | Who |
-|---|---|
-| 🧱 Architecture & core runtime | Dr. Sohil Momin, BHMS |
-| 📦 All 45 tool packs (551 tools) | Dr. Sohil Momin, BHMS |
-| 📚 Documentation set (README → AUDIT_REPORT) | Dr. Sohil Momin, BHMS |
-| ✅ Release auditing & CI gates | `audit.py` + GitHub Actions |
-
-## 🙏 With thanks to
-
-- The **Python standard library** — the suite's zero-mandatory-dependency design
-  stands on its shoulders 🐍
-- Optional integrations used where present: **Pillow** 🖼️, **pywin32** 🪟,
-  **FFmpeg/ffprobe** 🎬, **qpdf** 📑, **Poppler** 📃, **send2trash** 🗑️
-- Every tester who ran a pack on a machine that *really* shouldn't have worked 🧪
-
-## 📜 Version
-
-Current release: **3.0.6** — full history in [CHANGELOG.md](CHANGELOG.md).
-
-<div align="center">
-
-⚖️ Released under the [PolyForm Noncommercial License 1.0.0](LICENSE) · 🛡️ Security reports: [SECURITY.md](SECURITY.md)
-
-</div>
+Version 4.0.0 — a ground-up rewrite of the 3.x utility suite: no plugin packs, one
+page per tool, a Qt interface and a catalogue that is verified tool by tool.

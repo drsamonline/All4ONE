@@ -1,0 +1,4 @@
+# Build and desktop requirements.
+# The engine itself needs nothing beyond the standard library.
+PySide6-Essentials>=6.5
+pyinstaller>=6.0

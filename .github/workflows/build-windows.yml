@@ -1,0 +1,87 @@
+name: Build Windows binary
+
+# Every push to main builds the portable .exe and refreshes the floating
+# "latest-build" pre-release. A v* tag additionally publishes a permanent release.
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build and optional dependencies
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-build.txt
+          python -m pip install pillow pypdf openpyxl python-docx cryptography psutil
+
+      - name: Audit, sweep, build, verify and package
+        shell: pwsh
+        run: python build.py
+
+      - name: Show what was produced
+        if: always()
+        shell: pwsh
+        run: |
+          if (Test-Path dist) { Get-ChildItem dist | Format-Table Name, Length }
+
+      - name: Upload the binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: all4one-windows-${{ github.sha }}
+          path: dist/All4one-*.zip
+          if-no-files-found: error
+
+      - name: Read the version
+        id: version
+        shell: pwsh
+        run: |
+          $v = Get-Content VERSION -Raw
+          "version=$($v.Trim())" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+
+      - name: Refresh the floating latest-build pre-release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest-build
+          name: Latest build
+          prerelease: true
+          make_latest: false
+          body: |
+            Built automatically from `main` at ${{ github.sha }}.
+            Download the zip, unzip it, run `All4one.exe`. Nothing to install.
+          files: dist/All4one-*.zip
+
+      - name: Publish a tagged release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: All4one ${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          body: |
+            All4one ${{ steps.version.outputs.version }} — one portable utility,
+            every tool on its own page.
+
+            Download `All4one-${{ steps.version.outputs.version }}-windows.zip`,
+            unzip, run `All4one.exe`. No installer, no registry entries, no
+            background service, no telemetry.
+          files: dist/All4one-*.zip

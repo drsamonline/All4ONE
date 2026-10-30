@@ -1,788 +1,582 @@
-<div align="center">
+# All4one — Complete Tool Catalogue
 
-# 🗂️ Utility Suite 3.0.6 — Complete Tool Catalogue
+*403 tools · 16 categories · version 4.0.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
 
-![Tools](https://img.shields.io/badge/tools-551-brightgreen?style=flat-square) ![Packs](https://img.shields.io/badge/packs-45-8A2BE2?style=flat-square) ![Status](https://img.shields.io/badge/registry%20verified-551%2F551%20%E2%9C%85-blue?style=flat-square)
+Every tool below is a working implementation with its own options and its own page in the app. The **Options** column is the exact set of controls that page shows.
 
-*551 tools · 45 plugin packs · generated from the live registry by `generate_catalogs.py` — do not edit by hand.*
+| Category | Tools |
+|---|---|
+| Files | 42 |
+| Archives | 14 |
+| Text | 39 |
+| Data | 30 |
+| Encoding | 27 |
+| Images | 26 |
+| PDF | 24 |
+| Media | 20 |
+| Documents | 15 |
+| Network | 24 |
+| System | 33 |
+| Disk | 17 |
+| Developer | 23 |
+| Security | 16 |
+| Numbers | 29 |
+| Generators | 24 |
 
-</div>
 
-Total tools: 551
-Plugin packs: 45
+## Files
 
-## Advanced Developer Tools
+*Copy, move, rename, compare and inspect files and folders · 42 tools*
 
-| Tool | Command | Pack | Dependencies | Description |
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Base64 Decoder | `base64-decoder` | `developer_tools_advanced` | — | Base64-decode text or a file back to its original bytes. |
-| Base64 Encoder | `base64-encoder` | `developer_tools_advanced` | — | Base64-encode text or a file. |
-| Base64 File Codec | `b64-file` | `developer_tools_advanced` | — | Base64-encode or decode a file. |
-| BOM Handler | `bom-handler` | `developer_tools_advanced` | — | Detect or strip a byte-order mark from a text file. |
-| Charset Detector | `charset-detect` | `developer_tools_advanced` | — | Detect the character set of a byte stream. |
-| Checksum Verifier | `checksum-verify` | `developer_tools_advanced` | — | Verify a file against an expected checksum. |
-| Diff Text Files | `diff-text-files` | `developer_tools_advanced` | — | Show a unified diff between two text files. |
-| Encoding Detector | `encoding-detector` | `developer_tools_advanced` | — | Detect the likely character encoding of a file. |
-| Hash Calculator | `hash-calculator` | `developer_tools_advanced` | — | Compute MD5, SHA-1, SHA-256 or SHA-512 digests for text or files. |
-| Hex Codec | `hex-codec` | `developer_tools_advanced` | — | Encode or decode hex strings and files. |
-| HMAC Calculator | `hmac-calculator` | `developer_tools_advanced` | — | Compute an HMAC signature for a message with a given key. |
-| Indentation Analyzer | `indentation-analyzer` | `developer_tools_advanced` | — | Report a file's indentation style, tabs versus spaces, and consistency. |
-| JSON Schema-Lite Validator | `json-schema-lite-validator` | `developer_tools_advanced` | — | Validate a JSON document against a compact, dependency-free schema. |
-| Line Ending Detector | `line-ending-detector` | `developer_tools_advanced` | — | Detect whether a text file uses CRLF, LF or CR line endings. |
-| Multi Algorithm Hasher | `multi-hash` | `developer_tools_advanced` | — | Compute several hash algorithms at once for a file or text. |
-| Patch Preview | `patch-preview` | `developer_tools_advanced` | — | Show how a patch would change a file before you apply it. |
-| Python Import Checker | `python-import-checker` | `developer_tools_advanced` | — | Check that a Python file's imports resolve. |
-| Python Syntax Checker | `python-syntax-checker` | `developer_tools_advanced` | — | Compile a Python file to check it for syntax errors. |
-| Regex Tester | `regex-tester` | `developer_tools_advanced` | — | Test a regular expression against sample text and show the matches. |
-| Semantic Version Comparator | `semantic-version-comparator` | `developer_tools_advanced` | — | Compare semantic version inputs. |
-| TOML Structure Checker | `toml-structure-checker` | `developer_tools_advanced` | — | Parse a TOML file and report its structure or any errors. |
-| URL Decoder | `url-decoder` | `developer_tools_advanced` | — | Decode percent-encoded characters in a URL back to plain text. |
-| URL Encoder | `url-encoder` | `developer_tools_advanced` | — | Percent-encode a string so it is safe inside a URL. |
-| UUID Generator | `uuid-generator` | `developer_tools_advanced` | — | Generate one or more RFC 4122 UUIDs. |
-| Version Bump Helper | `version-bump-helper` | `developer_tools_advanced` | — | Assist with version bump tasks. |
-| YAML Structure Checker | `yaml-structure-checker` | `developer_tools_advanced` | — | Parse a YAML file and report its structure or any errors. |
+| **Bulk Rename** | `bulk-rename` | `folder` (folder, required), `mode` (choice), `find` (text), `replace` (text), `case` (choice), `recursive` (toggle), `pattern` (text), `apply` (toggle), `confirm` (toggle) | — | Rename many files with a find/replace, regex, numbering or case change — preview first. |
+| **Change Extensions** | `bulk-extension` | `folder` (folder, required), `from_ext` (text), `to_ext` (text), `recursive` (toggle), `apply` (toggle) | — | Give every file in a folder the same new extension. |
+| **Compare Against Checksum** | `hash-compare` | `path` (file, required), `expected` (text, required), `algorithm` (choice) | — | Check a file against an expected hash and say plainly whether it matches. |
+| **Compare Two Files** | `compare-files` | `file_a` (file, required), `file_b` (file, required) | — | Byte-level comparison of two files: identical, or where they first differ. |
+| **Compare Two Folders** | `compare-folders` | `folder_a` (folder, required), `folder_b` (folder, required), `by_hash` (toggle) | — | Show which files exist on only one side, and which differ in content. |
+| **Copy Files From a List** | `batch-copy-list` | `list_file` (file, required), `destination` (folder), `apply` (toggle) | — | Copy every path listed in a text file into one destination folder. |
+| **Copy Folder** | `copy-folder` | `source` (folder, required), `destination` (folder), `on_exists` (choice), `verify` (toggle) | — | Copy a folder tree with overwrite control and a verified byte count. |
+| **Delete Files From a List** | `batch-delete-list` | `list_file` (file, required), `apply` (toggle), `confirm` (toggle) | changes data | Delete every path listed in a text file — preview first, then confirm. |
+| **Duplicate Finder** | `find-duplicates` | `folder` (folder, required), `min_kb` (number), `recursive` (toggle), `report` (save as) | — | Find identical files by content hash and reclaim the wasted space. |
+| **Empty Folder Finder** | `empty-folder-finder` | `folder` (folder, required), `delete` (toggle), `confirm` (toggle) | — | List folders that contain nothing, optionally deleting them. |
+| **File Info** | `file-info` | `path` (file, required) | — | Size, type, timestamps, permissions and a SHA-256 fingerprint for one file. |
+| **File Type Detector** | `file-type-detect` | `path` (file, required) | — | Identify a file from its magic bytes, not its extension. |
+| **File Type Report** | `extension-report` | `folder` (folder, required), `report` (save as) | — | Count files and bytes per extension, biggest offenders first. |
+| **Filename Conflict Audit** | `case-conflict-audit` | `folder` (folder, required) | — | Find names that differ only by case or trailing space — breaks on Windows and shares. |
+| **Find Files** | `file-search` | `folder` (folder, required), `pattern` (text), `contains` (text), `recursive` (toggle), `max_results` (number) | — | Search a folder by name pattern, size and text content. |
+| **Flatten Folder** | `flatten-folder` | `folder` (folder, required), `apply` (toggle), `remove_empty` (toggle) | — | Pull every file from nested subfolders up into one flat folder. |
+| **Folder Inventory** | `folder-inventory` | `folder` (folder, required), `hashes` (toggle), `report` (save as, required) | — | A full CSV inventory of a folder: name, size, dates, hashes. |
+| **Folder Size** | `folder-size` | `folder` (folder, required), `include_files` (toggle) | — | Total size of a folder, with its biggest immediate children ranked. |
+| **Folder Summary Card** | `folder-summary` | `folder` (folder, required) | — | One screen of facts about a folder: counts, sizes, newest file and top types. |
+| **Folder Tree** | `tree-view` | `folder` (folder, required), `depth` (number), `sizes` (toggle), `pattern` (text) | — | Print the folder structure as a tree, with optional sizes and a depth limit. |
+| **Hidden & System Files** | `hidden-files-report` | `folder` (folder, required) | — | List dotfiles and hidden entries that normal folder views skip. |
+| **Join File Parts** | `join-files` | `first_part` (file, required), `output` (save as, required) | — | Reassemble a file that was split into numbered parts. |
+| **Largest Files** | `disk-hog-files` | `folder` (folder, required), `min_mb` (number), `limit` (number) | — | The biggest files under a folder, largest first — where the space went. |
+| **Long Path Audit** | `long-path-audit` | `folder` (folder, required), `limit_chars` (number) | — | Find paths longer than 260 characters, which Windows tools silently fail on. |
+| **Move Files** | `move-files` | `files` (files, required), `destination` (folder), `apply` (toggle) | — | Move a set of files into one destination folder, keeping their names. |
+| **Number Files in Order** | `sequence-renamer` | `folder` (folder, required), `prefix` (text), `start` (number), `digits` (number), `sort_by` (choice), `apply` (toggle) | — | Number files 001, 002, … in sorted order, keeping the original name. |
+| **Path Inspector** | `path-inspect` | `path` (text) | — | Break a path into its parts and show the resolved absolute location. |
+| **Permissions Report** | `permissions-report` | `folder` (folder, required), `limit` (number) | — | Show the read/write/execute bits for everything in a folder. |
+| **Read-Only Toggle** | `readonly-toggle` | `folder` (folder, required), `pattern` (text), `action` (choice), `recursive` (toggle) | — | Make files read-only, or clear read-only so they can be edited again. |
+| **Recently Changed Files** | `recent-files` | `folder` (folder, required), `hours` (number), `limit` (number) | — | Files modified within the last N hours or days, newest first. |
+| **Rename by Date** | `rename-by-date` | `folder` (folder, required), `format` (choice), `pattern` (text), `apply` (toggle) | — | Prefix each file with its modified date, so folders sort chronologically. |
+| **Rename From a CSV List** | `batch-rename-from-csv` | `folder` (folder, required), `csv_file` (file, required), `apply` (toggle) | — | Rename files using a two-column CSV of old name and new name. |
+| **Safe Filename Cleaner** | `safe-filename` | `folder` (folder, required), `apply` (toggle), `spaces` (choice) | — | Turn messy names into clean, cross-platform-safe filenames. |
+| **Same Name, Different Content** | `same-name-different` | `folder` (folder, required) | — | Files sharing a name across folders but holding different content. |
+| **Set File Timestamps** | `touch-file` | `path` (file, required), `modified` (text), `apply` (toggle) | — | Rewrite a file's created/modified dates — handy for sorting and tests. |
+| **Similar Filenames** | `file-twin-finder` | `folder` (folder, required), `threshold` (number) | — | Near-duplicate filenames such as report.pdf, report (1).pdf and report-final.pdf. |
+| **Sort Into Month Folders** | `organise-by-month` | `folder` (folder, required), `pattern` (text), `apply` (toggle) | — | File photos and documents into Year/Month folders by their modified date. |
+| **Sort Into Type Folders** | `organise-by-type` | `folder` (folder, required), `apply` (toggle), `min_files` (number) | — | Move files into subfolders named after their extension. |
+| **Split File** | `split-file` | `path` (file, required), `size_mb` (number), `output` (folder) | — | Cut a large file into numbered chunks of a fixed size. |
+| **Verified Copy** | `copy-with-verify` | `files` (files, required), `destination` (folder) | — | Copy files and confirm each one with a SHA-256 comparison. |
+| **Verify a Backup** | `backup-verify` | `source` (folder, required), `backup` (folder, required), `by_hash` (toggle) | — | Compare a source folder against its backup by hash and list what is missing. |
+| **Zero-Byte File Cleaner** | `delete-empty-files` | `folder` (folder, required), `delete` (toggle), `confirm` (toggle) | — | Find files with nothing in them, optionally deleting them. |
 
-## Advanced Disk Tools
 
-| Tool | Command | Pack | Dependencies | Description |
+## Archives
+
+*Zip, tar and 7-Zip archives · 14 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Directory Size Tree | `directory-size-tree` | `disk_advanced` | — | Print a size-annotated directory tree. |
-| Disk Benchmark Reader | `disk-benchmark-reader` | `disk_advanced` | — | Report the recorded disk performance metrics for a drive. |
-| Disk Free Space | `disk-free-space` | `disk_advanced` | — | Report free and total space for a drive or mount point. |
-| Disk Usage Top Files | `disk-usage-top-files` | `disk_advanced` | — | List the largest files under a directory. |
-| Drive Information | `drive-information` | `disk_advanced` | — | List mounted drives with filesystem, size and free space. |
-| File Allocation Inspector | `file-allocation-inspector` | `disk_advanced` | — | Inspect file allocation and report internals. |
-| Large File Finder | `large-file-finder` | `disk_advanced` | — | Find files larger than a given size. |
-| Mount Point Viewer | `mount-point-viewer` | `disk_advanced` | — | Display the contents of mount point. |
-| NTFS Alternate Stream Finder | `ntfs-alternate-stream-finder` | `disk_advanced` | — | Find NTFS alternate data streams in a folder tree. |
-| Partition Information | `partition-information` | `disk_advanced` | — | Show disk partitions and their sizes. |
-| SMART Status | `smart-status` | `disk_advanced` | — | Report the S.M.A.R.T. health status of a drive. |
-| Sparse File Inspector | `sparse-file-inspector` | `disk_advanced` | — | Inspect sparse file and report internals. |
-| Volume List | `volume-list` | `disk_advanced` | — | List the mounted volumes and their basic properties. |
-| Volume Serial Reader | `volume-serial-reader` | `disk_advanced` | — | Read a volume's serial number. |
+| **7-Zip (Extract / Create)** | `sevenzip` | `archive` (file), `folder` (folder), `destination` (folder), `action` (choice), `password` (text) | 7z | Handle 7z, RAR and other formats through 7-Zip if it is installed. |
+| **Add Files to ZIP** | `zip-add` | `archive` (file, required), `folder` (folder), `prefix` (text) | — | Append files or a folder to an existing ZIP without rebuilding it. |
+| **Archive Report** | `archive-report` | `archive` (file, required), `report` (save as, required) | — | CSV listing of every entry in an archive, with sizes and compression ratio. |
+| **Bzip2 / Bunzip2** | `bzip2-file` | `path` (file, required), `action` (choice) | — | Compress a file with bzip2, or expand a .bz2 archive. |
+| **Create TAR** | `tar-create` | `folder` (folder, required), `output` (save as, required), `format` (choice) | — | Pack a folder into a tar, tar.gz or tar.bz2 archive. |
+| **Create ZIP** | `zip-create` | `folder` (folder), `output` (save as, required), `level` (number), `include_hidden` (toggle) | — | Zip a folder or a set of files, with a compression level you choose. |
+| **Extract TAR** | `tar-extract` | `archive` (file, required), `destination` (folder) | — | Unpack a tar, tar.gz or tar.bz2 archive, safely. |
+| **Extract ZIP** | `zip-extract` | `archive` (file, required), `destination` (folder), `overwrite` (toggle) | — | Unpack a ZIP safely — refuses entries that try to escape the folder. |
+| **Gzip / Gunzip** | `gzip-file` | `path` (file, required), `action` (choice) | — | Compress one file to .gz, or expand a .gz back to its original. |
+| **List Archive Contents** | `archive-list` | `archive` (file, required), `sizes` (toggle) | — | Show every file inside a ZIP or TAR without extracting it. |
+| **Remove From ZIP** | `zip-remove` | `archive` (file, required), `pattern` (text, required), `apply` (toggle) | — | Delete matching entries from a ZIP, rewriting it without them. |
+| **Split ZIP by Size** | `zip-split` | `folder` (folder, required), `part_mb` (number), `output` (folder) | — | Create several smaller ZIPs so each one fits a size limit (email, uploads). |
+| **Test Archive Integrity** | `archive-test` | `archive` (file, required) | — | Verify every entry in a ZIP reads back correctly and report corruption. |
+| **Zip Every Subfolder** | `batch-zip-folders` | `folder` (folder, required), `output` (folder), `level` (number) | — | Give each subfolder its own ZIP — one archive per project or album. |
 
-## Advanced Imaging
 
-| Tool | Command | Pack | Dependencies | Description |
+## Text
+
+*Transform, analyse and clean text · 39 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Image Batch Renamer | `image-batch-renamer` | `imaging_advanced` | Pillow | Rename a folder of images in bulk using a consistent pattern. |
-| Image Border Adder | `image-border-adder` | `imaging_advanced` | Pillow | Add a uniform border around an image (requires Pillow). |
-| Image Contact Sheet | `image-contact-sheet` | `imaging_advanced` | Pillow | Tile many images into a single contact sheet (requires Pillow). |
-| Image Converter | `image-converter` | `imaging_advanced` | Pillow | Convert an image file between formats (PNG/JPEG/WebP...). |
-| Image Cropper | `image-cropper` | `imaging_advanced` | Pillow | Crop image. |
-| Image Flipper | `image-flipper` | `imaging_advanced` | Pillow | Flip image. |
-| Image Metadata Cleaner | `image-metadata-cleaner` | `imaging_advanced` | Pillow | Strip EXIF and other metadata from an image (requires Pillow). |
-| Image Montage Builder | `image-montage-builder` | `imaging_advanced` | Pillow | Compose a montage from multiple images (requires Pillow). |
-| Image Optimizer | `image-optimizer` | `imaging_advanced` | Pillow | Optimize image. |
-| Image Resizer | `image-resizer` | `imaging_advanced` | Pillow | Resize image. |
-| Image Rotator | `image-rotator` | `imaging_advanced` | Pillow | Rotate image. |
-| Image Watermark Tool | `image-watermark-tool` | `imaging_advanced` | Pillow | Image Watermark Tool: perform image watermark operations on target files or text. |
+| **Add Line Numbers** | `add-line-numbers` | `text` (multiline), `file` (file), `output` (save as), `start` (number), `separator` (text), `pad` (number) | — | Prefix every line with a number, with a separator and start value you pick. |
+| **Change Case** | `case-convert` | `text` (multiline), `file` (file), `output` (save as), `mode` (choice) | — | UPPER, lower, Title, Sentence, camelCase, snake_case, kebab-case or tOGGLE. |
+| **Change Case Across Files** | `batch-case-files` | `folder` (folder, required), `pattern` (text), `mode` (choice), `recursive` (toggle), `apply` (toggle) | — | Apply a case change to the contents of every matching file in a folder. |
+| **Convert Encodings in a Folder** | `batch-encoding` | `folder` (folder, required), `pattern` (text), `target` (choice), `recursive` (toggle), `apply` (toggle) | — | Re-save every text file in a folder as UTF-8 (or another encoding). |
+| **Convert Line Endings** | `line-endings` | `file` (file, required), `target` (choice), `apply` (toggle) | — | Switch a file between Windows (CRLF), Unix (LF) and old Mac (CR) endings. |
+| **Convert Text Encoding** | `encoding-convert` | `file` (file, required), `target` (choice), `output` (save as), `overwrite` (toggle) | — | Re-save a text file in UTF-8, UTF-16, Windows-1252 or Latin-1. |
+| **CSV to Markdown Table** | `csv-to-markdown` | `file` (file, required), `delimiter` (text), `align_numbers` (toggle), `output` (save as) | — | Turn CSV into a clean Markdown table ready to paste into notes or a README. |
+| **Extract Email Addresses** | `extract-emails` | `text` (multiline), `file` (file), `output` (save as), `sort` (toggle) | — | Pull every email address out of text, de-duplicated and sorted. |
+| **Extract Links** | `extract-urls` | `text` (multiline), `file` (file), `output` (save as), `domains_only` (toggle) | — | Collect every URL in a text or page, optionally keeping only unique domains. |
+| **Extract Numbers** | `extract-numbers` | `text` (multiline), `file` (file), `output` (save as), `sum` (toggle) | — | Grab every number from text — decimals, negatives and thousands separators. |
+| **Extract With Regex** | `regex-extract` | `text` (multiline), `file` (file), `pattern` (text, required), `unique` (toggle), `output` (save as) | — | Pull every match of a pattern out of text — emails, IDs, numbers, anything. |
+| **Find & Replace** | `find-replace-text` | `text` (multiline), `file` (file), `find` (text, required), `replace` (text), `case_sensitive` (toggle), `whole_word` (toggle), `regex` (toggle), `output` (save as) | — | Replace text with optional whole-word, case-sensitive and regex modes. |
+| **Fix Line Endings in a Folder** | `batch-line-endings` | `folder` (folder, required), `pattern` (text), `target` (choice), `recursive` (toggle), `apply` (toggle) | — | Convert every text file in a folder to one line-ending style. |
+| **Fix Smart Quotes & Dashes** | `fix-smart-quotes` | `text` (multiline), `file` (file), `output` (save as) | — | Convert curly quotes, en dashes and ellipses into plain ASCII characters. |
+| **HTML to Text** | `strip-html` | `text` (multiline), `file` (file), `links` (toggle), `keep_breaks` (toggle), `output` (save as) | — | Turn HTML into readable plain text, keeping or dropping link addresses. |
+| **Join Lines** | `join-lines` | `text` (multiline), `file` (file), `output` (save as), `per_line` (number), `keep_paragraphs` (toggle) | — | Merge every line into one paragraph, or into lines of N words. |
+| **Keyword Density** | `keyword-density` | `text` (multiline), `file` (file), `output` (save as), `phrase_words` (number) | — | How often each phrase appears as a share of the text — SEO-style analysis. |
+| **Longest Lines** | `longest-lines` | `text` (multiline), `file` (file), `output` (save as), `limit` (number) | — | The longest lines in a text — useful for finding runaway paragraphs. |
+| **Make URL Slug** | `slugify-text` | `text` (multiline), `file` (file), `output` (save as), `separator` (choice), `ascii` (toggle) | — | Turn any title into a lowercase, hyphenated, ASCII-only slug. |
+| **Markdown to Text** | `markdown-to-text` | `text` (multiline), `file` (file), `output` (save as) | — | Strip Markdown syntax down to clean prose for pasting anywhere. |
+| **Readability Statistics** | `text-statistics` | `text` (multiline), `file` (file), `output` (save as) | — | Average word and sentence length plus a Flesch reading-ease score. |
+| **Regex Replace** | `regex-replace` | `text` (multiline), `file` (file), `pattern` (text, required), `replacement` (text), `multiline` (toggle), `dotall` (toggle), `output` (save as) | — | Substitute with a full regular expression, including capture groups. |
+| **Remove Accents** | `remove-accents` | `text` (multiline), `file` (file), `output` (save as) | — | Normalise accented letters to plain ASCII while keeping the text readable. |
+| **Remove Blank Lines** | `remove-blank-lines` | `text` (multiline), `file` (file), `output` (save as), `collapse` (toggle) | — | Delete empty and whitespace-only lines, optionally collapsing runs of them. |
+| **Remove Duplicate Lines** | `dedupe-lines` | `text` (multiline), `file` (file), `output` (save as), `ignore_case` (toggle), `keep_last` (toggle) | — | Keep the first occurrence of every line and drop the repeats. |
+| **Remove Repeated Words** | `remove-duplicate-words` | `text` (multiline), `file` (file), `output` (save as) | — | Collapse accidental repeats like 'the the' into a single word. |
+| **Replace Across Files** | `batch-replace` | `folder` (folder, required), `pattern` (text), `find` (text, required), `replace` (text), `regex` (toggle), `case_sensitive` (toggle), `recursive` (toggle), `apply` (toggle) | — | Find and replace inside every matching file in a folder, with a preview. |
+| **Reverse Line Order** | `reverse-lines` | `text` (multiline), `file` (file), `output` (save as), `what` (choice) | — | Flip the order of lines, or reverse the characters in each line. |
+| **Sort Lines** | `sort-lines` | `text` (multiline), `file` (file), `output` (save as), `order` (choice), `unique` (toggle) | — | Sort lines alphabetically, numerically, by length or in reverse. |
+| **Split Into Sentences** | `split-sentences` | `text` (multiline), `file` (file), `output` (save as) | — | One sentence per line, ready for subtitles, cards or review. |
+| **Split Text Into Files** | `split-text-by-lines` | `file` (file, required), `lines` (number), `output` (folder) | — | Cut a long text file into several smaller files of N lines each. |
+| **Strip Colour Codes** | `strip-ansi` | `text` (multiline), `file` (file), `output` (save as) | — | Remove ANSI escape sequences from logs and terminal output. |
+| **Tabs ↔ Spaces** | `tab-to-spaces` | `text` (multiline), `file` (file), `output` (save as), `direction` (choice), `width` (number) | — | Convert leading tabs to spaces or spaces to tabs at a width you choose. |
+| **Text Similarity** | `text-similarity` | `text_a` (multiline), `text_b` (multiline) | — | How alike two texts are, with the longest matching runs highlighted. |
+| **Text Summary** | `summarise-text` | `text` (multiline), `file` (file), `output` (save as), `sentences` (number) | — | Pick the most representative sentences to make a quick extractive summary. |
+| **Trim Whitespace** | `trim-lines` | `text` (multiline), `file` (file), `output` (save as), `where` (choice), `blank_runs` (toggle) | — | Strip trailing spaces, leading spaces, or both, from every line. |
+| **Word Count** | `word-count` | `text` (multiline), `file` (file), `output` (save as) | — | Words, characters, lines, sentences and reading time for any text or file. |
+| **Word Frequency** | `word-frequency` | `text` (multiline), `file` (file), `output` (save as), `limit` (number), `min_length` (number), `ignore_common` (toggle) | — | The words used most often, with counts and share of the whole text. |
+| **Wrap Text** | `wrap-text` | `text` (multiline), `file` (file), `output` (save as), `width` (number), `keep_indent` (toggle) | — | Re-wrap paragraphs at a fixed column width, preserving paragraph breaks. |
 
-## Advanced Networking
 
-| Tool | Command | Pack | Dependencies | Description |
+## Data
+
+*JSON, CSV, XML, YAML and SQLite · 30 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| ARP Table Viewer | `arp-table-viewer` | `net_advanced` | ping, nslookup | Display the contents of arp table. |
-| DNS Lookup | `dns-lookup` | `net_advanced` | ping, nslookup | Resolve a hostname to its addresses. |
-| Hosts File Entry Checker | `hosts-file-entry-checker` | `net_advanced` | ping, nslookup | Check whether a hostname is mapped in the hosts file. |
-| Hosts File Viewer | `hosts-file-viewer` | `net_advanced` | ping, nslookup | Display the contents of hosts file. |
-| HTTP Header Inspector | `http-header-inspector` | `net_advanced` | ping, nslookup | Inspect http header and report internals. |
-| IP Address Info | `ip-address-info` | `net_advanced` | ping, nslookup | Show the local IP addresses and interface details. |
-| Local Listening Ports | `local-listening-ports` | `net_advanced` | ping, nslookup | List local listening TCP/UDP ports (requires netstat). |
-| MAC Vendor Lookup | `mac-vendor` | `net_advanced` | — | Look up the hardware vendor for a MAC address. |
-| Network Route Viewer | `network-route-viewer` | `net_advanced` | ping, nslookup | Display the contents of network route. |
-| Ping Host | `ping-host` | `net_advanced` | ping, nslookup | Ping a host and report round-trip statistics. |
-| Reverse DNS | `reverse-dns` | `net_advanced` | ping, nslookup | Resolve an IP address back to a hostname. |
-| Route Trace | `route-trace` | `net_advanced` | ping, nslookup | Trace the network route to a host. |
-| Speed Test Probe | `speed-probe` | `net_advanced` | — | Measure download throughput against a public endpoint. |
-| SSL Expiry Monitor | `ssl-expiry` | `net_advanced` | — | Monitor ssl expiry over time. |
-| Subnet Calculator | `subnet-calculator` | `net_advanced` | — | Compute the network, broadcast, mask and host range for a CIDR block. |
-| TCP Port Checker | `tcp-port-checker` | `net_advanced` | ping, nslookup | Test whether a TCP port on a host is open. |
-| TLS Certificate Inspector | `tls-certificate-inspector` | `net_advanced` | ping, nslookup | Inspect tls certificate and report internals. |
-| UDP Port Probe | `udp-port-probe` | `net_advanced` | ping, nslookup | Probe whether a UDP port responds. |
-| URL Redirect Checker | `url-redirect-checker` | `net_advanced` | ping, nslookup | Follow a URL and report the final destination after redirects. |
-| WHOIS Lookup | `whois-lookup` | `net_advanced` | ping, nslookup | Query WHOIS/RDAP registration data for a domain. |
+| **Change Delimiter** | `delimiter-convert` | `file` (file, required), `from_delim` (choice), `to_delim` (choice), `quote_all` (toggle), `output` (save as, required) | — | Convert between CSV, TSV, semicolon and pipe-separated files. |
+| **Compare JSON** | `json-diff` | `file_a` (file, required), `file_b` (file, required) | — | Show which keys were added, removed or changed between two JSON documents. |
+| **Compare Two CSVs** | `csv-compare` | `first` (file, required), `second` (file, required), `key` (text), `report` (save as) | — | Row-level differences between two CSVs, keyed on a column you choose. |
+| **Convert Many JSON Files to CSV** | `batch-json-to-csv` | `folder` (folder, required), `output` (folder) | — | Turn every JSON file in a folder into a CSV, one output per input. |
+| **CSV Column Report** | `csv-info` | `file` (file, required), `delimiter` (text), `report` (save as) | — | Per column: type, blanks, distinct values, min, max and mean. |
+| **CSV to SQLite** | `csv-to-sqlite` | `files` (files, required), `output` (save as, required), `replace` (toggle) | — | Load one or more CSVs into a SQLite database, one table per file. |
+| **Extract JSON Path** | `json-extract` | `text` (multiline), `file` (file), `path` (text, required), `output` (save as) | — | Pull one value out of nested JSON with a dotted path like data.users.0.name. |
+| **Filter & Sort CSV** | `csv-query` | `file` (file, required), `column` (text), `operator` (choice), `value` (text), `sort_by` (text), `descending` (toggle), `keep` (text), `limit` (number), `output` (save as, required) | — | Filter rows by a condition, sort by any column and keep only the columns you want. |
+| **Format JSON** | `json-format` | `text` (multiline), `file` (file), `mode` (choice), `indent` (number), `sort_keys` (toggle), `output` (save as) | — | Pretty-print or minify JSON, with sorted keys and a chosen indent. |
+| **Format XML** | `xml-format` | `file` (file, required), `indent` (number), `output` (save as) | — | Indent XML so it can be read, or collapse it to a single line. |
+| **INI / Config File Tool** | `ini-tool` | `file` (file, required), `action` (choice), `section` (text), `key` (text), `value` (text), `apply` (toggle) | — | Read, list or rewrite keys in an INI file, keeping other sections intact. |
+| **JSON Lines ↔ JSON** | `ndjson` | `file` (file, required), `direction` (choice), `output` (save as, required) | — | Convert between newline-delimited JSON (JSONL) and a JSON array. |
+| **JSON to CSV** | `json-to-csv` | `file` (file, required), `output` (save as, required), `delimiter` (text), `limit` (number) | — | Flatten an array of JSON objects into a CSV table, one row per record. |
+| **JSON to SQLite** | `json-to-sqlite` | `file` (file, required), `table` (text), `output` (save as, required) | — | Load an array of JSON objects into a SQLite table. |
+| **JSON to XML** | `json-to-xml` | `file` (file, required), `root` (text), `output` (save as, required) | — | Render a JSON document as XML with a root element you name. |
+| **Merge CSV Files** | `csv-merge` | `files` (files, required), `output` (save as, required), `add_source` (toggle) | — | Stack several CSVs into one, aligning columns by header name. |
+| **Merge JSON Files** | `json-merge` | `files` (files, required), `mode` (choice), `output` (save as, required) | — | Combine several JSON files into one array, or deep-merge objects. |
+| **Preview CSV** | `csv-preview` | `file` (file, required), `rows` (number), `delimiter` (text) | — | Show a CSV's columns, row count and first rows without opening Excel. |
+| **Remove Duplicate Rows** | `csv-dedupe` | `file` (file, required), `columns` (text), `output` (save as, required) | — | Drop repeated rows, either on every column or on the ones you choose. |
+| **Run SQL Query** | `sqlite-query` | `file` (file, required), `sql` (multiline), `limit` (number), `output` (save as) | — | Run a read-only SELECT against a SQLite file and save or show the result. |
+| **Select / Rename Columns** | `csv-columns` | `file` (file, required), `keep` (text), `drop` (text), `rename` (text), `output` (save as, required) | — | Keep or drop columns and rename headers in one pass. |
+| **Sort CSV** | `csv-sort` | `file` (file, required), `columns` (text, required), `descending` (toggle), `output` (save as, required) | — | Sort a CSV by one or more columns, treating numbers as numbers. |
+| **Split CSV by Rows** | `csv-split` | `file` (file, required), `rows` (number), `output` (folder) | — | Cut a large CSV into several smaller files of N rows each. |
+| **SQLite Table to CSV** | `sqlite-to-csv` | `file` (file, required), `table` (text, required), `output` (save as, required) | — | Export a whole table from a SQLite database into a CSV file. |
+| **SQLite Tables** | `sqlite-tables` | `file` (file, required) | — | List the tables, row counts and columns of a SQLite database. |
+| **Validate JSON** | `json-validate` | `text` (multiline), `file` (file) | — | Check JSON syntax and report the exact line and column of any problem. |
+| **Validate JSON Shape** | `json-schema-lite` | `file` (file, required), `schema` (multiline) | — | Check a JSON document against a compact schema: required keys, types and lengths. |
+| **Validate YAML** | `yaml-validate` | `file` (file, required) | — | Parse a YAML file and report structure or the exact error line. |
+| **XML to JSON** | `xml-to-json` | `file` (file, required), `attributes` (toggle), `output` (save as, required) | — | Turn an XML document into JSON, keeping attributes and repeated elements. |
+| **YAML to JSON** | `yaml-to-json` | `file` (file, required), `direction` (choice), `output` (save as, required) | — | Convert a YAML document to JSON, or JSON back to YAML. |
 
-## Archive & Compression
 
-| Tool | Command | Pack | Dependencies | Description |
+## Encoding
+
+*Base64, hex, URLs, hashes and checksums · 27 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Tar Creator | `tar-create` | `archive_tools` | — | Create a compressed TAR archive (gzip, bzip2, xz or uncompressed). |
-| Tar Extractor | `tar-extract` | `archive_tools` | — | Safely extract a TAR archive; skips symlinks, hardlinks and special files and blocks path traversal. |
-| Zip Creator | `zip-create` | `archive_tools` | — | Create a ZIP archive from a file or folder, with a selectable compression level. |
-| Zip Extractor | `zip-extract` | `archive_tools` | — | Safely extract a ZIP archive, rejecting entries that would escape the destination (zip-slip safe). |
+| **All Checksums at Once** | `hash-all` | `file` (file, required), `output` (save as) | — | Every common hash for one file, in a single pass — for release notes. |
+| **Ascii85 Encode / Decode** | `ascii85-codec` | `text` (multiline), `action` (choice) | — | Compact text-safe binary encoding, as used inside PDF files. |
+| **Base32 Encode / Decode** | `base32-codec` | `text` (multiline), `action` (choice) | — | Base32 is case-insensitive and human-readable — good for codes people retype. |
+| **Base64 a File** | `base64-file` | `file` (file, required), `action` (choice), `output` (save as) | — | Encode a file to Base64 text, or rebuild a file from Base64 — for embedding. |
+| **Base64 Decode** | `base64-decode` | `text` (multiline), `file` (file), `output` (save as) | — | Turn Base64 back into text, tolerating line breaks and missing padding. |
+| **Base64 Encode** | `base64-encode` | `text` (multiline), `file` (file), `wrap` (number), `output` (save as) | — | Encode text or a file to Base64, with optional line wrapping. |
+| **Break Down a URL** | `url-parts` | `url` (text, required) | — | Split a URL into scheme, host, port, path, query parameters and fragment. |
+| **CRC32 Checksum** | `crc32` | `file` (file), `text` (multiline) | — | The quick 32-bit checksum used to detect accidental file corruption. |
+| **Decode a JWT** | `jwt-decode` | `text` (multiline) | — | Read a JSON Web Token's header and payload — signature is shown, not verified. |
+| **Escape HTML** | `html-encode` | `text` (multiline), `quotes` (toggle) | — | Escape characters so text displays literally on a web page. |
+| **Hash a File** | `hash-file` | `file` (file, required), `algorithm` (choice), `output` (save as) | — | Compute a file's checksum to prove it is the file you think it is. |
+| **Hash Every File** | `hash-folder` | `folder` (folder, required), `algorithm` (choice), `report` (save as, required) | — | A CSV of SHA-256 (and friends) for every file in a folder — for manifests. |
+| **Hash Text** | `hash-text` | `text` (multiline), `algorithm` (choice), `uppercase` (toggle) | — | Fingerprint a piece of text with any common hash algorithm. |
+| **Hex Dump** | `hexdump` | `file` (file, required), `offset` (number), `length` (number), `output` (save as) | — | Classic offset/hex/ASCII view of a file's first bytes — inspect any binary. |
+| **Hex to Text** | `hex-decode` | `text` (multiline), `output` (save as) | — | Turn hexadecimal back into readable text, ignoring spaces, colons and 0x. |
+| **HMAC Signature** | `hmac-calc` | `text` (multiline), `key` (secret, required), `algorithm` (choice) | — | Sign a message with a secret key — how APIs verify that a request is genuine. |
+| **Identify a Hash** | `hash-identify` | `hash` (text, required) | — | Work out which algorithm produced a hash from its length and characters. |
+| **International Domains** | `punycode` | `domain` (text, required), `action` (choice) | — | Convert an international domain to punycode (xn--) and back. |
+| **Morse Code** | `morse-code` | `text` (multiline), `action` (choice) | — | Translate text to Morse, or Morse back to text. |
+| **ROT13 / Caesar Shift** | `rot13` | `text` (multiline), `shift` (number), `alphabet` (choice) | — | Rotate letters by a chosen shift — ROT13 for puzzles, ROT47 for symbols. |
+| **Text Fingerprint** | `text-fingerprint` | `text` (multiline), `length` (number) | — | A short, stable ID for a block of text — handy for spotting duplicates. |
+| **Text to Binary** | `text-to-binary` | `text` (multiline), `action` (choice) | — | Show text as 8-bit binary, or read binary back into text. |
+| **Text to Hex** | `hex-encode` | `text` (multiline), `spaces` (toggle), `prefix` (toggle), `output` (save as) | — | Convert text to hexadecimal bytes, spaced or continuous. |
+| **Unescape HTML** | `html-decode` | `text` (multiline) | — | Turn &amp; and &#39; entities back into real characters. |
+| **Unicode Escapes** | `unicode-escape` | `text` (multiline), `action` (choice) | — | Convert text to \uXXXX escapes, or turn escapes back into real characters. |
+| **URL Decode** | `url-decode` | `text` (multiline), `plus_is_space` (toggle) | — | Turn %20-style escapes back into readable text. |
+| **URL Encode** | `url-encode` | `text` (multiline), `mode` (choice) | — | Percent-encode text so it is safe inside a URL or query string. |
 
-## Audio Tools
 
-| Tool | Command | Pack | Dependencies | Description |
+## Images
+
+*Resize, convert, watermark and inspect images · 26 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Audio Concatenator | `audio-concatenator` | `audio_tools` | ffprobe, ffmpeg | Join multiple audio files into a single track in order (requires ffmpeg). |
-| Audio Duration | `audio-duration` | `audio_tools` | ffprobe, ffmpeg | Report the duration of an audio file (requires ffprobe). |
-| Audio Format Converter | `audio-format-converter` | `audio_tools` | ffprobe, ffmpeg | Convert an audio file between formats using ffmpeg. |
-| Audio Metadata Cleaner | `audio-metadata-cleaner` | `audio_tools` | ffprobe, ffmpeg | Strip tags and metadata from an audio file (requires ffmpeg). |
-| Audio Metadata Reader | `audio-metadata-reader` | `audio_tools` | ffprobe, ffmpeg | Read and display the tags and stream metadata of an audio file (requires ffprobe). |
-| Audio Normalizer | `audio-normalizer` | `audio_tools` | ffprobe, ffmpeg | Normalise an audio file's loudness and format to a consistent baseline (requires ffmpeg). |
-| Audio Silence Detector | `audio-silence-detector` | `audio_tools` | ffprobe, ffmpeg | Detect silent stretches in an audio file (requires ffmpeg). |
-| Audio Stream Inspector | `audio-stream-inspector` | `audio_tools` | ffprobe, ffmpeg | Inspect audio stream and report internals. |
-| Audio Trim | `audio-trim` | `audio_tools` | ffprobe, ffmpeg | Trim an audio file to a start/end range (requires ffmpeg). |
-| Audio Waveform Exporter | `audio-waveform-exporter` | `audio_tools` | ffprobe, ffmpeg | Export audio waveform to a file. |
+| **Add a Border** | `image-border` | `file` (file, required), `width` (number), `colour` (colour), `output` (save as) | pillow | Frame an image with a solid border or padding — great for social posts. |
+| **Adjust Brightness & Colour** | `image-adjust` | `file` (file, required), `brightness` (number), `contrast` (number), `saturation` (number), `sharpness` (number), `blur` (number), `output` (save as) | pillow | Brighten, darken, add contrast, saturation or blur in one pass. |
+| **Apply an Effect** | `image-effect` | `file` (file, required), `effect` (choice), `strength` (number), `output` (save as) | pillow | Grayscale, sepia, invert, pixelate, sketch or posterise an image. |
+| **Batch Convert Images** | `image-batch-convert` | `folder` (folder, required), `format` (choice), `quality` (number), `output` (folder), `recursive` (toggle) | pillow | Convert every image in a folder to one format, with a size report. |
+| **Batch Resize Images** | `image-batch-resize` | `folder` (folder, required), `max_width` (number), `quality` (number), `output` (folder), `recursive` (toggle) | pillow | Resize a whole folder of images to one maximum size, in one go. |
+| **Compare Two Images** | `image-compare` | `first` (file, required), `second` (file, required), `diff_output` (save as) | pillow | How different two images are, as a percentage, with an optional diff image. |
+| **Compress a Folder of Images** | `batch-compress-images` | `folder` (folder, required), `quality` (number), `max_width` (number), `output` (folder), `recursive` (toggle) | pillow | Re-encode every image to a smaller file, with a before/after total. |
+| **Compress Image** | `image-compress` | `file` (file, required), `quality` (number), `max_width` (number), `output` (save as) | pillow | Shrink a photo's file size by re-encoding at a quality you choose. |
+| **Contact Sheet** | `image-contact-sheet` | `folder` (folder, required), `columns` (number), `cell` (number), `background` (colour), `output` (save as, required) | pillow | Tile a folder of images into one overview sheet with captions. |
+| **Convert Image Format** | `image-convert` | `file` (file, required), `format` (choice), `quality` (number), `output` (save as) | pillow | Convert between PNG, JPEG, WebP, BMP, TIFF and GIF with a quality setting. |
+| **Crop Image** | `image-crop` | `file` (file, required), `mode` (choice), `percent` (number), `left` (number), `top` (number), `right` (number), `bottom` (number), `aspect` (number), `output` (save as) | pillow | Cut an image to a box, a square, or the centre — with exact coordinates if you like. |
+| **Dominant Colours** | `image-colours` | `file` (file, required), `count` (number) | pillow | The main colours in an image with their hex codes — for palettes and themes. |
+| **Find Duplicate Images** | `duplicate-images` | `folder` (folder, required), `threshold` (number), `report` (save as) | pillow | Spot visually identical images even when they have been resized or re-encoded. |
+| **Image Folder Report** | `image-folder-report` | `folder` (folder, required), `report` (save as) | pillow | Count and total the images in a folder by format, with resolution warnings. |
+| **Image Info** | `image-info` | `file` (file, required), `exif` (toggle) | pillow | Dimensions, colour mode, DPI, EXIF camera data and file size at a glance. |
+| **Join Images** | `image-stitch` | `folder` (folder, required), `direction` (choice), `columns` (number), `gap` (number), `background` (colour), `output` (save as, required) | pillow | Place several images side by side or stacked into one picture. |
+| **Make a Windows Icon** | `image-to-ico` | `file` (file, required), `output` (save as, required) | pillow | Turn an image into a multi-size .ico file for apps, folders and shortcuts. |
+| **Make Thumbnails** | `image-thumbnails` | `folder` (folder, required), `size` (number), `output` (folder), `format` (choice) | pillow | Square-cropped thumbnails for a whole folder — perfect for cards and galleries. |
+| **Remove Image Metadata** | `image-strip-metadata` | `file` (file, required), `output` (save as) | pillow | Strip EXIF, GPS and camera data from photos before sharing them. |
+| **Resize Image** | `image-resize` | `file` (file, required), `width` (number), `height` (number), `keep_aspect` (toggle), `resample` (choice), `output` (save as) | pillow | Resize to exact pixels or a percentage, keeping the aspect ratio if you want. |
+| **Rotate & Flip** | `image-rotate` | `file` (file, required), `action` (choice), `angle` (number), `expand` (toggle), `output` (save as) | pillow | Rotate by any angle or flip horizontally / vertically, with EXIF auto-correction. |
+| **Split Image Into Tiles** | `image-split-tiles` | `file` (file, required), `rows` (number), `columns` (number), `output` (folder) | pillow | Cut an image into a grid of equal tiles — for puzzles, maps and carousels. |
+| **Strip Metadata From a Folder** | `batch-strip-exif` | `folder` (folder, required), `output` (folder) | pillow | Remove EXIF, GPS and camera data from every photo in a folder at once. |
+| **Thumbnail a Folder Tree** | `batch-thumbnails-folder` | `folder` (folder, required), `size` (number), `output` (folder) | pillow | Make thumbnails for every image under a folder, keeping the folder structure. |
+| **Watermark a Folder** | `batch-watermark` | `folder` (folder, required), `text` (text), `position` (choice), `opacity` (number), `output` (folder) | pillow | Stamp the same watermark onto every image in a folder. |
+| **Watermark Image** | `image-watermark` | `file` (file, required), `text` (text), `logo` (file), `position` (choice), `opacity` (number), `size` (number), `colour` (colour), `output` (save as) | pillow | Stamp text or a logo onto a photo, with position, opacity, size and colour. |
 
-## Automation
 
-| Tool | Command | Pack | Dependencies | Description |
+## PDF
+
+*Merge, split, extract and protect PDFs · 24 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Folder Watcher | `watch` | `automation` | — | Watch a directory and report files added, removed or changed. |
-| Task Scheduler | `schedule` | `automation` | schtasks | Create a Windows Task Scheduler task to run a command on a daily or one-off schedule. |
+| **Compare Two PDFs** | `pdf-compare` | `first` (file, required), `second` (file, required), `context` (number) | pypdf | Text differences between two PDFs, page by page — catches re-issued documents. |
+| **Compress PDF** | `pdf-compress` | `file` (file, required), `remove_metadata` (toggle), `output` (save as, required) | pypdf | Rewrite a PDF more compactly — strips unused objects and downsamples nothing. |
+| **Delete Pages** | `pdf-delete-pages` | `file` (file, required), `pages` (text, required), `output` (save as, required), `password` (secret) | pypdf | Remove pages from a PDF and keep everything else, in the original order. |
+| **Edit PDF Metadata** | `pdf-metadata` | `file` (file, required), `title` (text), `author` (text), `subject` (text), `keywords` (text), `clear` (toggle), `output` (save as, required) | pypdf | Set the title, author, subject and keywords, or clear them completely. |
+| **Extract Images From PDF** | `pdf-extract-images` | `file` (file, required), `output` (folder) | pypdf | Save every embedded image in a PDF as a picture file. |
+| **Extract Pages** | `pdf-extract-pages` | `file` (file, required), `pages` (text, required), `output` (save as, required), `password` (secret) | pypdf | Pull specific pages out of a PDF — '1-3,7,10-' style ranges. |
+| **Extract PDF Text** | `pdf-extract-text` | `file` (file, required), `pages` (text), `page_breaks` (toggle), `output` (save as) | pypdf | Pull the text layer out of a PDF, page by page, into a text file. |
+| **Extract Text From Many PDFs** | `batch-pdf-text` | `folder` (folder, required), `output_mode` (choice), `output` (folder), `page_marks` (toggle) | pypdf | Turn a folder of PDFs into text files, or one combined text document. |
+| **Images to PDF** | `pdf-from-images` | `folder` (folder, required), `output` (save as, required), `sort_by_name` (toggle), `quality` (number) | pillow | Build a PDF from a folder of images, one image per page. |
+| **Insert Blank Pages** | `pdf-add-blank` | `file` (file, required), `after_page` (number), `count` (number), `output` (save as, required) | pypdf | Add blank pages at chosen positions — for notes and printing spreads. |
+| **Merge Every PDF in a Folder** | `batch-pdf-merge` | `folder` (folder, required), `recursive` (toggle), `output` (save as, required) | pypdf | Combine all PDFs in a folder into one file, in filename order. |
+| **Merge PDFs** | `pdf-merge` | `files` (files, required), `output` (save as, required), `bookmarks` (toggle) | pypdf | Combine several PDFs into one, in the order you list them. |
+| **Password-Protect PDF** | `pdf-encrypt` | `file` (file, required), `password` (secret, required), `owner_password` (secret), `algorithm` (choice), `output` (save as, required) | pypdf · changes data | Encrypt a PDF with a password so it needs one to open. |
+| **PDF Attachments** | `pdf-attachments` | `file` (file, required), `output` (folder), `extract` (toggle) | pypdf | List or extract files embedded inside a PDF. |
+| **PDF Bookmarks** | `pdf-bookmarks` | `file` (file, required) | pypdf | Show the document outline, or list every page's text as a flat index. |
+| **PDF Form Fields** | `pdf-form-fields` | `file` (file, required), `values` (text), `output` (save as) | pypdf | List a PDF's fillable form fields, or fill them from key=value pairs. |
+| **PDF Info** | `pdf-info` | `file` (file, required), `password` (secret) | pypdf | Page count, page sizes, version, metadata and encryption status. |
+| **PDF Page Report** | `pdf-page-report` | `file` (file, required), `report` (save as) | pypdf | Per-page size, rotation and text length — spot the odd page in a scan. |
+| **PDF Pages to Images** | `pdf-to-images` | `file` (file, required), `dpi` (number), `output` (folder) | poppler | Render each PDF page as a PNG using Poppler's pdftoppm. |
+| **Remove PDF Password** | `pdf-decrypt` | `file` (file, required), `password` (secret, required), `output` (save as, required) | pypdf | Save an unlocked copy of a PDF you already have the password for. |
+| **Reorder Pages** | `pdf-reorder` | `file` (file, required), `order` (text, required), `reverse` (toggle), `output` (save as, required) | pypdf | Rebuild a PDF in any page order you type — duplicates allowed. |
+| **Rotate Pages** | `pdf-rotate` | `file` (file, required), `angle` (choice), `pages` (text), `output` (save as, required) | pypdf | Turn pages 90, 180 or 270 degrees — fixes sideways scans. |
+| **Search a PDF** | `pdf-search` | `file` (file, required), `needle` (text, required), `case_sensitive` (toggle) | pypdf | Find a word or phrase and report the pages and lines it appears on. |
+| **Split PDF Into Pages** | `pdf-split` | `file` (file, required), `output` (folder), `password` (secret) | pypdf | Save every page of a PDF as its own file. |
 
-## Backup & Restore
 
-| Tool | Command | Pack | Dependencies | Description |
+## Media
+
+*Audio and video conversion with FFmpeg · 20 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Backup Cleanup | `backup-cleanup` | `backup_tools` | — | Remove outdated backup snapshots, keeping only the most recent N. |
-| Backup Compression | `backup-compression` | `backup_tools` | — | Compress a folder into a single archive for storage or transfer. |
-| Backup Difference | `backup-difference` | `backup_tools` | — | Compute the difference between backup inputs. |
-| Backup Integrity Hash | `backup-integrity-hash` | `backup_tools` | — | Hash every file in a backup and print a combined integrity digest. |
-| Backup Log Analyzer | `backup-log-analyzer` | `backup_tools` | — | Analyze backup log and summarize findings. |
-| Backup Manifest | `backup-manifest` | `backup_tools` | — | Generate a manifest (path, size, hash) describing every file in a folder tree. |
-| Backup Restore | `backup-restore` | `backup_tools` | — | Restore previously backed-up backup data. |
-| Backup Rotation | `backup-rotation` | `backup_tools` | — | Rotate timestamped backups, pruning the oldest to stay within a retention count. |
-| Backup Schedule Generator | `backup-schedule-generator` | `backup_tools` | — | Generate a backup schedule for a folder, as cron or a Task Scheduler entry. |
-| Backup Size Calculator | `backup-size-calculator` | `backup_tools` | — | Estimate the storage a backup set will need. |
-| Backup Verify | `backup-verify` | `backup_tools` | — | Verify a backup set against its manifest and report missing or altered files. |
-| Folder Backup | `folder-backup` | `backup_tools` | — | Back up folder targets. |
-| Incremental Backup | `incremental-backup` | `backup_tools` | — | Back up incremental targets. |
-| Mirror Backup | `mirror-backup` | `backup_tools` | — | Back up mirror targets. |
-| Snapshot Inventory | `snapshot-inventory` | `backup_tools` | — | List backup snapshots found in a folder. |
+| **Add Subtitles** | `add-subtitles` | `file` (file, required), `subtitles` (file, required), `mode` (choice), `output` (save as) | ffmpeg | Burn subtitles into the picture, or mux them as a selectable track. |
+| **Batch Convert Media** | `media-batch-convert` | `folder` (folder, required), `format` (choice), `output` (folder), `recursive` (toggle) | ffmpeg | Convert every video or audio file in a folder to one format. |
+| **Change Playback Speed** | `change-speed` | `file` (file, required), `speed` (number), `keep_pitch` (toggle), `output` (save as) | ffmpeg | Speed up or slow down media while keeping the pitch natural. |
+| **Change Volume** | `audio-volume` | `file` (file, required), `mode` (choice), `amount` (number), `output` (save as) | ffmpeg | Boost or quieten audio by a number of decibels or a multiplier. |
+| **Compress Video** | `compress-video` | `file` (file, required), `crf` (number), `max_width` (number), `preset` (choice), `output` (save as) | ffmpeg | Make a video smaller by raising CRF or capping the resolution. |
+| **Convert Media** | `convert-media` | `file` (file, required), `format` (choice), `quality` (choice), `output` (save as) | ffmpeg | Convert video or audio between formats, choosing codec and quality. |
+| **Extract Audio** | `extract-audio` | `file` (file, required), `format` (choice), `bitrate` (number), `output` (save as) | ffmpeg | Pull the sound track out of a video as MP3, WAV, M4A or FLAC. |
+| **Extract Video Frames** | `extract-frames` | `file` (file, required), `every_seconds` (number), `output` (folder) | ffmpeg | Save still frames from a video at a fixed interval — for thumbnails or review. |
+| **Grab a Thumbnail** | `video-thumbnail` | `file` (file, required), `at` (text), `width` (number), `output` (save as) | ffmpeg | Save one frame from a chosen timestamp as a JPEG or PNG thumbnail. |
+| **Images to Video** | `frames-to-video` | `folder` (folder, required), `fps` (number), `output` (save as, required) | ffmpeg | Turn a numbered image sequence into a video at a chosen frame rate. |
+| **Join Media Files** | `concat-media` | `files` (files, required), `output` (save as, required) | ffmpeg | Concatenate several audio or video files that share the same format. |
+| **Media Info** | `media-info` | `file` (file, required) | ffprobe | Duration, resolution, codecs, frame rate, bitrate and audio tracks. |
+| **Normalise Loudness** | `normalise-audio` | `file` (file, required), `target` (number), `output` (save as) | ffmpeg | Even out volume across a recording to a broadcast loudness target. |
+| **Remove Audio Track** | `mute-video` | `file` (file, required), `output` (save as) | ffmpeg | Strip the sound from a video entirely, leaving a silent file. |
+| **Resize Video** | `resize-video` | `file` (file, required), `width` (number), `height` (number), `output` (save as) | ffmpeg | Scale a video to a new resolution, keeping the aspect ratio. |
+| **Rotate Video** | `video-rotate` | `file` (file, required), `angle` (choice), `output` (save as) | ffmpeg | Rotate a video 90, 180 or 270 degrees — fixes phone footage on its side. |
+| **Strip Media Metadata** | `media-metadata` | `file` (file, required), `output` (save as) | ffmpeg | Remove titles, GPS tags and device names from a video or audio file. |
+| **Trim Media** | `trim-media` | `file` (file, required), `start` (text), `end` (text), `duration` (number), `reencode` (toggle), `output` (save as) | ffmpeg | Cut a section out of a video or audio file by start time and duration. |
+| **Trim Silence** | `audio-trim-silence` | `file` (file, required), `threshold` (number), `output` (save as) | ffmpeg | Remove leading and trailing silence from a recording automatically. |
+| **Video to GIF** | `video-to-gif` | `file` (file, required), `start` (text), `duration` (number), `width` (number), `fps` (number), `output` (save as) | ffmpeg | Make an animated GIF from a section of a video, with size and frame rate control. |
 
-## Batch Imaging
 
-| Tool | Command | Pack | Dependencies | Description |
+## Documents
+
+*Word, Excel and document conversion · 15 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Image Batch Cleanup Plan | `image-batch-cleanup-plan` | `image_batch` | Pillow | Produce a cleanup plan for redundant or low-quality images. |
-| Image Batch Contact Sheet | `image-batch-contact-sheet` | `image_batch` | Pillow | Build a contact sheet from a folder of images. |
-| Image Batch CSV Export | `image-batch-csv-export` | `image_batch` | Pillow | Export image batch csv data to a file. |
-| Image Batch Dimensions | `image-batch-dimensions` | `image_batch` | Pillow | Report the pixel dimensions of every image in a folder. |
-| Image Batch Duplicate Report | `image-batch-duplicate-report` | `image_batch` | Pillow | Report duplicate images in a folder by hash. |
-| Image Batch Extension Convert | `image-batch-extension-convert` | `image_batch` | Pillow | Plan or perform a batch change of image file extensions. |
-| Image Batch Folder Summary | `image-batch-folder-summary` | `image_batch` | Pillow | Summarize image batch folder summary at a glance. |
-| Image Batch Hash | `image-batch-hash` | `image_batch` | Pillow | Hash every image in a folder for deduplication or verification. |
-| Image Batch Inventory | `image-batch-inventory` | `image_batch` | Pillow | List the images in a folder with basic properties. |
-| Image Batch JSON Export | `image-batch-json-export` | `image_batch` | Pillow | Export image batch json data to a file. |
-| Image Batch Metadata Report | `image-batch-metadata-report` | `image_batch` | Pillow | Report embedded metadata for images in a folder. |
-| Image Batch Orientation Report | `image-batch-orientation-report` | `image_batch` | Pillow | Report the orientation (portrait/landscape) of images in a folder. |
-| Image Batch Rename Plan | `image-batch-rename-plan` | `image_batch` | Pillow | Produce a consistent rename plan for a folder of images. |
-| Image Batch Resize Plan | `image-batch-resize-plan` | `image_batch` | Pillow | Produce a resize plan for a folder of images. |
+| **Compare Two Word Files** | `docx-compare` | `first` (file, required), `second` (file, required) | docx | Text differences between two .docx files, as a readable diff. |
+| **Compare Two Workbooks** | `excel-compare` | `first` (file, required), `second` (file, required), `limit` (number) | openpyxl | Cell-by-cell differences between two Excel files, sheet by sheet. |
+| **Convert to PDF** | `office-to-pdf` | `files` (files, required), `output` (folder) | libreoffice | Convert Word, Excel or PowerPoint files to PDF using LibreOffice. |
+| **CSV to Excel** | `csv-to-xlsx` | `files` (files, required), `output` (save as, required), `bold_header` (toggle), `autofit` (toggle) | openpyxl | Turn one or more CSV files into a single Excel workbook, one sheet each. |
+| **Excel to CSV** | `xlsx-to-csv` | `file` (file, required), `sheet` (text), `output` (folder), `delimiter` (text) | openpyxl | Export a worksheet — or every worksheet — to CSV files. |
+| **Excel Workbook Info** | `xlsx-info` | `file` (file, required) | openpyxl | Sheets, used ranges, row counts and whether formulas or macros are present. |
+| **Extract Images From Word** | `docx-images` | `file` (file, required), `output` (folder) | docx | Pull every image embedded in a .docx out into a folder. |
+| **Merge Excel Workbooks** | `xlsx-merge` | `files` (files, required), `output` (save as, required) | openpyxl | Combine several workbooks into one file, keeping every sheet. |
+| **OCR a Scanned PDF** | `ocr-pdf` | `file` (file, required), `language` (text), `dpi` (number), `output` (save as) | tesseract, poppler | Turn a scanned PDF into searchable text, page by page. |
+| **OCR an Image** | `ocr-image` | `file` (file, required), `language` (text), `output` (save as) | tesseract | Read the text out of a photo or screenshot with Tesseract. |
+| **Search a Workbook** | `xlsx-search` | `file` (file, required), `needle` (text, required), `case_sensitive` (toggle) | openpyxl | Find a value anywhere in an Excel file and report the exact cell. |
+| **Text to Word** | `text-to-docx` | `text` (multiline), `file` (file), `title` (text), `output` (save as, required), `markdown` (toggle) | docx | Turn plain text or Markdown-ish text into a formatted .docx. |
+| **Word Document Info** | `docx-info` | `file` (file, required) | docx | Paragraph, word, table and image counts plus core properties. |
+| **Word Find & Replace** | `docx-find-replace` | `file` (file, required), `find` (text, required), `replace` (text), `apply` (toggle), `output` (save as) | docx | Replace text throughout a .docx, including inside tables. |
+| **Word to Text** | `docx-to-text` | `file` (file, required), `tables` (toggle), `output` (save as) | docx | Extract the text of a .docx, keeping paragraph and table order. |
 
-## Clipboard Manager
 
-| Tool | Command | Pack | Dependencies | Description |
+## Network
+
+*Ports, DNS, HTTP, IP maths and diagnostics · 24 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Clipboard Append | `clipboard-append` | `clipboard_manager` | python:tkinter | Append text to the existing clipboard contents. |
-| Clipboard Clear | `clipboard-clear` | `clipboard_manager` | python:tkinter | Empty the clipboard. |
-| Clipboard Hash | `clipboard-hash` | `clipboard_manager` | python:pyperclip | Compute a hash of the current clipboard text. |
-| Clipboard History Ring | `clipboard-history-ring` | `clipboard_manager` | python:pyperclip | Maintain a rolling ring buffer of clipboard history. |
-| Clipboard Line Count | `clipboard-line-count` | `clipboard_manager` | python:tkinter | Produce a clipboard line count count. |
-| Clipboard Load | `clipboard-load` | `clipboard_manager` | python:tkinter | Load a file's contents into the clipboard. |
-| Clipboard Normalize | `clipboard-normalize` | `clipboard_manager` | python:tkinter | Normalise clipboard whitespace and line endings. |
-| Clipboard Paste As Plain | `clipboard-paste-plain` | `clipboard_manager` | python:pyperclip | Strip formatting and paste the clipboard as plain text. |
-| Clipboard Read | `clipboard-read` | `clipboard_manager` | python:tkinter | Print the current clipboard text (requires pyperclip). |
-| Clipboard Save | `clipboard-save` | `clipboard_manager` | python:tkinter | Save the clipboard text to a file. |
-| Clipboard Text Length | `clipboard-text-length` | `clipboard_manager` | python:tkinter | Report character, word and line counts for the clipboard text. |
-| Clipboard Word Count | `clipboard-word-count` | `clipboard_manager` | python:tkinter | Produce a clipboard word count count. |
-| Clipboard Write | `clipboard-write` | `clipboard_manager` | python:tkinter | Replace the clipboard contents with the supplied text. |
+| **Active Connections** | `netstat-connections` | `listening_only` (toggle) | — | Every current TCP connection and listening port on this machine. |
+| **Check a Port** | `port-check` | `host` (text, required), `port` (number), `timeout` (number) | — | Test whether one TCP port on a host is open, and how fast it answers. |
+| **Check Many URLs** | `url-status-check` | `urls` (multiline), `timeout` (number), `report` (save as) | — | Test a list of links and report status codes, redirects and response times. |
+| **Check TLS Certificate** | `tls-certificate` | `host` (text, required), `port` (number) | — | Issuer, validity dates and days remaining for a site's HTTPS certificate. |
+| **Convert an IP Address** | `ip-convert` | `address` (text, required) | — | Show an IPv4 address as decimal, hex, binary, IPv4-mapped IPv6 and reversed form. |
+| **DNS Lookup** | `dns-lookup` | `host` (text, required) | — | Resolve a hostname to its addresses, or an address back to its name. |
+| **DNS Records** | `dns-records` | `domain` (text, required), `type` (choice) | — | Query MX, TXT, NS, SOA and CNAME records for a domain. |
+| **Download a File** | `http-download` | `url` (text, required), `output` (save as, required), `timeout` (number) | — | Download a file with progress, size and a safe resume-free write. |
+| **Email Setup Check** | `email-dns-check` | `domain` (text, required) | — | Check a domain's MX, SPF and DMARC records to see if email is set up correctly. |
+| **Fetch a URL** | `http-get` | `url` (text, required), `timeout` (number), `max_kb` (number), `output` (save as) | — | Download a page or API response, showing status, headers and the body. |
+| **Flush DNS Cache** | `dns-flush` | `confirm` (toggle) | Windows | Clear the resolver cache so a changed DNS record takes effect immediately. |
+| **Inspect HTTP Headers** | `http-headers` | `url` (text, required) | — | Check a site's status, security headers and redirect chain without downloading it. |
+| **Is an IP in a Subnet?** | `ip-in-subnet` | `address` (text, required), `network` (text, required) | — | Check whether an address belongs to a network, and explain why. |
+| **List Every Address in a Range** | `cidr-list` | `cidr` (text, required), `limit` (number), `output` (save as) | — | Print every usable address in a subnet — for inventories and firewall lists. |
+| **Local Network Info** | `local-interfaces` | — | — | This machine's name, addresses, gateway and active interface details. |
+| **Normalise a MAC Address** | `mac-format` | `mac` (text, required), `style` (choice) | — | Reformat a MAC address into the style a device or router expects. |
+| **Ping** | `ping-host` | `host` (text, required), `count` (number), `timeout_ms` (number) | — | Send ICMP pings and report round-trip times, loss and reachability. |
+| **Public IP Address** | `public-ip` | `detailed` (toggle) | — | What the internet sees as your address, with country and provider. |
+| **Scan Ports** | `port-scan` | `host` (text, required), `ports` (text, required), `timeout` (number), `workers` (number) | — | Check a range of TCP ports on a host you own, and list what is open. |
+| **Split a Subnet** | `subnet-split` | `cidr` (text, required), `mode` (choice), `new_prefix` (number), `count` (number) | — | Divide a network into equal smaller subnets, or into a set number of them. |
+| **Subnet Calculator** | `ip-calc` | `cidr` (text, required) | — | Everything about a CIDR: mask, network, broadcast, usable host range and count. |
+| **Trace Route** | `traceroute` | `host` (text, required), `max_hops` (number) | — | Show the hops a packet takes to reach a host, with timings. |
+| **Wake-on-LAN** | `wake-on-lan` | `mac` (text, required), `broadcast` (text), `port` (number) | — | Send a magic packet to wake a sleeping machine on your network. |
+| **WHOIS Lookup** | `whois-lookup` | `domain` (text, required) | — | Registration details for a domain, straight from the WHOIS server. |
 
-## Data & Structured Data
 
-| Tool | Command | Pack | Dependencies | Description |
+## System
+
+*Windows settings, processes and startup · 33 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| CSV Column Extractor | `csv-column-extractor` | `data_tools` | — | Extract a single column from a CSV file. |
-| CSV Column Selector | `csv-column-selector` | `data_tools` | — | Project selected columns from a CSV file. |
-| CSV Deduplicator | `csv-deduplicator` | `data_tools` | — | Remove duplicate rows from a CSV file. |
-| CSV Inspector | `csv-inspector` | `data_tools` | — | Inspect csv and report internals. |
-| CSV Normalizer | `csv-normalizer` | `data_tools` | — | Normalise a CSV file's columns and formatting to a consistent shape. |
-| CSV Row Filter | `csv-row-filter` | `data_tools` | — | Filter csv row by criteria. |
-| CSV Sorter | `csv-sorter` | `data_tools` | — | Sort csv records. |
-| CSV Statistics | `csv-statistics` | `data_tools` | — | Compute per-column statistics (count, min, max, mean) for a CSV file. |
-| CSV Transposer | `csv-transposer` | `data_tools` | — | Transpose a CSV file, swapping rows and columns. |
-| JSON Inspector | `json-inspector` | `data_tools` | — | Inspect json and report internals. |
-| JSON Key Flattener | `json-key-flattener` | `data_tools` | — | Flatten a nested JSON object into dotted key paths. |
-| JSON Minifier | `json-minifier` | `data_tools` | — | Minify a JSON document by removing insignificant whitespace. |
-| JSON Path Extractor | `json-path-extractor` | `data_tools` | — | Extract values from a JSON document using a dotted key path. |
-| JSON Pretty Printer | `json-pretty-printer` | `data_tools` | — | Pretty-print a JSON document with consistent indentation. |
-| JSON Unflattener | `json-unflattener` | `data_tools` | — | Rebuild a nested JSON object from dotted key paths. |
-| NDJSON Filter | `ndjson-filter` | `data_tools` | — | Filter ndjson by criteria. |
-| NDJSON Inspector | `ndjson-inspector` | `data_tools` | — | Inspect ndjson and report internals. |
-| SQLite Query Runner | `sqlite-query-runner` | `data_tools` | — | Run a SQL query against a SQLite database and print the rows. |
-| SQLite Schema Viewer | `sqlite-schema-viewer` | `data_tools` | — | Display the contents of sqlite schema. |
-| SQLite Table Counter | `sqlite-table-counter` | `data_tools` | — | Count the tables in a SQLite database file. |
-| SQLite Vacuum Helper | `sqlite-vacuum-helper` | `data_tools` | — | Assist with sqlite vacuum tasks. |
+| **BitLocker Status** | `bitlocker-status` | — | Windows | Drive encryption state for every volume, and whether a key protector exists. |
+| **Delete a Registry Value** | `registry-delete` | `hive` (choice), `path` (text, required), `name` (text, required), `confirm` (toggle) | Windows · changes data | Remove one registry value. Export the key first — this cannot be undone. |
+| **End a Process** | `process-kill` | `target` (text, required), `confirm` (toggle) | changes data | Stop a process by PID or name — you are asked to confirm the exact target. |
+| **Environment Variables** | `env-variables` | `filter` (text), `name` (text) | — | List the environment this app runs with, or look up one variable. |
+| **Event Log** | `event-log` | `log` (choice), `level` (choice), `count` (number) | Windows | Recent entries from a Windows event log — errors and warnings by default. |
+| **Export a Registry Key** | `registry-export` | `hive` (choice), `path` (text, required), `output` (save as, required) | Windows | Save a registry key to a .reg file before you change anything. |
+| **Find a Process** | `process-find` | `name` (text, required) | — | Locate every process with a given name and show its executable path. |
+| **Firewall Rules** | `firewall-rules` | `filter` (text), `direction` (choice), `limit` (number) | Windows | Enabled inbound and outbound firewall rules, with ports and programs. |
+| **Firewall Status** | `firewall-status` | — | Windows | Whether the Windows firewall is on for each profile. |
+| **Hosts File Editor** | `hosts-file` | `action` (choice), `ip` (text), `hostname` (text), `apply` (toggle) | — | Read the hosts file, or add and remove an entry with a backup kept. |
+| **Installed Drivers** | `drivers-list` | `filter` (text), `limit` (number) | Windows | Kernel drivers with their state and whether they are signed. |
+| **Installed Fonts** | `fonts-list` | `filter` (text) | — | Every font family installed on this machine. |
+| **Installed Programs** | `installed-programs` | `filter` (text), `report` (save as) | Windows | Everything installed, with versions and publishers, from the uninstall registry. |
+| **Installed Updates** | `windows-updates` | `limit` (number) | Windows | Windows hotfixes and updates installed on this machine. |
+| **Local User Accounts** | `users-list` | — | Windows | Accounts on this machine with their enabled state and last logon. |
+| **PATH Audit** | `path-audit` | `duplicates_only` (toggle) | — | Check every PATH entry: which exist, which are duplicates and what is missing. |
+| **Power Plans** | `power-plans` | — | Windows | Available power plans and which one is active. |
+| **Printers** | `printers-list` | — | Windows | Installed printers with their driver, port and default status. |
+| **Process List** | `process-list` | `filter` (text), `sort` (choice), `limit` (number) | — | Running processes with PID, memory and CPU — sorted by what is heaviest. |
+| **Read the Registry** | `registry-read` | `hive` (choice), `path` (text, required), `value` (text) | Windows | Show the values in a registry key, or one value if you name it. |
+| **Scan a Folder With Defender** | `defender-scan` | `folder` (folder, required), `kind` (choice) | Windows | Run a Windows Defender scan on a file or folder and report the result. |
+| **Scheduled Tasks** | `scheduled-tasks` | `filter` (text), `ready_only` (toggle) | Windows | Windows scheduled tasks with their state, trigger time and action. |
+| **Search the Registry** | `registry-search` | `needle` (text, required), `hive` (choice), `limit` (number) | Windows | Find a word in registry key names under a hive — slow but thorough. |
+| **Shut Down / Restart** | `power-actions` | `action` (choice), `delay_seconds` (number), `confirm` (toggle) | Windows · changes data | Lock, sleep, restart or shut down this machine after a delay you choose. |
+| **Start / Stop a Service** | `service-control` | `name` (text, required), `action` (choice), `confirm` (toggle) | Windows · changes data | Start, stop or restart a Windows service by name — administrator rights needed. |
+| **Startup Programs** | `startup-items` | `details` (toggle) | Windows | Everything that launches at login — registry Run keys and the startup folder. |
+| **System Information** | `system-info` | — | — | Operating system, CPU, memory, uptime and Python runtime in one view. |
+| **Temp Folder Info** | `temp-path` | — | — | Where temporary files live and how much space they are using. |
+| **Uptime** | `uptime` | — | — | How long since the machine last booted, and when that was. |
+| **Wi-Fi Networks** | `wifi-networks` | `show` (choice) | Windows | Saved Wi-Fi profiles and the networks currently in range. |
+| **Windows Defender Status** | `defender-status` | — | Windows | Antivirus and firewall state, signature age and last scan time. |
+| **Windows Services** | `services-list` | `filter` (text), `state` (choice) | Windows | Installed services with their state and start mode, running ones first. |
+| **Write a Registry Value** | `registry-write` | `hive` (choice), `path` (text, required), `name` (text, required), `data` (text, required), `type` (choice), `confirm` (toggle) | Windows · changes data | Create or change one registry value. Export the key first — this is permanent. |
 
-## Developer Tools
 
-| Tool | Command | Pack | Dependencies | Description |
+## Disk
+
+*Space, drives and large-file hunting · 17 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Binary Hex Viewer | `hexview` | `dev_tools` | — | Show a file as a hex dump with ASCII alongside. |
-| File Type Detector | `filetype` | `dev_tools` | — | Detect a file's type from its magic bytes rather than its extension. |
-| JSON Diff | `json-diff` | `dev_tools` | — | JSON Diff: show differences between two inputs. |
-| JSON Formatter | `json-format` | `dev_tools` | — | Pretty-print and validate a JSON document. |
-| JSON Schema Validator | `json-schema-validate` | `dev_tools` | — | Validate a JSON document against a JSON Schema. |
-| JSON YAML Converter | `json-yaml` | `dev_tools` | python:yaml | Convert a document between JSON and YAML. |
+| **Biggest Folders** | `big-folders` | `folder` (folder, required), `depth` (number), `top` (number) | — | Rank subfolders by total size at any depth — find the real space hogs. |
+| **Clean Temporary Files** | `temp-clean` | `user_temp` (toggle), `windows_temp` (toggle), `preview` (toggle) | changes data | Delete files from the temp folders, skipping anything in use. |
+| **Cleanup Opportunities** | `cleanup-report` | `include_downloads` (toggle) | — | Sizes of the usual junk folders — temp, caches, downloads, recycle bin. |
+| **Count Files and Folders** | `file-count` | `folder` (folder, required), `pattern` (text) | — | How many files and folders sit under a path, at any depth. |
+| **Disk Health (S.M.A.R.T.)** | `disk-health` | — | Windows | Physical disk health, media type and whether SMART predicts a failure. |
+| **Disk Space** | `disk-space` | — | — | Every drive with total, used and free space, and how full it is. |
+| **Disk Speed Test** | `disk-speed-test` | `folder` (folder), `size_mb` (number) | — | Measure sequential write and read speed on a drive with a temporary file. |
+| **Empty Recycle Bin** | `recycle-bin` | `confirm` (toggle) | Windows · changes data | Clear the Windows Recycle Bin and report how much space that frees. |
+| **File Age Report** | `file-age-report` | `folder` (folder, required) | — | How many files fall into each age bucket, and how much space they take. |
+| **Folder Size Tree** | `folder-size-tree` | `folder` (folder, required), `depth` (number), `top` (number) | — | Recursive sizes for a folder tree — where the space actually goes. |
+| **Free Space Check** | `free-space-alert` | `threshold` (number) | — | Flag any drive that is below a percentage you consider safe. |
+| **NTFS Alternate Streams** | `ntfs-streams` | `folder` (folder, required) | Windows | Find hidden alternate data streams that can conceal files on NTFS. |
+| **Old Files** | `old-files` | `folder` (folder, required), `days` (number), `min_mb` (number), `limit` (number), `report` (save as) | — | Files not modified for a long time — the safest things to archive or delete. |
+| **Partitions** | `partition-list` | — | — | Partitions with their sizes, filesystems and drive letters. |
+| **Shadow Copies** | `shadow-copies` | — | Windows | Volume shadow copies / restore points available for rollback. |
+| **USB Devices** | `usb-devices` | — | Windows | Connected USB devices with their status — spot unknown sticks and gadgets. |
+| **Volume Information** | `volume-info` | — | — | Volume labels, filesystems, serial numbers and free space. |
 
-## Directory Management
 
-| Tool | Command | Pack | Dependencies | Description |
+## Developer
+
+*Code, regex, diffs and project checks · 23 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Directory Synchronizer | `dir-sync` | `directory_tools` | — | Synchronise one directory tree to another, copying new and changed files. |
-| Disk Usage Analyzer | `disk-usage` | `directory_tools` | — | Report how much space each entry in a directory consumes. |
-| Empty Folder Cleaner | `empty-clean` | `directory_tools` | — | Find and (optionally) delete empty directories. |
-| Hardlink Creator | `hardlink` | `directory_tools` | — | Create a hard link to a file (same volume only). |
+| **Check a .env File** | `env-file` | `file` (file, required) | — | Parse a .env file, show its keys and flag empty or duplicated values. |
+| **Check HTML Structure** | `html-validate` | `file` (file, required) | — | Find unclosed, mismatched and deprecated tags in an HTML file. |
+| **Check Python Imports** | `python-import-check` | `file` (file, required) | — | Verify that every import in a Python file can actually be resolved. |
+| **Check Python Syntax** | `python-syntax-check` | `folder` (folder), `file` (file) | — | Compile Python files to find syntax errors, with the exact line. |
+| **Check requirements.txt** | `requirements-check` | `file` (file, required) | — | Which packages in a requirements file are installed, missing or outdated. |
+| **Code Statistics** | `code-stats` | `folder` (folder, required), `skip_hidden` (toggle) | — | Lines of code per language, with blank and comment line counts. |
+| **Compare or Bump Versions** | `semver` | `version` (text, required), `action` (choice), `other` (text), `bump` (choice) | — | Compare two semantic versions, or bump one by major, minor or patch. |
+| **Compare Text** | `diff-text` | `file_a` (file), `file_b` (file), `text_a` (multiline), `text_b` (multiline), `context` (number) | — | A unified diff between two blocks of text or two files. |
+| **Convert Colours** | `colour-convert` | `colour` (colour), `against` (colour) | — | Convert between HEX, RGB, HSL and CMYK, with the WCAG contrast ratio. |
+| **Detect File Encoding** | `encoding-detect` | `file` (file, required) | — | Work out whether a file is UTF-8, UTF-16, Windows-1252 or Latin-1, and if it has a BOM. |
+| **Explain a Cron Expression** | `cron-explain` | `expression` (text, required) | — | Turn a cron schedule into plain English, with the next few run times. |
+| **Format SQL** | `sql-format` | `text` (multiline), `file` (file), `uppercase` (toggle) | — | Put a SQL query back into readable lines with keywords upper-cased. |
+| **Git Branches** | `git-branches` | `folder` (folder, required), `merged_only` (toggle) | git | Local and remote branches, with the current one marked. |
+| **Git Diff** | `git-diff` | `folder` (folder, required), `staged` (toggle), `stat_only` (toggle) | git | Uncommitted changes in a repository, with a per-file summary. |
+| **Git Log** | `git-log` | `folder` (folder, required), `count` (number), `format` (choice) | git | Recent commits with author, date and message, as a table or a changelog. |
+| **Git Status** | `git-status` | `folder` (folder, required) | git | Working tree state of a repository: branch, changes and sync position. |
+| **Indentation Report** | `indentation-report` | `folder` (folder, required), `pattern` (text), `recursive` (toggle) | — | Tabs or spaces, how wide, and whether a file is internally consistent. |
+| **Long Line Report** | `line-length-report` | `folder` (folder, required), `max_length` (number), `pattern` (text), `recursive` (toggle) | — | Files and lines that exceed a width limit — for style clean-up. |
+| **Markdown Check** | `markdown-lint` | `file` (file, required) | — | Spot broken links, skipped heading levels, long lines and stray HTML. |
+| **Minify CSS / JS / HTML** | `minify` | `file` (file, required), `kind` (choice), `output` (save as, required) | — | Strip comments and whitespace from CSS, JavaScript or HTML to shrink it. |
+| **Python File Outline** | `python-outline` | `file` (file, required) | — | Every class and function in a Python file, with line numbers and docstrings. |
+| **Regex Tester** | `regex-tester` | `pattern` (text, required), `text` (multiline), `ignore_case` (toggle), `multiline` (toggle), `replacement` (text) | — | Test a regular expression live: matches, groups, positions and replacements. |
+| **TODO Scanner** | `todo-scan` | `folder` (folder, required), `tags` (text), `report` (save as) | — | Collect every TODO, FIXME, HACK and XXX comment in a project. |
 
-## Document & Text
 
-| Tool | Command | Pack | Dependencies | Description |
+## Security
+
+*Passwords, encryption and audits · 16 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Encoding Converter | `encoding` | `document_tools` | — | Convert a text file between encodings. |
-| Line/Word Counter | `count` | `document_tools` | — | Count lines, words and characters in a text file. |
-| PDF Text Extractor | `pdf-text` | `document_tools` | pdftotext | Extract text from a PDF (requires pdftotext). |
+| **Constant-Time Compare** | `secure-compare` | `first` (secret, required), `second` (secret, required) | — | Compare two secrets without leaking timing information — for token checks. |
+| **Decrypt a File** | `file-decrypt` | `file` (file, required), `password` (secret, required), `output` (save as) | cryptography | Decrypt a file this app encrypted, given the right passphrase. |
+| **Derive a Key (PBKDF2)** | `pbkdf2` | `password` (secret, required), `salt` (text), `iterations` (number), `length` (number) | — | Turn a passphrase into a fixed-length key, the way password managers do. |
+| **Encrypt a File** | `file-encrypt` | `file` (file, required), `password` (secret, required), `output` (save as) | cryptography | AES-256 encryption with a passphrase — the file is useless without it. |
+| **Hash Crack Time** | `crack-time` | `password` (secret, required), `algorithm` (choice) | — | How long an attacker needs to brute-force a password hash, by algorithm. |
+| **Measure Entropy** | `entropy` | `file` (file), `text` (multiline) | — | Shannon entropy of a text or file — high values suggest encryption or compression. |
+| **Password Strength** | `password-strength` | `password` (secret, required) | — | Entropy, a crack-time estimate and the specific reasons a password is weak. |
+| **Scan for Personal Data** | `pii-scan` | `folder` (folder, required), `indian` (toggle) | — | Find emails, phone numbers, card numbers and ID patterns in a folder. |
+| **Scan for Secrets** | `secrets-scan` | `folder` (folder, required), `skip_common` (toggle), `report` (save as) | — | Look through a project for API keys, tokens and private keys left in code. |
+| **Shred a File** | `file-shred` | `file` (file, required), `passes` (number), `confirm` (toggle) | changes data | Overwrite a file's contents before deleting it, so it cannot be recovered easily. |
+| **Shred a Folder** | `folder-shred` | `folder` (folder, required), `preview` (toggle), `confirm` (toggle) | changes data | Overwrite and delete every file in a folder — irreversible, with a preview. |
+| **Suspicious Filenames** | `suspicious-names` | `folder` (folder, required) | — | Spot double extensions and disguises like invoice.pdf.exe. |
+| **Two-Factor Code (TOTP)** | `totp-generate` | `secret` (secret, required), `digits` (number), `period` (number) | — | Generate the current 6-digit authenticator code from a base32 secret. |
+| **Validate a Card Number** | `card-validate` | `number` (text, required) | — | Check a card number's Luhn checksum and identify the network. |
+| **Verify a Two-Factor Code** | `totp-verify` | `secret` (secret, required), `code` (text, required), `window` (number) | — | Check whether a 6-digit code is valid for a secret, allowing clock drift. |
+| **World-Writable Files** | `world-writable` | `folder` (folder, required) | — | Files anyone on the system can modify — a classic privilege-escalation hole. |
 
-## Driver Tools
 
-| Tool | Command | Pack | Dependencies | Description |
+## Numbers
+
+*Dates, times, units and calculations · 29 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Driver Class Report | `driver-class-report` | `driver_tools` | pnputil | Report drivers grouped by device class. |
-| Driver Details | `driver-details` | `driver_tools` | pnputil | Show the details of a specific installed driver. |
-| Driver Device Status | `driver-device-status` | `driver_tools` | pnputil | Report the status of a driver's device. |
-| Driver List | `driver-list` | `driver_tools` | pnputil | List the installed Windows drivers. |
-| Driver Package Inventory | `driver-package-inventory` | `driver_tools` | pnputil | List installed Windows driver packages (requires pnputil). |
-| Driver Provider Report | `driver-provider-report` | `driver_tools` | pnputil | Report drivers grouped by provider. |
-| Driver Signature Check | `driver-signature-check` | `driver_tools` | pnputil | Check driver signature and report pass/fail status. |
-| Driver Store Inventory | `driver-store-inventory` | `driver_tools` | pnputil | List driver packages in the Windows driver store. |
-| Driver Update Reminder | `driver-update-reminder` | `driver_tools` | pnputil | Report driver versions and flag candidates for updating. |
-| Driver Version Report | `driver-version-report` | `driver_tools` | pnputil | Report installed driver versions. |
+| **Add to a Date** | `date-add` | `start` (text), `days` (number), `weeks` (number), `months` (number), `years` (number) | — | Add or subtract days, weeks, months or years from a date. |
+| **Age Calculator** | `age-calc` | `birthdate` (text, required) | — | Exact age in years, months and days, plus the next birthday countdown. |
+| **Aspect Ratio Helper** | `aspect-ratio` | `width` (number), `height` (number), `target_width` (number) | — | Reduce a resolution to its aspect ratio, or work out a matching size. |
+| **BMI Calculator** | `bmi` | `weight_kg` (number), `height_cm` (number) | — | Body mass index with WHO and Indian cut-offs, plus a healthy weight range. |
+| **BMR & Daily Calories** | `bmr-tdee` | `weight_kg` (number), `height_cm` (number), `age` (number), `sex` (choice), `activity` (choice) | — | Resting energy use (Mifflin-St Jeor) and daily calories by activity level. |
+| **Compound Interest** | `compound-interest` | `principal` (number), `rate` (number), `years` (number), `frequency` (choice), `monthly_add` (number) | — | Growth of an investment with monthly, quarterly or yearly compounding. |
+| **Daily Fluid Requirement** | `fluid-requirement` | `weight_kg` (number), `activity` (choice), `hot_day_c` (number) | — | A maintenance fluid estimate by weight and activity, in litres and glasses. |
+| **Data Size Converter** | `bytes-units` | `value` (number), `from_unit` (choice), `speed_mbps` (number) | — | Convert between bytes, KB, MB, GB and TB, and show what a file costs to transfer. |
+| **Date Difference** | `date-diff` | `from_date` (text, required), `to_date` (text, required) | — | Days, weeks, months and working days between two dates. |
+| **Discount Calculator** | `discount` | `price` (number), `discount` (number), `extra` (number) | — | Sale price, amount saved, and the effective discount between two prices. |
+| **Epoch / Timestamp Converter** | `epoch-convert` | `value` (text), `milliseconds` (toggle) | — | Convert between Unix timestamps and readable dates, in your local time and UTC. |
+| **Format Indian Currency** | `indian-currency` | `amount` (number), `words` (toggle) | — | Write an amount the Indian way — lakhs, crores and 2,34,567 grouping. |
+| **GCD & LCM** | `gcd-lcm` | `numbers` (text, required) | — | Greatest common divisor and least common multiple of a list of numbers. |
+| **GST Calculator** | `gst-calc` | `amount` (number), `rate` (choice), `mode` (choice), `supply` (choice) | — | Add or remove GST at any rate, and split CGST/SGST or IGST correctly. |
+| **Loan EMI Calculator** | `emi-calc` | `principal` (number), `rate` (number), `years` (number), `months` (number) | — | Monthly EMI, total interest and a year-by-year repayment split. |
+| **Number Base Converter** | `base-convert` | `number` (text, required), `from_base` (number), `to_base` (number) | — | Convert a number between binary, octal, decimal, hex and any base up to 36. |
+| **Number to Words** | `number-words` | `number` (number) | — | Write a number out in English, using the Indian lakh/crore system. |
+| **Percentage Calculator** | `percentage` | `x` (number), `y` (number), `mode` (choice) | — | What is X% of Y, what percent is X of Y, and percent increase or decrease. |
+| **Prime Check & Factorise** | `prime` | `number` (number) | — | Test whether a number is prime, and break any number into its prime factors. |
+| **Quadratic Solver** | `quadratic` | `a` (number), `b` (number), `c` (number) | — | Roots, vertex and discriminant for ax² + bx + c = 0. |
+| **Roman Numerals** | `roman` | `value` (text, required) | — | Convert a number to Roman numerals, or Roman numerals back to a number. |
+| **Round Numbers** | `rounding` | `numbers` (text, required), `decimals` (number), `mode` (choice) | — | Round a list of numbers to a chosen precision, or to the nearest 5, 10 or 100. |
+| **Simple Interest** | `simple-interest` | `principal` (number), `rate` (number), `years` (number) | — | Straight-line interest on a principal, as used for many loans and deposits. |
+| **Simplify a Ratio** | `ratio` | `ratio` (text, required), `total` (number) | — | Reduce a ratio to its simplest form, and split an amount in that ratio. |
+| **Statistics** | `statistics` | `numbers` (text, required), `outliers` (toggle) | — | Mean, median, mode, standard deviation, quartiles and outliers for a list. |
+| **Temperature Converter** | `temperature-convert` | `value` (number), `from_unit` (choice) | — | Convert between Celsius, Fahrenheit and Kelvin, with fever bands for reference. |
+| **Time Zone Converter** | `timezone-convert` | `when` (text), `from_zone` (text), `to_zone` (text) | — | Turn a moment in one time zone into the same moment in another. |
+| **Unit Converter** | `unit-convert` | `category` (choice), `value` (number), `from_unit` (text), `to_unit` (text) | — | Convert length, mass, area, volume, speed, data, time, energy or pressure. |
+| **Working Days** | `working-days` | `start` (text), `end` (text), `holidays` (text) | — | Count business days in a month or between two dates, skipping weekends. |
 
-## Event Tools
 
-| Tool | Command | Pack | Dependencies | Description |
+## Generators
+
+*IDs, passwords, data and dummy files · 24 tools*
+
+| Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
-| Event Log Channel Inventory | `event-log-channel-inventory` | `event_tools` | wevtutil | List the available Windows event log channels. |
-| Event Log Export | `event-log-export` | `event_tools` | wevtutil | Export event log data to a file. |
-| Event Log Guide | `event-log-guide` | `event_tools` | wevtutil | Explain how to read and filter Windows event logs. |
-| Event Log Keyword Filter | `event-log-keyword-filter` | `event_tools` | wevtutil | Filter event log keyword by criteria. |
-| Event Log Level Summary | `event-log-level-summary` | `event_tools` | wevtutil | Summarize event log level summary at a glance. |
-| Event Log List | `event-log-list` | `event_tools` | wevtutil | List recent entries from a Windows event log channel. |
-| Event Log Query | `event-log-query` | `event_tools` | wevtutil | Query the Windows event log by channel and filter (requires wevtutil). |
-| Event Log Recent Errors | `event-log-recent-errors` | `event_tools` | wevtutil | Show the most recent error-level events. |
-| Event Log Recent Warnings | `event-log-recent-warnings` | `event_tools` | wevtutil | Show the most recent warning-level events. |
-| Event Log Source Search | `event-log-source-search` | `event_tools` | wevtutil | Search the Windows event log for a given source name. |
-| Event Log Statistics | `event-log-statistics` | `event_tools` | wevtutil | Summarise event counts by level for a channel. |
-| Event Log Time Filter | `event-log-time-filter` | `event_tools` | wevtutil | Filter event log time by criteria. |
+| **Colour Palette** | `colour-palette` | `colours` (number), `scheme` (choice) | — | A harmonious random palette with hex codes and a contrast check. |
+| **Dice Roller** | `dice-roll` | `notation` (text, required), `rolls` (number) | — | Roll dice in standard notation — 2d6, 1d20+3 — with a breakdown. |
+| **Dummy CSV** | `dummy-csv` | `rows` (number), `columns` (text), `output` (save as, required) | — | Realistic test data as CSV — names, emails, cities, amounts and dates. |
+| **Dummy File** | `dummy-file` | `size_mb` (number), `content` (choice), `output` (save as, required) | — | Create a file of an exact size — for testing uploads, limits and copy speeds. |
+| **Dummy JSON** | `dummy-json` | `records` (number), `nested` (toggle), `output` (save as, required) | — | A JSON array of mock records for API stubs and front-end work. |
+| **Generate API Keys** | `api-key` | `bytes` (number), `count` (number), `prefix` (text), `encoding` (choice) | — | Random API-style keys, with an optional prefix and hex or base64 form. |
+| **Generate OTPs** | `otp-generate` | `digits` (number), `count` (number) | — | One-time codes of a chosen length, with an expiry note for testing flows. |
+| **Generate Passphrases** | `passphrase-generate` | `words` (number), `count` (number), `separator` (choice), `capitalise` (toggle), `number` (toggle) | — | Memorable word-based passphrases — long, random and easy to type. |
+| **Generate Passwords** | `password-generate` | `length` (number), `count` (number), `lower` (toggle), `upper` (toggle), `digits` (toggle), `symbols` (toggle), `no_ambiguous` (toggle) | — | Strong random passwords with the exact character sets you allow. |
+| **Generate PINs** | `pin-generate` | `length` (number), `count` (number), `avoid_patterns` (toggle) | — | Random numeric PINs, avoiding trivial patterns if you want. |
+| **Generate UUIDs** | `uuid-generate` | `count` (number), `style` (choice) | — | RFC 4122 version 4 identifiers, formatted the way you need them. |
+| **Lorem Ipsum** | `lorem-ipsum` | `unit` (choice), `count` (number), `classic_start` (toggle), `output` (save as) | — | Filler text by words, sentences or paragraphs — for layouts and mockups. |
+| **Number Picker** | `lottery-numbers` | `lowest` (number), `highest` (number), `picks` (number), `sorted` (toggle) | — | Unique random numbers for lotteries, draws and sampling without repeats. |
+| **Password Batch** | `password-batch` | `count` (number), `length` (number), `output` (save as, required) | — | A CSV of users with generated passwords — for seeding test accounts. |
+| **Pick From a List** | `pick-from-list` | `text` (multiline), `winners` (number) | — | Draw one or more winners from a list, without repeating a winner. |
+| **Placeholder Image** | `placeholder-image` | `width` (number), `height` (number), `background` (colour), `text_colour` (colour), `label` (text), `output` (save as, required) | pillow | A labelled placeholder image at any size — for mockups and layout tests. |
+| **Random Dates** | `random-date` | `start` (text), `end` (text), `count` (number), `format` (choice), `sorted` (toggle) | — | Random dates in a range, formatted the way your system expects. |
+| **Random Numbers** | `random-number` | `minimum` (number), `maximum` (number), `count` (number), `integers` (toggle), `unique` (toggle) | — | Random integers or decimals in a range, with or without duplicates. |
+| **Random Strings** | `random-string` | `length` (number), `count` (number), `alphabet` (choice) | — | Random text from any character set you choose. |
+| **Sample Names & Emails** | `test-names` | `count` (number), `format` (choice) | — | A ready list of realistic Indian names, emails and cities for test data. |
+| **Sequential IDs** | `sequential-ids` | `start` (number), `count` (number), `prefix` (text), `padding` (number), `suffix` (text) | — | A clean run of IDs with a prefix, padding and separator — for bulk imports. |
+| **Short IDs (NanoID style)** | `nanoid` | `length` (number), `count` (number), `prefix` (text) | — | Compact URL-safe identifiers for records, links and test data. |
+| **Shuffle a List** | `shuffle-lines` | `text` (multiline), `file` (file), `number` (toggle) | — | Randomise the order of lines — for draws, assignments and test order. |
+| **Split Into Teams** | `team-split` | `text` (multiline), `teams` (number), `number` (toggle) | — | Divide a list of people into balanced random teams. |
 
-## Extended Diagnostics
 
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Audio Device Inventory | `audio-device-inventory` | `diagnostics_extra` | powershell | List audio playback and recording devices. |
-| Bluetooth Device Inventory | `bluetooth-device-inventory` | `diagnostics_extra` | powershell | List Bluetooth devices known to the system. |
-| Crash Dump Inventory | `crash-dump-inventory` | `diagnostics_extra` | powershell | List crash dump files on the system. |
-| Device Class Summary | `device-class-summary` | `diagnostics_extra` | powershell | Summarize device class summary at a glance. |
-| Display Inventory | `display-inventory` | `diagnostics_extra` | powershell | List display adapters and monitors. |
-| DNS Cache Viewer | `dns-cache-viewer` | `diagnostics_extra` | powershell | Display the contents of dns cache. |
-| Environment Variable Diff | `environment-variable-diff` | `diagnostics_extra` | powershell | Environment Variable Diff: show differences between two inputs. |
-| Installed Software Snapshot | `installed-software-snapshot` | `diagnostics_extra` | powershell | Take a point-in-time snapshot of installed software snapshot. |
-| Log Directory Inventory | `log-directory-inventory` | `diagnostics_extra` | powershell | List log files and their sizes in a directory. |
-| Network Connection Table | `network-connection-table` | `diagnostics_extra` | powershell | Lay out data as a network connection table table. |
-| Open File Guide | `open-file-guide` | `diagnostics_extra` | powershell | Explain which process holds a file open and how to release it. |
-| PATH Deduplication Report | `path-deduplication-report` | `diagnostics_extra` | powershell | Report duplicate entries in the system PATH. |
-| Printer Inventory | `printer-inventory` | `diagnostics_extra` | powershell | List installed printers. |
-| System Information JSON Export | `system-information-json-export` | `diagnostics_extra` | powershell | Export system information json data to a file. |
-| System Information Text Export | `system-information-text-export` | `diagnostics_extra` | powershell | Export system information text data to a file. |
-| USB Device Inventory | `usb-device-inventory` | `diagnostics_extra` | powershell | List connected USB devices. |
-| Utility Suite Diagnostics | `utility-suite-diagnostics` | `diagnostics_extra` | powershell | Summarise the Utility Suite environment: Python, platform, paths and tool counts. |
-| Windows Features Snapshot | `windows-features-snapshot` | `diagnostics_extra` | powershell | Take a point-in-time snapshot of windows features snapshot. |
-| Windows Firewall Rule Count | `windows-firewall-rule-count` | `diagnostics_extra` | powershell | Produce a windows firewall rule count count. |
-| Windows Hotfix Snapshot | `windows-hotfix-snapshot` | `diagnostics_extra` | powershell | Take a point-in-time snapshot of windows hotfix snapshot. |
+## Optional dependencies
 
-## File Operations
+| Dependency | Type | Unlocks | Status here |
+|---|---|---|---|
+| 7-Zip (7z / rar archives) | binary | 1 tools | not installed |
+| FFmpeg (audio & video) | binary | 19 tools | not installed |
+| ffprobe (media metadata) | binary | 1 tools | not installed |
+| Git | binary | 4 tools | present |
+| LibreOffice (Office conversion) | binary | 1 tools | present |
+| Pandoc (document conversion) | binary | 0 tools | not installed |
+| Poppler (pdftotext / pdfinfo) | binary | 2 tools | present |
+| qpdf (PDF structure repair) | binary | 0 tools | not installed |
+| Tesseract (OCR engine) | binary | 2 tools | not installed |
+| cryptography (strong encryption) | python | 2 tools | present |
+| NumPy (numeric arrays) | python | 0 tools | present |
+| openpyxl (Excel files) | python | 6 tools | present |
+| Pillow (image library) | python | 28 tools | present |
+| psutil (process & system metrics) | python | 0 tools | not installed |
+| pypdf (PDF library) | python | 22 tools | present |
+| pyperclip (system clipboard) | python | 0 tools | not installed |
+| python-docx (Word files) | python | 6 tools | present |
+| pywin32 (Windows APIs) | python | 0 tools | not installed |
+| Send2Trash (recycle bin) | python | 0 tools | not installed |
 
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Batch Renamer | `renamer` | `file_ops` | — | Rename files in bulk using a pattern such as {name}-x.{ext}. |
-| Checksum Tool | `checksum` | `file_ops` | — | Compute a file's checksum (MD5, SHA-1, SHA-256, SHA-512). |
-| Duplicate Finder | `dupefinder` | `file_ops` | — | Find duplicate files by content hash. |
-| File Age Actions | `ageactions` | `file_ops` | — | Find files older or newer than a threshold and act on them. |
-| File Joiner | `joiner` | `file_ops` | — | Reassemble parts produced by the splitter into the original file. |
-| File Splitter | `splitter` | `file_ops` | — | Split a large file into fixed-size parts. |
-| Secure Delete | `sdelete` | `file_ops` | — | Overwrite and delete files so their contents are not trivially recoverable. |
-| Smart Sorter | `sorter` | `file_ops` | — | Sort files into subfolders by type, date or name. |
-
-## Maintenance
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Broken Link Finder | `broken-link-finder` | `maintenance` | — | Find broken symlinks and shortcuts. |
-| Disk Cleanup | `cleanmgr` | `maintenance` | cleanmgr | Launch the Windows Disk Cleanup utility. |
-| Disk Cleanup Preview | `disk-cleanup-preview` | `maintenance` | — | Preview the effect of disk cleanup before applying it. |
-| Junk File Finder | `junk-find` | `maintenance` | — | Locate common junk files and caches. |
-| Log Rotation Helper | `log-rotate` | `maintenance` | — | Assist with log rotation tasks. |
-| Temp File Aging Cleaner | `temp-aging-cleaner` | `maintenance` | — | Clean up temp file aging. |
-| Temp File Cleaner | `temp-clean` | `maintenance` | — | Find and remove temporary files. |
-
-## Media Metadata
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Audio MIME Detector | `audio-mime-detector` | `media_metadata` | ffprobe | Detect the MIME type of an audio file. |
-| EXIF Camera Reader | `exif-camera-reader` | `media_metadata` | ffprobe | Read the camera make and model from an image's EXIF data (requires Pillow). |
-| EXIF Date Reader | `exif-date-reader` | `media_metadata` | ffprobe | Read the capture date recorded in an image's EXIF data (requires Pillow). |
-| Image MIME Detector | `image-mime-detector` | `media_metadata` | ffprobe | Detect the MIME type of an image file. |
-| Media Duplicate Finder | `media-duplicate-finder` | `media_metadata` | ffprobe | Find duplicate media files by hash. |
-| Media Duration Inventory | `media-duration-inventory` | `media_metadata` | ffprobe | List media files with their durations (requires ffprobe). |
-| Media Extension Summary | `media-extension-summary` | `media_metadata` | ffprobe | Summarize media extension summary at a glance. |
-| Media File Scanner | `media-file-scanner` | `media_metadata` | ffprobe | Scan a folder for media files and list what it finds. |
-| Media Folder Report | `media-folder-report` | `media_metadata` | ffprobe | Summarise a folder of media files by type and size. |
-| Media Hash Inventory | `media-hash-inventory` | `media_metadata` | ffprobe | Hash the media files in a folder. |
-| Media Size Report | `media-size-report` | `media_metadata` | ffprobe | Report the size of media files in a folder. |
-| Video MIME Detector | `video-mime-detector` | `media_metadata` | ffprobe | Detect the MIME type of a video file. |
-
-## Miscellaneous
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Base64 Codec | `b64-codec` | `misc` | — | Strict Base64 encode/decode with URL-safe and no-padding modes. |
-| Byte Unit Converter | `bytes-units` | `misc` | — | Convert storage amounts across decimal (KB/MB) and binary (KiB/MiB) byte units. |
-| CSV Query | `csv-query` | `misc` | — | Filter, project and aggregate CSV rows with column stats; no external tools required. |
-| Directory Tree Viewer | `tree-print` | `misc` | — | ASCII directory tree with per-entry sizes, depth limits and directories-only mode. |
-| File Age Calculator | `file-age` | `misc` | — | Report how old a file is in days, hours and minutes. |
-| Hash Identifier | `hash-identify` | `misc` | — | Identify likely hash algorithm from a hash string; optionally verify against plaintext. |
-| INI Toolkit | `ini-tool` | `misc` | — | Read, query, update and JSON-export INI configuration files with configparser. |
-| IP Subnet Calculator | `ip-calc` | `misc` | — | IPv4 CIDR/netmask math: network, broadcast, wildcard, host range and count. |
-| JSON Schema Explorer | `json-schema` | `misc` | — | Print a leaf-path schema of a JSON document (diffing lives in dev_tools: json-diff). |
-| Password Entropy Calculator | `password-entropy` | `misc` | — | Estimate password entropy/strength, or generate strong random passwords. |
-| Path Length Checker | `path-length` | `misc` | — | Check a path against Windows' 260-character limit. |
-| Random File Generator | `rand-file` | `misc` | — | Create cryptographically-random test files of any size for benchmarking other tools. |
-| Random File Picker | `random-file` | `misc` | — | Pick a random file from a folder, or generate a random test file. |
-| Text Diff | `text-diff` | `misc` | — | Unified/context line diff between two text files via difflib, with change summary mode. |
-| UUID Toolkit | `uuid-tool` | `misc` | — | Generate v1/v3/v4/v5/nil/max UUIDs in bulk and validate any RFC 4122 string. |
-
-## Monitoring & Telemetry
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Battery Status | `battery-status` | `monitoring_tools` | powershell | Report the battery charge level and state. |
-| CPU Monitor Snapshot | `cpu-monitor-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of cpu monitor snapshot. |
-| CPU Threshold Check | `cpu-threshold-check` | `monitoring_tools` | powershell | Check cpu threshold and report pass/fail status. |
-| Directory Change Snapshot | `directory-change-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of directory change snapshot. |
-| Directory Size Monitor | `directory-size-monitor` | `monitoring_tools` | powershell | Monitor directory size over time. |
-| Disk Monitor Snapshot | `disk-monitor-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of disk monitor snapshot. |
-| Disk Space Threshold Check | `disk-space-threshold-check` | `monitoring_tools` | powershell | Check disk space threshold and report pass/fail status. |
-| File Count Monitor | `file-count-monitor` | `monitoring_tools` | powershell | Monitor file count over time. |
-| Long Running Process Finder | `long-running-procs` | `monitoring_tools` | python:psutil | Find processes running longer than a threshold (requires psutil). |
-| Memory Monitor Snapshot | `memory-monitor-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of memory monitor snapshot. |
-| Memory Threshold Check | `memory-threshold-check` | `monitoring_tools` | powershell | Check memory threshold and report pass/fail status. |
-| Monitor Threshold Calculator | `monitor-threshold-calculator` | `monitoring_tools` | powershell | Compute alert thresholds from a metric series. |
-| Network Adapter Snapshot | `network-adapter-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of network adapter snapshot. |
-| Network Monitor Snapshot | `network-monitor-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of network monitor snapshot. |
-| Open File Handle Report | `open-handles` | `monitoring_tools` | python:psutil | Report open file handles for a process (requires psutil). |
-| Power Source Status | `power-source-status` | `monitoring_tools` | powershell | Report whether the machine is on AC power or battery. |
-| Process Monitor Snapshot | `process-monitor-snapshot` | `monitoring_tools` | powershell | Take a point-in-time snapshot of process monitor snapshot. |
-| Resource Log Viewer | `resource-log-viewer` | `monitoring_tools` | powershell | Display the contents of resource log. |
-| Resource Snapshot Diff | `resource-snapshot` | `monitoring_tools` | python:psutil | Resource Snapshot Diff: show differences between two inputs. |
-| Resource Trend CSV | `resource-trend-csv` | `monitoring_tools` | powershell | Record CPU/memory samples to a CSV for trend analysis. |
-| System Load Report | `system-load-report` | `monitoring_tools` | powershell | Report current CPU and memory load (requires psutil). |
-
-## Multimedia
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Image Thumbnail Generator | `thumbnail` | `media_tools` | python:PIL | Generate a thumbnail image for a picture or video (requires Pillow). |
-| Media Metadata Extractor | `media-info` | `media_tools` | ffprobe | Read container, codec and stream metadata from a media file (requires ffprobe). |
-| Media Transcoder | `transcode` | `media_tools` | ffmpeg | Convert a media file to another format (requires ffmpeg). |
-
-## Network Diagnostics
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Connection Test | `connection-test` | `network_diagnostics` | powershell, ipconfig | Test connection reachability or behavior. |
-| Default Gateway | `default-gateway` | `network_diagnostics` | powershell, ipconfig | Report the default gateway. |
-| DHCP Status | `dhcp-status` | `network_diagnostics` | powershell, ipconfig | Report whether an interface is using DHCP and its lease details. |
-| DNS Connectivity Test | `dns-connectivity-test` | `network_diagnostics` | powershell, ipconfig | Test dns connectivity reachability or behavior. |
-| DNS Server List | `dns-server-list` | `network_diagnostics` | powershell, ipconfig | List the DNS servers currently configured. |
-| HTTP Connectivity Test | `http-connectivity-test` | `network_diagnostics` | powershell, ipconfig | Test http connectivity reachability or behavior. |
-| HTTPS Connectivity Test | `https-connectivity-test` | `network_diagnostics` | powershell, ipconfig | Test https connectivity reachability or behavior. |
-| Internet Reachability | `internet-reachability` | `network_diagnostics` | powershell, ipconfig | Check whether the internet is reachable. |
-| IPv4 Configuration | `ipv4-configuration` | `network_diagnostics` | powershell, ipconfig | Show IPv4 addresses, masks and interfaces. |
-| IPv6 Configuration | `ipv6-configuration` | `network_diagnostics` | powershell, ipconfig | Show IPv6 addresses and interfaces. |
-| Latency Test | `latency-test` | `network_diagnostics` | powershell, ipconfig | Test latency reachability or behavior. |
-| MAC Address Viewer | `mac-address-viewer` | `network_diagnostics` | powershell, ipconfig | Display the contents of mac address. |
-| Network Adapter Details | `network-adapter-details` | `network_diagnostics` | powershell, ipconfig | Show the detailed configuration of a network adapter. |
-| Network Adapter List | `network-adapter-list` | `network_diagnostics` | powershell, ipconfig | List the installed network adapters. |
-| Network Diagnostics Bundle | `network-diagnostics-bundle` | `network_diagnostics` | powershell, ipconfig | Run a bundle of network checks and summarise the results. |
-| Packet Loss Test | `packet-loss-test` | `network_diagnostics` | powershell, ipconfig | Test packet loss reachability or behavior. |
-| Proxy Configuration | `proxy-configuration` | `network_diagnostics` | powershell, ipconfig | Show the configured system/web proxy. |
-| WinHTTP Proxy Viewer | `winhttp-proxy-viewer` | `network_diagnostics` | powershell, ipconfig | Display the contents of winhttp proxy. |
-
-## Network Tools
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Download Manager | `download` | `network_tools` | — | Download a URL to a file using streaming I/O. |
-| FTP Client | `ftp` | `network_tools` | — | Upload or download a file over FTP. |
-| HTTP Server | `http-serve` | `network_tools` | — | Serve a local directory over HTTP on 127.0.0.1. |
-
-## Office Tools
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| DOCX Heading Extractor | `docx-heading-extractor` | `office_tools` | python-docx, openpyxl, python-pptx | Extract the headings from a Word document (requires python-docx). |
-| DOCX Image Inspector | `docx-image-inspector` | `office_tools` | python-docx, openpyxl, python-pptx | Inspect docx image and report internals. |
-| DOCX Metadata | `docx-metadata` | `office_tools` | python-docx, openpyxl, python-pptx | Read core properties (title, author, dates) from a DOCX file (requires python-docx). |
-| DOCX Paragraph Counter | `docx-paragraph-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count the paragraphs in a Word document (requires python-docx). |
-| DOCX Structure Inspector | `docx-structure-inspector` | `office_tools` | python-docx, openpyxl, python-pptx | Inspect docx structure and report internals. |
-| DOCX Text Extractor | `docx-text-extractor` | `office_tools` | python-docx, openpyxl, python-pptx | Extract the body text from a Word document (requires python-docx). |
-| Office File Inventory | `office-file-inventory` | `office_tools` | python-docx, openpyxl, python-pptx | List Office documents in a folder with basic properties. |
-| PPTX Slide Counter | `pptx-slide-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count the slides in a PowerPoint deck (requires python-pptx). |
-| XLSX Cell Counter | `xlsx-cell-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count the populated cells in a spreadsheet (requires openpyxl). |
-| XLSX Formula Counter | `xlsx-formula-counter` | `office_tools` | python-docx, openpyxl, python-pptx | Count the cells containing formulas in a spreadsheet (requires openpyxl). |
-| XLSX Metadata | `xlsx-metadata` | `office_tools` | python-docx, openpyxl, python-pptx | Read workbook properties and sheet names from an XLSX file (requires openpyxl). |
-| XLSX Sheet Lister | `xlsx-sheet-lister` | `office_tools` | python-docx, openpyxl, python-pptx | List the sheets in an XLSX workbook (requires openpyxl). |
-
-## Package & Environment Tools
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Executable Package Locator | `executable-package-locator` | `package_tools` | python | Locate the install path of an executable package. |
-| Import Package Test | `import-package-test` | `package_tools` | python | Test import package reachability or behavior. |
-| Package Cache Guide | `package-cache-guide` | `package_tools` | python | Explain how to inspect and clear the pip download cache. |
-| Pip Command Guide | `pip-command-guide` | `package_tools` | python | Show the common pip commands for installing, listing and removing packages. |
-| Python Package List | `python-package-list` | `package_tools` | python | List the installed Python packages and their versions. |
-| Python Package Versions | `python-package-versions` | `package_tools` | python | List installed Python packages and their versions. |
-| Requirements Auditor | `requirements-auditor` | `package_tools` | python | Audit requirements for issues. |
-| Requirements Generator | `requirements-generator` | `package_tools` | python | Generate a requirements.txt from the installed packages. |
-| Venv Size Reporter | `venv-size` | `package_tools` | — | Produce a detailed report of venv size. |
-| Virtual Environment Finder | `virtual-environment-finder` | `package_tools` | python | Find Python virtual environments under a directory. |
-| Virtual Environment Report | `virtual-environment-report` | `package_tools` | python | Report Python virtual environments and their packages. |
-| Wheel Inspector | `wheel-inspector` | `package_tools` | — | Inspect wheel and report internals. |
-
-## PDF Tools
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| PDF Attachment Inspector | `pdf-attachment-inspector` | `pdf_tools` | pdftotext, qpdf, pdfunite | Inspect pdf attachment and report internals. |
-| PDF Compress | `pdf-compress` | `pdf_tools` | pdftotext, qpdf, pdfunite | Compress a PDF (requires qpdf). |
-| PDF Image Extractor | `pdf-image-extractor` | `pdf_tools` | pdftotext, qpdf, pdfunite | Extract the embedded images from a PDF (requires pdfimages). |
-| PDF Merge | `pdf-merge` | `pdf_tools` | pdftotext, qpdf, pdfunite | Merge several PDFs into one (requires qpdf). |
-| PDF Metadata Cleaner | `pdf-metadata-cleaner` | `pdf_tools` | pdftotext, qpdf, pdfunite | Strip metadata from a PDF (requires qpdf). |
-| PDF Metadata Reader | `pdf-metadata-reader` | `pdf_tools` | pdftotext, qpdf, pdfunite | Read the metadata fields from a PDF (requires pdfinfo). |
-| PDF Page Counter | `pdf-page-counter` | `pdf_tools` | pdftotext, qpdf, pdfunite | Count the pages in a PDF. |
-| PDF Page Extractor | `pdf-page-extractor` | `pdf_tools` | pdftotext, qpdf, pdfunite | Extract a page range from a PDF into a new file (requires qpdf). |
-| PDF Rotate | `pdf-rotate` | `pdf_tools` | pdftotext, qpdf, pdfunite | Rotate pdf logs or content. |
-| PDF Split | `pdf-split` | `pdf_tools` | pdftotext, qpdf, pdfunite | Split a PDF into pages or ranges (requires qpdf). |
-| PDF Text Search | `pdf-text-search` | `pdf_tools` | pdftotext, qpdf, pdfunite | Search a PDF's text for a pattern and report the matching pages (requires pdftotext). |
-| PDF Watermark | `pdf-watermark` | `pdf_tools` | pdftotext, qpdf, pdfunite | Stamp a watermark onto PDF pages. |
-
-## Process Tools
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Process Affinity Reader | `process-affinity-reader` | `process_tools` | — | Read which CPUs a process is allowed to run on (requires psutil). |
-| Process Affinity Setter | `process-affinity-setter` | `process_tools` | — | Set/apply process affinity configuration. |
-| Process CPU Snapshot | `process-cpu-snapshot` | `process_tools` | — | Take a point-in-time snapshot of process cpu snapshot. |
-| Process Details | `process-details` | `process_tools` | — | Show the details of a single process by PID. |
-| Process Environment Summary | `process-environment-summary` | `process_tools` | — | Summarize process environment summary at a glance. |
-| Process Handle Summary | `process-handle-summary` | `process_tools` | — | Summarize process handle summary at a glance. |
-| Process List | `process-list` | `process_tools` | — | List the running processes with their PIDs and memory use. |
-| Process Memory Snapshot | `process-memory-snapshot` | `process_tools` | — | Take a point-in-time snapshot of process memory snapshot. |
-| Process Path Resolver | `process-path-resolver` | `process_tools` | — | Resolve process path names to concrete targets. |
-| Process Priority Reader | `process-priority-reader` | `process_tools` | — | Read a process's scheduling priority (requires psutil). |
-| Process Priority Setter | `process-priority-setter` | `process_tools` | — | Set/apply process priority configuration. |
-| Process Search | `process-search` | `process_tools` | — | Find running processes whose name or command line matches a pattern. |
-| Process Start Time | `process-start-time` | `process_tools` | — | Report when a process started. |
-| Process Terminate | `process-terminate` | `process_tools` | — | Terminate a process by PID (requires taskkill). |
-| Process Tree | `process-tree` | `process_tools` | — | Show the process tree. |
-| Process Wait | `process-wait` | `process_tools` | — | Wait for a process to exit. |
-
-## Registry Tools
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Registry Backup | `registry-backup` | `registry_tools` | reg | Back up registry targets. |
-| Registry Export | `registry-export` | `registry_tools` | reg | Export registry data to a file. |
-| Registry Import | `registry-import` | `registry_tools` | reg | Import registry data from a file. |
-| Registry Key Creator | `registry-key-creator` | `registry_tools` | reg | Create a Windows registry key. |
-| Registry Key Deleter | `registry-key-deleter` | `registry_tools` | reg | Delete a Windows registry key (destructive). |
-| Registry Path Validator | `registry-path-validator` | `registry_tools` | reg | Check that a Windows registry path is well-formed. |
-| Registry Query | `registry-query` | `registry_tools` | reg | Read a value or key from the Windows registry (requires reg). |
-| Registry Value Deleter | `registry-value-deleter` | `registry_tools` | reg | Delete a Windows registry value (destructive). |
-| Registry Value Enumerator | `registry-value-enumerator` | `registry_tools` | reg | List the values under a registry key. |
-| Registry Value Setter | `registry-value-setter` | `registry_tools` | reg | Set/apply registry value configuration. |
-
-## Search & Index
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Content Search | `grep` | `search_index` | — | Search file contents for a pattern. |
-| Fast Search | `search` | `search_index` | — | Search the index by filename. |
-| File Indexer | `index` | `search_index` | — | Build a searchable index of a directory tree (SQLite-backed). |
-
-## Security & Encryption
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| File Decryptor | `decrypt` | `security_tools` | gpg | Decrypt a GnuPG-encrypted file (requires gpg). |
-| File Encryptor | `encrypt` | `security_tools` | gpg | Encrypt a file with GnuPG for a given recipient (requires gpg). |
-| File Integrity Baseline | `integrity-baseline` | `security_tools` | — | Create or verify a SHA-256 integrity baseline for a file. |
-| File Permissions Changer | `permissions` | `security_tools` | — | Report or change file permissions (requires PowerShell on Windows). |
-
-## Security Auditing
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Administrator Group Inventory | `administrator-group-inventory` | `security_audit` | powershell | List members of the local Administrators group (requires PowerShell). |
-| Autostart Registry Diff | `autostart-diff` | `security_audit` | reg | Autostart Registry Diff: show differences between two inputs. |
-| Credential Filename Finder | `credential-filename-finder` | `security_audit` | powershell | Find files whose names suggest stored credentials. |
-| Defender Status | `defender-status` | `security_audit` | powershell | Report the Microsoft Defender protection status. |
-| Executable Finder | `executable-finder` | `security_audit` | powershell | Find executable files in a folder tree (requires PowerShell). |
-| File Permission Report | `file-permission-report` | `security_audit` | powershell | Report file permissions for files in a folder (requires PowerShell). |
-| Firewall Status | `firewall-status` | `security_audit` | powershell | Report the Windows Firewall profile status. |
-| Hidden File Finder | `hidden-file-finder` | `security_audit` | powershell | Find hidden files in a folder tree (requires PowerShell). |
-| Hosts File Audit | `hosts-file-audit` | `security_audit` | powershell | Audit hosts file for policy or safety issues. |
-| Local Account Inventory | `local-account-inventory` | `security_audit` | powershell | List local user accounts (requires PowerShell). |
-| Open Share Guide | `open-share-guide` | `security_audit` | powershell | Explain how to find and close open network shares. |
-| Portable App Suspicion Scanner | `portable-scan` | `security_audit` | — | Scan a folder for signs of portable applications. |
-| Private Key Filename Finder | `private-key-filename-finder` | `security_audit` | powershell | Find files that look like private keys. |
-| Recent Docs Privacy Report | `recent-docs-report` | `security_audit` | — | Report recently opened documents from the Windows Recent folder. |
-| Security Event Summary | `security-event-summary` | `security_audit` | powershell | Summarize security event summary at a glance. |
-| Sensitive Filename Finder | `sensitive-filename-finder` | `security_audit` | powershell | Find files whose names suggest secrets (password, token, credential). |
-| Service Security Report | `service-security-report` | `security_audit` | powershell | Report Windows services and their security-relevant settings. |
-| SSH Key Audit | `ssh-key-audit` | `security_audit` | powershell | Audit ssh key for policy or safety issues. |
-| Startup Security Audit | `startup-security-audit` | `security_audit` | powershell | Audit startup security for policy or safety issues. |
-| Temp Integrity Baseline | `integrity-baseline-plus` | `security_audit` | — | Record or verify SHA-256 baselines for files, stored in the temp directory. |
-| Windows Update Status | `windows-update-status` | `security_audit` | powershell | Report the pending and installed Windows updates. |
-| World Writable Finder | `world-writable-finder` | `security_audit` | powershell | Find world-writable files and folders (requires PowerShell). |
-
-## Shell & Command Tools
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Argument Escaper | `argument-escaper` | `shell_tools` | — | Escape argument strings for safe shell use. |
-| Batch File Generator | `batch-file-generator` | `shell_tools` | — | Generate a Windows batch (.bat) script from a template. |
-| Command Availability Scan | `command-availability-scan` | `shell_tools` | — | Check which of the supplied commands are available on PATH. |
-| Command History Guide | `command-history-guide` | `shell_tools` | — | Explain where the shell stores command history and how to search it. |
-| Command Resolver | `command-resolver` | `shell_tools` | — | Resolve command names to concrete targets. |
-| Command Timeout Runner | `command-timeout-runner` | `shell_tools` | — | Run a command with a time limit and capture its output. |
-| Executable Locator | `executable-locator` | `shell_tools` | — | Locate the full path of an executable on PATH. |
-| Exit Code Decoder | `exit-code-decoder` | `shell_tools` | — | Decode exit code. |
-| PATH Inspector | `path-inspector` | `shell_tools` | — | Inspect path and report internals. |
-| PowerShell Command Runner | `powershell-command-runner` | `shell_tools` | powershell | Run a PowerShell command and capture its output. |
-| PowerShell Script Generator | `powershell-script-generator` | `shell_tools` | — | Generate a PowerShell (.ps1) script from a template. |
-| Process Pipe Helper | `process-pipe-helper` | `shell_tools` | — | Assist with process pipe tasks. |
-| Shell Command Runner | `shell-command-runner` | `shell_tools` | — | Run a command given as an argument list and capture its output. |
-| Shell Environment Dump | `shell-environment-dump` | `shell_tools` | — | Dump shell environment contents in a readable format. |
-| Shell Quoting Helper | `shell-quoting-helper` | `shell_tools` | — | Assist with shell quoting tasks. |
-| STDERR Capture | `stderr-capture` | `shell_tools` | — | Capture stderr streams from child processes. |
-| STDOUT Capture | `stdout-capture` | `shell_tools` | — | Capture stdout streams from child processes. |
-| Working Directory Reporter | `working-directory-reporter` | `shell_tools` | — | Produce a detailed report of working directory. |
-
-## Startup & Automation
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Automation Manifest | `automation-manifest` | `startup_automation` | schtasks | Emit a manifest of the automation entries Utility Suite can manage. |
-| Folder Watch Snapshot | `folder-watch-snapshot` | `startup_automation` | schtasks | Take a point-in-time snapshot of folder watch snapshot. |
-| Logon Task Report | `logon-task-report` | `startup_automation` | schtasks | Report scheduled tasks that run at logon. |
-| Scheduled Task Details | `scheduled-task-details` | `startup_automation` | schtasks | Show the details of a scheduled task. |
-| Scheduled Task Disable | `scheduled-task-disable` | `startup_automation` | schtasks | Disable a Windows scheduled task. |
-| Scheduled Task Enable | `scheduled-task-enable` | `startup_automation` | schtasks | Enable a Windows scheduled task. |
-| Scheduled Task List | `scheduled-task-list` | `startup_automation` | schtasks | List the Windows scheduled tasks. |
-| Scheduled Task Run | `scheduled-task-run` | `startup_automation` | schtasks | Run an existing Windows scheduled task (requires schtasks). |
-| Startup Entry Inventory | `startup-entry-inventory` | `startup_automation` | schtasks | List programs configured to start with Windows. |
-| Startup Folder Cleaner | `startup-folder-cleaner` | `startup_automation` | schtasks | Clean up startup folder. |
-| Startup Folder Viewer | `startup-folder-viewer` | `startup_automation` | schtasks | Display the contents of startup folder. |
-| Startup Report | `startup-report` | `startup_automation` | schtasks | Summarise Windows startup entries and their locations. |
-| Task Trigger Guide | `task-trigger-guide` | `startup_automation` | schtasks | Explain scheduled-task triggers and how to edit them. |
-| Task XML Export | `task-xml-export` | `startup_automation` | schtasks | Export task xml data to a file. |
-
-## Storage Analytics
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Directory CSV Export | `directory-csv-export` | `storage_tools` | — | Export directory csv data to a file. |
-| Directory JSON Export | `directory-json-export` | `storage_tools` | — | Export directory json data to a file. |
-| Directory Tree Export | `directory-tree-export` | `storage_tools` | — | Export directory tree data to a file. |
-| Duplicate Name Finder | `duplicate-name-finder` | `storage_tools` | — | Find files that share the same name across a folder tree. |
-| Extension Statistics | `extension-statistics` | `storage_tools` | — | Count files and total size per extension. |
-| File Age Histogram | `file-age-histogram` | `storage_tools` | — | Bucket files by age and print a histogram. |
-| File Size Histogram | `file-size-histogram` | `storage_tools` | — | Bucket files by size and print a histogram. |
-| Hidden File Report | `hidden-file-report` | `storage_tools` | — | Report hidden files in a folder tree. |
-| Junction Finder | `junction-finder` | `storage_tools` | — | Find directory junctions in a folder tree. |
-| Long Path Finder | `long-path-finder` | `storage_tools` | — | Find paths that exceed the Windows length limit. |
-| Old File Finder | `old-file-finder` | `storage_tools` | — | Find files older than a threshold. |
-| Read Only Finder | `read-only-finder` | `storage_tools` | — | Find read-only files. |
-| Recent File Finder | `recent-file-finder` | `storage_tools` | — | Find recently modified files. |
-| Storage Health Report | `storage-health-report` | `storage_tools` | — | Summarise storage usage and health for a drive. |
-| Symlink Finder | `symlink-finder` | `storage_tools` | — | Find symbolic links in a folder tree. |
-| Zero Byte Finder | `zero-byte-finder` | `storage_tools` | — | Find empty (zero-byte) files. |
-
-## System Information
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Boot Time | `boot-time` | `system_info` | — | Report when the system last booted. |
-| Computer Name | `computer-name` | `system_info` | — | Report the machine hostname. |
-| CPU Information | `cpu-information` | `system_info` | — | Report CPU model and core count. |
-| Current User | `current-user` | `system_info` | — | Report the current user and home directory. |
-| Environment Report | `environment-report` | `system_info` | — | Report environment variables and key system paths. |
-| Installed RAM Summary | `installed-ram-summary` | `system_info` | — | Summarize installed ram summary at a glance. |
-| Locale Information | `locale-information` | `system_info` | — | Report locale and encoding settings. |
-| Machine Architecture | `machine-architecture` | `system_info` | — | Report the machine architecture. |
-| Memory Information | `memory-information` | `system_info` | — | Report installed and available memory (live totals require psutil). |
-| OS Version | `os-version` | `system_info` | — | Report the operating system name and version. |
-| PowerShell Version | `powershell-version` | `system_info` | powershell | Report the installed PowerShell version (requires PowerShell). |
-| Python Environment | `python-environment` | `system_info` | — | Report the Python version, executable and platform. |
-| System Directory Report | `system-directory-report` | `system_info` | — | Report the system directories and their sizes. |
-| System Environment Export | `system-environment-export` | `system_info` | — | Export system environment data to a file. |
-| System Summary | `system-summary` | `system_info` | — | Summarize system summary at a glance. |
-| System Uptime | `system-uptime` | `system_info` | — | Report how long the system has been running. |
-| Temporary Directory Report | `temporary-directory-report` | `system_info` | — | Report the temp directory location and usage. |
-| Time Zone Information | `time-zone-information` | `system_info` | — | Report the system time zone and UTC offset. |
-| User Profile Report | `user-profile-report` | `system_info` | — | Report the current user profile and its folders. |
-| Windows Version Report | `windows-version-report` | `system_info` | — | Report the detailed Windows version and build. |
-
-## System Utilities
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Environment Variable Editor | `env` | `system_utils` | — | Read or write environment variables. |
-| Event Log Viewer | `eventlog` | `system_utils` | wevtutil | Read entries from the Windows event log (requires wevtutil). |
-| Network Adapter Reset | `net-reset` | `system_utils` | powershell | Disable and re-enable a network adapter to reset it (Windows, elevated, --yes required). |
-| Service Manager | `service` | `system_utils` | sc | Query or start/stop a Windows service (requires sc). |
-| Startup Program Manager | `startup` | `system_utils` | reg | List or edit programs that start with Windows. |
-
-## Text Processing
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Blank Line Cleaner | `blank-line-cleaner` | `text_tools` | — | Clean up blank line. |
-| Camel Case Converter | `camel-case-converter` | `text_tools` | — | Convert text words into camelCase identifiers. |
-| Case Converter | `case-converter` | `text_tools` | — | Convert text to upper, lower, or swapped case. |
-| Character Frequency | `character-frequency` | `text_tools` | — | Count how often each character appears. |
-| Indentation Normalizer | `indentation-normalizer` | `text_tools` | — | Rewrite a file's indentation to a consistent style. |
-| Kebab Case Converter | `kebab-case-converter` | `text_tools` | — | Convert text words into kebab-case slugs. |
-| Line Number Prefixer | `line-number-prefixer` | `text_tools` | — | Prefix each line with its line number. |
-| Markdown Table Formatter | `markdown-table-formatter` | `text_tools` | — | Reformat markdown table to a clean layout. |
-| Ngram Counter | `ngram-counter` | `text_tools` | — | Count the most frequent n-grams in a text. |
-| Regex Replacer | `regex-replacer` | `text_tools` | — | Find and replace using a regular expression. |
-| Sentence Counter | `sentence-counter` | `text_tools` | — | Count the sentences in a text. |
-| Slugify Converter | `slugify-converter` | `text_tools` | — | Turn any title or sentence into a URL-safe lowercase slug. |
-| Snake Case Converter | `snake-case-converter` | `text_tools` | — | Convert text words into snake_case identifiers. |
-| Text Deduplicator | `text-deduplicator` | `text_tools` | — | Remove duplicate lines from a text file. |
-| Text Reverse | `text-reverse` | `text_tools` | — | Reverse the characters, words or lines of a text file. |
-| Text Sorter | `text-sorter` | `text_tools` | — | Sort text records. |
-| Text Unwrap | `text-unwrap` | `text_tools` | — | Join wrapped lines back into paragraphs. |
-| Text Wrap | `text-wrap` | `text_tools` | — | Wrap long lines to a given width. |
-| Title Case Converter | `title-case-converter` | `text_tools` | — | Capitalize the first letter of every word (Title Case). |
-| Trailing Space Cleaner | `trailing-space-cleaner` | `text_tools` | — | Clean up trailing space. |
-| Unicode Normalizer | `unicode-normalizer` | `text_tools` | — | Normalise Unicode text to a canonical form (NFC/NFD/NFKC/NFKD). |
-| Whitespace Cleaner | `whitespace-cleaner` | `text_tools` | — | Clean up whitespace. |
-| Word Frequency | `word-frequency` | `text_tools` | — | Count how often each word appears. |
-
-## Time & Productivity
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Business Day Difference | `business-day-difference` | `time_productivity` | — | Compute the difference between business day inputs. |
-| Calendar Month | `calendar-month` | `time_productivity` | — | Print a calendar for a month. |
-| Calendar Year | `calendar-year` | `time_productivity` | — | Print a calendar for a year. |
-| Countdown | `countdown` | `time_productivity` | — | Run a countdown timer. |
-| Cron Expression Explainer | `cron-explainer` | `time_productivity` | — | Translate a cron expression into plain English. |
-| Date Difference | `date-difference` | `time_productivity` | — | Compute the difference between date inputs. |
-| Date Range Expander | `date-range-expander` | `time_productivity` | — | Expand date range into enumerated items. |
-| Day Of Year | `day-of-year` | `time_productivity` | — | Report the day-of-year number for a date. |
-| Epoch Converter | `epoch-converter` | `time_productivity` | — | Convert a Unix epoch timestamp to a human-readable date and back. |
-| Habit Streak Counter | `habit-streak` | `time_productivity` | — | Track a habit and report the current and best streak. |
-| ISO Time Formatter | `iso-time-formatter` | `time_productivity` | — | Reformat iso time to a clean layout. |
-| Meeting Time Table | `meeting-time-table` | `time_productivity` | — | Lay out data as a meeting time table table. |
-| Pomodoro Timer | `pomodoro-timer` | `time_productivity` | — | Run a Pomodoro work/break timer. |
-| Relative Time Formatter | `relative-time` | `time_productivity` | — | Reformat relative time to a clean layout. |
-| Stopwatch | `stopwatch` | `time_productivity` | — | Run a simple stopwatch. |
-| Time Zone Offset | `time-zone-offset` | `time_productivity` | — | Report the UTC offset for a time zone. |
-| Timestamp Converter | `timestamp-converter` | `time_productivity` | — | Convert between ISO-8601 timestamps and Unix epochs. |
-| Week Number | `week-number` | `time_productivity` | — | Report the ISO week number for a date. |
-| Working Hours Calculator | `working-hours-calculator` | `time_productivity` | — | Compute the hours between two times, excluding breaks. |
-
-## Unit Conversion
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Angle Converter | `angle-converter` | `conversion_tools` | — | Convert an angle between units (deg, rad, grad, turn). |
-| Area Converter | `area-converter` | `conversion_tools` | — | Convert an area between units (m2, ft2, acre, hectare, etc.). |
-| Bytes Converter | `bytes-converter` | `conversion_tools` | — | Convert a byte count to a human-readable size (KB/MB/GiB...). |
-| Data Rate Converter | `data-rate-converter` | `conversion_tools` | — | Convert a data-transfer rate between units (bps, KB/s, MB/s...). |
-| Energy Converter | `energy-converter` | `conversion_tools` | — | Convert energy between units (J, cal, kWh, BTU, eV...). |
-| Frequency Converter | `frequency-converter` | `conversion_tools` | — | Convert frequency between units (Hz, kHz, MHz, GHz...). |
-| Length Converter | `length-converter` | `conversion_tools` | — | Convert length/distance between units (m, ft, in, mi, km...). |
-| Mass Converter | `mass-converter` | `conversion_tools` | — | Convert mass between units (kg, lb, oz, g, ton...). |
-| Power Converter | `power-converter` | `conversion_tools` | — | Convert power between units (W, kW, hp, BTU/h...). |
-| Pressure Converter | `pressure-converter` | `conversion_tools` | — | Convert pressure between units (Pa, bar, psi, atm...). |
-| Seconds Converter | `seconds-converter` | `conversion_tools` | — | Convert a duration in seconds into days/hours/minutes/seconds. |
-| Size Formatter | `size-formatter` | `conversion_tools` | — | Reformat a size value into a clean human-readable layout. |
-| Speed Converter | `speed-converter` | `conversion_tools` | — | Convert speed between units (km/h, mph, m/s, knots...). |
-| Temperature Converter | `temperature-converter` | `conversion_tools` | — | Convert temperature between c, f, k, and r scales. |
-| Volume Converter | `volume-converter` | `conversion_tools` | — | Convert volume between units (L, gal, mL, ft3, cup...). |
-
-## Video Tools
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Video Audio Extractor | `video-audio-extractor` | `video_tools` | ffprobe, ffmpeg | Extract the audio track from a video file (requires ffmpeg). |
-| Video Bitrate Inspector | `video-bitrate-inspector` | `video_tools` | ffprobe, ffmpeg | Inspect video bitrate and report internals. |
-| Video Clip Cutter | `video-clip-cutter` | `video_tools` | ffprobe, ffmpeg | Cut video clip segments. |
-| Video Concatenator | `video-concatenator` | `video_tools` | ffprobe, ffmpeg | Join video files into one (requires ffmpeg). |
-| Video Duration | `video-duration` | `video_tools` | ffprobe, ffmpeg | Report the duration of a video file (requires ffprobe). |
-| Video Frame Rate Inspector | `video-frame-rate-inspector` | `video_tools` | ffprobe, ffmpeg | Inspect video frame rate and report internals. |
-| Video GIF Maker | `video-gif-maker` | `video_tools` | ffprobe, ffmpeg | Convert a video clip to an animated GIF (requires ffmpeg). |
-| Video Metadata Cleaner | `video-metadata-cleaner` | `video_tools` | ffprobe, ffmpeg | Strip metadata from a video file (requires ffmpeg). |
-| Video Resolution Inspector | `video-resolution-inspector` | `video_tools` | ffprobe, ffmpeg | Inspect video resolution and report internals. |
-| Video Screenshot | `video-screenshot` | `video_tools` | ffprobe, ffmpeg | Extract a still frame from a video (requires ffmpeg). |
-| Video Stream Inspector | `video-stream-inspector` | `video_tools` | ffprobe, ffmpeg | Inspect video stream and report internals. |
-| Video Thumbnail Sheet | `video-thumbnail-sheet` | `video_tools` | ffprobe, ffmpeg | Build a thumbnail sheet from a video (requires ffmpeg). |
-
-## Virtual Desktops
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Desktop Count Reader | `desktop-count-reader` | `virtual_desktop` | powershell | Report how many virtual desktops are open. |
-| Desktop Hotkey Guide | `desktop-hotkey-guide` | `virtual_desktop` | powershell | Explain the keyboard shortcuts for switching virtual desktops. |
-| Desktop Launch Helper | `desktop-launch-helper` | `virtual_desktop` | powershell | Assist with desktop launch tasks. |
-| Desktop Process Summary | `desktop-process-summary` | `virtual_desktop` | powershell | Summarize desktop process summary at a glance. |
-| Virtual Desktop List | `virtual-desktop-list` | `virtual_desktop` | powershell | List the Windows virtual desktops. |
-| Virtual Desktop Settings | `virtual-desktop-settings` | `virtual_desktop` | powershell | Show or change virtual-desktop settings. |
-| Virtual Desktop Shortcut | `virtual-desktop-shortcut` | `virtual_desktop` | powershell | Virtual Desktop Shortcut: manage/create virtual desktop shortcuts. |
-| Window Desktop Mapper | `window-desktop-mapper` | `virtual_desktop` | powershell | Map relationships for window desktop mapper. |
-
-## Window Manager
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Always On Top Toggle | `always-on-top-toggle` | `window_manager` | powershell | Toggle always on top state on/off. |
-| Window Cascade Helper | `window-cascade-helper` | `window_manager` | powershell | Assist with window cascade tasks. |
-| Window Details | `window-details` | `window_manager` | powershell | Show the details of a window, such as its title and handle. |
-| Window Focus Helper | `window-focus-helper` | `window_manager` | powershell | Assist with window focus tasks. |
-| Window Geometry Reader | `window-geometry-reader` | `window_manager` | powershell | Read a window's position and size. |
-| Window Geometry Setter | `window-geometry-setter` | `window_manager` | powershell | Set/apply window geometry configuration. |
-| Window Hotkey Guide | `window-hotkey-guide` | `window_manager` | powershell | Explain the built-in Windows window-management shortcuts. |
-| Window List | `window-list` | `window_manager` | powershell | List the open top-level windows. |
-| Window Minimize All | `window-minimize-all` | `window_manager` | powershell | Minimise all open windows (Windows). |
-| Window Process Mapping | `window-process-mapping` | `window_manager` | powershell | Map open windows to the processes that own them. |
-| Window Restore All | `window-restore-all` | `window_manager` | powershell | Restore all minimised windows (Windows). |
-| Window Tile Helper | `window-tile-helper` | `window_manager` | powershell | Assist with window tile tasks. |
-| Window Title Search | `window-title-search` | `window_manager` | powershell | Find open windows whose title matches a pattern. |
-| Window Transparency Guide | `window-transparency-guide` | `window_manager` | powershell | Explain how to adjust window transparency on Windows. |
-
-## Windows Power Tools
-
-| Tool | Command | Pack | Dependencies | Description |
-|---|---|---|---|---|
-| Driver Backup | `driver-backup` | `windows_power` | pnputil | Export installed drivers to a folder (requires pnputil, elevated). |
-| Registry Editor Shortcut | `regedit` | `windows_power` | regedit | Launch the Windows Registry Editor. |
-| System Restore Point Creator | `restore-point` | `windows_power` | powershell | Create a Windows System Restore point (elevated). |
+Nothing in this table is required: the app and 310 tools run on the standard library alone.

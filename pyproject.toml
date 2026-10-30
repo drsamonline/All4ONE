@@ -1,27 +1,18 @@
-# Tooling configuration only - this project is NOT a pip package.
-# Run it directly: python run.py <command>  (see README.md).
-# Version single-source-of-truth is VERSION.txt; audit.py enforces sync.
+[project]
+name = "all4one"
+version = "4.0.0"
+description = "One portable utility, every tool on its own page."
+requires-python = ">=3.10"
+authors = [{ name = "Dr. Sohil Momin" }]
+license = { text = "PolyForm Noncommercial 1.0.0" }
 
 [tool.ruff]
+line-length = 100
 target-version = "py310"
-line-length = 120
-exclude = [
-    ".git",
-    "__pycache__",
-    "build",
-    "dist",
-    "logs",
-    "plugins",
-]
 
 [tool.ruff.lint]
-# E/W: pycodestyle, F: pyflakes, I: import order, UP: pyupgrade, B: bugbear
-select = ["E", "F", "W", "I", "UP", "B"]
-ignore = [
-    "E501",  # line length handled by formatter, not enforced by lint
-    "UP038", # isinstance tuple syntax is a perf call, not correctness
-]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501", "B008", "SIM108"]
 
 [tool.ruff.lint.per-file-ignores]
-# .spec files are exec()'d by PyInstaller and reference injected SPECPATH.
-"build.spec" = ["F821"]
+"tools/*.py" = ["B008"]      # Field factories in decorators are the API
