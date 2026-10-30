@@ -178,7 +178,7 @@ Every tool below is a working implementation with its own options and its own pa
 | **Validate JSON Shape** | `json-schema-lite` | `file` (file, required), `schema` (multiline) | — | Check a JSON document against a compact schema: required keys, types and lengths. |
 | **Validate YAML** | `yaml-validate` | `file` (file, required) | — | Parse a YAML file and report structure or the exact error line. |
 | **XML to JSON** | `xml-to-json` | `file` (file, required), `attributes` (toggle), `output` (save as, required) | — | Turn an XML document into JSON, keeping attributes and repeated elements. |
-| **YAML to JSON** | `yaml-to-json` | `file` (file, required), `direction` (choice), `output` (save as, required) | — | Convert a YAML document to JSON, or JSON back to YAML. |
+| **YAML to JSON** | `yaml-to-json` | `file` (file, required), `direction` (choice), `output` (save as, required) | pyyaml | Convert a YAML document to JSON, or JSON back to YAML. |
 
 
 ## Encoding
@@ -577,6 +577,7 @@ Every tool below is a working implementation with its own options and its own pa
 | pyperclip (system clipboard) | python | 0 tools | not installed |
 | python-docx (Word files) | python | 6 tools | present |
 | pywin32 (Windows APIs) | python | 0 tools | not installed |
+| PyYAML (YAML parsing) | python | 1 tools | present |
 | Send2Trash (recycle bin) | python | 0 tools | not installed |
 
-Nothing in this table is required: the app and 310 tools run on the standard library alone.
+Nothing in this table is required: the app and 309 tools run on the standard library alone.
