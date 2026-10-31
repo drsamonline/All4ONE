@@ -3,7 +3,7 @@
 ## The portable build (recommended)
 
 1. Download `All4one-<version>-windows.zip` from
-   [Releases](https://github.com/drsamonline/All4ONE/releases/latest).
+   [Releases](https://github.com/drsamonline/All4ONE/releases).
 2. Unzip it anywhere — Desktop, `C:\Tools`, a USB stick.
 3. Run `All4one.exe`.
 

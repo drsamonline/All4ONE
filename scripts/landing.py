@@ -217,7 +217,7 @@ def build() -> str:
       <span class="pill"><b>v{__version__}</b></span>
     </div>
     <div class="cta">
-      <a class="btn primary" href="https://github.com/drsamonline/All4ONE/releases/latest">
+      <a class="btn primary" href="https://github.com/drsamonline/All4ONE/releases">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
              stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/>
              <path d="M4 20h16"/></svg>

@@ -13,7 +13,7 @@ Every tool gets its own page with its own options — search it, open it, set wh
 ![Python](https://img.shields.io/badge/python-3.10%2B-f7c948?style=flat-square)
 ![Licence](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue?style=flat-square)
 
-**🌐 [Landing page](https://drsamonline.github.io/All4ONE/)** · **🖼️ [Screenshots](#-what-it-looks-like)** · **📚 [All 403 tools](TOOL_CATALOG.md)** · **⬇️ [Download](https://github.com/drsamonline/All4ONE/releases/latest)**
+**🌐 [Landing page](https://drsamonline.github.io/All4ONE/)** · **🖼️ [Screenshots](#-what-it-looks-like)** · **📚 [All 403 tools](TOOL_CATALOG.md)** · **⬇️ [Download](https://github.com/drsamonline/All4ONE/releases)**
 
 </div>
 
@@ -80,7 +80,7 @@ and nothing silently fails.
 ### The portable build
 
 Download `All4one-4.0.0-windows.zip` from
-[Releases](https://github.com/drsamonline/All4ONE/releases/latest), unzip, run
+[Releases](https://github.com/drsamonline/All4ONE/releases), unzip, run
 `All4one.exe`. That is the whole installation.
 
 ### From source
