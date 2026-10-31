@@ -122,6 +122,8 @@ def main() -> int:
     if not skip_tests:
         step("Behavioural sweep")
         run([sys.executable, "tests/sweep.py"])
+        step("Windows-only paths (stubbed PowerShell)")
+        run([sys.executable, "tests/windows_stub.py"])
 
     step("Catalogue and landing page")
     run([sys.executable, "scripts/catalogue.py"])

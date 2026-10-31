@@ -32,6 +32,9 @@ jobs:
       - name: Run every runnable tool against fixtures
         run: python tests/sweep.py
 
+      - name: Windows-only tool logic with a stubbed PowerShell
+        run: python tests/windows_stub.py
+
       - name: Generated docs are up to date
         run: |
           python scripts/catalogue.py

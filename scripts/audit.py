@@ -181,10 +181,13 @@ def audit_lint() -> None:
     if not ruff:
         NOTES.append("SKIP  ruff is not installed, static analysis not run")
         return
-    result = subprocess.run([ruff, "check", ".", "--select", "F821,F811,F401,F841",
+    # Correctness only: an undefined or redefined name is a bug. Tidiness
+    # (unused imports, dead locals) stays advisory in CI so it never blocks a
+    # release on a style nit.
+    result = subprocess.run([ruff, "check", ".", "--select", "F821,F811",
                              "--quiet"], cwd=ROOT, capture_output=True, text=True, timeout=180)
     check(result.returncode == 0,
-          "no undefined names, unused imports or dead locals"
+          "no undefined or redefined names"
           + ("" if result.returncode == 0
              else ": " + result.stdout.strip().splitlines()[-1][:160]))
 

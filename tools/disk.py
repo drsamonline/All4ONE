@@ -23,15 +23,35 @@ from ._util import (
 )
 
 
-def _powershell(script: str, ctx=None, timeout: int = 180) -> str:
+def _powershell(script: str, ctx=None, timeout: int = 180, lenient: bool = False) -> str:
     exe = which("powershell") or which("powershell.exe") or which("pwsh")
     if not exe:
         raise ToolError("PowerShell was not found")
     code, out, err = run_command([exe, "-NoProfile", "-NonInteractive", "-Command", script],
                                  ctx=ctx, timeout=timeout)
-    if code != 0 and not out.strip():
+    if code != 0 and not out.strip() and not lenient:
         raise ToolError(f"PowerShell failed: {err.strip()[:300]}")
     return out
+
+
+def _json_list(text: str) -> list:
+    """ConvertTo-Json output -> list. Empty output means "nothing found"."""
+    stripped = (text or "").strip()
+    if not stripped:
+        return []
+    import json as jsonlib
+    try:
+        data = jsonlib.loads(stripped)
+    except ValueError as exc:
+        raise ToolError(f"Could not read the PowerShell output: {exc}") from exc
+    if isinstance(data, dict):
+        return [data]
+    return data if isinstance(data, list) else []
+
+
+def _ps_json(script: str, ctx=None, timeout: int = 180) -> list:
+    """A query that finds nothing is an empty list, not a failure."""
+    return _json_list(_powershell(script, ctx=ctx, timeout=timeout, lenient=True))
 
 
 @tool(id="disk-space", name="Disk Space", category="Disk",
@@ -317,7 +337,7 @@ def recycle_bin(v, ctx):
     out = _powershell("$s=(Get-ChildItem 'C:\\$Recycle.Bin' -Recurse -Force "
                       "-ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum; "
                       "Clear-RecycleBin -Force -ErrorAction SilentlyContinue; "
-                      "[math]::Round($s/1MB,1)", ctx=ctx, timeout=180)
+                      "[math]::Round($s/1MB,1)", ctx=ctx, timeout=180, lenient=True)
     return f"Recycle Bin emptied (about {out.strip() or '0'} MB reclaimed)"
 
 
@@ -326,12 +346,8 @@ def recycle_bin(v, ctx):
       platforms=("win",),
       fields=[])
 def disk_health(v, ctx):
-    import json as jsonlib
-    out = _powershell("Get-PhysicalDisk | Select-Object FriendlyName,MediaType,HealthStatus,"
-                      "OperationalStatus,Size | ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = jsonlib.loads(out or "[]")
-    if isinstance(data, dict):
-        data = [data]
+    data = _ps_json("Get-PhysicalDisk | Select-Object FriendlyName,MediaType,HealthStatus,"
+                    "OperationalStatus,Size | ConvertTo-Json -Depth 2", ctx=ctx)
     rows = [{"disk": str(item.get("FriendlyName", ""))[:40],
              "type": str(item.get("MediaType", "")),
              "health": str(item.get("HealthStatus", "")),
@@ -347,12 +363,8 @@ def disk_health(v, ctx):
       fields=[])
 def partition_list(v, ctx):
     if IS_WINDOWS:
-        import json as jsonlib
-        out = _powershell("Get-Partition | Select-Object DiskNumber,PartitionNumber,DriveLetter,"
+        data = _ps_json("Get-Partition | Select-Object DiskNumber,PartitionNumber,DriveLetter,"
                           "Size,Type | ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-        data = jsonlib.loads(out or "[]")
-        if isinstance(data, dict):
-            data = [data]
         rows = [{"disk": item.get("DiskNumber"), "partition": item.get("PartitionNumber"),
                  "letter": item.get("DriveLetter") or "-",
                  "size": human_size(item.get("Size", 0) or 0),
@@ -370,13 +382,9 @@ def partition_list(v, ctx):
       fields=[])
 def volume_info(v, ctx):
     if IS_WINDOWS:
-        import json as jsonlib
-        out = _powershell("Get-Volume | Select-Object DriveLetter,FileSystemLabel,FileSystem,"
-                          "HealthStatus,SizeRemaining,Size | ConvertTo-Json -Depth 2",
-                          ctx=ctx, timeout=180)
-        data = jsonlib.loads(out or "[]")
-        if isinstance(data, dict):
-            data = [data]
+        data = _ps_json("Get-Volume | Select-Object DriveLetter,FileSystemLabel,FileSystem,"
+                        "HealthStatus,SizeRemaining,Size | ConvertTo-Json -Depth 2",
+                        ctx=ctx)
         rows = [{"volume": item.get("DriveLetter") or "-",
                  "label": str(item.get("FileSystemLabel", "")),
                  "filesystem": str(item.get("FileSystem", "")),
@@ -413,12 +421,11 @@ def ntfs_streams(v, ctx):
       platforms=("win",),
       fields=[])
 def usb_devices(v, ctx):
-    import json as jsonlib
-    out = _powershell("Get-PnpDevice -Class USB -Status OK | Select-Object FriendlyName,"
-                      "InstanceId,Status | ConvertTo-Json -Depth 2", ctx=ctx, timeout=180)
-    data = jsonlib.loads(out or "[]")
-    if isinstance(data, dict):
-        data = [data]
+    data = _ps_json("Get-PnpDevice -Class USB -Status OK -ErrorAction SilentlyContinue | "
+                    "Select-Object FriendlyName,InstanceId,Status | ConvertTo-Json -Depth 2",
+                    ctx=ctx)
+    if not data:
+        return "No USB devices are currently attached."
     rows = [{"device": str(item.get("FriendlyName", ""))[:50],
              "status": str(item.get("Status", "")),
              "id": str(item.get("InstanceId", ""))[:40]} for item in data]
