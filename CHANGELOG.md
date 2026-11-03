@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- **Markdown Table to CSV** (`markdown-table-to-csv`) — the reverse of the
+  existing `csv-to-markdown`: pull one table, or every table, out of a Markdown
+  document and write it as CSV. It handles the cases a naive `split("|")` gets
+  wrong — a pipe escaped as `\|`, a pipe inside inline code, a table written
+  without outer pipes, a ragged row — and takes the output delimiter as an
+  option. Covered by `tests/test_markdown_to_csv.py` (11 cases), which now runs
+  in CI beside the sweep.
+
 ## 4.0.0 — the rebuild
 
 A ground-up replacement of the 3.x utility suite. The plugin architecture, the

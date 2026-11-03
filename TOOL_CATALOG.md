@@ -1,6 +1,6 @@
 # All4one — Complete Tool Catalogue
 
-*403 tools · 16 categories · version 4.0.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
+*404 tools · 16 categories · version 4.0.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
 
 Every tool below is a working implementation with its own options and its own page in the app. The **Options** column is the exact set of controls that page shows.
 
@@ -8,7 +8,7 @@ Every tool below is a working implementation with its own options and its own pa
 |---|---|
 | Files | 42 |
 | Archives | 14 |
-| Text | 39 |
+| Text | 40 |
 | Data | 30 |
 | Encoding | 27 |
 | Images | 26 |
@@ -98,7 +98,7 @@ Every tool below is a working implementation with its own options and its own pa
 
 ## Text
 
-*Transform, analyse and clean text · 39 tools*
+*Transform, analyse and clean text · 40 tools*
 
 | Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
@@ -121,6 +121,7 @@ Every tool below is a working implementation with its own options and its own pa
 | **Keyword Density** | `keyword-density` | `text` (multiline), `file` (file), `output` (save as), `phrase_words` (number) | — | How often each phrase appears as a share of the text — SEO-style analysis. |
 | **Longest Lines** | `longest-lines` | `text` (multiline), `file` (file), `output` (save as), `limit` (number) | — | The longest lines in a text — useful for finding runaway paragraphs. |
 | **Make URL Slug** | `slugify-text` | `text` (multiline), `file` (file), `output` (save as), `separator` (choice), `ascii` (toggle) | — | Turn any title into a lowercase, hyphenated, ASCII-only slug. |
+| **Markdown Table to CSV** | `markdown-table-to-csv` | `text` (multiline), `file` (file), `table` (number), `delimiter` (text), `output` (save as) | — | Read Markdown tables back out of a document and write them as CSV. |
 | **Markdown to Text** | `markdown-to-text` | `text` (multiline), `file` (file), `output` (save as) | — | Strip Markdown syntax down to clean prose for pasting anywhere. |
 | **Readability Statistics** | `text-statistics` | `text` (multiline), `file` (file), `output` (save as) | — | Average word and sentence length plus a Flesch reading-ease score. |
 | **Regex Replace** | `regex-replace` | `text` (multiline), `file` (file), `pattern` (text, required), `replacement` (text), `multiline` (toggle), `dotall` (toggle), `output` (save as) | — | Substitute with a full regular expression, including capture groups. |
@@ -573,4 +574,4 @@ Every tool below is a working implementation with its own options and its own pa
 | PyYAML (YAML parsing) | python | 1 tools | `pip install pyyaml` |
 | Tesseract (OCR engine) | binary | 2 tools | `Install Tesseract-OCR, then add its folder to PATH` |
 
-Nothing in this table is required: the app and 309 tools run on the standard library alone.
+Nothing in this table is required: the app and 310 tools run on the standard library alone.

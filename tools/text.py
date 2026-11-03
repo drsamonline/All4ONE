@@ -497,6 +497,110 @@ def csv_to_markdown(v, ctx):
     return _emit(v, ctx, "\n".join(lines))
 
 
+def _md_cells(row: str) -> list[str]:
+    """Split one Markdown table row into cells.
+
+    Handles the two things that break a naive ``split("|")``: a pipe escaped as
+    ``\\|`` and a pipe that lives inside ``code``.
+    """
+    row = row.strip()
+    if row.startswith("|"):
+        row = row[1:]
+    if row.endswith("|") and not row.endswith("\\|"):
+        row = row[:-1]
+    cells, current, in_code, i = [], [], False, 0
+    while i < len(row):
+        char = row[i]
+        if char == "\\" and i + 1 < len(row) and row[i + 1] == "|":
+            current.append("|")
+            i += 2
+            continue
+        if char == "`":
+            in_code = not in_code
+            current.append(char)
+            i += 1
+            continue
+        if char == "|" and not in_code:
+            cells.append("".join(current).strip())
+            current = []
+            i += 1
+            continue
+        current.append(char)
+        i += 1
+    cells.append("".join(current).strip())
+    return cells
+
+
+def _md_is_divider(line: str) -> bool:
+    """True for the ``|---|:--:|`` row that turns a row into a table header."""
+    if "-" not in line:
+        return False
+    cells = _md_cells(line)
+    return bool(cells) and all(re.fullmatch(r":?-{1,}:?", cell.replace(" ", "")) for cell in cells)
+
+
+def _markdown_tables(text: str) -> list[tuple[list[str], list[list[str]]]]:
+    """Every GFM table in the text, as (header, rows)."""
+    lines = text.splitlines()
+    tables = []
+    index = 0
+    while index < len(lines) - 1:
+        if "|" in lines[index] and _md_is_divider(lines[index + 1]):
+            header = _md_cells(lines[index])
+            rows = []
+            cursor = index + 2
+            while cursor < len(lines) and lines[cursor].strip() and "|" in lines[cursor]:
+                rows.append(_md_cells(lines[cursor]))
+                cursor += 1
+            tables.append((header, rows))
+            index = cursor
+        else:
+            index += 1
+    return tables
+
+
+@tool(id="markdown-table-to-csv", name="Markdown Table to CSV", category="Text",
+      summary="Read Markdown tables back out of a document and write them as CSV.",
+      keywords="markdown table csv convert extract pipe readme",
+      fields=[F.multi("text", "Markdown", rows=12),
+              F.file("file", "…or read from a file", required=False),
+              F.integer("table", "Which table", 1, minimum=0,
+                        help="0 writes every table in the document"),
+              F.text("delimiter", "Delimiter", ",", help="One character, e.g. , or ; or \\t"),
+              F.save("output", "Save result to", filters="CSV (*.csv)", required=False)])
+def markdown_table_to_csv(v, ctx):
+    import csv
+    import io
+
+    text = _text(v)
+    tables = _markdown_tables(text)
+    if not tables:
+        ctx.log("No Markdown table found. A table needs a header row, a |---|---| divider "
+                "row, and at least one data row below it.")
+        return "no tables found"
+
+    wanted = int(v["table"] or 0)
+    if wanted:
+        if wanted > len(tables):
+            raise ToolError(f"The document holds {len(tables)} table(s); there is no table {wanted}")
+        chosen = [tables[wanted - 1]]
+    else:
+        chosen = tables
+
+    delimiter = (str(v["delimiter"] or ",").replace("\\t", "\t").strip() or ",")[0]
+    blocks = []
+    for header, rows in chosen:
+        buffer = io.StringIO()
+        writer = csv.writer(buffer, delimiter=delimiter, lineterminator="\n")
+        writer.writerow(header)
+        for row in rows:
+            writer.writerow((row + [""] * len(header))[:len(header)])
+        blocks.append(buffer.getvalue().rstrip("\n"))
+
+    ctx.log(f"{len(chosen)} table(s), {sum(len(rows) for _, rows in chosen)} data row(s)")
+    return _emit(v, ctx, "\n\n".join(blocks), name="table.csv")
+
+
 @tool(id="extract-emails", name="Extract Email Addresses", category="Text",
       summary="Pull every email address out of text, de-duplicated and sorted.",
       keywords="emails extract addresses contacts scrape",
