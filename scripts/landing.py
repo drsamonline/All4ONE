@@ -176,7 +176,31 @@ def build() -> str:
   footer a {{ color: var(--dim); }}
   footer a:hover {{ color: var(--text); }}
   .spacer {{ margin-left: auto; }}
+  /* ---- light theme -------------------------------------------------------
+     Counterparts of :root above: the ground goes light, the text goes dark, the two
+     accents darken until they hold on it. Nothing is inverted. */
+  :root[data-theme="light"] {{
+    --bg: #f6f8fb; --bg-2: #eef2f7; --surface: #ffffff; --surface-2: #f4f7fa;
+    --border: #d8e0ea; --text: #0d1117; --dim: #41505f; --muted: #6b7a8c;
+    --accent: #3b5bdb; --accent-2: #0f766e; --ok: #15803d;
+  }}
+  .theme-btn{{
+    display:inline-flex;align-items:center;justify-content:center;flex:none;
+    width:30px;height:30px;margin-left:10px;padding:0;background:transparent;color:inherit;
+    border:1px solid var(--border);border-radius:50%;cursor:pointer;opacity:.8;
+  }}
+  .theme-btn:hover{{opacity:1}}
+  .theme-btn svg{{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}}
 </style>
+<script>
+(function () {{
+  try {{
+    var s = localStorage.getItem("theme");
+    var d = s ? s === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", d ? "dark" : "light");
+  }} catch (e) {{ document.documentElement.setAttribute("data-theme", "dark"); }}
+}})();
+</script>
 </head>
 <body>
 <div class="glow"></div>
@@ -199,6 +223,7 @@ def build() -> str:
       <a href="https://github.com/drsamonline/All4ONE/blob/main/USER_GUIDE.md">Guide</a>
       <a href="https://github.com/drsamonline/All4ONE">GitHub</a>
     </div>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch theme" title="Switch theme"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
   </nav>
 
   <div class="hero">
@@ -374,6 +399,24 @@ all4one <span class="k">deps</span></pre>
     <a href="https://drsamonline.github.io/">All projects</a>
   </div>
 </footer>
+<script>
+(function () {{
+  var b = document.getElementById("themeBtn");
+  if (!b) return;
+  function sync() {{
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    b.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+    b.title = b.getAttribute("aria-label");
+  }}
+  b.addEventListener("click", function () {{
+    var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try {{ localStorage.setItem("theme", next); }} catch (e) {{}}
+    sync();
+  }});
+  sync();
+}})();
+</script>
 </body>
 </html>
 """
