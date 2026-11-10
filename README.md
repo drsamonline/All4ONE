@@ -8,7 +8,6 @@ Every tool gets its own page with its own options — search it, open it, set wh
 
 ![Version](https://img.shields.io/badge/version-4.0.0-6d8cff?style=flat-square)
 ![Tools](https://img.shields.io/badge/tools-404-3fb950?style=flat-square)
-![Plugins](https://img.shields.io/badge/plugins-0-f85149?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D4?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.10%2B-f7c948?style=flat-square)
 ![Licence](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue?style=flat-square)
