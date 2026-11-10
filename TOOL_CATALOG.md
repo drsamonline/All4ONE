@@ -1,6 +1,6 @@
 # All4one — Complete Tool Catalogue
 
-*404 tools · 16 categories · version 4.0.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
+*404 tools · 16 categories · version 4.1.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
 
 Every tool below is a working implementation with its own options and its own page in the app. The **Options** column is the exact set of controls that page shows.
 
