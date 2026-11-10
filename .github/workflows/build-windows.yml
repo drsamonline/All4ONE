@@ -58,6 +58,24 @@ jobs:
           $v = Get-Content VERSION -Raw
           "version=$($v.Trim())" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
 
+      - name: Drop stale assets from the floating build
+        # action-gh-release UPLOADS; it does not prune. After a version bump the
+        # floating release carried both All4one-4.0.0-windows.zip and
+        # All4one-4.1.0-windows.zip, which asks the reader to choose between a
+        # current build and a stale one with no way to tell them apart.
+        if: github.ref == 'refs/heads/main'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $ver = (Get-Content VERSION -Raw).Trim()
+          $keep = "All4one-$ver-windows.zip"
+          $names = gh release view latest-build --json assets --jq '.assets[].name' 2>$null
+          if ($LASTEXITCODE -ne 0 -or -not $names) { Write-Host "no floating release yet"; exit 0 }
+          foreach ($n in $names) {
+            if ($n -ne $keep) { Write-Host "removing $n"; gh release delete-asset latest-build $n --yes }
+          }
+
       - name: Refresh the floating latest-build pre-release
         if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2

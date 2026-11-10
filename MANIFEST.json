@@ -31,7 +31,13 @@
       "producer": "audit-2026-11-10",
       "class": "agent",
       "at": "2026-11-10T18:30:08Z"
+    },
+    ".github/workflows/build-windows.yml": {
+      "sha": "8a04fae0d7407c13da2260cdd6232e9094752cc6",
+      "producer": "audit-2026-11-10",
+      "class": "canonical",
+      "at": "2026-11-10T18:34:00Z"
     }
   },
-  "updated": "2026-11-10T18:30:08Z"
+  "updated": "2026-11-10T18:34:00Z"
 }
