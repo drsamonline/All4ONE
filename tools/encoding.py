@@ -61,10 +61,14 @@ def base64_encode(v, ctx):
               F.file("file", "…or read from a file", required=False),
               F.save("output", "Save result to", required=False)])
 def base64_decode(v, ctx):
-    raw = re.sub(r"\s+", "", _payload(v))
+    # Accept the URL-safe alphabet, then validate: with validate=False Python
+    # silently drops every character it does not recognise, so "!!!!" decoded to
+    # an empty file and "not base64!!" decoded to noise — the "Not valid Base64"
+    # below could never fire.
+    raw = re.sub(r"\s+", "", _payload(v)).replace("-", "+").replace("_", "/")
     raw += "=" * (-len(raw) % 4)
     try:
-        decoded = base64.b64decode(raw, validate=False)
+        decoded = base64.b64decode(raw, validate=True)
     except (binascii.Error, ValueError) as exc:
         raise ToolError(f"Not valid Base64: {exc}") from exc
     try:
