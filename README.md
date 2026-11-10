@@ -6,7 +6,7 @@
 
 Every tool gets its own page with its own options — search it, open it, set what you need, run it.
 
-![Version](https://img.shields.io/badge/version-4.0.0-6d8cff?style=flat-square)
+![Version](https://img.shields.io/badge/version-4.1.0-6d8cff?style=flat-square)
 ![Tools](https://img.shields.io/badge/tools-404-3fb950?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D4?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.10%2B-f7c948?style=flat-square)
@@ -78,7 +78,7 @@ and nothing silently fails.
 
 ### The portable build
 
-Download `All4one-4.0.0-windows.zip` from
+Download `All4one-4.1.0-windows.zip` from
 [Releases](https://github.com/drsamonline/All4ONE/releases), unzip, run
 `All4one.exe`. That is the whole installation.
 
