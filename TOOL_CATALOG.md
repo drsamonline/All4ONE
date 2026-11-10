@@ -1,6 +1,6 @@
 # All4one — Complete Tool Catalogue
 
-*404 tools · 16 categories · version 4.1.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
+*405 tools · 16 categories · version 4.2.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
 
 Every tool below is a working implementation with its own options and its own page in the app. The **Options** column is the exact set of controls that page shows.
 
@@ -21,7 +21,7 @@ Every tool below is a working implementation with its own options and its own pa
 | Developer | 23 |
 | Security | 16 |
 | Numbers | 29 |
-| Generators | 24 |
+| Generators | 25 |
 
 
 ## Files
@@ -526,7 +526,7 @@ Every tool below is a working implementation with its own options and its own pa
 
 ## Generators
 
-*IDs, passwords, data and dummy files · 24 tools*
+*IDs, passwords, data and dummy files · 25 tools*
 
 | Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
@@ -542,6 +542,7 @@ Every tool below is a working implementation with its own options and its own pa
 | **Generate PINs** | `pin-generate` | `length` (number), `count` (number), `avoid_patterns` (toggle) | — | Random numeric PINs, avoiding trivial patterns if you want. |
 | **Generate UUIDs** | `uuid-generate` | `count` (number), `style` (choice) | — | RFC 4122 version 4 identifiers, formatted the way you need them. |
 | **Lorem Ipsum** | `lorem-ipsum` | `unit` (choice), `count` (number), `classic_start` (toggle), `output` (save as) | — | Filler text by words, sentences or paragraphs — for layouts and mockups. |
+| **Make a QR Code** | `qr-code` | `content` (multiline, required), `level` (choice), `module_size` (number), `quiet_zone` (number), `dark` (colour), `light` (colour), `format` (choice), `output` (save as) | — | Encode text or a link as a QR code — PNG, SVG or both, with no dependency. |
 | **Number Picker** | `lottery-numbers` | `lowest` (number), `highest` (number), `picks` (number), `sorted` (toggle) | — | Unique random numbers for lotteries, draws and sampling without repeats. |
 | **Password Batch** | `password-batch` | `count` (number), `length` (number), `output` (save as, required) | — | A CSV of users with generated passwords — for seeding test accounts. |
 | **Pick From a List** | `pick-from-list` | `text` (multiline), `winners` (number) | — | Draw one or more winners from a list, without repeating a winner. |
@@ -574,4 +575,4 @@ Every tool below is a working implementation with its own options and its own pa
 | PyYAML (YAML parsing) | python | 1 tools | `pip install pyyaml` |
 | Tesseract (OCR engine) | binary | 2 tools | `Install Tesseract-OCR, then add its folder to PATH` |
 
-Nothing in this table is required: the app and 310 tools run on the standard library alone.
+Nothing in this table is required: the app and 311 tools run on the standard library alone.

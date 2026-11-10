@@ -39,6 +39,7 @@ jobs:
         run: |
           python tests/test_markdown_to_csv.py
           python tests/test_encoding.py
+          python tests/test_qr.py
 
       - name: Generated docs are up to date
         run: |
