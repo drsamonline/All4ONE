@@ -1,5 +1,33 @@
 # Changelog
 
+## 4.2.0 — 2026-11-11
+
+### Added
+
+- **Make a QR Code** (`qr-code`) — encode a link, a Wi-Fi or vCard payload or
+  plain text as a QR code, as PNG, SVG or both. It is the first generator with no
+  dependency behind it: the byte-mode encoder, the Reed-Solomon check words, the
+  mask selection, the PNG writer and the SVG writer are all in `tools/qr.py`, so
+  the tool works on the portable build with nothing installed. Versions 1 to 10
+  (271 bytes at level L, 213 at M); anything longer is refused with the exact
+  limit rather than truncated.
+
+  Covered by `tests/test_qr.py` (28 cases), which does not trust the encoder's
+  own idea of what it drew: it reads the format information the way a scanner
+  does, undoes the mask, walks the codeword path, de-interleaves the blocks,
+  checks every block against a Reed-Solomon long division written separately in
+  the test, and only then parses the payload. The published byte capacities for
+  all four levels and ten versions are asserted, and the PNG is decoded back to
+  the module matrix pixel by pixel.
+
+  Three bugs were caught before it shipped, which is the point of writing the
+  reader first: the block groups were ordered long-first, so every code with
+  uneven blocks (four blocks of 12, 12, 11, 11 and up) was scrambled; the
+  payload parser read only the first block; and the level cannot be recovered by
+  trying every level, because an RS codeword is also divisible by every shorter
+  generator — level and mask come from the format information, exactly as a
+  scanner does it.
+
 ## 4.1.0 — 2026-11-10
 
 ### Added
