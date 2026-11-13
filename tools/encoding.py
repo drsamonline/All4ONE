@@ -14,7 +14,7 @@ from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import human_size, need_file, out_path, read_text, report_table, write_text
+from ._util import human_size, need_file, out_path, read_text, report_table, write_text, text_bytes
 
 
 def _payload(v, key: str = "text") -> str:
@@ -47,7 +47,7 @@ def _result(v, ctx, text: str, name: str = "result.txt") -> str:
               F.integer("wrap", "Wrap at (characters, 0 = no wrapping)", 76, minimum=0, maximum=200),
               F.save("output", "Save result to", required=False)])
 def base64_encode(v, ctx):
-    raw = _payload(v).encode("utf-8")
+    raw = text_bytes(_payload(v))
     encoded = base64.b64encode(raw).decode("ascii")
     if v["wrap"]:
         encoded = "\n".join(textwrap.wrap(encoded, v["wrap"]))
@@ -116,7 +116,7 @@ def base32_codec(v, ctx):
     if not text:
         raise ToolError("Type something first")
     if v["action"] == "Encode":
-        return base64.b32encode(text.encode("utf-8")).decode("ascii")
+        return base64.b32encode(text_bytes(text)).decode("ascii")
     try:
         return base64.b32decode(text.upper() + "=" * (-len(text) % 8)).decode("utf-8", "replace")
     except (binascii.Error, ValueError) as exc:
@@ -134,7 +134,7 @@ def ascii85_codec(v, ctx):
         raise ToolError("Type something first")
     try:
         if v["action"] == "Encode":
-            return base64.a85encode(text.encode("utf-8")).decode("ascii")
+            return base64.a85encode(text_bytes(text)).decode("ascii")
         return base64.a85decode(text.encode("ascii")).decode("utf-8", "replace")
     except (binascii.Error, ValueError) as exc:
         raise ToolError(f"Ascii85 error: {exc}") from exc
@@ -151,7 +151,7 @@ def ascii85_codec(v, ctx):
               F.flag("prefix", "Prefix each byte with 0x", False),
               F.save("output", "Save result to", required=False)])
 def hex_encode(v, ctx):
-    raw = v["text"].encode("utf-8")
+    raw = text_bytes(v["text"])
     if not raw:
         raise ToolError("Type something first")
     if v["prefix"]:
@@ -219,8 +219,10 @@ def url_encode(v, ctx):
     text = v["text"]
     if not text:
         raise ToolError("Type something first")
-    return (urllib.parse.quote(text, safe="") if v["mode"].startswith("Component")
-            else urllib.parse.quote(text, safe=":/?#[]@!$&'()*+,;=~"))
+    # quote() raises on a lone surrogate; quoting the same bytes the other tools
+    # hash keeps this consistent with them.
+    safe = "" if v["mode"].startswith("Component") else ":/?#[]@!$&'()*+,;=~"
+    return urllib.parse.quote_from_bytes(text_bytes(text), safe=safe)
 
 
 @tool(id="url-decode", name="URL Decode", category="Encoding",
@@ -297,7 +299,7 @@ def unicode_escape(v, ctx):
         except UnicodeDecodeError as exc:
             raise ToolError(f"Could not decode the escapes: {exc}") from exc
     rows = [{"character": ch, "code_point": f"U+{ord(ch):04X}", "decimal": ord(ch),
-             "utf8": ch.encode("utf-8").hex(" ")} for ch in dict.fromkeys(text)]
+             "utf8": text_bytes(ch).hex(" ")} for ch in dict.fromkeys(text)]
     ctx.log(report_table(rows[:80]))
     return f"{len(rows)} distinct character(s)"
 
@@ -381,7 +383,7 @@ def text_to_binary(v, ctx):
     if not text.strip():
         raise ToolError("Type something first")
     if v["action"].startswith("Text"):
-        return " ".join(f"{byte:08b}" for byte in text.encode("utf-8"))
+        return " ".join(f"{byte:08b}" for byte in text_bytes(text))
     bits = re.sub(r"[^01]", "", text)
     if len(bits) % 8:
         raise ToolError("The binary is not a whole number of bytes")
@@ -404,7 +406,7 @@ def hash_text(v, ctx):
     text = v["text"]
     if not text:
         raise ToolError("Type something first")
-    digest = hashlib.new(v["algorithm"], text.encode("utf-8")).hexdigest()
+    digest = hashlib.new(v["algorithm"], text_bytes(text)).hexdigest()
     return digest.upper() if v["uppercase"] else digest
 
 
@@ -464,10 +466,10 @@ def hash_all(v, ctx):
               F.secret("key", "Secret key", required=True),
               F.choice("algorithm", "Algorithm", ["sha256", "sha1", "md5", "sha512"], "sha256")])
 def hmac_calc(v, ctx):
-    message = v["text"].encode("utf-8")
+    message = text_bytes(v["text"])
     if not message:
         raise ToolError("Type a message to sign")
-    signature = hmac.new(v["key"].encode("utf-8"), message, v["algorithm"]).hexdigest()
+    signature = hmac.new(text_bytes(v["key"]), message, v["algorithm"]).hexdigest()
     ctx.log(f"hex: {signature}")
     ctx.log(f"base64: {base64.b64encode(bytes.fromhex(signature)).decode()}")
     return {"algorithm": v["algorithm"], "signature": signature}
@@ -481,7 +483,7 @@ def hmac_calc(v, ctx):
 def crc32(v, ctx):
     import zlib
     path = str(v["file"] or "").strip()
-    data = need_file(path).read_bytes() if path else str(v["text"] or "").encode("utf-8")
+    data = need_file(path).read_bytes() if path else text_bytes(v["text"] or "")
     if not data:
         raise ToolError("Choose a file or type some text")
     value = zlib.crc32(data) & 0xFFFFFFFF
@@ -549,5 +551,5 @@ def text_fingerprint(v, ctx):
     text = " ".join(v["text"].split())
     if not text:
         raise ToolError("Type something first")
-    digest = hashlib.sha256(text.lower().encode("utf-8")).hexdigest()[:v["length"]]
+    digest = hashlib.sha256(text_bytes(text.lower())).hexdigest()[:v["length"]]
     return {"fingerprint": digest, "characters": len(text), "words": len(text.split())}

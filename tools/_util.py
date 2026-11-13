@@ -10,6 +10,7 @@ import fnmatch
 import hashlib
 import os
 import platform
+import re
 import shutil
 import stat
 import unicodedata
@@ -148,6 +149,37 @@ def file_kind(path: Path) -> str:
 # Text
 # --------------------------------------------------------------------------
 ENCODINGS = ("utf-8-sig", "utf-8", "cp1252", "latin-1")
+
+
+# XML 1.0 forbids most control characters and does not allow a lone surrogate,
+# so a document writer has to change them or fail. ``xml_safe`` changes them.
+_XML_ILLEGAL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]")
+
+
+def text_bytes(value: object) -> bytes:
+    """Encode user text to bytes without ever raising.
+
+    A lone surrogate in a Python string is not something a person types: it is
+    what ``surrogateescape`` produces when bytes that were not valid UTF-8 are
+    decoded — a Linux filename, a mis-encoded paste. Encoding it back the same
+    way reproduces those exact bytes, so a hash or a Base64 of the text stays
+    truthful instead of dying on ``UnicodeEncodeError``.
+
+    ``surrogateescape`` only covers U+DC80..U+DCFF; any other unpaired surrogate
+    (U+D800, a truncated UTF-16 pair) has no UTF-8 form at all, so it falls back
+    to ``surrogatepass``, which writes the code point as-is (WTF-8). Both are
+    deterministic and reversible, which is all a hash or an encoding needs.
+    """
+    text = str(value)
+    try:
+        return text.encode("utf-8", "surrogateescape")
+    except UnicodeEncodeError:
+        return text.encode("utf-8", "surrogatepass")
+
+
+def xml_safe(value: object) -> str:
+    """Make text a document library will accept (NUL, C0 controls, surrogates)."""
+    return _XML_ILLEGAL.sub("\ufffd", str(value))
 
 
 def read_text(path: Path, encoding: str = "auto") -> str:

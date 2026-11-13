@@ -1,5 +1,31 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- **A lone surrogate no longer crashes eleven tools.** Text that was decoded
+  from bytes which were not valid UTF-8 — a Linux filename, a paste from a
+  mis-encoded source — comes back as an unpaired surrogate, and every tool that
+  encodes text to bytes died on `UnicodeEncodeError` with a traceback on screen.
+  Base32, Base64, CRC32, Hash Text, HMAC, Text Fingerprint, Text to Binary, Hex,
+  URL Encode, Measure Entropy and the file writers all encode through one helper
+  now (`text_bytes`), which reproduces the original bytes when it can and a
+  deterministic WTF-8 form when it cannot. A hash of such text is the hash of the
+  bytes it stands for, not of a replacement character.
+- **Text to Word accepts text Word cannot store.** A NUL or a C0 control in the
+  input made python-docx raise `ValueError: All strings must be XML compatible`.
+  Those characters are now replaced with `U+FFFD` and the run says how many,
+  instead of failing the whole document.
+
+### Added
+
+- **`tests/test_hostile_input.py`** — 60 text tools x 12 BLNS-shaped payloads
+  (lone surrogates, NULs, bidi overrides, zero-width joiners, a 20 kB line), plus
+  targeted assertions that the encoding is byte-exact and that the .docx really
+  carries no NUL. It runs in CI beside the sweep. The sweep only ever proves a
+  tool works on a well-formed fixture; this is the other half.
+
 ## 4.1.0 — 2026-11-10
 
 ### Added

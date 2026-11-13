@@ -40,6 +40,9 @@ jobs:
           python tests/test_markdown_to_csv.py
           python tests/test_encoding.py
 
+      - name: Hostile input (no tool may answer a bad paste with a traceback)
+        run: python tests/test_hostile_input.py
+
       - name: Generated docs are up to date
         run: |
           python scripts/catalogue.py

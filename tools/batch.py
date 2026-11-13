@@ -19,6 +19,7 @@ from ._util import (
     report_table,
     write_csv,
     write_text,
+    text_bytes,
 )
 
 
@@ -379,7 +380,7 @@ def batch_line_endings(v, ctx):
         except OSError:
             continue
         text = raw.decode("utf-8", errors="replace").replace("\r\n", "\n").replace("\r", "\n")
-        new_raw = text.replace("\n", newline).encode("utf-8")
+        new_raw = text_bytes(text.replace("\n", newline))
         if new_raw == raw:
             continue
         changed += 1

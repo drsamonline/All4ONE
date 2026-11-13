@@ -22,6 +22,7 @@ from ._util import (
     report_table,
     require,
     run_command,
+    text_bytes,
 )
 
 COMMON_PASSWORDS = {
@@ -261,7 +262,7 @@ def card_validate(v, ctx):
 def entropy(v, ctx):
     import math
     path = str(v["file"] or "").strip()
-    data = need_file(path).read_bytes()[:4_000_000] if path else str(v["text"] or "").encode("utf-8")
+    data = need_file(path).read_bytes()[:4_000_000] if path else text_bytes(v["text"] or "")
     if not data:
         raise ToolError("Choose a file or type some text")
     counts = {}

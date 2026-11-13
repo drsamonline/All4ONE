@@ -16,6 +16,7 @@ from ._util import (
     which,
     write_csv,
     write_text,
+    xml_safe,
 )
 
 DOCX_FILTER = "Word document (*.docx)"
@@ -237,10 +238,18 @@ def text_to_docx(v, ctx):
     text = read_text(need_file(path)) if path else v["text"]
     if not text.strip():
         raise ToolError("Type some text, or choose a file")
+    # A .docx is XML: NUL and most C0 controls cannot be stored in it at all, and
+    # python-docx raises a bare ValueError on them. Replace, and say so, rather
+    # than handing the user a traceback for text they pasted.
+    clean = xml_safe(text)
+    if clean != text:
+        dropped = sum(1 for a, b in zip(text, clean) if a != b)
+        ctx.log(f"note: {dropped} character(s) that Word cannot store were "
+                f"replaced with \ufffd")
     document = docx_module.Document()
     if v["title"].strip():
-        document.add_heading(v["title"].strip(), level=0)
-    for line in text.splitlines():
+        document.add_heading(xml_safe(v["title"].strip()), level=0)
+    for line in clean.splitlines():
         stripped = line.strip()
         if v["markdown"] and stripped.startswith("#"):
             level = len(stripped) - len(stripped.lstrip("#"))

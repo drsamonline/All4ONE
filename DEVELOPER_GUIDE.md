@@ -23,6 +23,7 @@ tools/*.py          18 modules; the tools themselves
 scripts/audit.py    release gate: catalogue integrity, versions, hygiene
 scripts/catalogue.py  regenerates TOOL_CATALOG.md from the registry
 tests/sweep.py      executes every runnable tool against generated fixtures
+tests/test_hostile_input.py  the same tools, fed the text people actually paste
 build.py            audit → sweep → PyInstaller onefile → zip
 ```
 
@@ -199,6 +200,7 @@ every push.
 
 - [ ] `python scripts/audit.py` passes
 - [ ] `python tests/sweep.py` passes
+- [ ] `python tests/test_hostile_input.py` passes
 - [ ] `python scripts/catalogue.py` run and `TOOL_CATALOG.md` committed
 - [ ] new tools have a real `summary`, sensible `help` text and defaults
 - [ ] destructive tools are marked and, where meaningful, preview before acting

@@ -19,6 +19,7 @@ from ._util import (
     read_text,
     report_table,
     write_text,
+    text_bytes,
 )
 
 
@@ -815,7 +816,7 @@ def line_endings(v, ctx):
     out = text.replace("\n", newline)
     if not v["apply"]:
         return "Preview only — tick 'Write the change back' to save"
-    path.write_bytes(out.encode("utf-8"))
+    path.write_bytes(text_bytes(out))
     return f"Rewritten with {v['target']} endings"
 
 

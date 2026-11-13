@@ -11,7 +11,7 @@ from pathlib import Path
 
 from core.tool import F, ToolError, tool
 
-from ._util import human_size, need_file, out_path, read_text, report_table, write_csv, write_text
+from ._util import human_size, need_file, out_path, read_text, report_table, write_csv, write_text, text_bytes
 
 
 def _json_input(v) -> object:
@@ -81,7 +81,7 @@ def json_validate(v, ctx):
     kind = type(data).__name__
     size = len(data) if isinstance(data, (list, dict)) else 1
     return {"valid": True, "top_level_type": kind, "items": size,
-            "bytes": len(raw.encode("utf-8"))}
+            "bytes": len(text_bytes(raw))}
 
 
 @tool(id="json-extract", name="Extract JSON Path", category="Data",
