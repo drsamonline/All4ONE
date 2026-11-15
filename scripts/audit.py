@@ -198,11 +198,34 @@ def audit_docs() -> None:
     for name in DOCS:
         check((ROOT / name).exists(), f"{name} exists")
 
+    stats = registry.stats()
+
+    # A count in the prose that nobody checks is a count that will be wrong.
+    # PRIVACY.md said 403 and INSTALLATION.md said 380 while the registry ran 404.
+    # Lines that describe the previous version are history, not a claim about this one.
+    stated: dict[str, set[int]] = {}
+    for name in ("README.md", "PRIVACY.md", "INSTALLATION.md", "USER_GUIDE.md",
+                 "BUILDING.md", "DEVELOPER_GUIDE.md"):
+        path = ROOT / name
+        if not path.exists():
+            continue
+        # A paragraph at a time: "551 tools across 45 plugin packs" wraps across two
+        # lines, and a line-wise skip would read half of it as a claim about today.
+        for para in path.read_text(encoding="utf-8").split("\n\n"):
+            if "plugin packs" in para or "previous version" in para:
+                continue
+            for m in re.finditer(r"\b(\d{2,4})\s+(?:working\s+)?tools\b", para):
+                if int(m.group(1)) != stats["tools"]:
+                    stated.setdefault(name, set()).add(int(m.group(1)))
+    check(not stated,
+          f"prose tool counts match the registry ({stats['tools']})"
+          + ("" if not stated else " — "
+             + "; ".join(f"{k} says {sorted(v)}" for k, v in sorted(stated.items()))))
+
     landing = ROOT / "docs" / "index.html"
     check(landing.exists(), "docs/index.html (landing page) exists")
     if landing.exists():
         html = landing.read_text(encoding="utf-8")
-        stats = registry.stats()
         check(str(stats["tools"]) in html, "landing page states the current tool count")
         check(__import__("core").__version__ in html, "landing page states the current version")
         counts = registry.counts()

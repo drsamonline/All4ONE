@@ -60,7 +60,7 @@ python main.py list
 python main.py run word-count --text "hello world"
 ```
 
-Requires Python 3.10 or newer. No packages at all: the core and 380 tools use the
+Requires Python 3.10 or newer. No packages at all: the core and 404 tools use the
 standard library only.
 
 ### With the desktop UI
