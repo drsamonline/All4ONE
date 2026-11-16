@@ -1,6 +1,6 @@
 # All4one — Complete Tool Catalogue
 
-*404 tools · 16 categories · version 4.1.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
+*405 tools · 16 categories · version 4.1.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
 
 Every tool below is a working implementation with its own options and its own page in the app. The **Options** column is the exact set of controls that page shows.
 
@@ -8,7 +8,7 @@ Every tool below is a working implementation with its own options and its own pa
 |---|---|
 | Files | 42 |
 | Archives | 14 |
-| Text | 40 |
+| Text | 41 |
 | Data | 30 |
 | Encoding | 27 |
 | Images | 26 |
@@ -98,7 +98,7 @@ Every tool below is a working implementation with its own options and its own pa
 
 ## Text
 
-*Transform, analyse and clean text · 40 tools*
+*Transform, analyse and clean text · 41 tools*
 
 | Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
@@ -113,6 +113,7 @@ Every tool below is a working implementation with its own options and its own pa
 | **Extract Links** | `extract-urls` | `text` (multiline), `file` (file), `output` (save as), `domains_only` (toggle) | — | Collect every URL in a text or page, optionally keeping only unique domains. |
 | **Extract Numbers** | `extract-numbers` | `text` (multiline), `file` (file), `output` (save as), `sum` (toggle) | — | Grab every number from text — decimals, negatives and thousands separators. |
 | **Extract With Regex** | `regex-extract` | `text` (multiline), `file` (file), `pattern` (text, required), `unique` (toggle), `output` (save as) | — | Pull every match of a pattern out of text — emails, IDs, numbers, anything. |
+| **Find & Normalise Dates** | `dates-in-text` | `text` (multiline), `file` (file), `style` (choice), `policy` (choice), `output` (save as) | — | Find every date written in prose and rewrite it one way — and never guess one that could be read two ways. |
 | **Find & Replace** | `find-replace-text` | `text` (multiline), `file` (file), `find` (text, required), `replace` (text), `case_sensitive` (toggle), `whole_word` (toggle), `regex` (toggle), `output` (save as) | — | Replace text with optional whole-word, case-sensitive and regex modes. |
 | **Fix Line Endings in a Folder** | `batch-line-endings` | `folder` (folder, required), `pattern` (text), `target` (choice), `recursive` (toggle), `apply` (toggle) | — | Convert every text file in a folder to one line-ending style. |
 | **Fix Smart Quotes & Dashes** | `fix-smart-quotes` | `text` (multiline), `file` (file), `output` (save as) | — | Convert curly quotes, en dashes and ellipses into plain ASCII characters. |
@@ -574,4 +575,4 @@ Every tool below is a working implementation with its own options and its own pa
 | PyYAML (YAML parsing) | python | 1 tools | `pip install pyyaml` |
 | Tesseract (OCR engine) | binary | 2 tools | `Install Tesseract-OCR, then add its folder to PATH` |
 
-Nothing in this table is required: the app and 310 tools run on the standard library alone.
+Nothing in this table is required: the app and 311 tools run on the standard library alone.

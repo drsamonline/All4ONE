@@ -935,3 +935,199 @@ def batch_case_files(v, ctx):
             path.write_text(new_text, encoding="utf-8")
     verb = "Converted" if v["apply"] else "Would convert"
     return f"{verb} {count} file(s) to {v['mode']}"
+
+
+# --------------------------------------------------------------------------
+# Dates in prose
+# --------------------------------------------------------------------------
+_MONTHS = {
+    "january": 1, "jan": 1, "february": 2, "feb": 2, "march": 3, "mar": 3,
+    "april": 4, "apr": 4, "may": 5, "june": 6, "jun": 6, "july": 7, "jul": 7,
+    "august": 8, "aug": 8, "september": 9, "sep": 9, "sept": 9,
+    "october": 10, "oct": 10, "november": 11, "nov": 11,
+    "december": 12, "dec": 12,
+}
+_MONTH_NAMES = ["", "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"]
+_MONTH_ALT = "|".join(sorted(_MONTHS, key=len, reverse=True))
+_ORD = r"(?:st|nd|rd|th)?"
+
+# Year first, then month, then day: the one order that cannot be misread.
+_END = r"(?!\d)(?![./-]\d)"      # a sentence-ending full stop is not a date
+_RE_ISO = re.compile(rf"(?<![\d/.-])(\d{{4}})[-/.](\d{{1,2}})[-/.](\d{{1,2}}){_END}")
+# 3 April 2025 / 3rd-Apr-25 / 3 April, 2025
+_RE_DMY_NAME = re.compile(
+    rf"(?<![\w/.-])(\d{{1,2}}){_ORD}[\s\-.,/]+({_MONTH_ALT})\.?[\s\-.,/]+(\d{{4}}|\d{{2}})(?!\d)",
+    re.IGNORECASE)
+# April 3, 2025 / Apr-3-25
+_RE_MDY_NAME = re.compile(
+    rf"(?<![\w/.-])({_MONTH_ALT})\.?[\s\-.,/]+(\d{{1,2}}){_ORD},?[\s\-.,/]+(\d{{4}}|\d{{2}})(?!\d)",
+    re.IGNORECASE)
+# 03/04/2025 and 03-04-25. Dots are allowed only with a four-digit year,
+# because 1.2.34 is a version number and 03.04.2025 is a date.
+_RE_NUMERIC = re.compile(
+    rf"(?<![\d/.-])(\d{{1,2}})([/-])(\d{{1,2}})\2(\d{{4}}){_END}"
+    rf"|(?<![\d/.-])(\d{{1,2}})([/-])(\d{{1,2}})\6(\d{{2}}){_END}"
+    rf"|(?<![\d/.-])(\d{{1,2}})(\.)(\d{{1,2}})\10(\d{{4}}){_END}")
+
+
+def _year(raw: str) -> int:
+    """A two-digit year is read the POSIX way: 69-99 are 1900s, the rest 2000s."""
+    n = int(raw)
+    if len(raw) == 4:
+        return n
+    return 1900 + n if n >= 69 else 2000 + n
+
+
+def _date(y: int, m: int, d: int):
+    """The date if it exists on the calendar, else None — 31/02 is not a date."""
+    if not (1 <= m <= 12 and 1 <= d <= 31 and 1000 <= y <= 2999):
+        return None
+    try:
+        import datetime as _dt
+        return _dt.date(y, m, d)
+    except ValueError:
+        return None
+
+
+def _numeric_reading(a: int, b: int, year: int, policy: str):
+    """Which of a/b is the day. Returns (day, month, verdict).
+
+    verdict is 'read' when the numbers can only mean one thing, 'assumed' when
+    the policy settled it, 'ambiguous' when nothing did, 'invalid' when the
+    resulting date does not exist.
+    """
+    if a > 12 and b > 12:
+        return 0, 0, "invalid"
+    if a > 12:                       # 25/04 — only one way round
+        day, month, verdict = a, b, "read"
+    elif b > 12:                     # 04/25 — only one way round
+        day, month, verdict = b, a, "read"
+    elif a == b:
+        day, month, verdict = a, b, "read"
+    elif policy == "Day first":
+        day, month, verdict = a, b, "assumed"
+    elif policy == "Month first":
+        day, month, verdict = b, a, "assumed"
+    else:
+        return 0, 0, "ambiguous"
+    if _date(year, month, day) is None:
+        return 0, 0, "invalid"
+    return day, month, verdict
+
+
+def _dates_in(text: str, policy: str):
+    """Every date-shaped thing in the text, in order, with no overlaps."""
+    found = []
+    for m in _RE_ISO.finditer(text):
+        y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        kind = "read" if _date(y, mo, d) else "invalid"
+        found.append((m.start(), m.end(), m.group(0), _date(y, mo, d), kind))
+    for m in _RE_DMY_NAME.finditer(text):
+        d, mo, y = int(m.group(1)), _MONTHS[m.group(2).lower()], _year(m.group(3))
+        kind = "read" if _date(y, mo, d) else "invalid"
+        found.append((m.start(), m.end(), m.group(0), _date(y, mo, d), kind))
+    for m in _RE_MDY_NAME.finditer(text):
+        mo, d, y = _MONTHS[m.group(1).lower()], int(m.group(2)), _year(m.group(3))
+        kind = "read" if _date(y, mo, d) else "invalid"
+        found.append((m.start(), m.end(), m.group(0), _date(y, mo, d), kind))
+    for m in _RE_NUMERIC.finditer(text):
+        if m.group(1):
+            a, b, yraw = m.group(1), m.group(3), m.group(4)
+        elif m.group(5):
+            a, b, yraw = m.group(5), m.group(7), m.group(8)
+        else:
+            a, b, yraw = m.group(9), m.group(11), m.group(12)
+        d, mo, kind = _numeric_reading(int(a), int(b), _year(yraw), policy)
+        found.append((m.start(), m.end(), m.group(0),
+                      _date(_year(yraw), mo, d) if d else None, kind))
+
+    found.sort(key=lambda f: (f[0], -(f[1] - f[0])))
+    kept, last = [], -1
+    for item in found:                       # a longer match wins its own span
+        if item[0] >= last:
+            kept.append(item)
+            last = item[1]
+    return kept
+
+
+def _render(date, style: str) -> str:
+    if style == "Day first (03/04/2025)":
+        return f"{date.day:02d}/{date.month:02d}/{date.year:04d}"
+    if style == "Month name (3 April 2025)":
+        return f"{date.day} {_MONTH_NAMES[date.month]} {date.year}"
+    return date.isoformat()
+
+
+@tool(id="dates-in-text", name="Find & Normalise Dates", category="Text",
+      summary="Find every date written in prose and rewrite it one way — and never "
+              "guess one that could be read two ways.",
+      keywords="dates normalise iso 8601 format dd/mm/yyyy ambiguous prose",
+      fields=[F.multi("text", "Text", rows=10),
+              F.file("file", "…or read from a file", required=False),
+              F.choice("style", "Write dates as",
+                       ["ISO 8601 (2025-04-03)", "Day first (03/04/2025)",
+                        "Month name (3 April 2025)"], "ISO 8601 (2025-04-03)"),
+              F.choice("policy", "Read ambiguous dates as",
+                       ["Refuse (leave them as they are)",
+                        "Day first (03/04 = 3 April)",
+                        "Month first (03/04 = 4 March)"],
+                       "Refuse (leave them as they are)",
+                       help="03/04/2025 is 3 April in India and 4 March in the "
+                            "US, so a date that could be either is left alone "
+                            "and listed unless you settle it here."),
+              F.save("output", "Save result to", required=False)])
+def dates_in_text(v, ctx):
+    """Rewrite every date in the text one way — and list the ones that could be
+    read two ways rather than guessing. A date that does not exist (31/02) is
+    listed too, never rewritten. A two-digit year is read the POSIX way: 69-99
+    are 1900s, 00-68 are 2000s."""
+    text = _text(v)
+    policy = {"Day first (03/04 = 3 April)": "Day first",
+              "Month first (03/04 = 4 March)": "Month first"}.get(v["policy"], "Refuse")
+    style = v["style"]
+
+    found = _dates_in(text, policy)
+    if not found:
+        return "No dates found."
+
+    pieces, cursor, rows = [], 0, []
+    changed = assumed = ambiguous = invalid = 0
+    for start, end, raw, date, kind in found:
+        pieces.append(text[cursor:start])
+        if kind == "invalid":
+            invalid += 1
+            pieces.append(raw)
+            rows.append({"found": raw, "becomes": "—", "why": "no such date"})
+        elif kind == "ambiguous":
+            ambiguous += 1
+            pieces.append(raw)
+            rows.append({"found": raw, "becomes": "—",
+                         "why": "could be either — left alone"})
+        else:
+            written = _render(date, style)
+            if kind == "assumed":
+                assumed += 1
+                rows.append({"found": raw, "becomes": written,
+                             "why": "settled by your day/month choice"})
+            else:
+                rows.append({"found": raw, "becomes": written, "why": ""})
+            if written != raw:
+                changed += 1
+            pieces.append(written)
+        cursor = end
+    pieces.append(text[cursor:])
+    result = "".join(pieces)
+
+    ctx.log(report_table(rows, ["found", "becomes", "why"]))
+    _emit(v, ctx, result, "dates.txt")
+
+    note = []
+    if ambiguous:
+        note.append(f"{ambiguous} left alone as ambiguous")
+    if invalid:
+        note.append(f"{invalid} not a real date")
+    if assumed:
+        note.append(f"{assumed} settled by your choice")
+    tail = f" ({'; '.join(note)})" if note else ""
+    return f"{len(found)} date(s) found, {changed} rewritten{tail}"

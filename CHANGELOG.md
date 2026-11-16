@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+### Added
+
+- **Find & Normalise Dates (Text, the 405th tool).** Dates arrive written every
+  way a person writes them — `2025-04-03`, `3 April 2025`, `April 3, 2025`,
+  `3rd-Apr-25`, `25/04/2025`, `03.04.2025` — and the tool rewrites every one it
+  finds in prose into a single style you choose (ISO 8601, day-first, or a
+  month name). It does not guess. `03/04/2025` is 3 April in India and 4 March
+  in the US, so a date that could be read two ways is **left exactly as it was
+  and listed**, and only your own "read ambiguous dates as" choice settles it;
+  `31/02/2025` is listed as no such date rather than invented; `v1.2.34` and
+  `12:30:45` are not dates and are not touched. A two-digit year follows the
+  POSIX pivot (69-99 are the 1900s, 00-68 the 2000s). Every rewrite is shown in
+  a table of found → becomes → why before the text is written.
+
+
 ### Fixed
 
 - **A lone surrogate no longer crashes eleven tools.** Text that was decoded
