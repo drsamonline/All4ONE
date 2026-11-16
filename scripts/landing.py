@@ -201,6 +201,10 @@ def build() -> str:
   }} catch (e) {{ document.documentElement.setAttribute("data-theme", "dark"); }}
 }})();
 </script>
+<style>
+/* ---- a11y: the rule each label needs, chosen against its measured surface -- */
+[data-theme="dark"] a.btn.primary{{color:#0b1020!important}}   /* 3.07 -> 6.17:1 on rgb(109,140,255) */
+</style>
 </head>
 <body>
 <div class="glow"></div>
