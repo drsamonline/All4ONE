@@ -248,7 +248,24 @@ def audit_docs() -> None:
     check((ROOT / "LICENSE").exists(), "LICENSE exists")
 
 
+def _make_output_printable() -> None:
+    """Never let the audit's own message be the thing that crashes the audit.
+
+    On a Windows console the default stdout encoding is cp1252, which cannot encode
+    `✕`, so printing a failure raised UnicodeEncodeError and the gate reported a
+    charmap traceback instead of the finding. That happened on the 2026-11-18 build:
+    the single real finding was a stale tool count in two documents, and the log
+    showed none of it. Degrade the glyph, never the finding.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):  # pragma: no cover - very old or wrapped
+            pass
+
+
 def main() -> int:
+    _make_output_printable()
     # Hygiene first: importing the tools would create __pycache__ and mask it.
     audit_repository()
     audit_catalogue()
@@ -263,7 +280,13 @@ def main() -> int:
     if FAILURES:
         print(f"\n{len(FAILURES)} FAILURE(S):")
         for failure in FAILURES:
-            print(f"  ✕ {failure}")
+            # ASCII fallback if the stream still cannot carry the glyph.
+            marker = "✕"
+            try:
+                marker.encode(sys.stdout.encoding or "utf-8")
+            except (UnicodeEncodeError, LookupError):
+                marker = "x"
+            print(f"  {marker} {failure}")
         return 1
     print(f"\nAudit passed: {len(NOTES)} checks.")
     return 0

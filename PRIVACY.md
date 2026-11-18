@@ -7,7 +7,7 @@ Changes: Initial version.
 
 ## What this app is
 
-404 working tools in one portable Windows binary — file and folder work, encoding and hashing, images, PDFs, media, documents, network diagnostics, system…
+405 working tools in one portable Windows binary — file and folder work, encoding and hashing, images, PDFs, media, documents, network diagnostics, system…
 
 It runs on your own device. There is no account, no server and no sign-in.
 
