@@ -32,6 +32,12 @@
   input made python-docx raise `ValueError: All strings must be XML compatible`.
   Those characters are now replaced with `U+FFFD` and the run says how many,
   instead of failing the whole document.
+- **Two documents understated the catalogue.** `PRIVACY.md` said 403 working tools and
+  `INSTALLATION.md` said 380 while the registry runs 404. `scripts/audit.py` now reads every
+  "N tools" claim in the prose against the registry, so the next drift fails the build rather
+  than shipping in a privacy policy. Proven by restoring 403: the audit names the file and the
+  number. A paragraph describing the previous version ("551 tools across 45 plugin packs") is
+  history, not a claim about this one, and is skipped.
 
 ### Added
 
