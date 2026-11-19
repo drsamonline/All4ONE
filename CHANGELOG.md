@@ -4,6 +4,20 @@
 
 ### Added
 
+- **Add Up Times (Numbers, the 406th tool).** A column of durations — a
+  timesheet, a playlist, a set of call lengths, a leave request — added into one
+  total, in every form people actually write them: `1:30:00`, `1:30`, `90m`,
+  `1h 30m`, `1h30m45s`, `1.5h`, `5400s`, `2d`. It does not guess. `1:30` is
+  read as hours and minutes **because you said so** (there is a choice for
+  minutes and seconds, and the per-line table shows what each line became);
+  `1h 30` is refused because 30 of what is not written down; `1:75` is refused
+  because a colon form's parts are not free numbers; `9:00 AM` is named as a
+  time of day, not a length; a negative duration is refused. One unreadable line
+  refuses the **whole** sum, because a partial total is a wrong total. Hours do
+  not wrap at 24 (a 25-hour week is `25:00:00`, with the days named beside it),
+  the total is carried in whole milliseconds so ten `0.1h` lines are exactly
+  `01:00:00`, and decimal hours are reported for billing.
+
 - **Find & Normalise Dates (Text, the 405th tool).** Dates arrive written every
   way a person writes them — `2025-04-03`, `3 April 2025`, `April 3, 2025`,
   `3rd-Apr-25`, `25/04/2025`, `03.04.2025` — and the tool rewrites every one it

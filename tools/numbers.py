@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import re
 import statistics as stats
 from datetime import date, datetime, timedelta, timezone
 
@@ -832,3 +833,146 @@ def fluid_requirement(v, ctx):
     return {"litres": round(total / 1000, 2), "ml": round(total),
             "glasses_250ml": round(total / 250),
             "note": "General guidance; heart or kidney conditions need individual advice"}
+
+
+# --------------------------------------------------------------------------
+# Durations
+# --------------------------------------------------------------------------
+# Every unit a person actually types on a timesheet, a subtitle file or a
+# leave form. Milliseconds are the unit of account so a sum of times never
+# drifts the way float hours do (0.1 + 0.2 != 0.3).
+_DURATION_UNITS = {
+    "ms": 1, "millisecond": 1, "milliseconds": 1,
+    "s": 1_000, "sec": 1_000, "secs": 1_000, "second": 1_000, "seconds": 1_000,
+    "m": 60_000, "min": 60_000, "mins": 60_000, "minute": 60_000, "minutes": 60_000,
+    "h": 3_600_000, "hr": 3_600_000, "hrs": 3_600_000, "hour": 3_600_000,
+    "hours": 3_600_000,
+    "d": 86_400_000, "day": 86_400_000, "days": 86_400_000,
+}
+
+_COLON_TIME = re.compile(r"^(\d+):([0-5]?\d)(?::([0-5]?\d(?:\.\d+)?))?$")
+_DURATION_TOKEN = re.compile(r"(\d+(?:\.\d+)?)\s*([a-zA-Z]+)?")
+_CLOCK_MARK = re.compile(r"\b(?:am|pm|a\.m\.|p\.m\.)\b|o'?clock", re.IGNORECASE)
+
+
+def _spaced(line: str) -> str:
+    """Normalise the spaces a paste brings with it (NBSP, thin space, tabs)."""
+    return " ".join(line.replace("\u00a0", " ").replace("\u2009", " ").split())
+
+
+def _duration_ms(raw: str, two_part: str, bare: str) -> int:
+    """One line in, milliseconds out — or a reason it is not a duration.
+
+    Refusals are deliberate: ``1:30`` is read as hours and minutes only because
+    the caller chose that reading, ``1h 30`` is refused because 30 of what is
+    not written down, and ``1:75`` is refused because a colon form's parts are
+    not free numbers.
+    """
+    line = _spaced(raw)
+    if line.startswith(("-", "\u2212")):
+        raise ValueError("a duration is a length of time, so it cannot be negative")
+    if _CLOCK_MARK.search(line):
+        raise ValueError("that is a time of day, not a duration — write 1:30 or 90m")
+
+    match = _COLON_TIME.match(line)
+    if match:
+        first, second, third = match.groups()
+        if third is None:
+            if two_part.startswith("Minutes"):
+                return int(first) * 60_000 + round(float(second) * 1_000)
+            return int(first) * 3_600_000 + int(second) * 60_000
+        return (int(first) * 3_600_000 + int(second) * 60_000
+                + round(float(third) * 1_000))
+
+    if ":" in line:
+        raise ValueError("a colon form is h:mm or h:mm:ss — every part after the "
+                         "first must be 0-59 (1:75 is not a time)")
+
+    tokens = _DURATION_TOKEN.findall(line)
+    rebuilt = " ".join(f"{number}{unit}" for number, unit in tokens)
+    if not tokens or rebuilt.replace(" ", "") != line.replace(" ", ""):
+        raise ValueError("not a duration — write 1:30:00, 90m, 1h 30m or 45")
+
+    if len(tokens) == 1 and not tokens[0][1]:
+        factor = {"Minutes": 60_000, "Hours": 3_600_000, "Seconds": 1_000}[bare]
+        return round(float(tokens[0][0]) * factor)
+
+    total = 0
+    for number, unit in tokens:
+        if not unit:
+            raise ValueError(f"{number} has no unit — write {number}m, {number}h "
+                             f"or {number}s")
+        if unit.lower() not in _DURATION_UNITS:
+            raise ValueError(f"unknown unit {unit!r} — use ms, s, m, h or d")
+        total += round(float(number) * _DURATION_UNITS[unit.lower()])
+    return total
+
+
+def _hhmmss(ms: int) -> str:
+    """A duration as hh:mm:ss, keeping milliseconds only when there are some.
+
+    Hours are NOT wrapped at 24: a 25-hour week is 25:00:00, not 01:00:00.
+    """
+    hours, rest = divmod(ms, 3_600_000)
+    minutes, rest = divmod(rest, 60_000)
+    seconds, millis = divmod(rest, 1_000)
+    if millis:
+        return f"{hours:02d}:{minutes:02d}:{seconds:02d}.{millis:03d}"
+    return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+
+@tool(id="duration-sum", name="Add Up Times", category="Numbers",
+      summary="Add durations written any way — 1:30, 90m, 1h 30m — into one total, "
+              "with decimal hours for billing.",
+      keywords="duration timesheet sum hours minutes hh:mm billable overtime total time",
+      fields=[F.multi("times", "Durations, one per line",
+                      "1:30\n45m\n0:15:00", rows=8,
+                      help="1:30:00, 1:30, 90m, 1h 30m, 1.5h, 45s, 2d — one per line."),
+              F.choice("two_part", "A two-part time like 1:30 means",
+                       ["Hours and minutes (1:30 = 1h 30m)",
+                        "Minutes and seconds (1:30 = 1m 30s)"],
+                       "Hours and minutes (1:30 = 1h 30m)"),
+              F.choice("bare", "A number with no unit means", ["Minutes", "Hours", "Seconds"],
+                       "Minutes"),
+              F.save("output", "Save the total to", required=False)])
+def duration_sum(v, ctx):
+    """Add a column of durations. Nothing is guessed: a line that cannot be read
+    is named and the whole sum is refused, because a partial total is a wrong
+    total. Hours are not wrapped at 24, and milliseconds are kept."""
+    lines = [line for line in str(v["times"] or "").splitlines() if _spaced(line)]
+    if not lines:
+        raise ToolError("Type the durations, one per line (or 0 if there are none)")
+
+    problems, rows, total = [], [], 0
+    for number, line in enumerate(lines, start=1):
+        try:
+            ms = _duration_ms(line, v["two_part"], v["bare"])
+        except ValueError as exc:
+            problems.append(f"  line {number}: “{line.strip()}” — {exc}")
+            continue
+        total += ms
+        rows.append({"line": str(number), "written": _spaced(line), "as a time": _hhmmss(ms)})
+
+    if problems:
+        raise ToolError("Nothing was added, because a partial total would be wrong:\n"
+                        + "\n".join(problems))
+
+    ctx.log(report_table(rows, ["line", "written", "as a time"]))
+    hours = total / 3_600_000
+    minutes = total / 60_000
+    ctx.log("")
+    ctx.log(f"Total       {_hhmmss(total)}")
+    ctx.log(f"In hours    {hours:.4f} h  ({round(hours, 2)} for billing)")
+    ctx.log(f"In minutes  {minutes:.2f} min")
+    if total >= 86_400_000:
+        days, rest = divmod(total, 86_400_000)
+        ctx.log(f"That is     {days} day(s) and {_hhmmss(rest)}")
+
+    summary = (f"{len(rows)} duration(s), total {_hhmmss(total)} "
+               f"({round(hours, 2)} hours, {round(minutes, 2)} minutes)")
+    if str(v.get("output") or "").strip():
+        from ._util import out_path, write_text
+        target = write_text(out_path(v["output"], "total-time.txt"),
+                            f"{_hhmmss(total)}\n{summary}\n")
+        ctx.output(str(target))
+    return summary

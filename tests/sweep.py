@@ -355,6 +355,8 @@ def values_for(tool: Tool) -> dict:
                 values[field.key] = '[{"name": "A", "id": 1}]'
             elif tool.id in ("json-schema-lite",):
                 values[field.key] = '{"type": "array", "items": {"type": "object"}}'
+            elif tool.id == "duration-sum":
+                values[field.key] = "1:30\n45m\n0:15:00"
             else:
                 values[field.key] = {
                     "sql": "SELECT * FROM people",
