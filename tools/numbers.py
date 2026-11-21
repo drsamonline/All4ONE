@@ -850,14 +850,20 @@ _DURATION_UNITS = {
     "d": 86_400_000, "day": 86_400_000, "days": 86_400_000,
 }
 
-_COLON_TIME = re.compile(r"^(\d+):([0-5]?\d)(?::([0-5]?\d(?:\.\d+)?))?$")
+_COLON_TIME = re.compile(r"^(\d+):([0-5]?\d(?:\.\d+)?)(?::([0-5]?\d(?:\.\d+)?))?$")
 _DURATION_TOKEN = re.compile(r"(\d+(?:\.\d+)?)\s*([a-zA-Z]+)?")
 _CLOCK_MARK = re.compile(r"\b(?:am|pm|a\.m\.|p\.m\.)\b|o'?clock", re.IGNORECASE)
 
 
 def _spaced(line: str) -> str:
-    """Normalise the spaces a paste brings with it (NBSP, thin space, tabs)."""
-    return " ".join(line.replace("\u00a0", " ").replace("\u2009", " ").split())
+    """Normalise the spaces a paste brings with it (NBSP, thin space, tabs).
+
+    A colon survives a paste from a spreadsheet with spaces either side of it
+    (``27 : 30``), and those spaces are not part of the number: they are closed
+    up here so the colon form is read, not refused as unreadable.
+    """
+    text = " ".join(line.replace("\u00a0", " ").replace("\u2009", " ").split())
+    return re.sub(r"\s*:\s*", ":", text)
 
 
 def _duration_ms(raw: str, two_part: str, bare: str) -> int:
@@ -880,8 +886,8 @@ def _duration_ms(raw: str, two_part: str, bare: str) -> int:
         if third is None:
             if two_part.startswith("Minutes"):
                 return int(first) * 60_000 + round(float(second) * 1_000)
-            return int(first) * 3_600_000 + int(second) * 60_000
-        return (int(first) * 3_600_000 + int(second) * 60_000
+            return int(first) * 3_600_000 + round(float(second) * 60_000)
+        return (int(first) * 3_600_000 + round(float(second) * 60_000)
                 + round(float(third) * 1_000))
 
     if ":" in line:
@@ -976,3 +982,97 @@ def duration_sum(v, ctx):
                             f"{_hhmmss(total)}\n{summary}\n")
         ctx.output(str(target))
     return summary
+
+
+# --------------------------------------------------------------------------
+# Pace is a duration per unit of distance, so it is not a unit conversion: the
+# answer depends on the distance AND the time, and on which reading of a
+# two-part time you chose. Both are printed back, because a pace built on a
+# guessed reading is a wrong pace that looks right.
+DISTANCE_UNITS = {"km": 1.0, "miles": 1.609344, "metres": 0.001}
+
+_KM_PER_MILE = 1.609344
+
+RACES = (("5K", 5.0), ("10K", 10.0), ("half marathon", 21.0975), ("marathon", 42.195))
+
+
+def _pace_text(seconds: float) -> str:
+    """A pace as m:ss, or h:mm:ss past the hour — to the second, never to 0:00."""
+    total = max(1, round(seconds))
+    hours, rest = divmod(total, 3_600)
+    minutes, secs = divmod(rest, 60)
+    return f"{hours}:{minutes:02d}:{secs:02d}" if hours else f"{minutes}:{secs:02d}"
+
+
+def _spoken(ms: int) -> str:
+    """The duration in words, so the two-part reading is visible, not assumed."""
+    hours, rest = divmod(ms, 3_600_000)
+    minutes, rest = divmod(rest, 60_000)
+    secs, millis = divmod(rest, 1_000)
+    parts = []
+    if hours:
+        parts.append(f"{hours}h")
+    if minutes:
+        parts.append(f"{minutes}m")
+    if secs or millis or not parts:
+        parts.append(f"{secs}.{millis:03d}s" if millis else f"{secs}s")
+    return " ".join(parts)
+
+
+@tool(id="pace-calc", name="Pace & Speed", category="Numbers",
+      summary="Turn a distance and a time into a pace per kilometre and per mile, "
+              "and a speed.",
+      keywords="pace speed running cycling walk km mile min/km mph km/h split race "
+               "marathon time per km",
+      fields=[F.number("distance", "Distance", 5.0, minimum=0.0,
+                       help="How far you went, in the unit chosen beside it."),
+              F.choice("distance_unit", "Distance unit", ["km", "miles", "metres"], "km"),
+              F.text("time", "Time taken", "27:30",
+                     help="A duration, not a clock time: 1:30:00, 27:30, 45m, 1h 15m."),
+              F.choice("two_part", "A two-part time like 27:30 means",
+                       ["Minutes and seconds (27:30 = 27m 30s)",
+                        "Hours and minutes (27:30 = 27h 30m)"],
+                       "Minutes and seconds (27:30 = 27m 30s)")])
+def pace_calc(v, ctx):
+    """Distance and time in, pace and speed out.
+
+    Neither number is guessed: the two-part reading is the one chosen and it is
+    printed back in words, a zero distance and a zero time are both refused
+    (neither has a pace), and a time that is not a duration is named instead of
+    being coerced into one.
+    """
+    unit = str(v["distance_unit"])
+    if unit not in DISTANCE_UNITS:
+        raise ToolError(f"Unknown distance unit {unit!r} — use km, miles or metres")
+    distance = float(v["distance"])
+    if distance <= 0:
+        raise ToolError("A pace needs a distance greater than zero — how far did you go?")
+
+    try:
+        ms = _duration_ms(str(v["time"]), v["two_part"], "Minutes")
+    except ValueError as exc:
+        raise ToolError(f"The time is not a duration: {exc}") from None
+    if ms <= 0:
+        raise ToolError("Zero time has no pace — a speed is a distance over a time "
+                        "that actually passed")
+
+    km = distance * DISTANCE_UNITS[unit]
+    miles = km / _KM_PER_MILE
+    seconds = ms / 1_000.0
+    per_km = seconds / km
+    per_mile = seconds / miles
+    kmh = km / (seconds / 3_600.0)
+
+    ctx.log(f"Distance   {distance:g} {unit}  ({km:,.3f} km · {miles:,.3f} miles)")
+    ctx.log(f"Time       {_hhmmss(ms)}  (read as {_spoken(ms)})")
+    ctx.log("")
+    ctx.log(f"Pace       {_pace_text(per_km)} per km")
+    ctx.log(f"           {_pace_text(per_mile)} per mile")
+    ctx.log(f"Speed      {kmh:.2f} km/h  ·  {kmh / _KM_PER_MILE:.2f} mph")
+    ctx.log("")
+    ctx.log("At this pace")
+    for label, race_km in RACES:
+        ctx.log(f"  {label:<14} {_hhmmss(round(per_km * race_km) * 1_000)}")
+
+    return (f"{distance:g} {unit} in {_hhmmss(ms)} — {_pace_text(per_km)} per km, "
+            f"{_pace_text(per_mile)} per mile, {kmh:.2f} km/h")

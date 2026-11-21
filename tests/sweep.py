@@ -255,6 +255,9 @@ def text_fixture(key: str, tool: Tool) -> str:
         return "2024-01-01"
     if key in ("when", "start_time"):
         return "2024-01-01 09:00"
+    if tool.id == "pace-calc" and key == "time":
+        # A pace needs a duration, not a sentence: 27m 30s over the default 5 km.
+        return "27:30"
     if key in ("pages", "order"):
         return "1" if key == "pages" else "2,1"
     if key in ("numbers", "values", "list"):

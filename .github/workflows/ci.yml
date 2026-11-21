@@ -41,6 +41,7 @@ jobs:
           python tests/test_encoding.py
           python tests/test_dates_in_text.py
           python tests/test_duration.py
+          python tests/test_pace.py
 
       - name: Hostile input (no tool may answer a bad paste with a traceback)
         run: python tests/test_hostile_input.py

@@ -1,6 +1,6 @@
 # All4one — Complete Tool Catalogue
 
-*406 tools · 16 categories · version 4.2.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
+*407 tools · 16 categories · version 4.3.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
 
 Every tool below is a working implementation with its own options and its own page in the app. The **Options** column is the exact set of controls that page shows.
 
@@ -20,7 +20,7 @@ Every tool below is a working implementation with its own options and its own pa
 | Disk | 17 |
 | Developer | 23 |
 | Security | 16 |
-| Numbers | 30 |
+| Numbers | 31 |
 | Generators | 24 |
 
 
@@ -490,7 +490,7 @@ Every tool below is a working implementation with its own options and its own pa
 
 ## Numbers
 
-*Dates, times, units and calculations · 30 tools*
+*Dates, times, units and calculations · 31 tools*
 
 | Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
@@ -512,6 +512,7 @@ Every tool below is a working implementation with its own options and its own pa
 | **Loan EMI Calculator** | `emi-calc` | `principal` (number), `rate` (number), `years` (number), `months` (number) | — | Monthly EMI, total interest and a year-by-year repayment split. |
 | **Number Base Converter** | `base-convert` | `number` (text, required), `from_base` (number), `to_base` (number) | — | Convert a number between binary, octal, decimal, hex and any base up to 36. |
 | **Number to Words** | `number-words` | `number` (number) | — | Write a number out in English, using the Indian lakh/crore system. |
+| **Pace & Speed** | `pace-calc` | `distance` (number), `distance_unit` (choice), `time` (text), `two_part` (choice) | — | Turn a distance and a time into a pace per kilometre and per mile, and a speed. |
 | **Percentage Calculator** | `percentage` | `x` (number), `y` (number), `mode` (choice) | — | What is X% of Y, what percent is X of Y, and percent increase or decrease. |
 | **Prime Check & Factorise** | `prime` | `number` (number) | — | Test whether a number is prime, and break any number into its prime factors. |
 | **Quadratic Solver** | `quadratic` | `a` (number), `b` (number), `c` (number) | — | Roots, vertex and discriminant for ax² + bx + c = 0. |
@@ -576,4 +577,4 @@ Every tool below is a working implementation with its own options and its own pa
 | PyYAML (YAML parsing) | python | 1 tools | `pip install pyyaml` |
 | Tesseract (OCR engine) | binary | 2 tools | `Install Tesseract-OCR, then add its folder to PATH` |
 
-Nothing in this table is required: the app and 312 tools run on the standard library alone.
+Nothing in this table is required: the app and 313 tools run on the standard library alone.
