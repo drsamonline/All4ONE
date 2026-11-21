@@ -4,6 +4,22 @@
 
 ### Added
 
+- **Pace & Speed (Numbers, the 407th tool).** A distance and a time in, a pace
+  per kilometre and per mile, a speed in km/h and mph, and what the same pace
+  would give you over 5K, 10K, a half and a full marathon. It is not a unit
+  conversion, because the answer depends on **both** numbers. So neither is
+  guessed: `27:30` is read as minutes and seconds **because you said so** (the
+  choice is there, and the reading is printed back in words beside the time —
+  a pace built on a guessed reading looks right); a zero distance and a zero
+  time are both refused, because neither has a pace; `9:00 AM` is named as a
+  time of day; `1h 30` is refused because 30 of what is not written down; `1:75`
+  is refused because a colon form's parts are not free numbers; and a unit it
+  does not know is named rather than assumed. Miles and metres are converted to
+  kilometres once, so `5 miles in 44:14` and `5 km in 27:30` report the same
+  pace per km. Hours are not wrapped at 24, and a pace past the hour keeps its
+  hours (`1:06:00 per km`).
+
+
 - **Add Up Times (Numbers, the 406th tool).** A column of durations — a
   timesheet, a playlist, a set of call lengths, a leave request — added into one
   total, in every form people actually write them: `1:30:00`, `1:30`, `90m`,
@@ -32,6 +48,14 @@
 
 
 ### Fixed
+
+- **A colon time can carry a fractional second, and survives a paste.**
+  `27:30.5` was refused as a malformed `h:mm` even though a two-part time has
+  always been allowed a fractional third part; the second part accepts one now,
+  and the hours-and-minutes reading rounds it to whole milliseconds instead of
+  raising on `int("30.5")`. And `27 : 30` — what a spreadsheet paste looks like
+  — was refused as "not a duration" because the spaces sat around the colon;
+  they are closed up before the form is read, so the paste is the same time.
 
 - **A lone surrogate no longer crashes eleven tools.** Text that was decoded
   from bytes which were not valid UTF-8 — a Linux filename, a paste from a
