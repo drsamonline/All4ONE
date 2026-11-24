@@ -2,17 +2,17 @@
 
 # All4one
 
-### 407 working tools. One portable binary. No plugins, no packs, no filler.
+### 408 working tools. One portable binary. No plugins, no packs, no filler.
 
 Every tool gets its own page with its own options — search it, open it, set what you need, run it.
 
-![Version](https://img.shields.io/badge/version-4.3.0-6d8cff?style=flat-square)
-![Tools](https://img.shields.io/badge/tools-407-3fb950?style=flat-square)
+![Version](https://img.shields.io/badge/version-4.4.0-6d8cff?style=flat-square)
+![Tools](https://img.shields.io/badge/tools-408-3fb950?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D4?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.10%2B-f7c948?style=flat-square)
 ![Licence](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue?style=flat-square)
 
-**🌐 [Landing page](https://drsamonline.github.io/All4ONE/)** · **🖼️ [Screenshots](#-what-it-looks-like)** · **📚 [All 407 tools](TOOL_CATALOG.md)** · **⬇️ [Download](https://github.com/drsamonline/All4ONE/releases)**
+**🌐 [Landing page](https://drsamonline.github.io/All4ONE/)** · **🖼️ [Screenshots](#-what-it-looks-like)** · **📚 [All 408 tools](TOOL_CATALOG.md)** · **⬇️ [Download](https://github.com/drsamonline/All4ONE/releases)**
 
 </div>
 
@@ -34,7 +34,7 @@ report internals"). That architecture is gone:
 | | Before (3.x) | Now (4.0) |
 |---|---|---|
 | Structure | 45 plugin packs, a Packs tab, enable/disable toggles | One flat catalogue — nothing to enable, nothing to install |
-| Tools | 551 registered, many trivial or duplicated | 407, each with a real implementation and its own options |
+| Tools | 551 registered, many trivial or duplicated | 408, each with a real implementation and its own options |
 | UI | Tkinter, one table + details pane for everything | Qt (PySide6), sidebar navigation, one page per tool |
 | Options | Free-text argument box | Typed controls generated from each tool's own schema |
 | Verification | Registry smoke test only | Every runnable tool executed against fixtures on every build |
@@ -78,7 +78,7 @@ and nothing silently fails.
 
 ### The portable build
 
-Download `All4one-4.3.0-windows.zip` from
+Download `All4one-4.4.0-windows.zip` from
 [Releases](https://github.com/drsamonline/All4ONE/releases), unzip, run
 `All4one.exe`. That is the whole installation.
 
@@ -100,7 +100,7 @@ the window.
 The same binary is a proper CLI, and every GUI option has an identical flag:
 
 ```powershell
-all4one list                                  # all 407 tools, grouped
+all4one list                                  # all 408 tools, grouped
 all4one list --category PDF                   # one category
 all4one search hash                           # ranked search
 all4one show pdf-merge                        # options, defaults, readiness

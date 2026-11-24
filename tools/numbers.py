@@ -227,6 +227,166 @@ def emi_calc(v, ctx):
             "interest_share": f"{(total - principal) / total * 100:.1f}%"}
 
 
+@tool(id="amortisation-schedule", name="Amortisation Schedule", category="Numbers",
+      summary="Every instalment of a loan, month by month: how much is interest, how much "
+              "is principal, and what paying a little extra each month saves.",
+      keywords="amortisation amortization schedule loan repayment table principal interest "
+               "prepayment extra payment home loan car loan mortgage balance month wise",
+      fields=[F.number("principal", "Loan amount (₹)", 500000.0, minimum=1.0),
+              F.number("rate", "Annual interest rate (%)", 9.5, minimum=0.0, maximum=50.0),
+              F.integer("years", "Tenure (years)", 5, minimum=0, maximum=40),
+              F.integer("months", "…plus months", 0, minimum=0, maximum=11),
+              F.number("extra", "Extra paid every month (₹)", 0.0, minimum=0.0,
+                       help="0 gives the plain schedule. Anything above 0 ends the loan early; "
+                            "the saving is read off the two schedules, never estimated."),
+              F.choice("show", "Show", ["Year by year", "Every month"], "Year by year"),
+              F.save("output", "Save the month-by-month schedule to", filters="CSV (*.csv)")])
+def amortisation_schedule(v, ctx):
+    """The split a borrower is never shown: which instalments are nearly all interest.
+
+    Every figure is held in whole paise, so the principal column adds up to the loan
+    exactly — a float schedule leaves the borrower paying a paisa too much or too
+    little, and the balance it prints is then wrong in the last row. The last
+    instalment is whatever is left, and it is reported when it is not the usual one.
+    """
+    principal = _paise(v["principal"])
+    if principal <= 0:
+        raise ToolError("A loan of ₹0 has nothing to repay — give the amount borrowed.")
+    months = int(v["years"]) * 12 + int(v["months"])
+    if months <= 0:
+        raise ToolError("A tenure of 0 months has no instalments in it — give it at least "
+                        "one month.")
+    extra = _paise(v["extra"])
+    if extra < 0:
+        raise ToolError("An extra payment cannot be negative — leave it at 0 for the plain "
+                        "schedule.")
+
+    monthly_rate = float(v["rate"]) / 12 / 100
+    rows, emi = _instalments(principal, monthly_rate, months, extra)
+    plain, _ = (rows, emi) if extra == 0 else _instalments(principal, monthly_rate, months, 0)
+
+    interest_paid = sum(row["interest"] for row in rows)
+    principal_paid = sum(row["principal"] for row in rows)
+    if principal_paid != principal:
+        raise ToolError(
+            f"The schedule does not add up — ₹{principal_paid / 100:,.2f} of principal "
+            f"against a ₹{principal / 100:,.2f} loan — so it is not shown rather than shown "
+            "wrong.")
+    if rows[-1]["balance"] != 0:
+        raise ToolError("The schedule stops with a balance still owed, so it is not shown.")
+    plain_interest = sum(row["interest"] for row in plain)
+
+    if v["show"] == "Every month":
+        shown = [{"month": f"{row['month']}",
+                  "payment": _rupees(row["payment"]),
+                  "interest": _rupees(row["interest"]),
+                  "principal": _rupees(row["principal"]),
+                  "balance": _rupees(row["balance"])} for row in rows]
+        ctx.log(report_table(shown, ["month", "payment", "interest", "principal", "balance"]))
+    else:
+        years: dict[int, dict] = {}
+        for row in rows:
+            year = (row["month"] - 1) // 12 + 1
+            slot = years.setdefault(year, {"year": f"Year {year}", "principal": 0,
+                                           "interest": 0, "balance": 0})
+            slot["principal"] += row["principal"]
+            slot["interest"] += row["interest"]
+            slot["balance"] = row["balance"]
+        shown = [{"year": slot["year"],
+                  "principal": _rupees(slot["principal"]),
+                  "interest": _rupees(slot["interest"]),
+                  "balance": _rupees(slot["balance"])} for slot in years.values()]
+        ctx.log(report_table(shown, ["year", "principal", "interest", "balance"]))
+        if len(rows) % 12:
+            ctx.log(f"(the last year holds {len(rows) % 12} instalment(s), not 12)")
+
+    ctx.log("")
+    ctx.log(f"Loan          {_rupees(principal)} at {float(v['rate']):.2f}% for "
+            f"{months} month(s)")
+    ctx.log(f"Instalment    {_rupees(emi)}")
+    if extra:
+        ctx.log(f"Extra         {_rupees(extra)} a month")
+    ctx.log(f"Cleared in    {len(rows)} instalment(s) — {len(rows) // 12} year(s) and "
+            f"{len(rows) % 12} month(s)")
+    if rows[-1]["payment"] != emi + extra:
+        difference = rows[-1]["payment"] - (emi + extra)
+        ctx.log(f"Last one      {_rupees(rows[-1]['payment'])} — "
+                f"{_rupees(abs(difference))} {'more' if difference > 0 else 'less'} than the "
+                "usual instalment, because the last one is whatever is left")
+    ctx.log(f"Interest      {_rupees(interest_paid)} in total")
+    ctx.log(f"Total paid    {_rupees(principal_paid + interest_paid)}")
+    if extra:
+        saved = plain_interest - interest_paid
+        ctx.log(f"Saved         {_rupees(saved)} of interest and {months - len(rows)} "
+                "instalment(s), against the same loan with no extra")
+
+    if str(v.get("output") or "").strip():
+        from ._util import out_path, write_csv
+        target = write_csv(
+            out_path(v["output"], "amortisation-schedule.csv"),
+            [{"month": row["month"], "payment": f"{row['payment'] / 100:.2f}",
+              "interest": f"{row['interest'] / 100:.2f}",
+              "principal": f"{row['principal'] / 100:.2f}",
+              "extra": f"{row['extra'] / 100:.2f}",
+              "balance": f"{row['balance'] / 100:.2f}"} for row in rows],
+            ["month", "payment", "interest", "principal", "extra", "balance"])
+        ctx.output(str(target))
+
+    return {"monthly_instalment": round(emi / 100, 2),
+            "instalments": len(rows),
+            "total_interest": round(interest_paid / 100, 2),
+            "total_paid": round((principal_paid + interest_paid) / 100, 2),
+            "months_saved": months - len(rows),
+            "interest_saved": round((plain_interest - interest_paid) / 100, 2)}
+
+
+def _paise(rupees) -> int:
+    """Rupees to whole paise, the unit every figure in a schedule is held in."""
+    return int(round(float(rupees or 0) * 100))
+
+
+def _rupees(paise: int) -> str:
+    return f"₹{paise / 100:,.2f}"
+
+
+def _instalments(principal: int, monthly_rate: float, months: int, extra: int):
+    """The schedule itself: a list of rows in paise, plus the instalment they came from.
+
+    Interest is rounded to the paisa each month and charged on the balance that is
+    actually left, so the rows are the truth and every total is summed from them.
+    """
+    if monthly_rate == 0:
+        emi = -(-principal // months)      # rounded up, so the last one is the small one
+    else:
+        growth = (1 + monthly_rate) ** months
+        emi = round(principal * monthly_rate * growth / (growth - 1))
+    rows: list[dict] = []
+    balance = principal
+    for month in range(1, months + 1):
+        interest = round(balance * monthly_rate)
+        if month == months:
+            # The last instalment is the balance and its interest: rounding the
+            # instalment to the paisa always leaves a few paise, and charging a
+            # 61st payment of ₹0.02 to a 60-month loan is not a schedule.
+            payment = balance + interest
+        else:
+            payment = min(emi + extra, balance + interest)
+        principal_part = payment - interest
+        if principal_part <= 0:
+            raise ToolError(
+                f"Nothing would be repaid: an instalment of {_rupees(payment)} does not cover "
+                f"the {_rupees(interest)} of interest this balance earns in a month, so the "
+                "loan would never end. Borrow more, pay more each month, or take a shorter "
+                "tenure.")
+        balance -= principal_part
+        rows.append({"month": month, "payment": payment, "interest": interest,
+                     "principal": principal_part, "extra": max(0, payment - emi),
+                     "balance": balance})
+        if balance <= 0:
+            break
+    return rows, emi
+
+
 @tool(id="compound-interest", name="Compound Interest", category="Numbers",
       summary="Growth of an investment with monthly, quarterly or yearly compounding.",
       fields=[F.number("principal", "Amount invested (₹)", 100000.0, minimum=0.0),
