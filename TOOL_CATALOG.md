@@ -1,6 +1,6 @@
 # All4one — Complete Tool Catalogue
 
-*407 tools · 16 categories · version 4.3.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
+*408 tools · 16 categories · version 4.4.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
 
 Every tool below is a working implementation with its own options and its own page in the app. The **Options** column is the exact set of controls that page shows.
 
@@ -20,7 +20,7 @@ Every tool below is a working implementation with its own options and its own pa
 | Disk | 17 |
 | Developer | 23 |
 | Security | 16 |
-| Numbers | 31 |
+| Numbers | 32 |
 | Generators | 24 |
 
 
@@ -490,13 +490,14 @@ Every tool below is a working implementation with its own options and its own pa
 
 ## Numbers
 
-*Dates, times, units and calculations · 31 tools*
+*Dates, times, units and calculations · 32 tools*
 
 | Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
 | **Add to a Date** | `date-add` | `start` (text), `days` (number), `weeks` (number), `months` (number), `years` (number) | — | Add or subtract days, weeks, months or years from a date. |
 | **Add Up Times** | `duration-sum` | `times` (multiline), `two_part` (choice), `bare` (choice), `output` (save as) | — | Add durations written any way — 1:30, 90m, 1h 30m — into one total, with decimal hours for billing. |
 | **Age Calculator** | `age-calc` | `birthdate` (text, required) | — | Exact age in years, months and days, plus the next birthday countdown. |
+| **Amortisation Schedule** | `amortisation-schedule` | `principal` (number), `rate` (number), `years` (number), `months` (number), `extra` (number), `show` (choice), `output` (save as) | — | Every instalment of a loan, month by month: how much is interest, how much is principal, and what paying a little extra each month saves. |
 | **Aspect Ratio Helper** | `aspect-ratio` | `width` (number), `height` (number), `target_width` (number) | — | Reduce a resolution to its aspect ratio, or work out a matching size. |
 | **BMI Calculator** | `bmi` | `weight_kg` (number), `height_cm` (number) | — | Body mass index with WHO and Indian cut-offs, plus a healthy weight range. |
 | **BMR & Daily Calories** | `bmr-tdee` | `weight_kg` (number), `height_cm` (number), `age` (number), `sex` (choice), `activity` (choice) | — | Resting energy use (Mifflin-St Jeor) and daily calories by activity level. |
@@ -577,4 +578,4 @@ Every tool below is a working implementation with its own options and its own pa
 | PyYAML (YAML parsing) | python | 1 tools | `pip install pyyaml` |
 | Tesseract (OCR engine) | binary | 2 tools | `Install Tesseract-OCR, then add its folder to PATH` |
 
-Nothing in this table is required: the app and 313 tools run on the standard library alone.
+Nothing in this table is required: the app and 314 tools run on the standard library alone.

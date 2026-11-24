@@ -4,6 +4,28 @@
 
 ### Added
 
+- **Amortisation Schedule (Numbers, the 408th tool).** The split every lender
+  prints and no borrower reads: month by month, how much of each instalment is
+  interest and how much actually repays the loan, plus what paying a little
+  extra each month saves. It is not the EMI calculator — `emi-calc` gives one
+  number and a year-by-year total; this gives the schedule itself, and every
+  total in it is **summed from the rows**, never recomputed from the formula,
+  because `instalment × months` is not what a borrower pays. Two things the
+  naive version gets wrong are both pinned by tests: rounding the instalment to
+  the paisa leaves a few paise over, and the old shape of this calculation
+  answers a 60-month loan with a 61st payment of ₹0.02 — the last instalment is
+  whatever is left, and the report says how far it differs from the usual one
+  (₹0.02 more here, ₹8,948.91 less when an extra payment ends the loan early).
+  Every figure is held in whole paise, so the principal column adds up to the
+  loan exactly; ₹4.35 over 5 months is 5 × ₹0.87 and not the ₹0.18 a float
+  schedule produces. An extra payment's saving is read off two schedules, not
+  estimated: ₹2,000 a month on ₹5,00,000 at 9.5% clears it in 49 instalments
+  instead of 60 and saves ₹26,459.16 of interest. Refusals are by name: a
+  0-month tenure, a ₹0 loan, a negative extra, and a loan whose instalment
+  rounds to nothing (₹1 at 50% over 40 years) — that one is refused rather than
+  looped on, because a schedule of ₹0.00 payments never ends. `Every month` and
+  `Year by year` agree on every total, and the CSV holds the same rows.
+  `tests/test_amortisation.py` — 25 assertions; ten mutations, each red.
 - **Pace & Speed (Numbers, the 407th tool).** A distance and a time in, a pace
   per kilometre and per mile, a speed in km/h and mph, and what the same pace
   would give you over 5K, 10K, a half and a full marathon. It is not a unit
