@@ -1236,3 +1236,149 @@ def pace_calc(v, ctx):
 
     return (f"{distance:g} {unit} in {_hhmmss(ms)} — {_pace_text(per_km)} per km, "
             f"{_pace_text(per_mile)} per mile, {kmh:.2f} km/h")
+
+
+DEPRECIATION_METHODS = ["Straight line", "Written-down value"]
+
+
+@tool(id="depreciation-schedule", name="Depreciation Schedule", category="Numbers",
+      summary="Year by year, what an asset loses under straight line or written-down "
+              "value, ending at exactly its salvage value.",
+      keywords="depreciation schedule written down value diminishing balance reducing "
+               "balance straight line SLM WDV asset fixed asset salvage residual scrap "
+               "book value tax accounts balance sheet block of assets capital expenditure",
+      fields=[F.number("cost", "Cost of the asset (₹)", 100000.0, minimum=0.0),
+              F.number("salvage", "Salvage / residual value (₹)", 10000.0, minimum=0.0),
+              F.integer("years", "Useful life (years)", 5, minimum=0, maximum=60),
+              F.choice("method", "Method", DEPRECIATION_METHODS, "Straight line"),
+              F.save("output", "Save the schedule to", filters="CSV (*.csv)")])
+def depreciation_schedule(v, ctx):
+    """What the asset loses each year, and what it is worth at the end of each.
+
+    Two things the naive version gets wrong are refused rather than printed:
+
+    * **A book value that never lands on the salvage value.** Under written-down
+      value the closing balance is a shrinking fraction and never reaches the
+      salvage value by itself, so the last year is *whatever is left* — and the
+      report says how far that is from the usual charge. Under straight line the
+      yearly charge is rounded to the paisa, which leaves the same few paise over.
+    * **A rate that contradicts the life.** The written-down rate is derived from
+      the life and the salvage value, so the two cannot disagree; the rate is
+      printed because it is the number an accountant will want to check.
+
+    Every figure is held in whole paise, so the charges add up to the depreciable
+    amount exactly, and a schedule that does not add up is refused instead of shown.
+    """
+    cost = _paise(v["cost"])
+    salvage = _paise(v["salvage"])
+    years = int(v["years"])
+    method = v["method"]
+
+    if cost <= 0:
+        raise ToolError("An asset that cost ₹0 has nothing to depreciate — give what was "
+                        "paid for it.")
+    if salvage < 0:
+        raise ToolError("A salvage value cannot be negative — leave it at 0 if the asset is "
+                        "expected to be worth nothing.")
+    if salvage > cost:
+        raise ToolError(
+            f"A salvage value of {_rupees(salvage)} is more than the {_rupees(cost)} the "
+            "asset cost, so the schedule would have to depreciate a negative amount.")
+    if years <= 0:
+        raise ToolError("A useful life of 0 years has no years in it — give it at least one.")
+    if method == "Written-down value" and salvage == 0:
+        raise ToolError(
+            "Written-down value never reaches ₹0 in a finite number of years: the rate that "
+            "would get there is 100% a year, which writes the whole asset off in the first "
+            "year and makes the life meaningless. Give a salvage value — even ₹1 — and the "
+            "rate is derived from it.")
+
+    rows, rate = _depreciation(cost, salvage, years, method)
+
+    charges = sum(row["charge"] for row in rows)
+    depreciable = cost - salvage
+    if charges != depreciable:
+        raise ToolError(
+            f"The schedule does not add up — {_rupees(charges)} of depreciation against "
+            f"{_rupees(depreciable)} to write off — so it is not shown rather than shown "
+            "wrong.")
+    if rows[-1]["closing"] != salvage:
+        raise ToolError("The schedule stops at a book value that is not the salvage value, "
+                        "so it is not shown.")
+    if depreciable > 0 and rows[0]["charge"] == 0:
+        raise ToolError(
+            f"At this life a year's charge is less than a paisa ({_rupees(depreciable)} "
+            f"spread over {years} years), so the schedule cannot be held in paise — give a "
+            "shorter life or a larger amount.")
+
+    shown = []
+    written = 0
+    for row in rows:
+        written += row["charge"]
+        shown.append({"year": f"Year {row['year']}",
+                      "opening": _rupees(row["opening"]),
+                      "charge": _rupees(row["charge"]),
+                      "closing": _rupees(row["closing"]),
+                      "written off": f"{written / cost * 100:.1f}%"})
+    ctx.log(report_table(shown, ["year", "opening", "charge", "closing", "written off"]))
+
+    ctx.log("")
+    ctx.log(f"Asset         {_rupees(cost)}")
+    ctx.log(f"Salvage       {_rupees(salvage)} after {years} year(s)")
+    if rate is None:
+        ctx.log(f"Method        Straight line — {_rupees(rows[0]['charge'])} a year")
+    else:
+        ctx.log(f"Method        Written-down value at {rate * 100:.2f}% a year on the "
+                "opening balance")
+        ctx.log("              (the rate is derived from the life and the salvage value, so "
+                "the life means what it says)")
+    usual = rows[0]["charge"]
+    if rows[-1]["charge"] != usual:
+        difference = rows[-1]["charge"] - usual
+        ctx.log(f"Last year     {_rupees(rows[-1]['charge'])} — {_rupees(abs(difference))} "
+                f"{'more' if difference > 0 else 'less'} than the usual {_rupees(usual)}, "
+                "because the last year is whatever is left")
+    ctx.log(f"Written off   {_rupees(charges)} in total")
+    ctx.log(f"Book value    {_rupees(rows[-1]['closing'])} at the end")
+
+    if str(v.get("output") or "").strip():
+        from ._util import out_path, write_csv
+        target = write_csv(
+            out_path(v["output"], "depreciation-schedule.csv"),
+            [{"year": row["year"], "opening": f"{row['opening'] / 100:.2f}",
+              "charge": f"{row['charge'] / 100:.2f}",
+              "closing": f"{row['closing'] / 100:.2f}"} for row in rows],
+            ["year", "opening", "charge", "closing"])
+        ctx.output(str(target))
+
+    return {"method": method,
+            "rate_percent": None if rate is None else round(rate * 100, 4),
+            "yearly_charge": round(rows[0]["charge"] / 100, 2),
+            "total_charge": round(charges / 100, 2),
+            "closing_book_value": round(rows[-1]["closing"] / 100, 2)}
+
+
+def _depreciation(cost: int, salvage: int, years: int, method: str):
+    """Year rows in whole paise — and the written-down rate, or ``None``.
+
+    The last year is whatever is left, by construction, so the closing balance
+    lands on the salvage value instead of a few paise short of it.
+    """
+    rate = None if method == "Straight line" else 1 - (salvage / cost) ** (1 / years)
+    depreciable = cost - salvage
+    rows = []
+    opening = cost
+    for year in range(1, years + 1):
+        if year == years:
+            charge = opening - salvage
+        elif rate is None:
+            charge = int(round(depreciable / years))
+        else:
+            charge = int(round(opening * rate))
+            charge = min(charge, opening - salvage)
+        charge = max(charge, 0)
+        closing = opening - charge
+        rows.append({"year": year, "opening": opening, "charge": charge,
+                     "closing": closing})
+        opening = closing
+    return rows, rate
