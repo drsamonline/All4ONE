@@ -1,6 +1,6 @@
 # All4one — Complete Tool Catalogue
 
-*408 tools · 16 categories · version 4.4.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
+*409 tools · 16 categories · version 4.5.0 · generated from the live registry by `scripts/catalogue.py` — do not edit by hand.*
 
 Every tool below is a working implementation with its own options and its own page in the app. The **Options** column is the exact set of controls that page shows.
 
@@ -20,7 +20,7 @@ Every tool below is a working implementation with its own options and its own pa
 | Disk | 17 |
 | Developer | 23 |
 | Security | 16 |
-| Numbers | 32 |
+| Numbers | 33 |
 | Generators | 24 |
 
 
@@ -490,7 +490,7 @@ Every tool below is a working implementation with its own options and its own pa
 
 ## Numbers
 
-*Dates, times, units and calculations · 32 tools*
+*Dates, times, units and calculations · 33 tools*
 
 | Tool | Command | Options | Needs | Description |
 |---|---|---|---|---|
@@ -505,6 +505,7 @@ Every tool below is a working implementation with its own options and its own pa
 | **Daily Fluid Requirement** | `fluid-requirement` | `weight_kg` (number), `activity` (choice), `hot_day_c` (number) | — | A maintenance fluid estimate by weight and activity, in litres and glasses. |
 | **Data Size Converter** | `bytes-units` | `value` (number), `from_unit` (choice), `speed_mbps` (number) | — | Convert between bytes, KB, MB, GB and TB, and show what a file costs to transfer. |
 | **Date Difference** | `date-diff` | `from_date` (text, required), `to_date` (text, required) | — | Days, weeks, months and working days between two dates. |
+| **Depreciation Schedule** | `depreciation-schedule` | `cost` (number), `salvage` (number), `years` (number), `method` (choice), `output` (save as) | — | Year by year, what an asset loses under straight line or written-down value, ending at exactly its salvage value. |
 | **Discount Calculator** | `discount` | `price` (number), `discount` (number), `extra` (number) | — | Sale price, amount saved, and the effective discount between two prices. |
 | **Epoch / Timestamp Converter** | `epoch-convert` | `value` (text), `milliseconds` (toggle) | — | Convert between Unix timestamps and readable dates, in your local time and UTC. |
 | **Format Indian Currency** | `indian-currency` | `amount` (number), `words` (toggle) | — | Write an amount the Indian way — lakhs, crores and 2,34,567 grouping. |
@@ -578,4 +579,4 @@ Every tool below is a working implementation with its own options and its own pa
 | PyYAML (YAML parsing) | python | 1 tools | `pip install pyyaml` |
 | Tesseract (OCR engine) | binary | 2 tools | `Install Tesseract-OCR, then add its folder to PATH` |
 
-Nothing in this table is required: the app and 314 tools run on the standard library alone.
+Nothing in this table is required: the app and 315 tools run on the standard library alone.

@@ -4,6 +4,29 @@
 
 ### Added
 
+- **Depreciation Schedule (Numbers, the 409th tool).** Year by year, what an
+  asset loses and what it is worth at the end of each year — straight line or
+  written-down value, ending on exactly its salvage value. It is not the
+  amortisation schedule in reverse: a loan has a fixed instalment and a rate the
+  borrower is told, while an asset has a **life** and a **salvage value** and no
+  rate at all, so the written-down rate here is *derived* from the two
+  (`1 − (salvage/cost)^(1/n)`) and printed, which is the only way the rate and the
+  life cannot contradict each other. Two things the naive version gets wrong are
+  both refused rather than printed: written-down value never reaches zero in a
+  finite number of years — the rate that would get there is 100% a year, which
+  writes the whole asset off in year one — so a ₹0 salvage value is refused by
+  name and the owner is told to give even ₹1; and the yearly charge is rounded to
+  the paisa, which leaves the book value a few paise off the salvage value, so the
+  last year is **whatever is left** and the report says how far that is from the
+  usual charge (₹31,055.34 less on ₹1,00,000 at 5 years). Every figure is held in
+  whole paise and the charges must add up to the depreciable amount exactly —
+  ₹1,000 over 3 years is ₹333.33 + ₹333.33 + ₹333.34, not three times ₹333.33 —
+  and a schedule that does not add up is refused, never shown. One rounding case
+  is pinned by its own test: ₹10.25 down to ₹10.00 over 14 years, where at year 13
+  the rounded charge would take the balance a paisa *below* the salvage value, so
+  the charge is capped. `tests/test_depreciation.py` — 23 tests, 50 assertions;
+  ten mutations, all ten red.
+
 - **Amortisation Schedule (Numbers, the 408th tool).** The split every lender
   prints and no borrower reads: month by month, how much of each instalment is
   interest and how much actually repays the loan, plus what paying a little
